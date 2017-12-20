@@ -7,7 +7,8 @@ Basic usage
 Steps to add a new post:
 
 0. git clone the project to your local machine (if doing for the first
-   time, make sure to `yarn` install the dependencies)
+   time, make sure to `yarn` install the dependencies). Make sure you
+   are on the **build** branch.
 1. Go to `src/pages` and add a new directory with `mkdir`. Format of
    the directory should be `<YEAR>-<MONTH>-<DAY>-<POST-NAME>`.
 2. Inside that newly created directory, create an `index.md`
