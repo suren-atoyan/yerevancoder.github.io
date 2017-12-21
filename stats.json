@@ -8,6 +8,10 @@
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
+    "path---2017-12-21-javascript-resources": [
+      "path---2017-12-21-javascript-resources-dd78a944e4551f3b303f.js",
+      "path---2017-12-21-javascript-resources-dd78a944e4551f3b303f.js.map"
+    ],
     "component---node-modules-gatsby-plugin-offline-app-shell-js": [
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js",
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js.map"
@@ -21,8 +25,8 @@
       "component---src-layouts-index-js-fdb680d57477904d9204.js.map"
     ],
     "path---index": [
-      "path---index-0c385b03f16a58e1240a.js",
-      "path---index-0c385b03f16a58e1240a.js.map"
+      "path---index-d3ed779a9a80a3d6d5dd.js",
+      "path---index-d3ed779a9a80a3d6d5dd.js.map"
     ],
     "commons": [
       "commons-3f8cdb987559d31a3a4e.js",
@@ -39,9 +43,9 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-5251a38131fb169f67de.js",
+      "app-72e219d15a1aa2040653.js",
       "build-js-styles.css",
-      "app-5251a38131fb169f67de.js.map",
+      "app-72e219d15a1aa2040653.js.map",
       "build-js-styles.css.map"
     ]
   }
