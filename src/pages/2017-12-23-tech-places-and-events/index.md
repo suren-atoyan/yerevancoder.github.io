@@ -49,7 +49,7 @@ Tumo center as well.
 
 ## Yerevan-based
 
-1. [Achajour](www.achajour.am/)-This is a cool cafe, usually many
+1. [Achajour](http://www.achajour.am/en/)-This is a cool cafe, usually many
    English speakers and many coders, prime place to make friends and
    run into familiar faces.
 2. [Loft](https://www.facebook.com/The.LOFT.center/)-The best place to
