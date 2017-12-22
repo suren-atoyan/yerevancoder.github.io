@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Dec 2017 22:40:25 GMT</lastBuildDate><item><title><![CDATA[Free JavaScript learning material! (nodejs, React, JSConf)]]></title><description><![CDATA[By Edgar Aroutiounian ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Dec 2017 23:42:59 GMT</lastBuildDate><item><title><![CDATA[Tech places and events in Armenia]]></title><description><![CDATA[By Edgar Aroutiounian ,
+catch me on  twitter So you just landed in Yerevan and need a quick way to get a pulse of
+the tech industry ASAP…]]></description><link>https://yerevancoder.com/2017-12-23-tech-places-and-events/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-23-tech-places-and-events/</guid><pubDate>Sat, 23 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Edgar Aroutiounian&lt;/em&gt;,
+catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;land_in_armenia&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;look_for_events&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;make_new_friends&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So you just landed in Yerevan and need a quick way to get a pulse of
+the tech industry ASAP. Here’s your insider’s crash course&lt;/p&gt;
+&lt;h1&gt;Places for tech&lt;/h1&gt;
+&lt;h2&gt;Yerevan-based&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://istc.am&quot;&gt;ISTC&lt;/a&gt;-The Innovative Solutions and Technologies
+Center hosts many many tech events featuring some of the best minds
+in the local Data Science scene and is home to quite a few startups.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.micarmenia.am&quot;&gt;MIC-Armenia&lt;/a&gt;-Microsoft Innovation Center
+Armenia holds many trainings, hosts talks.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://aua.am&quot;&gt;AUA&lt;/a&gt;-Has a good computer science department,
+comparable to a top 200 USA university. They also host many tech
+events. &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.smartgate.vc/single-post/2017/12/22/Better-together-Hero-House-is-introduced-to-the-startup-community-and-friends&quot;&gt;HeroHouse&lt;/a&gt;-An
+exciting and brand new initiative for startups in Armenia&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tumo.org&quot;&gt;Tumo&lt;/a&gt;-A truly remarkable and unique place in the
+world, Tumo hosts many tech events and startups.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Outside Yerevan&lt;/h2&gt;
+&lt;p&gt;Outside the capital, there are less tech opportunities but they are
+growing daily. Gyumri has its own Tumo, Loft and the
+&lt;a href=&quot;http://gtc.am/en/home/&quot;&gt;GTC&lt;/a&gt;. Similarly, Vanadzor also has new
+technology center: &lt;a href=&quot;http://vtc.am/en/&quot;&gt;VTC&lt;/a&gt;. In Artsakh, there is a
+Tumo center as well.&lt;/p&gt;
+&lt;h1&gt;Places coders hangout at&lt;/h1&gt;
+&lt;h2&gt;Yerevan-based&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;www.achajour.am/&quot;&gt;Achajour&lt;/a&gt;-This is a cool cafe, usually many
+English speakers and many coders, prime place to make friends and
+run into familiar faces.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/The.LOFT.center/&quot;&gt;Loft&lt;/a&gt;-The best place to
+get serious work done but usually just overnight. Overnight deal is
+fantastic, only 1000 dram (~$2) for the entire night from 12AM-7AM,
+unlimited coffee and snacks.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Discussion groups&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/groups/410797219090898/&quot;&gt;iterate hackerspace&lt;/a&gt;-Facebook group.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;Tech events 2018&lt;/h1&gt;
+&lt;h2&gt;Hackathons&lt;/h2&gt;
+&lt;h3&gt;January&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/events/407926479641201/permalink/410025256097990/&quot;&gt;Global Game Jam Armenia 2018&lt;/a&gt;-January 26, 2018&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Meetups&lt;/h2&gt;
+&lt;h3&gt;January&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/events/1811743828899726/&quot;&gt;GEEK Girls’ Dinner: Welcome to 2018&lt;/a&gt;-January 7, 2018&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Free JavaScript learning material! (nodejs, React, JSConf)]]></title><description><![CDATA[By Edgar Aroutiounian ,
 catch me on  twitter Here are some  JavaScript  resources you can use when learning. nodejs These are lecture notes…]]></description><link>https://yerevancoder.com/2017-12-21-javascript-resources/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-21-javascript-resources/</guid><pubDate>Thu, 21 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Edgar Aroutiounian&lt;/em&gt;,
 catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here are some &lt;strong&gt;JavaScript&lt;/strong&gt; resources you can use when learning.&lt;/p&gt;

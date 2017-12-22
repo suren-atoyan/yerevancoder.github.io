@@ -1,8 +1,8 @@
 {
   "assetsByChunkName": {
     "component---src-pages-index-js": [
-      "component---src-pages-index-js-bbb85c6aa77119080b14.js",
-      "component---src-pages-index-js-bbb85c6aa77119080b14.js.map"
+      "component---src-pages-index-js-071b973d2b75d8570af9.js",
+      "component---src-pages-index-js-071b973d2b75d8570af9.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
@@ -25,8 +25,8 @@
       "component---src-layouts-index-js-fdb680d57477904d9204.js.map"
     ],
     "path---index": [
-      "path---index-d3ed779a9a80a3d6d5dd.js",
-      "path---index-d3ed779a9a80a3d6d5dd.js.map"
+      "path---index-720f2c74983d27c56686.js",
+      "path---index-720f2c74983d27c56686.js.map"
     ],
     "commons": [
       "commons-3f8cdb987559d31a3a4e.js",
@@ -38,14 +38,18 @@
       "path---2017-12-20-init-post-a72c7520cc15f27f0c64.js",
       "path---2017-12-20-init-post-a72c7520cc15f27f0c64.js.map"
     ],
+    "path---2017-12-23-tech-places-and-events": [
+      "path---2017-12-23-tech-places-and-events-84f1cea21c2768615097.js",
+      "path---2017-12-23-tech-places-and-events-84f1cea21c2768615097.js.map"
+    ],
     "path---offline-plugin-app-shell-fallback": [
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-72e219d15a1aa2040653.js",
+      "app-f1eb5f4144d0d2428d84.js",
       "build-js-styles.css",
-      "app-72e219d15a1aa2040653.js.map",
+      "app-f1eb5f4144d0d2428d84.js.map",
       "build-js-styles.css.map"
     ]
   }
