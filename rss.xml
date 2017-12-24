@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Dec 2017 23:58:45 GMT</lastBuildDate><item><title><![CDATA[Tech places and events in Armenia]]></title><description><![CDATA[By Edgar Aroutiounian ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 24 Dec 2017 07:20:28 GMT</lastBuildDate><item><title><![CDATA[Squashing commits with git]]></title><description><![CDATA[By Robert Adamian ,
+find me on  twitter Git is a free and open source distributed version control system designed to handle everything from…]]></description><link>https://yerevancoder.com/2017-12-24-squash-commits-with-git/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-24-squash-commits-with-git/</guid><pubDate>Sun, 24 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Robert Adamian&lt;/em&gt;,
+find me on &lt;a href=&apos;https://twitter.com/@paerallax&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Eh8FBP7.png&quot; alt=&quot;alt text&quot; title=&quot;Git&amp;#x27;s logo&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As with most other distributed version control systems, and unlike most client–server systems, every Git directory on every computer is a full-fledged repository with complete history and full version tracking abilities, independent of network access or a central server.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It’s also a must-have in any software developer’s toolchain. Using git for version control allows for powerful collaboration in tech teams. &lt;/p&gt;
+&lt;p&gt;I won’t delve into Git’s history and the motivations behind it here as that deserves a post of its own or even a series of posts. Instead, we discuss a simple git feature you might need - squashing commits.  &lt;/p&gt;
+&lt;p&gt;I needed to do this yesterday but forgot the command. First Stack Overflow answers were overly complicated for my use case. So here goes a simplified version. &lt;/p&gt;
+&lt;p&gt;Let’s say you’ve been working on a feature and just finished. With git, it’s possible to squash previous commits into one. This helps you logically group commits together before sharing with others. Say you’ve been implementing &lt;a href=&quot;https://en.wikipedia.org/wiki/Depth-first_search&quot;&gt;DFS&lt;/a&gt; and this is your current &lt;code&gt;git log&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;* 16e9bbd (HEAD -&gt; master) depth-first search working
+* 36ab519 fix vertex lookup
+* aa264b1 label vertices
+* bcd1838 recursive discovery
+* 3a6eed3 isolate subgraph
+* 7126d8e add topological sort&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now you want to squash your latest 5 commits into one to have a nice history. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;$ git rebase -i HEAD~5&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;After you run this command your terminal editor will open up with the following:  &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;pick 3a6eed3 isolate subgraph
+pick bcd1838 recursive discovery
+pick aa264b1 label vertices
+pick 36ab519 fix vertex lookup
+pick 16e9bbd depth-first search working&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Note that while doing interactive rebase, commits are displayed in reverse order.&lt;/p&gt;
+&lt;p&gt;Replace the words “pick” with “squash” next to the commits you want to squash into the commit before it. In our case:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;pick 3a6eed3 isolate subgraph
+squash bcd1838 recursive discovery
+squash aa264b1 label vertices
+squash 36ab519 fix vertex lookup
+squash 16e9bbd depth-first search working&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Save and close the editor.&lt;/p&gt;
+&lt;p&gt;If you’re too lazy to type that or you’re operating on a Commodore 64 and desperately need those additional few bytes, it’s also possible to write “s” for squash and “p” for pick. So the latest snippet is equivalent to:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;p 3a6eed3 isolate subgraph
+s bcd1838 recursive discovery
+s aa264b1 label vertices
+s 36ab519 fix vertex lookup
+s 16e9bbd depth-first search working&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Git will now give you the opportunity to change your commit message into something more descriptive. For doing that, replace this: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;# This is a combination of 5 commits.
+# The first commit&apos;s message is:
+isolate subgraph
+
+# This is the 2nd commit message:
+
+recursive discovery
+
+# This is the 3rd commit message:
+
+label vertices
+
+# This is the 4th commit message:
+
+fix vertex lookup
+
+# This is the 5th commit message:
+
+depth-first seach working&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;With just: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;implement depth-first search&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Note that your new commit message line shouldn’t start with &lt;code&gt;#&lt;/code&gt; as it’ll be treated as a comment.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git log&lt;/code&gt; should then return:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code&gt;* bb26b9d (HEAD -&gt; master) implement depth-first search
+* ea1a7e8 add topological sort&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;That’s it! Now you have your commits squashed into one with an easier to navigate history.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Tech places and events in Armenia]]></title><description><![CDATA[By Edgar Aroutiounian ,
 catch me on  twitter So you just landed in Yerevan and need a quick way to get a pulse of
 the tech industry ASAP…]]></description><link>https://yerevancoder.com/2017-12-23-tech-places-and-events/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-23-tech-places-and-events/</guid><pubDate>Sat, 23 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Edgar Aroutiounian&lt;/em&gt;,
 catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
