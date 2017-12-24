@@ -4,6 +4,7 @@ tags: armenia, coding, javascript, jsconf, learning
 author: Edgar Aroutiounian
 date: "2017-12-21"
 description: some useful material for you 
+discussionId: "2017-12-21-useful-material"
 ---
 
 *By Edgar Aroutiounian*,

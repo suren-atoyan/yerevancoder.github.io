@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
+import EffectiveDiscussionsCommentsIframe from 'gatsby-plugin-ed-comments'
 
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
@@ -30,6 +31,7 @@ class BlogPostTemplate extends React.Component {
           }}
         />
         <Bio />
+        <EffectiveDiscussionsCommentsIframe discussionId={post.frontmatter.discussionId} />
       </div>
     );
   }
@@ -51,6 +53,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        discussionId
       }
     }
   }

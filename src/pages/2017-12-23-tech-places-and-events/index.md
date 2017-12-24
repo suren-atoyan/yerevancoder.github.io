@@ -4,6 +4,7 @@ tags: armenia, coding
 author: Edgar Aroutiounian
 date: "2017-12-23"
 description: Where to see things
+discussionId: "2017-12-23-tech-places-events"
 ---
 
 *By Edgar Aroutiounian*,
