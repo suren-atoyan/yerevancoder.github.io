@@ -4,6 +4,7 @@ tags: git, development
 author: Robert Adamian
 date: "2017-12-24"
 description: git commit squashing with rebase
+discussionId: "2017-12-24-squash-commits-with-git"
 ---
 
 *By Robert Adamian*,
