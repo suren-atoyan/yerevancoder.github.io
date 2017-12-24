@@ -4,6 +4,7 @@ tags: armenia, coding, javascript, jsconf
 author: Edgar Aroutiounian
 date: "2017-12-20"
 description: A strong first conference
+discussionId: "2017-12-20-first-conference"
 ---
 
 *By Edgar Aroutiounian*,
