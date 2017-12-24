@@ -2,9 +2,13 @@
 title: Squashing commits with git
 tags: git, development
 author: Robert Adamian
-date: "2017-12-23"
+date: "2017-12-24"
 description: git commit squashing with rebase
 ---
+
+*By Robert Adamian*,
+find me on <a href='https://twitter.com/@paerallax'>twitter</a>
+
 
 ![alt text](https://i.imgur.com/Eh8FBP7.png "Git's logo")
 
@@ -14,9 +18,9 @@ description: git commit squashing with rebase
 
 It's also a must-have in any software developer's toolchain. Using git for version control allows for powerful collaboration in tech teams. 
 
-I won't delve into Git's history and the motivations behind it here as that's a post of its own. Instead, in this post we discuss a simple feature you might need: squashing commits.  
+I won't delve into Git's history and the motivations behind it here as that deserves a post of its own or even a series of posts. Instead, we discuss a simple git feature you might need - squashing commits.  
 
-I needed to do this yesterday but forgot the command. First Stack Overflow answers were overly complicated for what I needed. So here is the simplified version. 
+I needed to do this yesterday but forgot the command. First Stack Overflow answers were overly complicated for my use case. So here goes a simplified version. 
 
 Let's say you've been working on a feature and just finished. With git, it's possible to squash previous commits into one. This helps you logically group commits together before sharing with others. Say you've been implementing [DFS](https://en.wikipedia.org/wiki/Depth-first_search) and this is your current `git log`:
 
@@ -29,10 +33,10 @@ Let's say you've been working on a feature and just finished. With git, it's pos
 * 7126d8e add topological sort
 ```
 
-Now you want to squash your last 5 commits into one to have a nice history. 
+Now you want to squash your latest 5 commits into one to have a nice history. 
 
 ```zsh
-git rebase -i HEAD~5
+$ git rebase -i HEAD~5
 ```
 
 After you run this command your terminal editor will open up with the following:  
@@ -45,7 +49,7 @@ pick 36ab519 fix vertex lookup
 pick 16e9bbd depth-first search working
 ```
 
-Note that commits are displayed in reverse order.
+Note that while doing interactive rebase, commits are displayed in reverse order.
 
 Replace the words "pick" with "squash" next to the commits you want to squash into the commit before it. In our case:
 ```zsh
@@ -58,7 +62,7 @@ squash 16e9bbd depth-first search working
 
 Save and close the editor.
 
-If you're too lazy to type that or you're operating on a Commodore 64 and desparately need those additional few bytes, it's also possible to write "s" for squash and "p" for pick. So the latest snippet is equivalent to:
+If you're too lazy to type that or you're operating on a Commodore 64 and desperately need those additional few bytes, it's also possible to write "s" for squash and "p" for pick. So the latest snippet is equivalent to:
 ```zsh
 p 3a6eed3 isolate subgraph
 s bcd1838 recursive discovery
@@ -103,4 +107,5 @@ Note that your new commit message line shouldn't start with `#` as it'll be trea
 * ea1a7e8 add topological sort
 ```
 
-That's it! Now you have your commits squashed into one with a neat-looking history.
+That's it! Now you have your commits squashed into one with an easier to navigate history.
+
