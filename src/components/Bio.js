@@ -6,11 +6,12 @@ import 'typeface-merriweather';
 
 import { rhythm } from '../utils/typography';
 
-export default () => (
+export default ({ style = {} }) => (
   <div
     style={{
       display: 'flex',
       marginBottom: rhythm(2.5),
+      ...style,
     }}>
     <span>
       <p>
