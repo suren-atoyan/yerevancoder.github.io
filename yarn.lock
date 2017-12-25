@@ -3854,9 +3854,9 @@ gatsby-module-loader@^1.0.9:
     babel-runtime "^6.26.0"
     loader-utils "^0.2.16"
 
-gatsby-plugin-ed-comments@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-ed-comments/-/gatsby-plugin-ed-comments-0.4.2.tgz#55a47edd9d6727c68e798d45670dc54e6a688286"
+gatsby-plugin-ed-comments@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-ed-comments/-/gatsby-plugin-ed-comments-0.4.4.tgz#250c9d00fcabc7e7d6f947fc31b55eb6cf141411"
   dependencies:
     babel-runtime "^6.26.0"
 
