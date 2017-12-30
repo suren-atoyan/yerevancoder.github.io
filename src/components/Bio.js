@@ -20,7 +20,8 @@ export default ({ style = {} }) => (
       </p>
       <p>
         yerevancoder.com is a place for coders in Armenia to share their thoughts, experiences in
-        programming and tech.
+        programming and tech. We are always looking for contributors, add a post{' '}
+        <a href={'https://github.com/yerevancoder/yerevancoder.github.io'}>here</a>.
       </p>
     </span>
   </div>
