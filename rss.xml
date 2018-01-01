@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 30 Dec 2017 22:33:36 GMT</lastBuildDate><item><title><![CDATA[Squashing commits with git]]></title><description><![CDATA[By Robert Adamian ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Mon, 01 Jan 2018 04:07:01 GMT</lastBuildDate><item><title><![CDATA[Elm, beauty of functional programming to frontend]]></title><description><![CDATA[By Grigori Aramyan ,
+catch me on  twitter Elm is a strongly-typed functional programming language for frontend. It has simplicity and…]]></description><link>https://yerevancoder.com/2017-12-31-elm-intro/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-31-elm-intro/</guid><pubDate>Sun, 31 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Grigori Aramyan&lt;/em&gt;,
+catch me on &lt;a href=&apos;https://twitter.com/@griaram&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Elm is a strongly-typed functional programming language for frontend. It has simplicity and maintainability of functional programming paradigm in general, but exposes beauty of it’s own architecture as well. It’s a compiled language and compiler makes max efforts to ensure bug-free runtime code, which, on the other hand-side, means your code won’t compile, if there’s a mistype, use of undefined variable or similar stuff. Elm’s error messages are one of the “proud points” of Evan’s team though (creator of Elm, Evan Czaplicki). Compiler produces nice, human-readable messages with hints, pointing exactly to where/what is wrong with code, assisting devs as much as machines can probably do.&lt;/p&gt;
+&lt;h2&gt;The Elm Architecture&lt;/h2&gt;
+&lt;p&gt;Workflow of any Elm application is pretty straightforward: user fires a message (read event) by interacting with UI (text input, button click etc.), &lt;code&gt;update&lt;/code&gt; function handles it by pattern matching on type of message and modifying model accordingly, &lt;code&gt;view&lt;/code&gt; function re-renders UI using it’s virtual dom, so only minimal required render is performed. If you’re familiar with React/Redux, this architecture won’t be confusing. (Redux workflow was partially inspired by the elm architecture, according to Dan Abramov, author of Redux) Otherwise, it won’t be confusing after you play with it a bit. I made a simple todo app for this post, showing the very basics of Elm application, like module structure, code conventions, syntax, UI component styling, interop with JavaScript etc. You can find it under this repo: &lt;a href=&quot;https://github.com/grigor-aramyan/todo-elm&quot;&gt;https://github.com/grigor-aramyan/todo-elm&lt;/a&gt;. Read the Readme, it explains how you can run the app and make changes to elm code itself. I made a skeleton boilerplate of &lt;code&gt;Main.elm&lt;/code&gt; as well, that can get you up-and-running in seconds. You can play with it also, or just copy/paste it’s content in every Main.elm of your projects (main Elm module, from which compiler starts running, is called &lt;code&gt;Main.elm&lt;/code&gt;). Here’s the boilerplate gist: &lt;a href=&quot;https://gist.github.com/grigor-aramyan/b29a6272f5656d9ddc56f591a3e03063&quot;&gt;https://gist.github.com/grigor-aramyan/b29a6272f5656d9ddc56f591a3e03063&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Elm has it’s own REPL. You’ll get that after installing Elm on your local machine from official website &lt;a href=&quot;http://elm-lang.org/&quot;&gt;http://elm-lang.org/&lt;/a&gt;. After installing, type &lt;code&gt;elm&lt;/code&gt; in shell to see what you’ve got.&lt;/p&gt;
+&lt;h2&gt;Type and type aliases&lt;/h2&gt;
+&lt;p&gt;You can define your own types in Elm.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;type Visualize =
+    All
+    | Completed
+    | Active&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This chunk defines “Visualize” type, which can have 3 values, either &lt;code&gt;All&lt;/code&gt;, &lt;code&gt;Completed&lt;/code&gt; or &lt;code&gt;Active&lt;/code&gt;. One use case for custom types is dispatch events/messages - by having enum-like data, &lt;code&gt;update&lt;/code&gt; function can precisely pattern match fired message and perform tasks accordingly. Also, it helps compiler to help us by warning, that not all possible type values are covered in &lt;code&gt;update&lt;/code&gt;. Actually, it’s not warning us, it just won’t compile.&lt;/p&gt;
+&lt;p&gt;Type aliases make possible to combine primitive types into more complex structures.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;type alias TodoItem =
+    { title : String
+    , completed : Bool
+    , id : Int
+    }&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The above chunk defines &lt;code&gt;TodoItem&lt;/code&gt; custom type (read, record or object or class), that has 3 fields. Type aliases are often used to define application model structure. Here’s an example of it:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;type alias Model =
+    { todoItems : List TodoItem
+    , currentTodo : String
+    , show : Visualize
+    , currentIndex : Int
+    }&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Interop, Encode/Decode&lt;/h2&gt;
+&lt;p&gt;Elm application can communicate with JavaScript modules through ports (and flags, actually, but ports are more flexible, so get to know them from the beggining). Elm is strongly typed language, JavaScript - is not, so there’s need of encoders and decoders, that will explain to JavaScript modules what particular Elm values mean and vice versa. Decoders have another major role - they want let data to pass through port and into Elm, if it doesn’t comply to type defined in decoder, so JavaScript side bugs will stay there only.&lt;/p&gt;
+&lt;p&gt;The above mentioned Todo application has Encoders/Decoders and interop with Javascript implemented, so you can check them at work. Also, (actually, in first place) look up the &lt;code&gt;Get Started&lt;/code&gt; guide in Elm official website docs. For community discussions, join Elm’s page on Reddit: &lt;a href=&quot;https://www.reddit.com/r/elm/&quot;&gt;https://www.reddit.com/r/elm/&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Partial function&lt;/h2&gt;
+&lt;p&gt;Maybe one of the most challenging parts in Elm application are type annotations. Here’s an example:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;update : Msg -&gt; Model -&gt; (Model, Cmd Msg)&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;It says, function “update” receives 2 parameters of types “Msg” and “Model”, then returns a type “Model, Cmd Msg”. Here’s the question - why arrows, instead of commas. And here’s the answer - because Elm has the idea of “partial functions” built within.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;someFunc : String -&gt; Int -&gt; Int -&gt; Bool&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;If you give “someFunc” all 3 declared parameters, it will return a “Bool” type value. On the other hand, if you give it just “String”, it will return an anonymous function whith following type annotation &lt;code&gt;Int -&gt; Int -&gt; Bool&lt;/code&gt; (the former “String” is excluded, because it’s matched already with one-parameter function call). That’s the reason why there is no clear separation of function arguments and it’s return value - argument values can become return values, if partial functions are in play.&lt;/p&gt;
+&lt;p&gt;Hope this post will help to get some feel of Elm beauty.&lt;/p&gt;
+&lt;p&gt;Happy hacking ;)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Squashing commits with git]]></title><description><![CDATA[By Robert Adamian ,
 find me on  twitter Git is a free and open source distributed version control system designed to handle everything from…]]></description><link>https://yerevancoder.com/2017-12-24-squash-commits-with-git/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-24-squash-commits-with-git/</guid><pubDate>Sun, 24 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Robert Adamian&lt;/em&gt;,
 find me on &lt;a href=&apos;https://twitter.com/@paerallax&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Eh8FBP7.png&quot; alt=&quot;alt text&quot; title=&quot;Git&amp;#x27;s logo&quot;&gt;&lt;/p&gt;
