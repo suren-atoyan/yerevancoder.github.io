@@ -1,9 +1,9 @@
 ---
 title: How much should you be paid in Armenian coding jobs?
-tags: armenia, coding, javascript, jsconf
+tags: Armenia, coding, JavaScript, jsconf
 author: Edgar Aroutiounian
 date: "2018-01-09"
-description: pay rates in armenian tech
+description: pay rates in Armenian tech
 discussionId: "2019-01-09-pay-rates-in-armenian-tech"
 ---
 
@@ -18,7 +18,7 @@ estimates of what you can expect to receive as a programmer in Armenia
 based off of my own understandings, talking with people in the
 industry and having an Armenian business as well that paid
 programmers. I've also included some figures for project quotes and
-estimatations.
+estimations.
 
 # Earning a salary
 
