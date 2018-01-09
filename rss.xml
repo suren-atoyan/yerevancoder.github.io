@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 02 Jan 2018 00:23:38 GMT</lastBuildDate><item><title><![CDATA[Elm, beauty of functional programming to frontend]]></title><description><![CDATA[By Grigori Aramyan ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 09 Jan 2018 17:20:52 GMT</lastBuildDate><item><title><![CDATA[How much should you be paid in Armenian coding jobs?]]></title><description><![CDATA[By Edgar Aroutiounian ,
+catch me on  twitter Here’s a topic that everyone should speak more openly about:  pay . Pay is a topic that people…]]></description><link>https://yerevancoder.com/2018-01-09-pay-rates-in-armenian-tech/</link><guid isPermaLink="false">https://yerevancoder.com/2018-01-09-pay-rates-in-armenian-tech/</guid><pubDate>Tue, 09 Jan 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Edgar Aroutiounian&lt;/em&gt;,
+catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here’s a topic that everyone should speak more openly about: &lt;strong&gt;pay&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Pay is a topic that people don’t talk openly about in Armenian culture
+and the tech sector also suffers from that. Here are some rough
+estimates of what you can expect to receive as a programmer in Armenia
+based off of my own understandings, talking with people in the
+industry and having an Armenian business as well that paid
+programmers. I’ve also included some figures for project quotes and
+estimatations.&lt;/p&gt;
+&lt;h1&gt;Earning a salary&lt;/h1&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;studyHard&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;hours&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; person&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; hours_really_needed &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; hours &lt;span class=&quot;token operator&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; experience &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;practiceProjects&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;hours_really_needed&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;is_talent_in_armenia&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;talent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;experience&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; person&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Talent is underpaid&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;consider_overseas_options&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Interns&lt;/h2&gt;
+&lt;p&gt;Interns &lt;em&gt;can&lt;/em&gt; get paid up to $200 a month, this is a coding based
+internship. Most likely in a frontend kind of position, something
+React, or Vue based. Cheaper, more enterprisey places use Angular. They
+pay much less and offer less growth for interns.&lt;/p&gt;
+&lt;h2&gt;Entry level&lt;/h2&gt;
+&lt;p&gt;This group usually has about 6-12 months experience, they get paid
+about $300-$500 a month.&lt;/p&gt;
+&lt;h2&gt;Mid level&lt;/h2&gt;
+&lt;p&gt;This group usually has about 12-24 months experience, they get paid
+about $500-800 a month.&lt;/p&gt;
+&lt;h2&gt;Experienced &amp;#x26; exceptional to keep&lt;/h2&gt;
+&lt;p&gt;I purposefully don’t say senior because it is a nebulous term in this
+industry. That said, an experienced programmer, that is someone that
+can build up your startup/company usually gets at least $1000 a month
+in Yerevan. Places like &lt;code&gt;PicsArt&lt;/code&gt; can afford up to $3000 a month.&lt;/p&gt;
+&lt;h3&gt;Caveats&lt;/h3&gt;
+&lt;p&gt;This was assuming Yerevan, Gyumri rates are lower but there are rare
+positions for experienced people that can fetch $2000 a month.&lt;/p&gt;
+&lt;h1&gt;Doing a project as a freelancer&lt;/h1&gt;
+&lt;p&gt;If you’re working as a freelancer, that is, contract work then you
+must first make a decision. Will your contract work be with people in
+Armenia or will it for overseas; this matters for tax reasons.&lt;/p&gt;
+&lt;h2&gt;Projects solely based in Armenia&lt;/h2&gt;
+&lt;p&gt;I recommend that you first establish the liquidity of the potential
+business partner. I usually do this by asking if the potential
+employer has at least $4000 at this moment ready to spend on the
+project. This attitude will save you a lot of time and potential
+misunderstandings later. Mobile development is hot, a mobile app that
+takes about 3-4 months should cost at least $6,000-$10,000 depending of
+course on various complexities and nuances of the app
+itself. Recommend you quickly move on if the other side is
+uncomfortable with these dollar figures.&lt;/p&gt;
+&lt;h2&gt;Projects based overseas, outside of Armenia&lt;/h2&gt;
+&lt;p&gt;Recommend that you open an Armenian business and utilize the tax
+savings given to a business for outsources/contract work.&lt;/p&gt;
+&lt;h1&gt;Programmer pay a month in Armenia TL;DR&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Intern&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;Entry&lt;/th&gt;
+&lt;th&gt;Mid-level&lt;/th&gt;
+&lt;th&gt;Experience &amp;#x26; Special&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;#x3C;= $200&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;$300 &amp;#x3C;= $ &amp;#x3C;= $500&lt;/td&gt;
+&lt;td&gt;$500 &amp;#x3C;= $ &amp;#x3C;= $800&lt;/td&gt;
+&lt;td&gt;$1000 &amp;#x3C;= $ &amp;#x3C;= $3000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content:encoded></item><item><title><![CDATA[Elm, beauty of functional programming to frontend]]></title><description><![CDATA[By Grigori Aramyan ,
 catch me on  twitter Elm is a strongly-typed functional programming language for
 frontend. It has simplicity and…]]></description><link>https://yerevancoder.com/2017-12-31-elm-intro/</link><guid isPermaLink="false">https://yerevancoder.com/2017-12-31-elm-intro/</guid><pubDate>Sun, 31 Dec 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Grigori Aramyan&lt;/em&gt;,
 catch me on &lt;a href=&apos;https://twitter.com/@griaram&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
