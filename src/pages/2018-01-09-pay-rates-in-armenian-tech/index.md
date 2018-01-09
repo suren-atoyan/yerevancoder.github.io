@@ -37,10 +37,12 @@ let studyHard = (hours, person) => {
 
 ## Interns
 
-Interns _can_ get paid up to $200 a month, this is a coding based
+Interns _can_ get paid up to $250 a month, this is a coding based
 internship. Most likely in a frontend kind of position, something
 React, or Vue based. Cheaper, more enterprisey places use Angular. They
-pay much less and offer less growth for interns.
+pay much less and offer less growth for interns. **Never work for free
+as a coding intern.** And **ALWAYS** get something in written form,
+never just oral contract.
 
 ## Entry level
 
@@ -82,18 +84,13 @@ course on various complexities and nuances of the app
 itself. Recommend you quickly move on if the other side is
 uncomfortable with these dollar figures.
 
-
 ## Projects based overseas, outside of Armenia
 
 Recommend that you open an Armenian business and utilize the tax
 savings given to a business for outsources/contract work.
 
-
-
 # Programmer pay a month in Armenia TL;DR
-
-
 
 | Intern | Entry | Mid-level | Experience & Special |
 | -------| :----:| ----------| -------------------- |
-| <= $200| $300 <= $ <= $500| $500 <= $ <= $800| $1000 <= $ <= $3000|
+| 50 <= $ <= $200| $300 <= $ <= $500| $500 <= $ <= $800| $1000 <= $ <= $3000|
