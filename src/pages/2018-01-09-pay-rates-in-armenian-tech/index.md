@@ -59,7 +59,9 @@ about $500-800 a month.
 I purposefully don't say senior because it is a nebulous term in this
 industry. That said, an experienced programmer, that is someone that
 can build up your startup/company usually gets at least $1000 a month
-in Yerevan. Places like `PicsArt` can afford up to $3000 a month.
+in Yerevan. Places like `PicsArt` can afford up to $3000 a
+month. **Note**, $3000 is not a max or a ceiling. Quite a few people
+get more than that but that is likely something specialized.
 
 ### Caveats
 
@@ -93,4 +95,4 @@ savings given to a business for outsources/contract work.
 
 | Intern | Entry | Mid-level | Experience & Special |
 | -------| :----:| ----------| -------------------- |
-| 50 <= $ <= $200| $300 <= $ <= $500| $500 <= $ <= $800| $1000 <= $ <= $3000|
+| 50 <= $ <= $200| $300 <= $ <= $500| $500 <= $ <= $800| $1000 <= $ <= $3000+|
