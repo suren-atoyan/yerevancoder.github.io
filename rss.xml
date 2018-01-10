@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 09 Jan 2018 19:12:18 GMT</lastBuildDate><item><title><![CDATA[How much should you be paid in Armenian coding jobs?]]></title><description><![CDATA[By Edgar Aroutiounian ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 10 Jan 2018 06:45:31 GMT</lastBuildDate><item><title><![CDATA[How much should you be paid in Armenian coding jobs?]]></title><description><![CDATA[By Edgar Aroutiounian ,
 catch me on  twitter Here’s a topic that everyone should speak more openly about:  pay . Pay is a topic that people…]]></description><link>https://yerevancoder.com/2018-01-09-pay-rates-in-armenian-tech/</link><guid isPermaLink="false">https://yerevancoder.com/2018-01-09-pay-rates-in-armenian-tech/</guid><pubDate>Tue, 09 Jan 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Edgar Aroutiounian&lt;/em&gt;,
 catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here’s a topic that everyone should speak more openly about: &lt;strong&gt;pay&lt;/strong&gt;.&lt;/p&gt;
@@ -39,7 +39,9 @@ about $500-800 a month.&lt;/p&gt;
 &lt;p&gt;I purposefully don’t say senior because it is a nebulous term in this
 industry. That said, an experienced programmer, that is someone that
 can build up your startup/company usually gets at least $1000 a month
-in Yerevan. Places like &lt;code&gt;PicsArt&lt;/code&gt; can afford up to $3000 a month.&lt;/p&gt;
+in Yerevan. Places like &lt;code&gt;PicsArt&lt;/code&gt; can afford up to $3000 a
+month. &lt;strong&gt;Note&lt;/strong&gt;, $3000 is not a max or a ceiling. Quite a few people
+get more than that but that is likely something specialized.&lt;/p&gt;
 &lt;h3&gt;Caveats&lt;/h3&gt;
 &lt;p&gt;This was assuming Yerevan, Gyumri rates are lower but there are rare
 positions for experienced people that can fetch $2000 a month.&lt;/p&gt;
@@ -75,7 +77,7 @@ savings given to a business for outsources/contract work.&lt;/p&gt;
 &lt;td&gt;50 &amp;#x3C;= $ &amp;#x3C;= $200&lt;/td&gt;
 &lt;td align=&quot;center&quot;&gt;$300 &amp;#x3C;= $ &amp;#x3C;= $500&lt;/td&gt;
 &lt;td&gt;$500 &amp;#x3C;= $ &amp;#x3C;= $800&lt;/td&gt;
-&lt;td&gt;$1000 &amp;#x3C;= $ &amp;#x3C;= $3000&lt;/td&gt;
+&lt;td&gt;$1000 &amp;#x3C;= $ &amp;#x3C;= $3000+&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;</content:encoded></item><item><title><![CDATA[Elm, beauty of functional programming to frontend]]></title><description><![CDATA[By Grigori Aramyan ,
