@@ -37,8 +37,8 @@
       "path---2017-12-31-elm-intro-1ffccb3d35c04c5a6bbf.js.map"
     ],
     "path---index": [
-      "path---index-a4d2e1da3c119b65ad45.js",
-      "path---index-a4d2e1da3c119b65ad45.js.map"
+      "path---index-5e3d07f38bcb8df9dd84.js",
+      "path---index-5e3d07f38bcb8df9dd84.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-78eb0160ebc5e112276c.js",
@@ -66,10 +66,14 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---2018-01-12-promises-and-timeouts": [
+      "path---2018-01-12-promises-and-timeouts-27156ee6ec06598773f6.js",
+      "path---2018-01-12-promises-and-timeouts-27156ee6ec06598773f6.js.map"
+    ],
     "app": [
-      "app-c15a92eb6e739277b9b2.js",
+      "app-a10614c535880f8deeb7.js",
       "build-js-styles.css",
-      "app-c15a92eb6e739277b9b2.js.map",
+      "app-a10614c535880f8deeb7.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
