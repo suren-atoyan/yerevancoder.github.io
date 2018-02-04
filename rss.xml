@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Jan 2018 17:41:09 GMT</lastBuildDate><item><title><![CDATA[Racing to get a timeout]]></title><description><![CDATA[By Edgar Aroutiounian ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Feb 2018 08:35:33 GMT</lastBuildDate><item><title><![CDATA[Dual booting Ubuntu with Windows]]></title><description><![CDATA[This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system…]]></description><link>https://yerevancoder.com/2018-02-04-dual-booting-linux-with-windows/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-04-dual-booting-linux-with-windows/</guid><pubDate>Sun, 04 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system. Dual booting is a good way for beginners unfamiliar to Linux to try it, without sacrificing performance, like it happens in case of virtualization. There is one thing that can be said for sure: At first it may seem weird, sometimes even too complicated and not user-friendly, but, after a long time of Linux usage, most people fall in love with Unix-like operating systems, and don’t even want to return to their previous OS. &lt;/p&gt;
+&lt;h2&gt;Table of contents&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;#why-linux-&quot;&gt;Why Linux&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;#how-to-install&quot;&gt;How to install&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Why Linux?&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;There are a lot of advantages of using Linux for development and everyday life. Some of those are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4&gt;Security&lt;/h4&gt;
+&lt;p&gt;Linux has been around since the nineties, and managed to stay secure against malwares, viruses and other forms of malicious attacks. This is partially thanks to Linux kernel being an &lt;a href=&quot;https://github.com/torvalds/linux&quot;&gt;open-source project&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4&gt;Software&lt;/h4&gt;
+&lt;p&gt;A lot of people are not ready to switch to Linux as they are not sure if their usual applications like Microsoft Word can be run on it. However, there is a large amount of free software and there are a lot of equivalents to Windows programs.
+Here is the &lt;a href=&quot;http://wiki.linuxquestions.org/wiki/Linux_software_equivalent_to_Windows_software#Office_and_Productivity&quot;&gt;list of some popular alternatives&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4&gt;Support&lt;/h4&gt;
+&lt;p&gt;Another thing that Linux is famous for is its flexibility. You can have Linux literally for everything, be it an old dusty computer, a server or a smart toaster. In fact, most of the wi-fi routers are running either Linux or other Unix-like OS.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4&gt;Skills&lt;/h4&gt;
+&lt;p&gt;Note, this is a highly subjective opinion and a lot of people will disagree. But the truth is, there is a gap in the software development industry between people who can program and who can’t. The thing which seperates latter from former is the mindset: the ability to understand that programming is not only about the code. From my own experience I can say that using Linux sets the mindset of a true ‘hacker’, the ability to control nearly every aspect of the OS gives you wings do dig more and more into it, try everything with your own hands, transform the everyday routine of using a computer as a tool into a fascinating learning experience.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;How to install&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;I’d write an installation guide but there’s already a great official &lt;a href=&quot;https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0&quot;&gt;tutorial&lt;/a&gt; out there by Ubuntu developers. Don’t forget that you can always reach members of the iterate community, ask questions, fix issues and bugs, also just talk about random things in the iterate Slack &lt;a href=&quot;https://iterate-hackerspace.slack.com/messages&quot;&gt;channel&lt;/a&gt;.&lt;br&gt;
+&lt;em&gt;Happy Ubuntu installation! :)&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Racing to get a timeout]]></title><description><![CDATA[By Edgar Aroutiounian ,
 catch me on  twitter Here is a simple and elegant way to say “Run this shell command within a
 maximum of x seconds…]]></description><link>https://yerevancoder.com/2018-01-12-promises-and-timeouts/</link><guid isPermaLink="false">https://yerevancoder.com/2018-01-12-promises-and-timeouts/</guid><pubDate>Fri, 12 Jan 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;By Edgar Aroutiounian&lt;/em&gt;,
 catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
