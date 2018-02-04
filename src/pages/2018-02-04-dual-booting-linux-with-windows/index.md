@@ -4,7 +4,7 @@ tags: git, development
 author: Zaven Snkhchyan
 date: "2018-02-04"
 description: motivations behind Linux and instructions
-discussionId: "2017-12-24-squash-commits-with-git"
+discussionId: "2018-02-04-dual-booting-ubuntu-with-windows"
 ---
 
 This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system. Dual booting is a good way for beginners unfamiliar to Linux to try it, without sacrificing performance, like it happens in case of virtualization. There is one thing that can be said for sure: At first it may seem weird, sometimes even too complicated and not user-friendly, but, after a long time of Linux usage, most people fall in love with Unix-like operating systems, and don't even want to return to their previous OS. 
