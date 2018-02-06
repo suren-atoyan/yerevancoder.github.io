@@ -1,4 +1,819 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Feb 2018 09:02:47 GMT</lastBuildDate><item><title><![CDATA[Dual booting Ubuntu with Windows]]></title><description><![CDATA[This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system…]]></description><link>https://yerevancoder.com/2018-02-04-dual-booting-linux-with-windows/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-04-dual-booting-linux-with-windows/</guid><pubDate>Sun, 04 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system. Dual booting is a good way for beginners unfamiliar to Linux to try it, without sacrificing performance, like it happens in case of virtualization. There is one thing that can be said for sure: At first it may seem weird, sometimes even too complicated and not user-friendly, but, after a long time of Linux usage, most people fall in love with Unix-like operating systems, and don’t even want to return to their previous OS. &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 06 Feb 2018 20:18:21 GMT</lastBuildDate><item><title><![CDATA[Simple Terminal Commands]]></title><description><![CDATA[Simple terminal commands Documentation Readers, I spent a lot of time to add as many examples as I can to this documentation So I will…]]></description><link>https://yerevancoder.com/2018-02-06-simple-terminal-commands/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-06-simple-terminal-commands/</guid><pubDate>Tue, 06 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Simple terminal commands&lt;/h1&gt;
+&lt;h2&gt;Documentation&lt;/h2&gt;
+&lt;p&gt;Readers, I spent a lot of time to add as many examples as I can to this documentation&lt;/p&gt;
+&lt;p&gt;So I will highly encourage to read this one day :D &lt;/p&gt;
+&lt;p&gt;But I also advise you to first read Lecture notes
+section and then the Documentation one!&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;cd&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;cd - Change Directory&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;change the current working directory to a specific Folder.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Options&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Directory&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-P    Do not follow symbolic links
+-L    Follow symbolic links (default)&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;EXAMPLES&lt;/h2&gt;
+&lt;p&gt;Move to the sybase folder:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /usr/local/sybase
+$ &lt;span class=&quot;token function&quot;&gt;pwd&lt;/span&gt;
+/usr/local/sybase
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Change to another folder:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /var/log
+$ &lt;span class=&quot;token function&quot;&gt;pwd&lt;/span&gt;
+/var/log
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Quickly get back:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; - 
+$ &lt;span class=&quot;token function&quot;&gt;pwd&lt;/span&gt;
+/usr/local/sybase
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;move up one folder:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;pwd&lt;/span&gt;
+/usr/local/
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Back to your home folder&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;pwd&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;pwd - Print Working Directory&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;print name of the current/working directory &lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;pwd&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;-LP&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-P  : The pathname printed will not contain symbolic links.
+-L  : The pathname printed can contain symbolic links&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The default action is to show the current folder as an absolute path.
+All components of the path will be actual folder names - none will be symbolic links.&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;ls&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;ls - list directory contents&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;List information about  the FILEs (the current directory by default).&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;p&gt;the most common command:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;the same command in the general form:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;$ ls [OPTION]... [FILE]...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-a, --all   List all entries including those starting with a dot.
+-l   Use a long listing format (shows file or directory, size, modified date and time, file or folder name and owner of a file and it’s permission)
+-lh   Same as -l, but shows sizes in human readable format.
+-F     Add the ‘/’ Character at the end each directory.
+-r  Display files and directories in reverse order.
+-R  Recursively list Sub-Directories
+-ltr (VERY USEFUL) Shows latest modification file or directory date as last.
+-lS  (VERY USEFUL) Displays file size in order, will display big in size first.
+--help  Show help page, not everything is described here!&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;EXAMPLES&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# List the contents of your home directory&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; ~
+
+&lt;span class=&quot;token comment&quot;&gt;# list everything in a vertical list:&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -al
+
+total 109
+drwxr-xr-x  18 root     root         4096 Jun  9 21:12 ./
+drwxr-xr-x  18 root     root         4096 Jun  9 21:12 &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;/
+drwxr-xr-x   2 root     root         4096 Jun  9 21:14 bin/
+drwxr-xr-x   3 root     root         1024 Jun  9 20:32 boot/
+drwxr-xr-x   6 root     root        36864 Jul 12 10:26 dev/
+drwxr-xr-x  34 root     root         4096 Jul 12 10:25 etc/
+^
+&lt;span class=&quot;token comment&quot;&gt;# the first column is the file type &lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# d = directory&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# f = file&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# List the directories in the current directory:&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -d */
+
+&lt;span class=&quot;token comment&quot;&gt;# list ALL subdirectories&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; *
+&lt;span class=&quot;token comment&quot;&gt;# The default behavior of ls is to only pass color control codes to tty output --color=auto.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# To pipe the output to a second command complete with color codes then set --color=always&lt;/span&gt;
+
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -lAXh --color&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;auto&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;less&lt;/span&gt; -R
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;mkdir&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;mkdir - make directories&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;Create the DIRECTORY(ies), if they do not already exist.&lt;/p&gt;
+&lt;p&gt;Mandatory  arguments  to  long  options are mandatory for short options
+too.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Options&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; folder&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+
+$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Name with spaces&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-m, --mode=MODE   set permission mode (as in chmod), not rwxrwxrwx - umask
+-p, --parents     no error if existing, make parent directories as needed
+-v, --verbose     print a message for each created directory&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;touch&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;touch - change file timestamps&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;Update the access and modification times of each FILE to the current time.&lt;/p&gt;
+&lt;p&gt;A FILE argument that does not exist is created empty, unless -c  or  -h is supplied.&lt;/p&gt;
+&lt;p&gt;A  FILE argument string - is handled specially and causes touch to change the times of the file associated with standard output.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;options&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. File&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-a, change only the access time
+
+-c, --no-create, do not create any files
+
+-d, --date=STRING, parse STRING and use it instead of current time
+
+-f, (ignored)
+
+-h, --no-dereference, affect each symbolic link instead of any referenced file (useful only on systems that can change the timestamps of a symlink)
+
+-m, change only the modification time
+
+-r, --reference=FILE, use this file&apos;s times instead of current time
+
+-t STAMP, use [[CC]YY]MMDDhhmm[.ss] instead of current time
+
+--time=WORD, change the specified  time:  WORD  is  access,  atime,  or  use: 
+equivalent to -a WORD is modify or mtime: equivalent to -m
+
+--help display this help and exit
+
+--version,  output version information and exit&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Note that the -d and -t options accept different time-date formats.&lt;/p&gt;
+&lt;h2&gt;DATE STRING&lt;/h2&gt;
+&lt;p&gt;The  —date=STRING  is  a mostly free format human readable date string
+such as “Sun, 29 Feb 2004 16:21:42 -0800” or “2004-02-29  16:21:42”  or
+even  “next  Thursday”.&lt;/p&gt;
+&lt;p&gt;A date string may contain items indicating calendar date, time of day, time zone, a day of the week, relative time, relative date, and numbers. &lt;/p&gt;
+&lt;p&gt;An empty string indicates the beginning of
+the day. &lt;/p&gt;
+&lt;p&gt;The date  string  format  is  more  complex  than  is  easily
+documented here but is fully described in the info documentation.&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;cp&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;cp - copy files and directories&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;OPTION&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;-T&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; SOURCE DEST
+&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;OPTION&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. SOURCE&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. DIRECTORY
+&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;OPTION&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. -t DIRECTORY SOURCE&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-b, make a backup of each existing destination file
+-f, --force
+if an existing destination file cannot be opened, remove it  and
+try  again  (this  option  is ignored when the -n option is also
+used)
+-i, --interactive
+prompt before overwrite (overrides a previous -n option)
+-l, --link
+hard link files instead of copying
+-n, --no-clobber (VERY USEFUL)
+do not overwrite an  existing  file  (overrides  a  previous  -i
+option)
+-p     same as --preserve=mode,ownership,timestamps
+
+--preserve[=ATTR_LIST]
+preserve       the      specified      attributes      (default:
+mode,ownership,timestamps), if possible  additional  attributes:
+context, links, xattr, all
+
+--no-preserve=ATTR_LIST
+don&apos;t preserve the specified attributes
+-R, -r, --recursive
+copy directories recursively
+-u, --update
+copy only when the SOURCE file is  newer  than  the  destination
+file or when the destination file is missing
+-v, --verbose
+explain what is being done&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;EXAMPLES&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# Copy the file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Copy multiple files&lt;/span&gt;
+$ tree -F
+&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+├── bar.txt
+├── baz.txt
+├── foo/
+└── foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; foo.txt bar.txt baz.txt foo/
+$ tree &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+├── bar.txt
+├── baz.txt
+├── foo
+│   ├── bar.txt
+│   ├── baz.txt
+│   └── foo.txt
+└── foo.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# The same operation can also be achieved through pattern matching&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; *.txt foo/
+
+&lt;span class=&quot;token comment&quot;&gt;# Copy the directory&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -R directory/ foo
+
+&lt;span class=&quot;token comment&quot;&gt;# Copy multiple directories&lt;/span&gt;
+$ tree &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+├── bar
+│   └── bar.txt
+├── baz
+│   └── baz.txt
+├── foo
+│   └── foo.txt
+└── some-directory
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; foo bar baz some-directory
+$ tree &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+├── bar
+│   └── bar.txt
+├── baz
+│   └── baz.txt
+├── foo
+│   └── foo.txt
+└── some-directory
+    ├── bar
+    │   └── bar.txt
+    ├── baz
+    │   └── baz.txt
+    └── foo
+        └── foo.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Take a backup of a file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -b foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt bar.txt~
+
+&lt;span class=&quot;token comment&quot;&gt;# Specify backup&apos;s extension&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -S .bak foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt bar.txt.bak
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt bar.txt.bak
+
+&lt;span class=&quot;token comment&quot;&gt;# How to prompt for confirmation to overwrite file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -i foo.txt bar.txt
+cp: overwrite &lt;span class=&quot;token string&quot;&gt;&apos;bar.txt&apos;&lt;/span&gt;? 
+
+&lt;span class=&quot;token comment&quot;&gt;# Create hard link instead of copying&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; foo.txt
+foo text
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -l foo.txt bar.txt
+$ &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bar text&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; foo.txt
+bar text
+
+&lt;span class=&quot;token comment&quot;&gt;# Copy with preserving file attributes&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -la
+-rw------- 1 myUser &lt;span class=&quot;token function&quot;&gt;users&lt;/span&gt; 0 Oct 13 09:14 foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; --preserve foo.txt bar.txt
+-rw-------  1 myUser &lt;span class=&quot;token function&quot;&gt;users&lt;/span&gt;     0 Oct 13 09:14 bar.txt
+-rw-------  1 myUser &lt;span class=&quot;token function&quot;&gt;users&lt;/span&gt;     0 Oct 13 09:14 foo.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Showing files that are being copied&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -R -v foo bar
+&lt;span class=&quot;token string&quot;&gt;&apos;foo&apos;&lt;/span&gt; -&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bar&apos;&lt;/span&gt;
+&lt;span class=&quot;token string&quot;&gt;&apos;foo/foo.txt&apos;&lt;/span&gt; -&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bar/foo.txt&apos;&lt;/span&gt;
+&lt;span class=&quot;token string&quot;&gt;&apos;foo/bar.txt&apos;&lt;/span&gt; -&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bar/bar.txt&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;rm&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;rm - remove files or directories&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;rm removes each specified file.  By default, it does not remove directories.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;p&gt;rm [OPTION]… [FILE]…&lt;/p&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;p&gt;Remove (unlink) the FILE(s).&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-f, --force, ignore nonexistent files and arguments, never prompt
+
+-i, prompt before every removal
+
+--no-preserve-root, do not treat &apos;/&apos; specially.
+You don&apos;t need this unless you want to delete your OS (believe me, you don&apos;t)
+
+--preserve-root, do not remove &apos;/&apos; (default)
+
+-r, -R, --recursive, remove directories and their contents recursively
+
+-d, --dir, remove empty directories
+
+-v, --verbose, explain what is being done&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;EXAMPLES&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# Removing a file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+bar.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Removing multiple files&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# or using patterns&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt baz.zip
+$ &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; *.zip
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+baz.zip
+
+&lt;span class=&quot;token comment&quot;&gt;# Prompt for confirmation before removing smth&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -i foo.txt
+rm: remove regular &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;foo.txt&apos;&lt;/span&gt;?
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+bar.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Show more information while removing smth&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -v foo.txt
+removed &lt;span class=&quot;token string&quot;&gt;&apos;foo.txt&apos;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+bar.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Removing directories, use ls -F to show directaries with / on the end&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -F
+foo.txt bar/
+$ &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -R bar/
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -F 
+foo.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# If you get permission denied, you most probably have to use sudo&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; ~/Documents/smth.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# If you try to delete write-protected files, you&apos;ll be prompted for confirmation like this:&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; foo
+rm: remove write-protected regular empty &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;foo&apos;&lt;/span&gt;? y
+&lt;span class=&quot;token comment&quot;&gt;# If you don&apos;t want the system to show this message, do force removal:&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -f foo
+&lt;span class=&quot;token comment&quot;&gt;# Also NEVER USE THIS COMMAND&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# NEVER, IT DELETES ALL FILES ON YOUR MACHINE&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -rf /
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;mv&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;mv - move (rename) files&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;Rename SOURCE to DEST, or move SOURCE(s) to DIRECTORY.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;OPTION&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;-T&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; SOURCE DEST
+&lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;OPTION&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. SOURCE&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. DIRECTORY
+&lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;OPTION&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. -t DIRECTORY SOURCE&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;-b, &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; a backup of each existing destination &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt;
+
+-f, --force
+&lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; not prompt before overwriting
+                            
+-i, --interactive
+prompt before overwrite
+
+-n, --no-clobber
+&lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; not overwrite an existing &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt;
+
+-u, --update
+move  only  when  the  SOURCE &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; is newer than the destination
+&lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; or when the destination &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; is missing
+
+-v, --verbose
+explain what is being &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;EXAMPLES&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# Move a file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+bar.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Move file in a directory&lt;/span&gt;
+$ tree -F &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+├── bar/
+└── foo.txt
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; foo.txt bar
+$ tree -F 
+&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+└── bar/
+    └── foo.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Move multiple files into a directory&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; file1.txt file.2.txt file3.txt folder
+&lt;span class=&quot;token comment&quot;&gt;# Or&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; *.txt folder
+
+&lt;span class=&quot;token comment&quot;&gt;# Move a directory, use ls -F to list directories with/on the end&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -F 
+foo/
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; foo bar
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; -F
+bar/
+
+&lt;span class=&quot;token comment&quot;&gt;# Prompt before overwriting the file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; -i foo.txt bar.txt
+mv: overwrite &lt;span class=&quot;token string&quot;&gt;&apos;bar.txt&apos;&lt;/span&gt;?
+
+&lt;span class=&quot;token comment&quot;&gt;# How not to overwrite existing files&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; -n foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Making a backup of an existing file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; -b foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+bar.txt  bar.txt~
+
+&lt;span class=&quot;token comment&quot;&gt;# To change the backup extension do:&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; -S .bak -b foo.txt bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+bar.txt  bar.txt.bak
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;nano&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;nano - Nano’s ANOther editor, an enhanced free Pico clone&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;nano is a  small and friendly editor.&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;nano&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;options&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;+line&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;,column&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; file&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;REFERENCE&lt;/h2&gt;
+&lt;p&gt;Ubuntu man pages: &lt;a href=&quot;http://manpages.ubuntu.com/manpages/artful/en/man1/nano.1.html&quot;&gt;http://manpages.ubuntu.com/manpages/artful/en/man1/nano.1.html&lt;/a&gt;&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;cat&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;cat - concatenate files and print on the standard output&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;Concatenate FILE(s) to standard output.
+With no FILE, or when FILE is -, read standard input.&lt;/p&gt;
+&lt;h2&gt;OPTIONS&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;-A, --show-all
+equivalent to -vET
+
+-E, --show-ends
+display $ at end of each line
+
+-n, --number
+number all output lines
+
+-s, --squeeze-blank
+suppress repeated empty output lines
+
+-T, --show-tabs
+display TAB characters as ^I
+
+-v, --show-nonprinting
+use ^ and M- notation, except for LFD and TAB&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;EXAMPLES&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# Show contents of file&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; foo.txt
+Hello world
+
+&lt;span class=&quot;token comment&quot;&gt;# How to write contents of one file to another one&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; foo.txt &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; bar.txt
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; bar.txt
+Hello world
+
+&lt;span class=&quot;token comment&quot;&gt;# To append the contents of one file to another, use:&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; wine.txt &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; beer.txt
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; beer.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# Combine contents of few files into one:&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; *.txt &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; combined.txt
+
+&lt;span class=&quot;token comment&quot;&gt;# To add line numbers to the output use -n:&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; -n foot.txt
+     1  asd
+     2  asdgfasdg
+     3  adgd
+     4    adfsd
+         &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+
+&lt;span class=&quot;token comment&quot;&gt;# Show end of lines using -E&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; -E example.txt
+This line has no space at the end.$
+This one does. $
+
+&lt;span class=&quot;token comment&quot;&gt;# To squeze repeatable blank lines use -s:&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; blanks.txt
+Line one
+
+Line two
+
+
+Line three
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; -s blanks.txt
+Line one
+
+Line two
+
+Line three
+
+&lt;span class=&quot;token comment&quot;&gt;# Show tabs in the file&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; -T tabs.txt
+^IOne Tab
+^I^ITwo tabs
+^I^I^IThree tabs
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;less&lt;/summary&gt;
+&lt;h2&gt;NAME&lt;/h2&gt;
+&lt;p&gt;less - opposite of more&lt;/p&gt;
+&lt;h2&gt;DESCRIPTION&lt;/h2&gt;
+&lt;p&gt;Less is a program similar to more (1), but it has many more features.&lt;/p&gt;
+&lt;p&gt;Less  does  not  have to read the entire input file before starting, so
+with large input files, it starts up faster than text  editors  like  vi&lt;/p&gt;
+&lt;h2&gt;SYNTAX&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;less [-[+]aABcCdeEfFgGiIJKLmMnNqQrRsSuUVwWX~]
+            [-b space] [-h lines] [-j line] [-k keyfile]
+            [-{oO} logfile] [-p pattern] [-P prompt] [-t tag]
+            [-T tagsfile] [-x tab,...] [-y lines] [-[z] lines]
+            [-# shift] [+[+]cmd] [--] [filename]...&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;REFERENCE&lt;/h2&gt;
+&lt;p&gt;Ubuntu man pages: &lt;a href=&quot;http://manpages.ubuntu.com/manpages/artful/en/man1/less.1.html&quot;&gt;http://manpages.ubuntu.com/manpages/artful/en/man1/less.1.html&lt;/a&gt;&lt;/p&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;apt-get&lt;/summary&gt;
+&lt;/details&gt;
+&lt;details&gt;
+&lt;summary&gt;man&lt;/summary&gt;
+&lt;/details&gt;
+&lt;!-- &lt;details&gt;
+&lt;summary&gt;sl&lt;/summary&gt;
+&lt;/details&gt; --&gt;
+Special thanks to: https://shapeshed.com/
+## Lecture notes:
+&lt;h3&gt;cd&lt;/h3&gt;
+&lt;p&gt;cd - Change Directory&lt;/p&gt;
+&lt;p&gt;This command lets you navigate through your filesystem directories.&lt;/p&gt;
+&lt;p&gt;First, Let’s open the terminal and try this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; ~
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now we are in the user’s home directory.&lt;/p&gt;
+&lt;p&gt;Let’s go to the Documents directory!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; Documents/
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;And then back to the home directory using &lt;code&gt;..&lt;/code&gt; (parent directory is &lt;code&gt;..&lt;/code&gt;, all directories have it)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;or the command that basically means undo the previous cd:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; -
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;pwd&lt;/h3&gt;
+&lt;p&gt;Okay, we know how to travel in the filesystem,
+but every traveler should have their own compass!&lt;/p&gt;
+&lt;p&gt;This command (!compass!) lets you see where you are now in the filesystem&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;pwd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;the output should be something like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;/Users/myUsername/Documents
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;ls&lt;/h3&gt;
+&lt;p&gt;YAS! Now we, as travelers, should sense everything that is near us!&lt;/p&gt;
+&lt;p&gt;For that reason, we will use command &lt;code&gt;ls&lt;/code&gt;. It lets us find out what is in the current directory!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;mkdir&lt;/h3&gt;
+&lt;p&gt;We’ve got a long trip in this OS, thus we need to prepare some place to store our stuff!&lt;/p&gt;
+&lt;p&gt;We are going to create a directory and &lt;code&gt;mkdir&lt;/code&gt; command will help us!&lt;/p&gt;
+&lt;p&gt;Let’s create a new directory in &lt;code&gt;~/Documents&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; ~/Documents
+&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; MyDirectoryName
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;touch&lt;/h3&gt;
+&lt;p&gt;We’ve created a directory and now let’s create a file in MyDirectoryName!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; MyDirectoryName
+&lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; myCustomFile.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;cp&lt;/h3&gt;
+&lt;p&gt;Copying code is something that every developer should know on the professional level!&lt;/p&gt;
+&lt;p&gt;Now we have to prepare our workspace for that amazing command!&lt;/p&gt;
+&lt;p&gt;Let’s go back to the parent’s directory and create one more directory&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; MyPrettyDirectory
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Here is the fan part! Let’s copy the file &lt;code&gt;myCustomFile.js&lt;/code&gt; from &lt;code&gt;MyDirectoryName&lt;/code&gt; to &lt;code&gt;MyPrettyDirectory&lt;/code&gt; using this command:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; MyDirectoryName/myCustomFile.js MyPrettyDirectory/
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So now we have a file called &lt;code&gt;myCustomFile.js&lt;/code&gt; in both &lt;code&gt;MyDirectoryName&lt;/code&gt; and &lt;code&gt;MyPrettyDirectory&lt;/code&gt; directories! Voila!&lt;/p&gt;
+&lt;h3&gt;rm&lt;/h3&gt;
+&lt;p&gt;Oh, we did the copy of the file by mistake?! We need to delete the second file right now! The &lt;code&gt;rm&lt;/code&gt; command is going to save us all! So we should be in the &lt;code&gt;~/Documents&lt;/code&gt; directory now!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; MyPrettyDirectory/myCustomFile.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;whew, we’ve deleted this unnecessary file!&lt;/p&gt;
+&lt;h3&gt;mv&lt;/h3&gt;
+&lt;p&gt;What if we didn’t want to actually copy it, we wanted to move the file from one directory to another (something like cut &amp;#x26; paste!!!). Again, I’m assuming that we are currently in the &lt;code&gt;~/Documents&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; MyDirectoryName/myCustomFile.js MyPrettyDirectory/
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So now we don’t have anything in &lt;code&gt;MyDirectoryName&lt;/code&gt; and have &lt;code&gt;myCustomFile.js&lt;/code&gt; in &lt;code&gt;MyPrettyDirectory&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;nano&lt;/h3&gt;
+&lt;p&gt;Every programmer should be able to write code, right?!&lt;/p&gt;
+&lt;p&gt;nano is a small and friendly editor, it’s going to help us write our first
+(well, maybe not) lines of Javascript!&lt;/p&gt;
+&lt;p&gt;So now &lt;code&gt;myCustomFile.js&lt;/code&gt; file is in the &lt;code&gt;MyPrettyDirectory&lt;/code&gt; directory. Let’s open it with &lt;code&gt;nano&lt;/code&gt;!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;nano&lt;/span&gt; MyPrettyDirectory/myCustomFile.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Wow, this may seem confusing! But it’s much simpler than it seems!&lt;/p&gt;
+&lt;p&gt;Here we can edit the file. Let’s add this line of code:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; year &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2018&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Later in this course, you will understand what each of these characters means!&lt;/p&gt;
+&lt;p&gt;Nice! Let’s save it and move on to another terminal command! Do this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;ctrl + X    # command for exiting nano
+Y                 # it asks if you want to save changes or no
+enter            # submit your answer!&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;cat&lt;/h3&gt;
+&lt;p&gt;You are in the terminal and you want to read a small file without opening any editor?&lt;/p&gt;
+&lt;p&gt;NOT A PROBLEM!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cat&lt;/code&gt; is going to help you! let’s go to &lt;code&gt;MyPrettyDirectory&lt;/code&gt; from &lt;code&gt;~/Documents&lt;/code&gt; directory with&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; MyPrettyDirectory
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;And let’s print the content of &lt;code&gt;myCustomFile.js&lt;/code&gt; to the terminal!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; myCustomFile.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Voila :D &lt;/p&gt;
+&lt;h3&gt;less&lt;/h3&gt;
+&lt;p&gt;There is also another way of looking into file’s content! Try:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;less&lt;/span&gt; myCustomFile.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;apt-get&lt;/h3&gt;
+&lt;p&gt;Now let’s learn a little bit about installing packages to your computer using the terminal!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;apt-get install sl&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;man&lt;/h3&gt;
+&lt;p&gt;So if you want to find the manual for any built-in terminal command, you can run something like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token function&quot;&gt;man&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Developers of Linux has written these manuals for you to learn without even using the internet!&lt;/p&gt;
+&lt;h3&gt;sl&lt;/h3&gt;
+&lt;p&gt;And now let’s try the package that we installed earlier :D&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;sl
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+&lt;p&gt;Don’t forget that you can always reach members of the iterate community, ask questions, fix issues and bugs, also just talk about random things in the iterate Slack &lt;a href=&quot;https://iterate-hackerspace.slack.com/messages&quot;&gt;channel&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Dual booting Ubuntu with Windows]]></title><description><![CDATA[This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system…]]></description><link>https://yerevancoder.com/2018-02-04-dual-booting-linux-with-windows/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-04-dual-booting-linux-with-windows/</guid><pubDate>Sun, 04 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This short blog post is part of the post series done for iterate hackerspace, explaining why to use Linux as your primary operating system. Dual booting is a good way for beginners unfamiliar to Linux to try it, without sacrificing performance, like it happens in case of virtualization. There is one thing that can be said for sure: At first it may seem weird, sometimes even too complicated and not user-friendly, but, after a long time of Linux usage, most people fall in love with Unix-like operating systems, and don’t even want to return to their previous OS. &lt;/p&gt;
 &lt;h2&gt;Table of contents&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;#why-linux-&quot;&gt;Why Linux&lt;/a&gt;&lt;br&gt;
 &lt;a href=&quot;#how-to-install&quot;&gt;How to install&lt;/a&gt;&lt;/p&gt;

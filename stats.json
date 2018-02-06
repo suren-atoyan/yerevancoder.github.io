@@ -5,24 +5,28 @@
       "component---src-pages-index-js-d0c2cd31866ebac378b6.js.map"
     ],
     "path---2018-01-09-pay-rates-in-armenian-tech": [
-      "path---2018-01-09-pay-rates-in-armenian-tech-70d127756e80d23e6130.js",
-      "path---2018-01-09-pay-rates-in-armenian-tech-70d127756e80d23e6130.js.map"
+      "path---2018-01-09-pay-rates-in-armenian-tech-d9f86e08d9e4d16bdb7a.js",
+      "path---2018-01-09-pay-rates-in-armenian-tech-d9f86e08d9e4d16bdb7a.js.map"
     ],
     "path---2018-02-04-dual-booting-linux-with-windows": [
-      "path---2018-02-04-dual-booting-linux-with-windows-c0b145302163a64675be.js",
-      "path---2018-02-04-dual-booting-linux-with-windows-c0b145302163a64675be.js.map"
+      "path---2018-02-04-dual-booting-linux-with-windows-a7a905d974772fbe98fc.js",
+      "path---2018-02-04-dual-booting-linux-with-windows-a7a905d974772fbe98fc.js.map"
     ],
     "path---2017-12-24-squash-commits-with-git": [
-      "path---2017-12-24-squash-commits-with-git-8caa03bc2f50fc23f7e1.js",
-      "path---2017-12-24-squash-commits-with-git-8caa03bc2f50fc23f7e1.js.map"
+      "path---2017-12-24-squash-commits-with-git-c2625bb5652e70c51c3b.js",
+      "path---2017-12-24-squash-commits-with-git-c2625bb5652e70c51c3b.js.map"
+    ],
+    "path---2018-02-06-simple-terminal-commands": [
+      "path---2018-02-06-simple-terminal-commands-d130f35e99a03a1ce3fe.js",
+      "path---2018-02-06-simple-terminal-commands-d130f35e99a03a1ce3fe.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
     "path---2017-12-21-javascript-resources": [
-      "path---2017-12-21-javascript-resources-29fb86b846321b7bd2e0.js",
-      "path---2017-12-21-javascript-resources-29fb86b846321b7bd2e0.js.map"
+      "path---2017-12-21-javascript-resources-a67e93e70c96a54980fd.js",
+      "path---2017-12-21-javascript-resources-a67e93e70c96a54980fd.js.map"
     ],
     "component---node-modules-gatsby-plugin-offline-app-shell-js": [
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js",
@@ -33,16 +37,16 @@
       "component---src-templates-blog-post-js-90d9c38e2a5943b3da2e.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-75dda2a7ac6dc24569a1.js",
-      "component---src-layouts-index-js-75dda2a7ac6dc24569a1.js.map"
+      "component---src-layouts-index-js-91c022be6004a7687218.js",
+      "component---src-layouts-index-js-91c022be6004a7687218.js.map"
     ],
     "path---2017-12-31-elm-intro": [
-      "path---2017-12-31-elm-intro-270a3a17af5a5b330de5.js",
-      "path---2017-12-31-elm-intro-270a3a17af5a5b330de5.js.map"
+      "path---2017-12-31-elm-intro-1ffccb3d35c04c5a6bbf.js",
+      "path---2017-12-31-elm-intro-1ffccb3d35c04c5a6bbf.js.map"
     ],
     "path---index": [
-      "path---index-487472863670930cc04e.js",
-      "path---index-487472863670930cc04e.js.map"
+      "path---index-f1f169a7555a34d78c9c.js",
+      "path---index-f1f169a7555a34d78c9c.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-78eb0160ebc5e112276c.js",
@@ -59,25 +63,25 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---2017-12-20-init-post": [
-      "path---2017-12-20-init-post-a9d9b967cb4b83f224ad.js",
-      "path---2017-12-20-init-post-a9d9b967cb4b83f224ad.js.map"
+      "path---2017-12-20-init-post-cb541434fdb8eb590c8d.js",
+      "path---2017-12-20-init-post-cb541434fdb8eb590c8d.js.map"
     ],
     "path---2017-12-23-tech-places-and-events": [
-      "path---2017-12-23-tech-places-and-events-ee46f7b0140b64e1e19f.js",
-      "path---2017-12-23-tech-places-and-events-ee46f7b0140b64e1e19f.js.map"
+      "path---2017-12-23-tech-places-and-events-8994a812d3867894b43c.js",
+      "path---2017-12-23-tech-places-and-events-8994a812d3867894b43c.js.map"
     ],
     "path---offline-plugin-app-shell-fallback": [
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---2018-01-12-promises-and-timeouts": [
-      "path---2018-01-12-promises-and-timeouts-ac729925c6cc55d6ea61.js",
-      "path---2018-01-12-promises-and-timeouts-ac729925c6cc55d6ea61.js.map"
+      "path---2018-01-12-promises-and-timeouts-27156ee6ec06598773f6.js",
+      "path---2018-01-12-promises-and-timeouts-27156ee6ec06598773f6.js.map"
     ],
     "app": [
-      "app-8aab7ad9ed749ea51599.js",
+      "app-7d4cd64ac183b9eea37b.js",
       "build-js-styles.css",
-      "app-8aab7ad9ed749ea51599.js.map",
+      "app-7d4cd64ac183b9eea37b.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
