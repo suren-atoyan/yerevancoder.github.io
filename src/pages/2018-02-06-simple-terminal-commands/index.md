@@ -726,6 +726,7 @@ Ubuntu man pages: http://manpages.ubuntu.com/manpages/artful/en/man1/less.1.html
 
 </details> -->
 Special thanks to: https://shapeshed.com/
+
 ## Lecture notes:
 
 ### cd
