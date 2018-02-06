@@ -7,8 +7,6 @@ description: How to use basic terminal commands
 discussionId: "2018-02-06-simple-terminal-commands"
 ---
 
-# Simple terminal commands
-
 ## Documentation
 Readers, I spent a lot of time to add as many examples as I can to this documentation
 
