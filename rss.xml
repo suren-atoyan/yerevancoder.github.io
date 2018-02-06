@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 06 Feb 2018 20:38:33 GMT</lastBuildDate><item><title><![CDATA[Simple Terminal Commands]]></title><description><![CDATA[Documentation Readers, I spent a lot of time to add as many examples as I can to this documentation So I will highly encourage to read this…]]></description><link>https://yerevancoder.com/2018-02-06-simple-terminal-commands/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-06-simple-terminal-commands/</guid><pubDate>Tue, 06 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Documentation&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 06 Feb 2018 20:49:46 GMT</lastBuildDate><item><title><![CDATA[Simple Terminal Commands]]></title><description><![CDATA[Documentation Readers, I spent a lot of time to add as many examples as I can to this documentation So I will highly encourage to read this…]]></description><link>https://yerevancoder.com/2018-02-06-simple-terminal-commands/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-06-simple-terminal-commands/</guid><pubDate>Tue, 06 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Documentation&lt;/h2&gt;
 &lt;p&gt;Readers, I spent a lot of time to add as many examples as I can to this documentation&lt;/p&gt;
 &lt;p&gt;So I will highly encourage to read this one day :D &lt;/p&gt;
 &lt;p&gt;But I also advise you to first read Lecture notes
@@ -660,7 +660,7 @@ with large input files, it starts up faster than text  editors  like  vi&lt;/p&g
 &lt;summary&gt;sl&lt;/summary&gt;
 &lt;/details&gt; --&gt;
 Special thanks to: https://shapeshed.com/
-## Lecture notes:
+&lt;h2&gt;Lecture notes:&lt;/h2&gt;
 &lt;h3&gt;cd&lt;/h3&gt;
 &lt;p&gt;cd - Change Directory&lt;/p&gt;
 &lt;p&gt;This command lets you navigate through your filesystem directories.&lt;/p&gt;
