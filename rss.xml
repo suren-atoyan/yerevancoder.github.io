@@ -1,4 +1,373 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 06 Feb 2018 20:49:46 GMT</lastBuildDate><item><title><![CDATA[Simple Terminal Commands]]></title><description><![CDATA[Documentation Readers, I spent a lot of time to add as many examples as I can to this documentation So I will highly encourage to read this…]]></description><link>https://yerevancoder.com/2018-02-06-simple-terminal-commands/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-06-simple-terminal-commands/</guid><pubDate>Tue, 06 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Documentation&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 08 Feb 2018 15:32:47 GMT</lastBuildDate><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
+a  variable  has and what type of…]]></description><link>https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</guid><pubDate>Thu, 08 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Primitives&lt;/h2&gt;
+&lt;p&gt;What is data type? &lt;/p&gt;
+&lt;p&gt;A data type is a classification that specifies which type of value
+a &lt;code&gt;variable&lt;/code&gt; has and what type of operations
+can be applied to it without causing an error.&lt;/p&gt;
+&lt;p&gt;You can read it a few times to understand. Anyway, it is fine
+if you’ll not understand it now :D&lt;/p&gt;
+&lt;p&gt;So we can store and use different data types in our program: strings,
+numbers and etc.&lt;/p&gt;
+&lt;p&gt;Let’s list those!&lt;/p&gt;
+&lt;p&gt;Primitives:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;number&lt;/li&gt;
+&lt;li&gt;string&lt;/li&gt;
+&lt;li&gt;boolean&lt;/li&gt;
+&lt;li&gt;null&lt;/li&gt;
+&lt;li&gt;undefined&lt;/li&gt;
+&lt;li&gt;symbol (new to ES6)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Object:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The examples of objects are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Function&lt;/li&gt;
+&lt;li&gt;Array&lt;/li&gt;
+&lt;li&gt;Map&lt;/li&gt;
+&lt;li&gt;Set&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So basically, everything that is not an object is considered as a
+Primitive data type. Smart right? :D There are a lot of differences
+between those and we’re going to understand everything together! For
+today, we’ll focus our attention on primitive types.&lt;/p&gt;
+&lt;p&gt;Let’s get some practice already!&lt;/p&gt;
+&lt;p&gt;if you’ve been on our installation day, then most probably you have
+UNIX-based Operating System (Ubuntu, MacOS, Debian, Kali, BSD, etc.).
+You already should have &lt;code&gt;atom&lt;/code&gt; and &lt;code&gt;node&lt;/code&gt;. Let’s setup our workplace.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# go to Documents directory&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; ~/Documents
+&lt;span class=&quot;token comment&quot;&gt;# create js file&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; file.js
+&lt;span class=&quot;token comment&quot;&gt;# open that file with Atom&lt;/span&gt;
+atom file.js
+&lt;span class=&quot;token comment&quot;&gt;# now we are going to edit that file&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# with atom. After edit, you can run that&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# file with&lt;/span&gt;
+node file.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;OR&lt;/p&gt;
+&lt;p&gt;Open your Unix terminal and type &lt;code&gt;node&lt;/code&gt;. However, this is not convenient
+for writing everything that is bigger than a few lines:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;# open node&lt;/span&gt;
+node
+&lt;span class=&quot;token comment&quot;&gt;# now you should this kind of &quot;arrow&quot;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# that means you can write js here&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# then push &quot;enter&quot; to evaluate the code&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# to quit it simply do 2 times CTRL+C&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# or write .exit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;OR&lt;/p&gt;
+&lt;p&gt;open &lt;code&gt;developer tools&lt;/code&gt; in the browser and open console there.&lt;/p&gt;
+&lt;p&gt;So now let’s start with numbers. To use those you simply have to type a
+number in the console:&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;number&lt;/code&gt;&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: 5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;I’m using a symbol &lt;code&gt;//&lt;/code&gt; called &lt;code&gt;comments&lt;/code&gt;. Basically, JS doesn’t
+evaluate everything that is after &lt;code&gt;//&lt;/code&gt; on the line. It is a very useful
+thing when you want to describe what your code does.&lt;/p&gt;
+&lt;p&gt;JS is not going to evaluate this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;// yo, I&apos;m not evaluated&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// :(&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;So we tried to evaluate 5 and JS evaluated that to 5. Simple!&lt;/p&gt;
+&lt;p&gt;let’s try to do some math operations! To use those you have to just
+type mathematical operation symbols:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;// sum&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: 10&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// substraction&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: -3&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// deletion&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: 5&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;3.5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to 3.5&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// multiplication&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: 20&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3.5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2.5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: 8.75&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;JS also has a special value called &lt;code&gt;NaN&lt;/code&gt; which basically means &lt;code&gt;Not A Number&lt;/code&gt;. We are going to discuss it later in the course.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;string&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;But you’ll not be able to do a lot of things with only numbers!
+Let’s try to use text. The data type responsible for that in JS is
+called &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are few ways of declaring a string. We will only review 2 of
+those:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Hello world!&apos;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: &apos;Hello world!&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Hello world!&quot;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: &apos;Hello world!&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;There are also some operations which are performed on strings. Here is
+the one called &lt;code&gt;concatenation&lt;/code&gt;. Basically, that means adding one string
+to another:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;// concatenation&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Hello &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;world!&apos;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: &apos;Hello world!&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;&lt;code&gt;boolean&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Next data type I want to talk about is very simple. It’s called
+&lt;code&gt;boolean&lt;/code&gt;. It only has values &lt;code&gt;false&lt;/code&gt; and &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: false&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;In JS and in the majority of other programming languages you are able
+to compare different values and get a &lt;code&gt;boolean&lt;/code&gt; value as a result of
+evaluation:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;// equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: false&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// not equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// not equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: false&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// less than&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// less than&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: false&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// less than or equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// less than or equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;343&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// greater than&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// greater than&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: false&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// greater than or equal&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; 
+&lt;span class=&quot;token comment&quot;&gt;// evaluated to: true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Javascript also has &lt;code&gt;==&lt;/code&gt; as an equality operator. It’s a convention to
+say that &lt;code&gt;==&lt;/code&gt; is a loose-equal and &lt;code&gt;===&lt;/code&gt; is a strict-equal. For now just
+don’t use &lt;code&gt;==&lt;/code&gt;, use &lt;code&gt;===&lt;/code&gt; for checking equality. We will describe the
+difference later in the course.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;undefined&lt;/code&gt; and &lt;code&gt;null&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;We also can use it for any other data type, but that’s something that
+we would like to discuss later in the course :D &lt;/p&gt;
+&lt;p&gt;JS also has data types that basically mean &lt;code&gt;nothing&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;undefined&lt;/code&gt; and &lt;code&gt;null&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The first one, &lt;code&gt;undefined&lt;/code&gt;, means the absence of the value, whereas
+&lt;code&gt;null&lt;/code&gt; means that value is nothing. It maybe confusing at first but
+you’ll get used to it!&lt;/p&gt;
+&lt;p&gt;We can also use boolean operators on these data types:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;undefined &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; undefined &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+
+&lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;&lt;code&gt;symbol&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;We are not going to cover &lt;code&gt;symbol&lt;/code&gt; data type now. It’s a little bit
+advanced topic that we’ll talk about in a few weeks.&lt;/p&gt;
+&lt;p&gt;Great, so now we know how Primitive data types look and we also know a
+few basic operations on those!&lt;/p&gt;
+&lt;h2&gt;Variable initialization&lt;/h2&gt;
+&lt;h3&gt;&lt;code&gt;let&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Now we need to understand where we can store that value. Imagine a
+&lt;code&gt;box&lt;/code&gt; where you can put anything you want. That &lt;code&gt;box&lt;/code&gt; in JS is called a
+&lt;code&gt;variable&lt;/code&gt;. You basically can put any JS data type in it. There are a
+few ways of initializing a variable. The first way is using &lt;code&gt;let&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token comment&quot;&gt;// initialized a variable called a&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now we just initialized a &lt;code&gt;variable&lt;/code&gt; which has a value of nothing. As
+we’ve already discussed, a value of nothing in JS is represented as
+&lt;code&gt;undefined&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; undefined
+&lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now let’s put some value in it:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 5&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Congratulations! Now we have &lt;code&gt;number&lt;/code&gt; 5 in the &lt;code&gt;variable&lt;/code&gt; &lt;code&gt;a&lt;/code&gt;.
+We can also change the value of &lt;code&gt;a&lt;/code&gt; to string.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;string&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;In the majority of programming languages, you are actually not able to
+do so. There you initialize a &lt;code&gt;variable&lt;/code&gt; and tell it to ONLY store one
+data type. It is also possible in Javascript, but for that, you have to
+use &lt;code&gt;TypeScript&lt;/code&gt; or &lt;code&gt;Flow&lt;/code&gt;. We are going to cover it later in the
+course. For now, you can just google it! :D &lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;const&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;As you’ve already found out, when we initialize a &lt;code&gt;variable&lt;/code&gt; with &lt;code&gt;let&lt;/code&gt;
+we are able to change the value that is stored in the &lt;code&gt;variable&lt;/code&gt;!! In
+this course, we are going to mostly learn Functional Programming. And
+functional programming doesn’t like mutatable (changeable) variables!
+Thus it’s always better to use &lt;code&gt;const&lt;/code&gt;, which stands for &lt;code&gt;constant&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 5&lt;/span&gt;
+b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// TypeError: Assignment to constant variable.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;and using &lt;code&gt;let&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 6&lt;/span&gt;
+c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// Totally fine, evaluated to: 8&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This helps you to keep your mind organized and get fewer bugs in the
+program later in the development process!&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;typeof&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Also, Javascript provides a special operator called &lt;code&gt;typeof&lt;/code&gt; that
+describes you what type is in the variable right now. The output of
+that operator is always &lt;code&gt;string&lt;/code&gt;. This is how to use it:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; first&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; first&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;undefined&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; second &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;hello world&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; second&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;string&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; third &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; third&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;number&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; fourth &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; fourth&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;boolean&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; fifth &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; fifth&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;object&quot; -- weird, bug&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; sixth &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; undefined&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; sixth&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;undefined&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// this is object, hence not a Primitive data type&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// we will study it in the upcoming lectures&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; seventh &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;c&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; seventh&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;object&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;&lt;code&gt;console.log()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Sometimes you want your program output something on the screen. For
+that, you can use &lt;code&gt;console.log()&lt;/code&gt;. It is a &lt;code&gt;function call&lt;/code&gt; (will get to
+it later), which lets you output the value to the screen. Let’s try
+this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; hello &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;helloWorld!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; hey &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Yo!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;hello&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;hey&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;OMG&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;and the output is something like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;helloWorld&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+Yo&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+OMG
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;Assignment operator shortcuts&lt;/h3&gt;
+&lt;p&gt;The majority of programming languages have some kind of &lt;code&gt;shortcuts&lt;/code&gt; for
+arithmetic operations. Let’s review some of those:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// add 1 to a&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 6&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// here you can use any arithmetic operation in cooperation with =&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// e.g. += , -=, /=, *=, etc...&lt;/span&gt;
+b &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// add 1 to the value of b and put the updated value back to b&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 11&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// increments c by 1&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 3&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// we also can do &lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// c++;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// that increments the value of c by 1&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// but it does it in the other way.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// We will describe it later in the course!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;hr&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+&lt;p&gt;Don’t forget that you can always reach members of the iterate community
+ask questions, fix issues and bugs, also just talk about random things
+in the iterate Slack &lt;a href=&quot;https://iterate-hackerspace.slack.com/messages&quot;&gt;channel&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Simple Terminal Commands]]></title><description><![CDATA[Documentation Readers, I spent a lot of time to add as many examples as I can to this documentation So I will highly encourage to read this…]]></description><link>https://yerevancoder.com/2018-02-06-simple-terminal-commands/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-06-simple-terminal-commands/</guid><pubDate>Tue, 06 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Documentation&lt;/h2&gt;
 &lt;p&gt;Readers, I spent a lot of time to add as many examples as I can to this documentation&lt;/p&gt;
 &lt;p&gt;So I will highly encourage to read this one day :D &lt;/p&gt;
 &lt;p&gt;But I also advise you to first read Lecture notes

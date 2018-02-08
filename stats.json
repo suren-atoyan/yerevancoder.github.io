@@ -1,5 +1,9 @@
 {
   "assetsByChunkName": {
+    "path---2018-02-08-js-types-primitives-variable-initialization": [
+      "path---2018-02-08-js-types-primitives-variable-initialization-59da7e607072d899cdaa.js",
+      "path---2018-02-08-js-types-primitives-variable-initialization-59da7e607072d899cdaa.js.map"
+    ],
     "component---src-pages-index-js": [
       "component---src-pages-index-js-d0c2cd31866ebac378b6.js",
       "component---src-pages-index-js-d0c2cd31866ebac378b6.js.map"
@@ -45,8 +49,8 @@
       "path---2017-12-31-elm-intro-c337d28e1aa55291bf73.js.map"
     ],
     "path---index": [
-      "path---index-9d6f76621505f7a993a1.js",
-      "path---index-9d6f76621505f7a993a1.js.map"
+      "path---index-b982cb36eff4e607ac30.js",
+      "path---index-b982cb36eff4e607ac30.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-78eb0160ebc5e112276c.js",
@@ -79,9 +83,9 @@
       "path---2018-01-12-promises-and-timeouts-ff4c6a14f973d1cdda9f.js.map"
     ],
     "app": [
-      "app-d4ea43af30cbe93393a4.js",
+      "app-4bc2019aa96f134ca4db.js",
       "build-js-styles.css",
-      "app-d4ea43af30cbe93393a4.js.map",
+      "app-4bc2019aa96f134ca4db.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
