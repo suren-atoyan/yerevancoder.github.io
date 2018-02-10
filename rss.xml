@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 08 Feb 2018 15:32:47 GMT</lastBuildDate><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 10 Feb 2018 21:30:59 GMT</lastBuildDate><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
 a  variable  has and what type of…]]></description><link>https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</guid><pubDate>Thu, 08 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Primitives&lt;/h2&gt;
 &lt;p&gt;What is data type? &lt;/p&gt;
 &lt;p&gt;A data type is a classification that specifies which type of value
@@ -68,7 +68,7 @@ node
 &lt;p&gt;open &lt;code&gt;developer tools&lt;/code&gt; in the browser and open console there.&lt;/p&gt;
 &lt;p&gt;So now let’s start with numbers. To use those you simply have to type a
 number in the console:&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;number&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;number&lt;/h3&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
 &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
@@ -117,7 +117,7 @@ type mathematical operation symbols:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;JS also has a special value called &lt;code&gt;NaN&lt;/code&gt; which basically means &lt;code&gt;Not A Number&lt;/code&gt;. We are going to discuss it later in the course.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;string&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;string&lt;/h3&gt;
 &lt;p&gt;But you’ll not be able to do a lot of things with only numbers!
 Let’s try to use text. The data type responsible for that in JS is
 called &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
@@ -143,7 +143,7 @@ to another:&lt;/p&gt;
 &lt;span class=&quot;token comment&quot;&gt;// evaluated to: &apos;Hello world!&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;h3&gt;&lt;code&gt;boolean&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;boolean&lt;/h3&gt;
 &lt;p&gt;Next data type I want to talk about is very simple. It’s called
 &lt;code&gt;boolean&lt;/code&gt;. It only has values &lt;code&gt;false&lt;/code&gt; and &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
@@ -206,7 +206,7 @@ evaluation:&lt;/p&gt;
 say that &lt;code&gt;==&lt;/code&gt; is a loose-equal and &lt;code&gt;===&lt;/code&gt; is a strict-equal. For now just
 don’t use &lt;code&gt;==&lt;/code&gt;, use &lt;code&gt;===&lt;/code&gt; for checking equality. We will describe the
 difference later in the course.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;undefined&lt;/code&gt; and &lt;code&gt;null&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;undefined and null&lt;/h3&gt;
 &lt;p&gt;We also can use it for any other data type, but that’s something that
 we would like to discuss later in the course :D &lt;/p&gt;
 &lt;p&gt;JS also has data types that basically mean &lt;code&gt;nothing&lt;/code&gt;.&lt;/p&gt;
@@ -221,13 +221,13 @@ you’ll get used to it!&lt;/p&gt;
 &lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;h3&gt;&lt;code&gt;symbol&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;symbol&lt;/h3&gt;
 &lt;p&gt;We are not going to cover &lt;code&gt;symbol&lt;/code&gt; data type now. It’s a little bit
 advanced topic that we’ll talk about in a few weeks.&lt;/p&gt;
 &lt;p&gt;Great, so now we know how Primitive data types look and we also know a
 few basic operations on those!&lt;/p&gt;
 &lt;h2&gt;Variable initialization&lt;/h2&gt;
-&lt;h3&gt;&lt;code&gt;let&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;let&lt;/h3&gt;
 &lt;p&gt;Now we need to understand where we can store that value. Imagine a
 &lt;code&gt;box&lt;/code&gt; where you can put anything you want. That &lt;code&gt;box&lt;/code&gt; in JS is called a
 &lt;code&gt;variable&lt;/code&gt;. You basically can put any JS data type in it. There are a
@@ -265,7 +265,7 @@ do so. There you initialize a &lt;code&gt;variable&lt;/code&gt; and tell it to O
 data type. It is also possible in Javascript, but for that, you have to
 use &lt;code&gt;TypeScript&lt;/code&gt; or &lt;code&gt;Flow&lt;/code&gt;. We are going to cover it later in the
 course. For now, you can just google it! :D &lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;const&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;const&lt;/h3&gt;
 &lt;p&gt;As you’ve already found out, when we initialize a &lt;code&gt;variable&lt;/code&gt; with &lt;code&gt;let&lt;/code&gt;
 we are able to change the value that is stored in the &lt;code&gt;variable&lt;/code&gt;!! In
 this course, we are going to mostly learn Functional Programming. And
@@ -288,7 +288,7 @@ c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&qu
       &lt;/div&gt;
 &lt;p&gt;This helps you to keep your mind organized and get fewer bugs in the
 program later in the development process!&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;typeof&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;typeof&lt;/h3&gt;
 &lt;p&gt;Also, Javascript provides a special operator called &lt;code&gt;typeof&lt;/code&gt; that
 describes you what type is in the variable right now. The output of
 that operator is always &lt;code&gt;string&lt;/code&gt;. This is how to use it:&lt;/p&gt;
@@ -317,7 +317,7 @@ that operator is always &lt;code&gt;string&lt;/code&gt;. This is how to use it:&
 &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; seventh&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;object&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;h3&gt;&lt;code&gt;console.log()&lt;/code&gt;&lt;/h3&gt;
+&lt;h3&gt;console.log()&lt;/h3&gt;
 &lt;p&gt;Sometimes you want your program output something on the screen. For
 that, you can use &lt;code&gt;console.log()&lt;/code&gt;. It is a &lt;code&gt;function call&lt;/code&gt; (will get to
 it later), which lets you output the value to the screen. Let’s try
