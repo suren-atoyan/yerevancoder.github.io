@@ -86,7 +86,7 @@ open `developer tools` in the browser and open console there.
 So now let's start with numbers. To use those you simply have to type a
 number in the console:
 
-### `number`
+### number
 
 ```js
 > 5
@@ -140,7 +140,7 @@ type mathematical operation symbols:
 JS also has a special value called `NaN` which basically means `Not A
 Number`. We are going to discuss it later in the course.
 
-### `string`
+### string
 
 But you'll not be able to do a lot of things with only numbers!
 Let's try to use text. The data type responsible for that in JS is
@@ -169,7 +169,7 @@ to another:
 // evaluated to: 'Hello world!'
 ```
 
-### `boolean`
+### boolean
 
 Next data type I want to talk about is very simple. It's called
 `boolean`. It only has values `false` and `true`.
@@ -236,7 +236,7 @@ say that `==` is a loose-equal and `===` is a strict-equal. For now just
 don't use `==`, use `===` for checking equality. We will describe the
 difference later in the course.
 
-### `undefined` and `null`
+### undefined and null
 
 We also can use it for any other data type, but that's something that
 we would like to discuss later in the course :D 
@@ -258,7 +258,7 @@ undefined === undefined // true
 
 ```
 
-### `symbol`
+### symbol
 
 We are not going to cover `symbol` data type now. It's a little bit
 advanced topic that we'll talk about in a few weeks.
@@ -268,7 +268,7 @@ few basic operations on those!
 
 ## Variable initialization
 
-### `let`
+### let
 
 Now we need to understand where we can store that value. Imagine a
 `box` where you can put anything you want. That `box` in JS is called a
@@ -311,7 +311,7 @@ data type. It is also possible in Javascript, but for that, you have to
 use `TypeScript` or `Flow`. We are going to cover it later in the
 course. For now, you can just google it! :D 
 
-### `const`
+### const
 
 As you've already found out, when we initialize a `variable` with `let`
 we are able to change the value that is stored in the `variable`!! In
@@ -338,7 +338,7 @@ c = 8;
 This helps you to keep your mind organized and get fewer bugs in the
 program later in the development process!
 
-### `typeof`
+### typeof
 
 Also, Javascript provides a special operator called `typeof` that
 describes you what type is in the variable right now. The output of
@@ -369,7 +369,7 @@ const seventh = { b: "c" };
 typeof seventh;                // "object"
 ```
 
-### `console.log()`
+### console.log()
 
 Sometimes you want your program output something on the screen. For
 that, you can use `console.log()`. It is a `function call` (will get to
