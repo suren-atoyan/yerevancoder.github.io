@@ -1,10 +1,10 @@
 ---
- title: Javascript. Boolean expressions, conditionals and more.
- tags: javascript, development
- author: Robert Gevorgyan
- date: "2018-02-10"
- description: Learn about AND, NOT, OR, short circuiting, if statements, switch statement.
- discussionId: "2018-02-10-js-boolean-expressions-and-conditionals"
+title: JavaScript. Boolean expressions, conditionals and more.
+tags: javascript, development
+author: Robert Gevorgyan
+date: "2018-02-10"
+description: Learn about AND, NOT, OR, short circuiting, if statements, switch statement.
+discussionId: "2018-02-10-js-boolean-expressions-and-conditionals"
 ---
 
 
