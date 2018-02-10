@@ -1,4 +1,323 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 10 Feb 2018 21:30:59 GMT</lastBuildDate><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 10 Feb 2018 21:41:40 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[Primitives 2 This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts…]]></description><link>https://yerevancoder.com/2018-02-10-js-boolean-expressions-and-conditionals/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-10-js-boolean-expressions-and-conditionals/</guid><content:encoded>&lt;h1&gt;Primitives 2&lt;/h1&gt;
+&lt;p&gt;This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in JavaScript.&lt;/p&gt;
+&lt;h5&gt;Table of contents&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;#logical-operators&quot;&gt;Logical Operators&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#and-ampamp&quot;&gt;AND&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#or-&quot;&gt;OR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#not-&quot;&gt;NOT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#truthy-falsey&quot;&gt;Truthiness and Falsiness&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#short-circuit&quot;&gt;Short-circuit evaluation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;#if-else&quot;&gt;&lt;code&gt;if&lt;/code&gt; statements&lt;/a&gt;
+&lt;a href=&quot;#switch&quot;&gt;Switch&lt;/a&gt;
+&lt;a href=&quot;&quot;&gt;Further reading&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Logical Operators&lt;/h2&gt;
+&lt;p&gt;In programming as in real life, you will usually find yourself in a situation when some decision changes the flow of things. The program may do something instead of doing something else depending on some &lt;code&gt;condition&lt;/code&gt;. Usually those conditions are evaluated to a &lt;code&gt;boolean&lt;/code&gt; value either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt; Let’s think of a real life example to understand this. Let’s say you want to wear your short sleeve T-shirt today. As you don’t want to catch cold or something you will probably wear it only &lt;code&gt;if&lt;/code&gt; the temperature outside is greater than 10 degrees celsius. Otherwise you will wear your hoodie instead. In this case the condition is the following.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Temperature &gt;= 10&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This will be either true or false, depending on the temperature.
+In programming terminology these decisions, depending on some values are called &lt;code&gt;logical expressions&lt;/code&gt; or &lt;code&gt;boolean expressions&lt;/code&gt;. As we mentioned before, those expressions will evaluate to a &lt;code&gt;Boolean&lt;/code&gt; - &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now let’s take the same example and make it a little bit more complicated. Suppose you also want to wear sunglasses to look cooler. Now, if you wear sunglasses when it’s rainy it may make you look cooler but a little bit strange instead :laughing: So that’s why you may want to wear sunglasses only if there’s sunny weather.&lt;/p&gt;
+&lt;p&gt;Now the question. In which case you may want to wear &lt;strong&gt;both&lt;/strong&gt; your favorite T-Shirt and sunglasses. The answer is&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Temperature &gt;= 10 AND Weather === &quot;Sunny&quot;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;As you might have guessed already, those &lt;strong&gt;&lt;em&gt;connecting&lt;/em&gt;&lt;/strong&gt; operators, such as AND, OR and so on, also have a special name. Those are called &lt;code&gt;logical operators&lt;/code&gt; or sometimes referred as &lt;code&gt;boolean operators&lt;/code&gt;. We will learn about three of them - AND &lt;strong&gt;(&amp;#x26;&amp;#x26; in JS)&lt;/strong&gt;, OR &lt;strong&gt;(|| in JS)&lt;/strong&gt; and NOT &lt;strong&gt;(! in JS)&lt;/strong&gt;. Those notations are usually the same for the majority of languages but it is subject of change depending on the language&lt;/p&gt;
+&lt;p&gt;Before diving into code, let’s bring some other examples to make this clearer.
+Most people know, that computers do calculation by adding bunch of 0s and 1s. It’s like having a room full of people, where each person evaluates only one value, giving one result, &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Having only one person doing this is not quiet usefull, but add more people, and the ‘computational power’ of the room will grow exponentially. Moreover, assign a person a specific way of evaluation, and you will have powerful, yet simple way of calculating different results. This lays in the basis of computer architecture and is based on so called &lt;code&gt;boolean algebra&lt;/code&gt;.
+We do this kind of comparisons every day. For example, when searching for a hotel, we filter results by certain criteria, like we want the hotel to have 5 &lt;code&gt;or&lt;/code&gt; 4 stars, &lt;code&gt;not&lt;/code&gt; to allow smoking&lt;code&gt;and&lt;/code&gt; be kid-friendly. The search result will give all 5 and 4 star hotels, will include kid friendly hotels, but won’t show hotels where smoking is allowed.
+Now let’s take a look at how these logical operations are represented and implemented in JavaScript.&lt;/p&gt;
+&lt;h3&gt;AND (&amp;#x26;&amp;#x26;)&lt;/h3&gt;
+&lt;p&gt;AND operator returns &lt;code&gt;true&lt;/code&gt; only if both operands are true, otherwise, it returns &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;Value 1&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;Value 2&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;Returns&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t &amp;#x26;&amp;#x26; t&lt;/code&gt;
+ - true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t &amp;#x26;&amp;#x26; f&lt;/code&gt;
+ -  false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;f &amp;#x26;&amp;#x26; f&lt;/code&gt;
+ - false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;(3 &gt; 5 )&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;f &amp;#x26;&amp;#x26; f&lt;/code&gt;
+ - false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;‘str1’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;‘str2’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t &amp;#x26;&amp;#x26; t&lt;/code&gt;
+ - str2 (wierd JS)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;‘str’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t &amp;#x26;&amp;#x26; f&lt;/code&gt;
+ - false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;OR (||)&lt;/h3&gt;
+&lt;p&gt;OR operator &lt;code&gt;true&lt;/code&gt; in all cases of comparing boolean operands except &lt;code&gt;false &amp;#x26;&amp;#x26; false&lt;/code&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;Value 1&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;Value 2&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;Returns&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t || t&lt;/code&gt;
+ - true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t || f&lt;/code&gt;
+ -  true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;f || f&lt;/code&gt;
+ - false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;(3 &gt; 5 )&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;f || f&lt;/code&gt;
+ - false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;‘str1’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;‘str2’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t || t&lt;/code&gt;
+ - str1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;false&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;‘str’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t || f&lt;/code&gt;
+ - ‘str’&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;‘str’&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;true&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;code&gt;t || t&lt;/code&gt;
+ - ‘str’&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;NOT (!)&lt;/h3&gt;
+&lt;p&gt;NOT operator returns &lt;code&gt;true&lt;/code&gt; in all cases, except the case if its single operand can be converted to &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;!true&lt;/code&gt; - returns &lt;code&gt;false&lt;/code&gt;
+&lt;code&gt;!false&lt;/code&gt; - returns &lt;code&gt;true&lt;/code&gt;
+&lt;code&gt;!&apos;str&apos;&lt;/code&gt; - returns &lt;code&gt;false&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Truthiness and Falsiness&lt;/h3&gt;
+&lt;p&gt;In case of &lt;code&gt;NOT&lt;/code&gt; operand we saw a weird thing. We called !‘str’ and got the value &lt;code&gt;false&lt;/code&gt;. This may suggest, that there is a “hidden” boolean value connected to ‘str’. How can you get that using ! operator? You can use it twice, to negate the opposite boolean value given by !‘str’. So, in case of ‘str’ it’s “hidden” boolean value is true. How does this happen? It’s because JS &lt;code&gt;!&lt;/code&gt; operator &lt;code&gt;converts&lt;/code&gt; the type of it’s &lt;code&gt;operand&lt;/code&gt; to Boolean and then negates that resulting value. That’s why some of values in JS are &lt;code&gt;truthy&lt;/code&gt;, which means they are corresponding to boolean value &lt;code&gt;true&lt;/code&gt; and some of them are &lt;code&gt;falsy&lt;/code&gt;. Usually, emptiness corresponds to &lt;code&gt;false&lt;/code&gt; while any other value corresponds to &lt;code&gt;true&lt;/code&gt;. Let’s look at some examples.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;!!&apos;&apos; === false // &apos;&apos; is falsy
+!!&apos;a&apos; === true // &apos;a&apos; is truthy
+!!0 === false // 0 is falsy
+!!-4 === true // -4 is truthy, even if it&apos;s negative, because it&apos;s not empty
+!!NaN === false // NaN is falsy
+!!null === false // null is falsy
+!!{} === true // null means emptiness, the absence of the object, while empty object is still an object. it&apos;s just empty.
+!![] === true // This can be more treated like {}
+!!undefined === false // Not defined, not there =&gt; falsy&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So as you see, usually the values that are used to describe the absence are falsy and the others are truthy. It’s a bit philosophical and this is how programming is beautiful. :smile:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOTE::: The return values of the &lt;code&gt;&amp;#x26;&amp;#x26;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; operators are &lt;strong&gt;not&lt;/strong&gt; necessarily &lt;code&gt;Boolean&lt;/code&gt; values, as they can be used with operands that are not booleans, however they can still be considered &lt;code&gt;Boolean&lt;/code&gt; operators since their return values can always be converted to &lt;code&gt;truthy/falsey&lt;/code&gt; values.
+This means that in some cases we may use &amp;#x26;&amp;#x26; but get results of other type. Some examples are&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;false || &apos;I will be evaluated&apos;
+true &amp;&amp; &apos;I will be evaluated&apos;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;Short-circuit evaluation&lt;/h3&gt;
+&lt;p&gt;Let’s suppose we have a long chain of boolean operators combined.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Condition1 &amp;&amp; Condition2 &amp;&amp; Condition3 &amp;&amp; ... &amp;&amp; Condition N&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;As you know already, &lt;code&gt;AND&lt;/code&gt; evaluates to true if and only if both values are true. It’s easy to understand that in the general case, like the one shown above, that means that the expression will evaluate to &lt;code&gt;true&lt;/code&gt; if and only if &lt;strong&gt;ALL&lt;/strong&gt; the presented boolean values are true. Let’s again bring a real life analog for this.
+Suppose a kid is happy if a kid has got a candy. Now suppose we have N kids in a row and we want to know if all of them are happy. What will you do as a human? You will go one by one starting from the first and ask if the current kid has a candy. What if you noticed a kid in the middle somewhere with no candy? Does it have any meaning to continue with the other kids or seeing just this one with no candy means that our assumption of all kids having a candy is wrong (or, as programmers may say, evaluated to &lt;code&gt;false&lt;/code&gt;).
+So seing just 1 kid not having a candy is already enough to end the search. This is exactly how the program will evaluate the long chain of boolean values connected with &lt;code&gt;&amp;#x26;&amp;#x26;&lt;/code&gt;-s. It may as well just stop searching as soon as it sees some &lt;code&gt;falsy&lt;/code&gt; value in the chain and return that &lt;code&gt;falsy&lt;/code&gt; value. If there is no any &lt;code&gt;falsy&lt;/code&gt; value it will evaluate to the last value presented in chain. Let’s take a look at some code to get this clearer.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;true &amp;&amp; true &amp;&amp; true &amp;&amp; false &amp;&amp; true &amp;&amp; true // returns false, stops evaluation as soon as sees the false value
+&apos;Truthy value&apos; &amp;&amp; 0 &amp;&amp; true // returns 0 because it&apos;s falsey
+undefined &amp;&amp; null &amp;&amp; 1 &amp;&amp; 0 &amp;&amp; &apos;xoxo&apos; // stops as soon as sees the very first undefined, look how the all unnecessary long calculation is left behind.&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now your turn!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;true &amp;&amp; true &amp;&amp; &apos;&apos; &amp;&amp; true &amp;&amp; true
+&apos;I am the first&apos; &amp;&amp; &apos;I am the second&apos; &amp;&amp; &apos;Latter the greater&apos;
+&apos;Some string&apos; &amp;&amp; 5 &amp;&amp; null &amp;&amp; undefined
+10 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1 &amp;&amp; 0
+10 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1
+0 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1 &amp;&amp; 0&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The same logic applies to OR operator, as it evaluates to true if &lt;strong&gt;at least one&lt;/strong&gt; of the &lt;code&gt;operands&lt;/code&gt; is true. Can you explain how will OR work?
+Can you also answer those correctly?&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;false || undefined || &apos;Haha&apos; || 0
+&apos;false&apos; || &apos;Don&apos;t be tricked&apos; || 0 || undefined || &apos;many others&apos;
+&apos;I am the first&apos; || &apos;I am the second&apos; || &apos;Latter the greater?&apos;
+0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10
+1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 0&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;if statements&lt;/h3&gt;
+&lt;p&gt;Now, after we got so far with boolean expressions, we can put them into usage in the actual code. Remember the example of wearing a T-Shirt and sunglasses. You may notice that with the two conditions we have we can create different &lt;code&gt;boolean expressions&lt;/code&gt; and change the flow of the program depending on those. One question remaining is where to put those boolean expressions exactly. There are several places where you need to insert boolean expressions and the simplest two of them are &lt;code&gt;if&lt;/code&gt; and &lt;code&gt;switch&lt;/code&gt; &lt;code&gt;statements&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s start with &lt;code&gt;if&lt;/code&gt; statements. It’s as simple as you may guess.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (Some boolean expression here) {
+    // Things that need to be done if the expression evaluates to true
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So we use the keyword &lt;code&gt;if&lt;/code&gt; and then after it we put parantheses and write our boolean expression there. Then we open the body of the statement with &lt;code&gt;{&lt;/code&gt; and close it with &lt;code&gt;}&lt;/code&gt;. In case of our T-Shirt sunglass example it will be something like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (temperature &gt;= 10 &amp;&amp; weather === &apos;sunny&apos;) {
+    wear(cool_tshirt);
+    wear(sunglasses);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now, this is too limited. Usually you make decision for both cases, not only if the condition is true. You do something &lt;code&gt;else&lt;/code&gt; if the condition is not true. In case of JS, you can do this by using the word? &lt;code&gt;else&lt;/code&gt; :smile:
+So now we can make the example more complete including the case of wearing hoodie.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (temperature &gt;= 10 &amp;&amp; weather === &apos;sunny&apos;) {
+    wear(cool_tshirt);
+    wear(sunglasses);
+} else {
+    wear(warm_hoodie);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Okay, this is cool but it’s also limited. What if I want to make more than 2 choices depending on the conditions. What if it’s below -15 outside? Warm hoodie is not enough to not freeze in that situation. We need some other case. How to do it? Just add onther if after else to get &lt;code&gt;else .. if&lt;/code&gt; statement. Using &lt;code&gt;else .. if&lt;/code&gt; we can specify as many cases as we want.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (temperature &gt;= 10 &amp;&amp; weather === &apos;sunny&apos;) {
+    wear(cool_tshirt);
+    wear(sunglasses);
+} else if (temperature &lt;= -15) {
+    wear(warm_coat);
+    wear(warm_hoodie);
+    wear(scarf);
+    wear(hat);
+    wear(warm_socks); // Granny was here :)
+} else {
+    wear(warm_hoodie);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Okay, let’s take a look at another example. You remember Teenage Mutant Ninja Turtles right? Now we want to write a program that will output the corresponding Turtle name given the color of its mask. For those who don’t know Teenage Mutant Ninja Turtles, here is the list.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Leonardo is wearing a blue mask
+Raphael is wearing a red mask
+Michelangelo is wearing an orange mask
+Donatello is wearing a purple mask&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Okay let’s do this.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (color === &apos;blue&apos;) {
+    console.log(&apos;Leonardo&apos;);
+} else if (color === &apos;red&apos;) {
+    console.log(&apos;Raphael&apos;)
+} else if (color === &apos;orange&apos;) {
+    console.log(&apos;Michelangelo&apos;)
+} else {
+    console.log(&apos;Donatello&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This code works, but it has a small bug. Can you spot it? The more correct code would be.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (color === &apos;blue&apos;) {
+    console.log(&apos;Leonardo&apos;);
+} else if (color === &apos;red&apos;) {
+    console.log(&apos;Raphael&apos;)
+} else if (color === &apos;orange&apos;) {
+    console.log(&apos;Michelangelo&apos;)
+} else if {
+    console.log(&apos;Donatello&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This piece of code is long and hard to read. That’s why we have &lt;code&gt;switch&lt;/code&gt; statement, which is used exactly for cases like this one.&lt;/p&gt;
+&lt;h3&gt;Switch&lt;/h3&gt;
+&lt;p&gt; So, as we’ve already said, &lt;code&gt;switch&lt;/code&gt; provied a better way to write the better readable code doing the same thing as the example above does. &lt;code&gt;switch&lt;/code&gt; is useful when you have some variable and for each &lt;code&gt;case&lt;/code&gt; of the value you want to do something. It won’t work with and or anything, it’s used to branch the program depending just on a value of a single variable. Look how much the readability is increased, keeping the same functionality as the above code.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;switch(color) {
+   case &apos;blue&apos;:
+        console.log(&apos;Leonardo&apos;);
+        break;
+   case &apos;red&apos;:
+        console.log(&apos;Raphael&apos;);
+        break;
+   case &apos;orange&apos;:
+        console.log(&apos;Michelangelo&apos;);
+        break;
+   case &apos;purple&apos;:
+        console.log(&apos;Donatello);
+        break;
+   default:
+       console.log(&apos;Have you even seen TMNT???&apos;);
+       break;
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt; Let’s see what’s new in this code.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Keyword switch - we put the keyword and then again open parantheses. This time in paranteses we specify the &lt;code&gt;variable&lt;/code&gt; for which we will switch the cases.&lt;/li&gt;
+&lt;li&gt;Keyword case - in the body of the switch (the block starting with &lt;code&gt;{&lt;/code&gt; and ending with &lt;code&gt;}&lt;/code&gt;) we see multiple &lt;code&gt;case&lt;/code&gt; statements. We use &lt;code&gt;case&lt;/code&gt; to specify a certain probable value, a guess of the value of the variable.&lt;/li&gt;
+&lt;li&gt;Logic after the case - after the case value is specified, we put &lt;code&gt;:&lt;/code&gt; and start to write the logic of the things that needs to be done if the value of the variable matches with that certain case.&lt;/li&gt;
+&lt;li&gt;break statement - The thing is that JS kinda does not differentiate the cases, so whenever some cases matches, it will start to execute the code of &lt;strong&gt;ALL&lt;/strong&gt; the cases below the match case (You are adviced now to try to delete the break-s and see what happens). To prevent this we use &lt;code&gt;break&lt;/code&gt; keyboard to exit the switch statement. Sometimes that auto-executing thing may be useful, sometimes it creates problems. We will see a case when it’s useful a little bit later.&lt;/li&gt;
+&lt;li&gt;default case - This is a special case using the keyword &lt;code&gt;default&lt;/code&gt; that will handle the case when none of the “guesses” of the value were right. In this case, if the color is something else than ‘red’, ‘blue’, ‘orange’ or ‘purple’, it will execute the code inside default case.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It may happen that you want to do the same thing in multiple cases. Let’s say we get the name of the month and we want to output the weather of that month. So ‘july’ will output ‘summer’, ‘december’ will output ‘winter’ and so on. Instead of writing 12 case bodies, we can take advantage of that auto-execution of cases and write just 4 like this.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;switch(monthName) {
+    case &apos;December&apos;:
+    case &apos;January&apos;:
+    case &apos;February&apos;:
+        console.log(&apos;It&apos;s winter&apos;);
+        break;
+    case &apos;March&apos;:
+    case &apos;April&apos;:
+    case &apos;May&apos;:
+        console.log(&apos;It&apos;s spring&apos;);
+        break;
+    case &apos;June&apos;:
+    case &apos;July&apos;:
+    case &apos;August&apos;:
+        console.log(&apos;It&apos;s summer&apos;);
+        break;
+    case &apos;September&apos;:
+    case &apos;October&apos;:
+    case &apos;November&apos;:
+        console.log(&apos;It&apos;s autumn&apos;);
+        break;
+    default:
+        console.log(&apos;There is no such month!&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So this is the basics of branching the program. Next time we will learn about loops, one of the most powerful things that computer and programming languages provide.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
 a  variable  has and what type of…]]></description><link>https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</guid><pubDate>Thu, 08 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Primitives&lt;/h2&gt;
 &lt;p&gt;What is data type? &lt;/p&gt;
 &lt;p&gt;A data type is a classification that specifies which type of value
