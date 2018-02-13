@@ -1,4 +1,156 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 10 Feb 2018 21:51:17 GMT</lastBuildDate><item><title><![CDATA[JavaScript. Boolean expressions, conditionals and more.]]></title><description><![CDATA[Primitives 2 This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts…]]></description><link>https://yerevancoder.com/2018-02-10-js-boolean-expressions-and-conditionals/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-10-js-boolean-expressions-and-conditionals/</guid><pubDate>Sat, 10 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Primitives 2&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Feb 2018 20:15:10 GMT</lastBuildDate><item><title><![CDATA[Javascript Loops]]></title><description><![CDATA[Loops This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in…]]></description><link>https://yerevancoder.com/2018-02-13-js-loops/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-13-js-loops/</guid><pubDate>Tue, 13 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Loops&lt;/h1&gt;
+&lt;p&gt;This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in JavaScript.&lt;/p&gt;
+&lt;h4&gt;Table of Contents&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#Introduction-What-are-loops&quot;&gt;What are loops&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#For-loop&quot;&gt;For Loop&lt;/a&gt;
+2.1 &lt;a href=&quot;#Special-for-loops-in-JS&quot;&gt;Special for loops in JS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#While-loops&quot;&gt;While Loop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#A-lists-of-things&quot;&gt;A lists of things&lt;/a&gt;
+4.1. &lt;a href=&quot;#Introduction-to-arrays&quot;&gt;Introduction to arrays&lt;/a&gt;
+4.2. &lt;a href=&quot;#Basic-array-operations&quot;&gt;Basic array operations&lt;/a&gt;
+  4.2.1. &lt;a href=&quot;#The-ways-we-know&quot;&gt;The ways we know&lt;/a&gt;
+  4.2.2. &lt;a href=&quot;#The-ways-that-are-better&quot;&gt;The ways that are better&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Introduction: What are loops?&lt;/h2&gt;
+&lt;p&gt;What computers excel at is doing a lot of repetitive things in a short amount of time. Like imagine counting to 1000. While it will take you more than 5 minutes to do so, computers are able to do it in a small fraction of a second. Let’s see how long will it take to count to 1000 for a computer.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;for(let i = 0; i &lt; 1000; i++) {
+    console.log(i);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;We will return to this code 10 minutes later.&lt;/p&gt;
+&lt;p&gt;So as we saw, computers are fast when doing the same action over and over. Besides being fast, usually you have a lot of similar data and you will find you in a situation where you want to change something on every or some elements of some “set” of data. These are just some of the use-cases of loops.&lt;/p&gt;
+&lt;p&gt;There are different ways in different languages to create a loop. The most primitive one was &lt;code&gt;goto&lt;/code&gt; command. You can find it in ancient and low-level languages. Roughly speaking it just changed the line from where the code should execute after.&lt;/p&gt;
+&lt;p&gt;In modern languages, there are other, better types of loops. The ones we have in JS are &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;do ... while&lt;/code&gt; loops. There are also special loops for some data types. We will talk about those loops one by one. All right, let’s get started.&lt;/p&gt;
+&lt;h2&gt;For loop&lt;/h2&gt;
+&lt;p&gt;For loop is probably the most common type of loop used in the actual code. The “classic” for loop consists of 3 parts - &lt;strong&gt;&lt;em&gt;Initialization&lt;/em&gt;&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;Condition&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;Increment&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;As an analogy let’s pick a gym. Let’s say you went to the gym and you are doing squats. After doing one squat you add one to the number in your mind. Say you wanted to do 30 of them. You start counting from 1 and after each successful squat you add one to the count. In you mind you are doing exactly 3 things. You are starting a counter - in your memory you start counting from 1,  thinking of a condition of stopping - that’s when the number reaches 30 and also you give an increment by adding one.&lt;/p&gt;
+&lt;p&gt;Let’s make this into a code.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;for(let i = 0; i &lt; 30; i++) {
+    do_squat();
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The one little difference between a computer and a human is that computer(or better to say programmers) start counting from 0. This is more convenient as you will se later on.&lt;/p&gt;
+&lt;p&gt;As you can see, there are 3 different parts inside the parantheses after the keyword &lt;code&gt;for&lt;/code&gt;. Each of those parts is divided from the others by ;-s
+In the first part we see&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;let i = 0;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Here, as you may know, we initialize the variable. It’s like when you start your count from 1. In your memory you basically create a variable. This variable is used later to determine when the loop will stop exactly. After that we see:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;i &lt; 30&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;So this, as you can see, is a condition and is evaluated into either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. This condition is used to determine when exactly loop should stop. In our case it will stop as soon as i-s value is 30, which means we did 30 squats. The last part says:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;i++&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This is used for incrementing the value of i (hence the name). It adds 1 to i after executing the &lt;strong&gt;body&lt;/strong&gt; of the for loop once, and makes sure that value of i will reach from 0 to 30 sooner or later. This is like when you stand up after a successful squat and add one to the number you were memorizing.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOTE:: Of course, we could have anything here that changes the value of i, like &lt;code&gt;i += 2&lt;/code&gt;, &lt;code&gt;i--&lt;/code&gt;, &lt;code&gt;i = i * 3&lt;/code&gt; etc.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;We used the word &lt;strong&gt;body&lt;/strong&gt;. So what’s the body of this loop? It’s the part inside curly braces that are put after the parantheses. So in this particular case, the body is:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;{
+    do_squat()
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;We can put any legal operation inside those curly braces.
+Let’s take a look at some legal but a little bit unusual for loops:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Forever loop
+We can leave all the 3 parts of the for loop empty, thus not giving any condition of ending it. This creates a forever loop.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;for(;;) {
+console.log(&apos;I will not end&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This loop will do the same forever, which is as long as program runs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Loop with 2 or 3 variables used
+You can put as many initializations as you want in the first part, as many boolean expressions as you want in the second part, and as many increments in the third part as you want. Just don’t forget to seperate them by commas!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;for (let i = 0, j = 500; i &gt; j; i++, j--) {
+console.log(&apos;Look, I have two variables to use&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This loop has 2 initializations, 1 condition using those 2 and &lt;em&gt;increment&lt;/em&gt; for i plus &lt;em&gt;decrement&lt;/em&gt; for j;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Special for loops in JS&lt;/h3&gt;
+&lt;p&gt;In 2015, 2 new versions of for loops were added to JS: &lt;code&gt;for .. in&lt;/code&gt; and &lt;code&gt;for .. of&lt;/code&gt; loops. This loops have only one part and this part includes initialization and the name of the list it will &lt;strong&gt;&lt;em&gt;iterate over&lt;/em&gt;&lt;/strong&gt;. Let’s take a look at them too:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;theList = [ 10, 15, 89, 30 ];
+for (let i in theList) {
+    console.log(i);
+}
+// The output of this one will be:
+// 0 1 2 3&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;As you may notice, &lt;code&gt;for .. in&lt;/code&gt; loops over any Iterateable (Something that has executive, countable items) and on each step &lt;em&gt;assigns&lt;/em&gt; the key of the item to the variable. I think now you already have guessed what &lt;code&gt;for .. of&lt;/code&gt; will do.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;theList = [ 10, 15, 89, 30 ];
+for (let i in theList) {
+    console.log(i);
+}
+// The output of this one will be:
+// 10 15 89 30&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This loop does the same as &lt;code&gt;for .. in&lt;/code&gt; except instead of the keys it assigns the values to the variable.&lt;/p&gt;
+&lt;h4&gt;A little tip&lt;/h4&gt;
+&lt;p&gt;As you may have noticed, the special for loops are more human-readable and understandable. In almost all cases, you can change the old-style for loops with those &lt;code&gt;for .. in&lt;/code&gt; and &lt;code&gt;for .. of&lt;/code&gt; loops. This will make the code a little bit better for later maintenance. We will get back to optimizing the code a little bit later, after we get acquainted with special loops that are built-in for you in JS.&lt;/p&gt;
+&lt;h2&gt;While loops&lt;/h2&gt;
+&lt;p&gt;Today I am more into gym examples I guess :smile:
+Let’s say you are still in the gym. It’s the last 15 minutes and you challenged yourself. You want to do push ups. How much? Well, as much as you can. Do you know how much exactly you can? I don’t think you know. You want to do push ups &lt;strong&gt;while&lt;/strong&gt; there is energy left in your hands to push you up. So there are cases when you need some other kind of loop, which only takes a condition and repeats the thing &lt;strong&gt;while&lt;/strong&gt; the condition is true. You don’t need to be too creative to guess the name that loop has.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;while(forceLeft !== 0) {
+    push_up()
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;If only doing push-ups was this easy! :smile:&lt;/p&gt;
+&lt;p&gt;As we already said, &lt;code&gt;while&lt;/code&gt; loop will loop over its &lt;em&gt;body&lt;/em&gt; &lt;strong&gt;while&lt;/strong&gt; some condition is true. It has the same syntax as &lt;code&gt;if&lt;/code&gt; conditional, which is:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;let i = 0;
+while(i &lt; 5) {
+    console.log(i);
+    i++;
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The one thing worth mentioning here is that it will check the condition first, &lt;strong&gt;before&lt;/strong&gt; executing whatever is in its body. In contrary, there is a &lt;code&gt;do .. while&lt;/code&gt; loop, which will execute the body first and only &lt;strong&gt;after&lt;/strong&gt; doint that, check the condition. Roughly speaking, &lt;code&gt;do .. while&lt;/code&gt; will execute its body at least &lt;strong&gt;once&lt;/strong&gt;. Try executing this code:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;let i = 5;
+do {
+    console.log(i);
+} while (i &lt; 0)
+
+// this will log 5&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Same code, a bunch of different ways.&lt;/h4&gt;
+&lt;p&gt;Take a look at those 2 snippets:&lt;/p&gt;
+&lt;p&gt;First one:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;let i = 0;
+while(i &lt; 5) {
+    console.log(i);
+    i++;
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Second one:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;for(let i = 0; i &lt; 5; i++) {
+    console.log(i);
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;As you can see, those two do exactly the same. So what’s better. In this particular case, if we were forced to choose between two cases, we should choose the second version, because this particular case is a perfect fit for the &lt;code&gt;for&lt;/code&gt; loop. While is more likely to be used when the iterable is not strictly determined, when you know that it only depends on some condition. You may use &lt;code&gt;while&lt;/code&gt; loop, for example, when getting data from the server. You don’t know exactly how much data you will get or when incoming data will stop. You just want to get it &lt;strong&gt;while&lt;/strong&gt; there is data left. To not really get too technical let’s write some non-real code to understand the use case of the &lt;code&gt;while&lt;/code&gt; loop;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;while(there is some data left on the server) {
+    console.log(the data we&apos;ve got)
+}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;We will turn this into actual code after we have some experience ;) &lt;/p&gt;
+&lt;p&gt;We wrap it up here. Loops are a powerful concept and evey programmer should know it. It may be a little tough for complete beginners, but once you have a little experience, you slowly start to get it and do it more easily. Hope you enjoyed the post.&lt;/p&gt;
+&lt;p&gt;The next post will be in 2 days!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Javascript. Boolean expressions, conditionals and more.]]></title><description><![CDATA[Primitives 2 This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts…]]></description><link>https://yerevancoder.com/2018-02-10-js-boolean-expressions-and-conditionals/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-10-js-boolean-expressions-and-conditionals/</guid><pubDate>Sat, 10 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Primitives 2&lt;/h1&gt;
 &lt;p&gt;This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in JavaScript.&lt;/p&gt;
 &lt;h5&gt;Table of contents&lt;/h5&gt;
 &lt;p&gt;&lt;a href=&quot;#logical-operators&quot;&gt;Logical Operators&lt;/a&gt;&lt;/p&gt;
@@ -13,44 +165,22 @@
 &lt;a href=&quot;#switch&quot;&gt;Switch&lt;/a&gt;
 &lt;a href=&quot;&quot;&gt;Further reading&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Logical Operators&lt;/h2&gt;
-&lt;p&gt;In programming as in real life, you will usually find yourself in a situation when some decision
-changes the flow of things. The program may do something instead of doing something else depending
-on some &lt;code&gt;condition&lt;/code&gt;. Usually those conditions are evaluated to a &lt;code&gt;boolean&lt;/code&gt; value either &lt;code&gt;true&lt;/code&gt; or
-&lt;code&gt;false&lt;/code&gt; Let’s think of a real life example to understand this. Let’s say you want to wear your short
-sleeve T-shirt today. As you don’t want to catch cold or something you will probably wear it only
-&lt;code&gt;if&lt;/code&gt; the temperature outside is greater than 10 degrees celsius. Otherwise you will wear your hoodie
-instead. In this case the condition is the following.&lt;/p&gt;
+&lt;p&gt;In programming as in real life, you will usually find yourself in a situation when some decision changes the flow of things. The program may do something instead of doing something else depending on some &lt;code&gt;condition&lt;/code&gt;. Usually those conditions are evaluated to a &lt;code&gt;boolean&lt;/code&gt; value either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt; Let’s think of a real life example to understand this. Let’s say you want to wear your short sleeve T-shirt today. As you don’t want to catch cold or something you will probably wear it only &lt;code&gt;if&lt;/code&gt; the temperature outside is greater than 10 degrees celsius. Otherwise you will wear your hoodie instead. In this case the condition is the following.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Temperature &gt;= 10&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;This will be either true or false, depending on the temperature.  In programming terminology these
-decisions, depending on some values are called &lt;code&gt;logical expressions&lt;/code&gt; or &lt;code&gt;boolean expressions&lt;/code&gt;. As we
-mentioned before, those expressions will evaluate to a &lt;code&gt;Boolean&lt;/code&gt; - &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Now let’s take the same example and make it a little bit more complicated. Suppose you also want to
-wear sunglasses to look cooler. Now, if you wear sunglasses when it’s rainy it may make you look
-cooler but a little bit strange instead :laughing: So that’s why you may want to wear sunglasses
-only if there’s sunny weather.&lt;/p&gt;
-&lt;p&gt;Now the question. In which case you may want to wear &lt;strong&gt;both&lt;/strong&gt; your favorite T-Shirt and
-sunglasses. The answer is&lt;/p&gt;
+&lt;p&gt;This will be either true or false, depending on the temperature.
+In programming terminology these decisions, depending on some values are called &lt;code&gt;logical expressions&lt;/code&gt; or &lt;code&gt;boolean expressions&lt;/code&gt;. As we mentioned before, those expressions will evaluate to a &lt;code&gt;Boolean&lt;/code&gt; - &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now let’s take the same example and make it a little bit more complicated. Suppose you also want to wear sunglasses to look cooler. Now, if you wear sunglasses when it’s rainy it may make you look cooler but a little bit strange instead :laughing: So that’s why you may want to wear sunglasses only if there’s sunny weather.&lt;/p&gt;
+&lt;p&gt;Now the question. In which case you may want to wear &lt;strong&gt;both&lt;/strong&gt; your favorite T-Shirt and sunglasses. The answer is&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Temperature &gt;= 10 AND Weather === &quot;Sunny&quot;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;As you might have guessed already, those &lt;strong&gt;&lt;em&gt;connecting&lt;/em&gt;&lt;/strong&gt; operators, such as AND, OR and so on, also
-have a special name. Those are called &lt;code&gt;logical operators&lt;/code&gt; or sometimes referred as &lt;code&gt;boolean operators&lt;/code&gt;. We will learn about three of them - AND &lt;strong&gt;(&amp;#x26;&amp;#x26; in JS)&lt;/strong&gt;, OR &lt;strong&gt;(|| in JS)&lt;/strong&gt; and NOT &lt;strong&gt;(!
-in JS)&lt;/strong&gt;. Those notations are usually the same for the majority of languages but it is subject of
-change depending on the language&lt;/p&gt;
-&lt;p&gt;Before diving into code, let’s bring some other examples to make this clearer.  Most people know,
-that computers do calculation by adding bunch of 0s and 1s. It’s like having a room full of people,
-where each person evaluates only one value, giving one result, &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Having only one
-person doing this is not quiet usefull, but add more people, and the ‘computational power’ of the
-room will grow exponentially. Moreover, assign a person a specific way of evaluation, and you will
-have powerful, yet simple way of calculating different results. This lays in the basis of computer
-architecture and is based on so called &lt;code&gt;boolean algebra&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;We do this kind of comparisons every day. For example, when searching for a hotel, we filter results
-by certain criteria, like we want the hotel to have 5 &lt;code&gt;or&lt;/code&gt; 4 stars, &lt;code&gt;not&lt;/code&gt; to allow smoking&lt;code&gt;and&lt;/code&gt; be
-kid-friendly. The search result will give all 5 and 4 star hotels, will include kid friendly hotels,
-but won’t show hotels where smoking is allowed.  Now let’s take a look at how these logical
-operations are represented and implemented in JavaScript.&lt;/p&gt;
+&lt;p&gt;As you might have guessed already, those &lt;strong&gt;&lt;em&gt;connecting&lt;/em&gt;&lt;/strong&gt; operators, such as AND, OR and so on, also have a special name. Those are called &lt;code&gt;logical operators&lt;/code&gt; or sometimes referred as &lt;code&gt;boolean operators&lt;/code&gt;. We will learn about three of them - AND &lt;strong&gt;(&amp;#x26;&amp;#x26; in JS)&lt;/strong&gt;, OR &lt;strong&gt;(|| in JS)&lt;/strong&gt; and NOT &lt;strong&gt;(! in JS)&lt;/strong&gt;. Those notations are usually the same for the majority of languages but it is subject of change depending on the language&lt;/p&gt;
+&lt;p&gt;Before diving into code, let’s bring some other examples to make this clearer.
+Most people know, that computers do calculation by adding bunch of 0s and 1s. It’s like having a room full of people, where each person evaluates only one value, giving one result, &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Having only one person doing this is not quiet usefull, but add more people, and the ‘computational power’ of the room will grow exponentially. Moreover, assign a person a specific way of evaluation, and you will have powerful, yet simple way of calculating different results. This lays in the basis of computer architecture and is based on so called &lt;code&gt;boolean algebra&lt;/code&gt;.
+We do this kind of comparisons every day. For example, when searching for a hotel, we filter results by certain criteria, like we want the hotel to have 5 &lt;code&gt;or&lt;/code&gt; 4 stars, &lt;code&gt;not&lt;/code&gt; to allow smoking&lt;code&gt;and&lt;/code&gt; be kid-friendly. The search result will give all 5 and 4 star hotels, will include kid friendly hotels, but won’t show hotels where smoking is allowed.
+Now let’s take a look at how these logical operations are represented and implemented in JavaScript.&lt;/p&gt;
 &lt;h3&gt;AND (&amp;#x26;&amp;#x26;)&lt;/h3&gt;
 &lt;p&gt;AND operator returns &lt;code&gt;true&lt;/code&gt; only if both operands are true, otherwise, it returns &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
 &lt;table&gt;
@@ -90,7 +220,7 @@ operations are represented and implemented in JavaScript.&lt;/p&gt;
 &lt;td align=&quot;left&quot;&gt;‘str1’&lt;/td&gt;
 &lt;td align=&quot;left&quot;&gt;‘str2’&lt;/td&gt;
 &lt;td align=&quot;left&quot;&gt;&lt;code&gt;t &amp;#x26;&amp;#x26; t&lt;/code&gt;
- - str2 (weird JS)&lt;/td&gt;
+ - str2 (wierd JS)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td align=&quot;left&quot;&gt;‘str’&lt;/td&gt;
@@ -161,57 +291,33 @@ operations are represented and implemented in JavaScript.&lt;/p&gt;
 &lt;code&gt;!false&lt;/code&gt; - returns &lt;code&gt;true&lt;/code&gt;
 &lt;code&gt;!&apos;str&apos;&lt;/code&gt; - returns &lt;code&gt;false&lt;/code&gt;&lt;/p&gt;
 &lt;h3&gt;Truthiness and Falsiness&lt;/h3&gt;
-&lt;p&gt;In case of &lt;code&gt;NOT&lt;/code&gt; operand we saw a weird thing. We called !‘str’ and got the value &lt;code&gt;false&lt;/code&gt;. This may
-suggest, that there is a “hidden” boolean value connected to ‘str’. How can you get that using !
-operator? You can use it twice, to negate the opposite boolean value given by !‘str’. So, in case of
-‘str’ it’s “hidden” boolean value is true. How does this happen? It’s because JS &lt;code&gt;!&lt;/code&gt; operator
-&lt;code&gt;converts&lt;/code&gt; the type of it’s &lt;code&gt;operand&lt;/code&gt; to Boolean and then negates that resulting value. That’s why
-some of values in JS are &lt;code&gt;truthy&lt;/code&gt;, which means they are corresponding to boolean value &lt;code&gt;true&lt;/code&gt; and
-some of them are &lt;code&gt;falsy&lt;/code&gt;. Usually, emptiness corresponds to &lt;code&gt;false&lt;/code&gt; while any other value
-corresponds to &lt;code&gt;true&lt;/code&gt;. Let’s look at some examples.&lt;/p&gt;
+&lt;p&gt;In case of &lt;code&gt;NOT&lt;/code&gt; operand we saw a weird thing. We called !‘str’ and got the value &lt;code&gt;false&lt;/code&gt;. This may suggest, that there is a “hidden” boolean value connected to ‘str’. How can you get that using ! operator? You can use it twice, to negate the opposite boolean value given by !‘str’. So, in case of ‘str’ it’s “hidden” boolean value is true. How does this happen? It’s because JS &lt;code&gt;!&lt;/code&gt; operator &lt;code&gt;converts&lt;/code&gt; the type of it’s &lt;code&gt;operand&lt;/code&gt; to Boolean and then negates that resulting value. That’s why some of values in JS are &lt;code&gt;truthy&lt;/code&gt;, which means they are corresponding to boolean value &lt;code&gt;true&lt;/code&gt; and some of them are &lt;code&gt;falsy&lt;/code&gt;. Usually, emptiness corresponds to &lt;code&gt;false&lt;/code&gt; while any other value corresponds to &lt;code&gt;true&lt;/code&gt;. Let’s look at some examples.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// &apos;&apos; is falsy&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;a&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// &apos;a&apos; is truthy&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 0 is falsy&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// -4 is truthy, even if it&apos;s negative, because it&apos;s not empty&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;NaN&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// NaN is falsy&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// null is falsy&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// null means emptiness, the absence of the object, while empty object is still an object. it&apos;s just empty.&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// This can be more treated like {}&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;undefined &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// Not defined, not there =&gt; falsy&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;!!&apos;&apos; === false // &apos;&apos; is falsy
+!!&apos;a&apos; === true // &apos;a&apos; is truthy
+!!0 === false // 0 is falsy
+!!-4 === true // -4 is truthy, even if it&apos;s negative, because it&apos;s not empty
+!!NaN === false // NaN is falsy
+!!null === false // null is falsy
+!!{} === true // null means emptiness, the absence of the object, while empty object is still an object. it&apos;s just empty.
+!![] === true // This can be more treated like {}
+!!undefined === false // Not defined, not there =&gt; falsy&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;So as you see, usually the values that are used to describe the absence are falsy and the others are
-truthy. It’s a bit philosophical and this is how programming is beautiful. :smile:&lt;/p&gt;
-&lt;p&gt;_NOTE::: The return values of the &lt;code&gt;&amp;#x26;&amp;#x26;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; operators are &lt;strong&gt;not&lt;/strong&gt; necessarily &lt;code&gt;Boolean&lt;/code&gt; values,
-as they can be used with operands that are not booleans, however they can still be considered
-&lt;code&gt;Boolean&lt;/code&gt; operators since their return values can always be converted to &lt;code&gt;truthy/falsey&lt;/code&gt; values.&lt;/p&gt;
-&lt;p&gt;This means that in some cases we may use &amp;#x26;&amp;#x26; but get results of other type. Some examples are_&lt;/p&gt;
+&lt;p&gt;So as you see, usually the values that are used to describe the absence are falsy and the others are truthy. It’s a bit philosophical and this is how programming is beautiful. :smile:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOTE::: The return values of the &lt;code&gt;&amp;#x26;&amp;#x26;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; operators are &lt;strong&gt;not&lt;/strong&gt; necessarily &lt;code&gt;Boolean&lt;/code&gt; values, as they can be used with operands that are not booleans, however they can still be considered &lt;code&gt;Boolean&lt;/code&gt; operators since their return values can always be converted to &lt;code&gt;truthy/falsey&lt;/code&gt; values.
+This means that in some cases we may use &amp;#x26;&amp;#x26; but get results of other type. Some examples are&lt;/em&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;I will be evaluated&apos;&lt;/span&gt;
-&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;I will be evaluated&apos;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;false || &apos;I will be evaluated&apos;
+true &amp;&amp; &apos;I will be evaluated&apos;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;h3&gt;Short-circuit evaluation&lt;/h3&gt;
 &lt;p&gt;Let’s suppose we have a long chain of boolean operators combined.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Condition1 &amp;&amp; Condition2 &amp;&amp; Condition3 &amp;&amp; ... &amp;&amp; Condition N&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;As you know already, &lt;code&gt;AND&lt;/code&gt; evaluates to true if and only if both values are true. It’s easy to
-understand that in the general case, like the one shown above, that means that the expression will
-evaluate to &lt;code&gt;true&lt;/code&gt; if and only if &lt;strong&gt;ALL&lt;/strong&gt; the presented boolean values are true. Let’s again bring a
-real life analog for this.&lt;/p&gt;
-&lt;p&gt;Suppose a kid is happy if a kid has got a candy. Now suppose we have N kids in a row and we want to
-know if all of them are happy. What will you do as a human? You will go one by one starting from the
-first and ask if the current kid has a candy. What if you noticed a kid in the middle somewhere with
-no candy? Does it have any meaning to continue with the other kids or seeing just this one with no
-candy means that our assumption of all kids having a candy is wrong (or, as programmers may say,
-evaluated to &lt;code&gt;false&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;So seing just 1 kid not having a candy is already enough to end the search. This is exactly how the
-program will evaluate the long chain of boolean values connected with &lt;code&gt;&amp;#x26;&amp;#x26;&lt;/code&gt;-s. It may as well just
-stop searching as soon as it sees some &lt;code&gt;falsy&lt;/code&gt; value in the chain and return that &lt;code&gt;falsy&lt;/code&gt; value. If
-there is no any &lt;code&gt;falsy&lt;/code&gt; value it will evaluate to the last value presented in chain. Let’s take a
-look at some code to get this clearer.&lt;/p&gt;
+&lt;p&gt;As you know already, &lt;code&gt;AND&lt;/code&gt; evaluates to true if and only if both values are true. It’s easy to understand that in the general case, like the one shown above, that means that the expression will evaluate to &lt;code&gt;true&lt;/code&gt; if and only if &lt;strong&gt;ALL&lt;/strong&gt; the presented boolean values are true. Let’s again bring a real life analog for this.
+Suppose a kid is happy if a kid has got a candy. Now suppose we have N kids in a row and we want to know if all of them are happy. What will you do as a human? You will go one by one starting from the first and ask if the current kid has a candy. What if you noticed a kid in the middle somewhere with no candy? Does it have any meaning to continue with the other kids or seeing just this one with no candy means that our assumption of all kids having a candy is wrong (or, as programmers may say, evaluated to &lt;code&gt;false&lt;/code&gt;).
+So seing just 1 kid not having a candy is already enough to end the search. This is exactly how the program will evaluate the long chain of boolean values connected with &lt;code&gt;&amp;#x26;&amp;#x26;&lt;/code&gt;-s. It may as well just stop searching as soon as it sees some &lt;code&gt;falsy&lt;/code&gt; value in the chain and return that &lt;code&gt;falsy&lt;/code&gt; value. If there is no any &lt;code&gt;falsy&lt;/code&gt; value it will evaluate to the last value presented in chain. Let’s take a look at some code to get this clearer.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;true &amp;&amp; true &amp;&amp; true &amp;&amp; false &amp;&amp; true &amp;&amp; true // returns false, stops evaluation as soon as sees the false value
 &apos;Truthy value&apos; &amp;&amp; 0 &amp;&amp; true // returns 0 because it&apos;s falsey
@@ -226,8 +332,8 @@ undefined &amp;&amp; null &amp;&amp; 1 &amp;&amp; 0 &amp;&amp; &apos;xoxo&apos; 
 10 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1
 0 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1 &amp;&amp; 0&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;The same logic applies to OR operator, as it evaluates to true if &lt;strong&gt;at least one&lt;/strong&gt; of the &lt;code&gt;operands&lt;/code&gt;
-is true. Can you explain how will OR work?  Can you also answer those correctly?&lt;/p&gt;
+&lt;p&gt;The same logic applies to OR operator, as it evaluates to true if &lt;strong&gt;at least one&lt;/strong&gt; of the &lt;code&gt;operands&lt;/code&gt; is true. Can you explain how will OR work?
+Can you also answer those correctly?&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;false || undefined || &apos;Haha&apos; || 0
 &apos;false&apos; || &apos;Don&apos;t be tricked&apos; || 0 || undefined || &apos;many others&apos;
@@ -236,63 +342,46 @@ is true. Can you explain how will OR work?  Can you also answer those correctly?
 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 0&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;h3&gt;if statements&lt;/h3&gt;
-&lt;p&gt;Now, after we got so far with boolean expressions, we can put them into usage in the actual
-code. Remember the example of wearing a T-Shirt and sunglasses. You may notice that with the two
-conditions we have we can create different &lt;code&gt;boolean expressions&lt;/code&gt; and change the flow of the program
-depending on those. One question remaining is where to put those boolean expressions exactly. There
-are several places where you need to insert boolean expressions and the simplest two of them are
-&lt;code&gt;if&lt;/code&gt; and &lt;code&gt;switch&lt;/code&gt; &lt;code&gt;statements&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now, after we got so far with boolean expressions, we can put them into usage in the actual code. Remember the example of wearing a T-Shirt and sunglasses. You may notice that with the two conditions we have we can create different &lt;code&gt;boolean expressions&lt;/code&gt; and change the flow of the program depending on those. One question remaining is where to put those boolean expressions exactly. There are several places where you need to insert boolean expressions and the simplest two of them are &lt;code&gt;if&lt;/code&gt; and &lt;code&gt;switch&lt;/code&gt; &lt;code&gt;statements&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s start with &lt;code&gt;if&lt;/code&gt; statements. It’s as simple as you may guess.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (Some boolean expression here) {
     // Things that need to be done if the expression evaluates to true
 }&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;So we use the keyword &lt;code&gt;if&lt;/code&gt; and then after it we put parantheses and write our boolean expression
-there. Then we open the body of the statement with &lt;code&gt;{&lt;/code&gt; and close it with &lt;code&gt;}&lt;/code&gt;. In case of our T-Shirt
-sunglass example it will be something like:&lt;/p&gt;
+&lt;p&gt;So we use the keyword &lt;code&gt;if&lt;/code&gt; and then after it we put parantheses and write our boolean expression there. Then we open the body of the statement with &lt;code&gt;{&lt;/code&gt; and close it with &lt;code&gt;}&lt;/code&gt;. In case of our T-Shirt sunglass example it will be something like:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;temperature &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; weather &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sunny&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;cool_tshirt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sunglasses&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (temperature &gt;= 10 &amp;&amp; weather === &apos;sunny&apos;) {
+    wear(cool_tshirt);
+    wear(sunglasses);
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Now, this is too limited. Usually you make decision for both cases, not only if the condition is
-true. You do something &lt;code&gt;else&lt;/code&gt; if the condition is not true. In case of JS, you can do this by using
-the word? &lt;code&gt;else&lt;/code&gt; :smile: So now we can make the example more complete including the case of wearing
-hoodie.&lt;/p&gt;
+&lt;p&gt;Now, this is too limited. Usually you make decision for both cases, not only if the condition is true. You do something &lt;code&gt;else&lt;/code&gt; if the condition is not true. In case of JS, you can do this by using the word? &lt;code&gt;else&lt;/code&gt; :smile:
+So now we can make the example more complete including the case of wearing hoodie.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;temperature &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; weather &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sunny&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;cool_tshirt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sunglasses&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;warm_hoodie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (temperature &gt;= 10 &amp;&amp; weather === &apos;sunny&apos;) {
+    wear(cool_tshirt);
+    wear(sunglasses);
+} else {
+    wear(warm_hoodie);
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Okay, this is cool but it’s also limited. What if I want to make more than 2 choices depending on
-the conditions. What if it’s below -15 outside? Warm hoodie is not enough to not freeze in that
-situation. We need some other case. How to do it? Just add onther if after else to get &lt;code&gt;else .. if&lt;/code&gt;
-statement. Using &lt;code&gt;else .. if&lt;/code&gt; we can specify as many cases as we want.&lt;/p&gt;
+&lt;p&gt;Okay, this is cool but it’s also limited. What if I want to make more than 2 choices depending on the conditions. What if it’s below -15 outside? Warm hoodie is not enough to not freeze in that situation. We need some other case. How to do it? Just add onther if after else to get &lt;code&gt;else .. if&lt;/code&gt; statement. Using &lt;code&gt;else .. if&lt;/code&gt; we can specify as many cases as we want.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;temperature &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; weather &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sunny&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;cool_tshirt&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sunglasses&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;temperature &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;warm_coat&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;warm_hoodie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;scarf&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;hat&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;warm_socks&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// Granny was here :)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token function&quot;&gt;wear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;warm_hoodie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (temperature &gt;= 10 &amp;&amp; weather === &apos;sunny&apos;) {
+    wear(cool_tshirt);
+    wear(sunglasses);
+} else if (temperature &lt;= -15) {
+    wear(warm_coat);
+    wear(warm_hoodie);
+    wear(scarf);
+    wear(hat);
+    wear(warm_socks); // Granny was here :)
+} else {
+    wear(warm_hoodie);
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Okay, let’s take a look at another example. You remember Teenage Mutant Ninja Turtles right? Now we
-want to write a program that will output the corresponding Turtle name given the color of its
-mask. For those who don’t know Teenage Mutant Ninja Turtles, here is the list.&lt;/p&gt;
+&lt;p&gt;Okay, let’s take a look at another example. You remember Teenage Mutant Ninja Turtles right? Now we want to write a program that will output the corresponding Turtle name given the color of its mask. For those who don’t know Teenage Mutant Ninja Turtles, here is the list.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;Leonardo is wearing a blue mask
 Raphael is wearing a red mask
@@ -301,56 +390,49 @@ Donatello is wearing a purple mask&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;Okay let’s do this.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;blue&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Leonardo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;red&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Raphael&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;orange&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Michelangelo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Donatello&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (color === &apos;blue&apos;) {
+    console.log(&apos;Leonardo&apos;);
+} else if (color === &apos;red&apos;) {
+    console.log(&apos;Raphael&apos;)
+} else if (color === &apos;orange&apos;) {
+    console.log(&apos;Michelangelo&apos;)
+} else {
+    console.log(&apos;Donatello&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;This code works, but it has a small bug. Can you spot it? The more correct code would be.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;blue&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Leonardo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;red&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Raphael&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;orange&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Michelangelo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Donatello&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;if (color === &apos;blue&apos;) {
+    console.log(&apos;Leonardo&apos;);
+} else if (color === &apos;red&apos;) {
+    console.log(&apos;Raphael&apos;)
+} else if (color === &apos;orange&apos;) {
+    console.log(&apos;Michelangelo&apos;)
+} else if {
+    console.log(&apos;Donatello&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;This piece of code is long and hard to read. That’s why we have &lt;code&gt;switch&lt;/code&gt; statement, which is used exactly for cases like this one.&lt;/p&gt;
 &lt;h3&gt;Switch&lt;/h3&gt;
-&lt;p&gt; So, as we’ve already said, &lt;code&gt;switch&lt;/code&gt; provied a better way to write the better readable code doing
-the same thing as the example above does. &lt;code&gt;switch&lt;/code&gt; is useful when you have some variable and for
-each &lt;code&gt;case&lt;/code&gt; of the value you want to do something. It won’t work with and or anything, it’s used to
-branch the program depending just on a value of a single variable. Look how much the readability is
-increased, keeping the same functionality as the above code.&lt;/p&gt;
+&lt;p&gt; So, as we’ve already said, &lt;code&gt;switch&lt;/code&gt; provied a better way to write the better readable code doing the same thing as the example above does. &lt;code&gt;switch&lt;/code&gt; is useful when you have some variable and for each &lt;code&gt;case&lt;/code&gt; of the value you want to do something. It won’t work with and or anything, it’s used to branch the program depending just on a value of a single variable. Look how much the readability is increased, keeping the same functionality as the above code.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;color&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;blue&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Leonardo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;red&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Raphael&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;orange&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Michelangelo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;purple&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&apos;Donatello&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-       console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Have you even seen TMNT???&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;switch(color) {
+   case &apos;blue&apos;:
+        console.log(&apos;Leonardo&apos;);
+        break;
+   case &apos;red&apos;:
+        console.log(&apos;Raphael&apos;);
+        break;
+   case &apos;orange&apos;:
+        console.log(&apos;Michelangelo&apos;);
+        break;
+   case &apos;purple&apos;:
+        console.log(&apos;Donatello);
+        break;
+   default:
+       console.log(&apos;Have you even seen TMNT???&apos;);
+       break;
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt; Let’s see what’s new in this code.&lt;/p&gt;
 &lt;ol&gt;
@@ -360,39 +442,34 @@ increased, keeping the same functionality as the above code.&lt;/p&gt;
 &lt;li&gt;break statement - The thing is that JS kinda does not differentiate the cases, so whenever some cases matches, it will start to execute the code of &lt;strong&gt;ALL&lt;/strong&gt; the cases below the match case (You are adviced now to try to delete the break-s and see what happens). To prevent this we use &lt;code&gt;break&lt;/code&gt; keyboard to exit the switch statement. Sometimes that auto-executing thing may be useful, sometimes it creates problems. We will see a case when it’s useful a little bit later.&lt;/li&gt;
 &lt;li&gt;default case - This is a special case using the keyword &lt;code&gt;default&lt;/code&gt; that will handle the case when none of the “guesses” of the value were right. In this case, if the color is something else than ‘red’, ‘blue’, ‘orange’ or ‘purple’, it will execute the code inside default case.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;It may happen that you want to do the same thing in multiple cases. Let’s say we get the name of the
-month and we want to output the weather of that month. So ‘july’ will output ‘summer’, ‘december’
-will output ‘winter’ and so on. Instead of writing 12 case bodies, we can take advantage of that
-auto-execution of cases and write just 4 like this.&lt;/p&gt;
+&lt;p&gt;It may happen that you want to do the same thing in multiple cases. Let’s say we get the name of the month and we want to output the weather of that month. So ‘july’ will output ‘summer’, ‘december’ will output ‘winter’ and so on. Instead of writing 12 case bodies, we can take advantage of that auto-execution of cases and write just 4 like this.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;monthName&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;December&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;January&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;February&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;It&apos;&lt;/span&gt;s winter&apos;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;March&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;April&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;May&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;It&apos;&lt;/span&gt;s spring&apos;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;June&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;July&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;August&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;It&apos;&lt;/span&gt;s summer&apos;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;September&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;October&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;November&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;It&apos;&lt;/span&gt;s autumn&apos;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;There is no such month!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-none&quot;&gt;&lt;code&gt;switch(monthName) {
+    case &apos;December&apos;:
+    case &apos;January&apos;:
+    case &apos;February&apos;:
+        console.log(&apos;It&apos;s winter&apos;);
+        break;
+    case &apos;March&apos;:
+    case &apos;April&apos;:
+    case &apos;May&apos;:
+        console.log(&apos;It&apos;s spring&apos;);
+        break;
+    case &apos;June&apos;:
+    case &apos;July&apos;:
+    case &apos;August&apos;:
+        console.log(&apos;It&apos;s summer&apos;);
+        break;
+    case &apos;September&apos;:
+    case &apos;October&apos;:
+    case &apos;November&apos;:
+        console.log(&apos;It&apos;s autumn&apos;);
+        break;
+    default:
+        console.log(&apos;There is no such month!&apos;);
+}&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;So this is the basics of branching the program. Next time we will learn about loops, one of the most
-powerful things that computer and programming languages provide.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
+&lt;p&gt;So this is the basics of branching the program. Next time we will learn about loops, one of the most powerful things that computer and programming languages provide.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Javascript. Types, Primitives and Variable Initialization]]></title><description><![CDATA[Primitives What is data type?  A data type is a classification that specifies which type of value
 a  variable  has and what type of…]]></description><link>https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-08-js-types-primitives-variable-initialization/</guid><pubDate>Thu, 08 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Primitives&lt;/h2&gt;
 &lt;p&gt;What is data type? &lt;/p&gt;
 &lt;p&gt;A data type is a classification that specifies which type of value
@@ -462,7 +539,7 @@ node
 &lt;p&gt;open &lt;code&gt;developer tools&lt;/code&gt; in the browser and open console there.&lt;/p&gt;
 &lt;p&gt;So now let’s start with numbers. To use those you simply have to type a
 number in the console:&lt;/p&gt;
-&lt;h3&gt;number&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;number&lt;/code&gt;&lt;/h3&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-js&quot;&gt;&lt;code&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
 &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
@@ -511,7 +588,7 @@ type mathematical operation symbols:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;JS also has a special value called &lt;code&gt;NaN&lt;/code&gt; which basically means &lt;code&gt;Not A Number&lt;/code&gt;. We are going to discuss it later in the course.&lt;/p&gt;
-&lt;h3&gt;string&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;string&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;But you’ll not be able to do a lot of things with only numbers!
 Let’s try to use text. The data type responsible for that in JS is
 called &lt;code&gt;string&lt;/code&gt;.&lt;/p&gt;
@@ -537,7 +614,7 @@ to another:&lt;/p&gt;
 &lt;span class=&quot;token comment&quot;&gt;// evaluated to: &apos;Hello world!&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;h3&gt;boolean&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;boolean&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;Next data type I want to talk about is very simple. It’s called
 &lt;code&gt;boolean&lt;/code&gt;. It only has values &lt;code&gt;false&lt;/code&gt; and &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
@@ -600,7 +677,7 @@ evaluation:&lt;/p&gt;
 say that &lt;code&gt;==&lt;/code&gt; is a loose-equal and &lt;code&gt;===&lt;/code&gt; is a strict-equal. For now just
 don’t use &lt;code&gt;==&lt;/code&gt;, use &lt;code&gt;===&lt;/code&gt; for checking equality. We will describe the
 difference later in the course.&lt;/p&gt;
-&lt;h3&gt;undefined and null&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;undefined&lt;/code&gt; and &lt;code&gt;null&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;We also can use it for any other data type, but that’s something that
 we would like to discuss later in the course :D &lt;/p&gt;
 &lt;p&gt;JS also has data types that basically mean &lt;code&gt;nothing&lt;/code&gt;.&lt;/p&gt;
@@ -615,13 +692,13 @@ you’ll get used to it!&lt;/p&gt;
 &lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;h3&gt;symbol&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;symbol&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;We are not going to cover &lt;code&gt;symbol&lt;/code&gt; data type now. It’s a little bit
 advanced topic that we’ll talk about in a few weeks.&lt;/p&gt;
 &lt;p&gt;Great, so now we know how Primitive data types look and we also know a
 few basic operations on those!&lt;/p&gt;
 &lt;h2&gt;Variable initialization&lt;/h2&gt;
-&lt;h3&gt;let&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;let&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;Now we need to understand where we can store that value. Imagine a
 &lt;code&gt;box&lt;/code&gt; where you can put anything you want. That &lt;code&gt;box&lt;/code&gt; in JS is called a
 &lt;code&gt;variable&lt;/code&gt;. You basically can put any JS data type in it. There are a
@@ -659,7 +736,7 @@ do so. There you initialize a &lt;code&gt;variable&lt;/code&gt; and tell it to O
 data type. It is also possible in Javascript, but for that, you have to
 use &lt;code&gt;TypeScript&lt;/code&gt; or &lt;code&gt;Flow&lt;/code&gt;. We are going to cover it later in the
 course. For now, you can just google it! :D &lt;/p&gt;
-&lt;h3&gt;const&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;const&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;As you’ve already found out, when we initialize a &lt;code&gt;variable&lt;/code&gt; with &lt;code&gt;let&lt;/code&gt;
 we are able to change the value that is stored in the &lt;code&gt;variable&lt;/code&gt;!! In
 this course, we are going to mostly learn Functional Programming. And
@@ -682,7 +759,7 @@ c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&qu
       &lt;/div&gt;
 &lt;p&gt;This helps you to keep your mind organized and get fewer bugs in the
 program later in the development process!&lt;/p&gt;
-&lt;h3&gt;typeof&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;typeof&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;Also, Javascript provides a special operator called &lt;code&gt;typeof&lt;/code&gt; that
 describes you what type is in the variable right now. The output of
 that operator is always &lt;code&gt;string&lt;/code&gt;. This is how to use it:&lt;/p&gt;
@@ -711,7 +788,7 @@ that operator is always &lt;code&gt;string&lt;/code&gt;. This is how to use it:&
 &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; seventh&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;                &lt;span class=&quot;token comment&quot;&gt;// &quot;object&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;h3&gt;console.log()&lt;/h3&gt;
+&lt;h3&gt;&lt;code&gt;console.log()&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;Sometimes you want your program output something on the screen. For
 that, you can use &lt;code&gt;console.log()&lt;/code&gt;. It is a &lt;code&gt;function call&lt;/code&gt; (will get to
 it later), which lets you output the value to the screen. Let’s try
@@ -1730,31 +1807,34 @@ installing, type &lt;code&gt;elm&lt;/code&gt; in shell to see what you’ve got.
 &lt;h2&gt;Type and type aliases&lt;/h2&gt;
 &lt;p&gt;You can define your own types in Elm.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;type Visualize =
-    All
-    | Completed
-    | Active&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Visualize&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;All&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Completed&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Active&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;This chunk defines “Visualize” type, which can have 3 values, either &lt;code&gt;All&lt;/code&gt;, &lt;code&gt;Completed&lt;/code&gt; or &lt;code&gt;Active&lt;/code&gt;. One use case for custom types is dispatch events/messages - by having enum-like data, &lt;code&gt;update&lt;/code&gt; function can precisely pattern match fired message and perform tasks accordingly. Also, it helps compiler to help us by warning, that not all possible type values are covered in &lt;code&gt;update&lt;/code&gt;. Actually, it’s not warning us, it just won’t compile.&lt;/p&gt;
 &lt;p&gt;Type aliases make possible to combine primitive types into more
 complex structures.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;type alias TodoItem =
-    { title : String
-    , completed : Bool
-    , id : Int
-    }&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;TodoItem&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;completed&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Bool&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;The above chunk defines &lt;code&gt;TodoItem&lt;/code&gt; custom type (read, record or
 object or class), that has 3 fields. Type aliases are often used to
 define application model structure. Here’s an example of it:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;type alias Model =
-    { todoItems : List TodoItem
-    , currentTodo : String
-    , show : Visualize
-    , currentIndex : Int
-    }&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;todoItems&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;TodoItem&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;currentTodo&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;show&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Visualize&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;currentIndex&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;h2&gt;Interop, Encode/Decode&lt;/h2&gt;
 &lt;p&gt;Elm application can communicate with JavaScript modules through ports
@@ -1774,7 +1854,8 @@ Reddit: &lt;a href=&quot;https://www.reddit.com/r/elm/&quot;&gt;https://www.redd
 &lt;p&gt;Maybe one of the most challenging parts in Elm application are type
 annotations. Here’s an example:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;update : Msg -&gt; Model -&gt; (Model, Cmd Msg)&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;&lt;span class=&quot;token hvariable&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Msg&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Model&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Cmd&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Msg&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;It says, function “update” receives 2 parameters of types “Msg” and
 “Model”, then returns a type “Model, Cmd Msg”. Here’s the question -
@@ -1782,7 +1863,8 @@ why arrows, instead of commas. And here’s the answer - because Elm has
 the idea of “partial functions” built within.&lt;/p&gt;
 &lt;p&gt;Example:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;someFunc : String -&gt; Int -&gt; Int -&gt; Bool&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-elm&quot;&gt;&lt;code&gt;&lt;span class=&quot;token hvariable&quot;&gt;someFunc&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Bool&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;If you give “someFunc” all 3 declared parameters, it will return a
 “Bool” type value. On the other hand, if you give it just “String”, it
