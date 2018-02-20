@@ -7,7 +7,7 @@ description: pay rates in Armenian tech
 discussionId: "2019-01-09-pay-rates-in-armenian-tech"
 ---
 
-*By Edgar Aroutiounian*,
+_By Edgar Aroutiounian_,
 catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 
 Here's a topic that everyone should speak more openly about: **pay**.
@@ -31,9 +31,8 @@ let studyHard = (hours, person) => {
   } else {
     return consider_overseas_options();
   }
-}
+};
 ```
-
 
 ## Interns
 
@@ -93,6 +92,6 @@ savings given to a business for outsources/contract work.
 
 # Programmer pay a month in Armenia TL;DR
 
-| Intern | Entry | Mid-level | Experience & Special |
-| -------| :----:| ----------| -------------------- |
-| 50 <= $ <= $200| $300 <= $ <= $500| $500 <= $ <= $800| $1000 <= $ <= $3000+|
+| Intern          |       Entry       | Mid-level         | Experience & Special |
+| --------------- | :---------------: | ----------------- | -------------------- |
+| 50 <= $ <= $200 | $300 <= $ <= $500 | $500 <= $ <= $800 | $1000 <= $ <= $3000+ |

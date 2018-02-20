@@ -7,21 +7,20 @@ description: git commit squashing with rebase
 discussionId: "2017-12-24-squash-commits-with-git"
 ---
 
-*By Robert Adamian*,
+_By Robert Adamian_,
 find me on <a href='https://twitter.com/@paerallax'>twitter</a>
-
 
 ![alt text](https://i.imgur.com/Eh8FBP7.png "Git's logo")
 
->Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+> Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
->As with most other distributed version control systems, and unlike most client–server systems, every Git directory on every computer is a full-fledged repository with complete history and full version tracking abilities, independent of network access or a central server.
+> As with most other distributed version control systems, and unlike most client–server systems, every Git directory on every computer is a full-fledged repository with complete history and full version tracking abilities, independent of network access or a central server.
 
-It's also a must-have in any software developer's toolchain. Using git for version control allows for powerful collaboration in tech teams. 
+It's also a must-have in any software developer's toolchain. Using git for version control allows for powerful collaboration in tech teams.
 
-I won't delve into Git's history and the motivations behind it here as that deserves a post of its own or even a series of posts. Instead, we discuss a simple git feature you might need - squashing commits.  
+I won't delve into Git's history and the motivations behind it here as that deserves a post of its own or even a series of posts. Instead, we discuss a simple git feature you might need - squashing commits.
 
-I needed to do this yesterday but forgot the command. First Stack Overflow answers were overly complicated for my use case. So here goes a simplified version. 
+I needed to do this yesterday but forgot the command. First Stack Overflow answers were overly complicated for my use case. So here goes a simplified version.
 
 Let's say you've been working on a feature and just finished. With git, it's possible to squash previous commits into one. This helps you logically group commits together before sharing with others. Say you've been implementing [DFS](https://en.wikipedia.org/wiki/Depth-first_search) and this is your current `git log`:
 
@@ -34,13 +33,13 @@ Let's say you've been working on a feature and just finished. With git, it's pos
 * 7126d8e add topological sort
 ```
 
-Now you want to squash your latest 5 commits into one to have a nice history. 
+Now you want to squash your latest 5 commits into one to have a nice history.
 
 ```zsh
 $ git rebase -i HEAD~5
 ```
 
-After you run this command your terminal editor will open up with the following:  
+After you run this command your terminal editor will open up with the following:
 
 ```zsh
 pick 3a6eed3 isolate subgraph
@@ -53,6 +52,7 @@ pick 16e9bbd depth-first search working
 Note that while doing interactive rebase, commits are displayed in reverse order.
 
 Replace the words "pick" with "squash" next to the commits you want to squash into the commit before it. In our case:
+
 ```zsh
 pick 3a6eed3 isolate subgraph
 squash bcd1838 recursive discovery
@@ -64,6 +64,7 @@ squash 16e9bbd depth-first search working
 Save and close the editor.
 
 If you're too lazy to type that or you're operating on a Commodore 64 and desperately need those additional few bytes, it's also possible to write "s" for squash and "p" for pick. So the latest snippet is equivalent to:
+
 ```zsh
 p 3a6eed3 isolate subgraph
 s bcd1838 recursive discovery
@@ -72,7 +73,8 @@ s 36ab519 fix vertex lookup
 s 16e9bbd depth-first search working
 ```
 
-Git will now give you the opportunity to change your commit message into something more descriptive. For doing that, replace this: 
+Git will now give you the opportunity to change your commit message into something more descriptive. For doing that, replace this:
+
 ```zsh
 # This is a combination of 5 commits.
 # The first commit's message is:
@@ -95,7 +97,8 @@ fix vertex lookup
 depth-first seach working
 ```
 
-With just: 
+With just:
+
 ```zsh
 implement depth-first search
 ```
@@ -103,10 +106,10 @@ implement depth-first search
 Note that your new commit message line shouldn't start with `#` as it'll be treated as a comment.
 
 `git log` should then return:
+
 ```zsh
 * bb26b9d (HEAD -> master) implement depth-first search
 * ea1a7e8 add topological sort
 ```
 
 That's it! Now you have your commits squashed into one with an easier to navigate history.
-

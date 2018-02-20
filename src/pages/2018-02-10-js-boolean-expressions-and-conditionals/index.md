@@ -7,25 +7,25 @@ description: Learn about AND, NOT, OR, short circuiting, if statements, switch s
 discussionId: "2018-02-10-js-boolean-expressions-and-conditionals"
 ---
 
+# Primitives 2
 
-Primitives 2
-============
 This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in JavaScript.
 
 ##### Table of contents
+
 [Logical Operators](#logical-operators)
-  * [AND](#and-ampamp)
-  * [OR](#or-)
-  * [NOT](#not-)
-  * [Truthiness and Falsiness](#truthy-falsey)
-  * [Short-circuit evaluation](#short-circuit)
+
+* [AND](#and-ampamp)
+* [OR](#or-)
+* [NOT](#not-)
+* [Truthiness and Falsiness](#truthy-falsey)
+* [Short-circuit evaluation](#short-circuit)
 
 [`if` statements](#if-else)
 [Switch](#switch)
 [Further reading]()
 
-Logical Operators
------------------
+## Logical Operators
 
 In programming as in real life, you will usually find yourself in a situation when some decision
 changes the flow of things. The program may do something instead of doing something else depending
@@ -39,7 +39,7 @@ instead. In this case the condition is the following.
 Temperature >= 10
 ```
 
-This will be either true or false, depending on the temperature.  In programming terminology these
+This will be either true or false, depending on the temperature. In programming terminology these
 decisions, depending on some values are called `logical expressions` or `boolean expressions`. As we
 mentioned before, those expressions will evaluate to a `Boolean` - `true` or `false`.
 
@@ -56,12 +56,11 @@ Temperature >= 10 AND Weather === "Sunny"
 ```
 
 As you might have guessed already, those **_connecting_** operators, such as AND, OR and so on, also
-have a special name. Those are called `logical operators` or sometimes referred as `boolean
-operators`. We will learn about three of them - AND **(&& in JS)**, OR **(|| in JS)** and NOT **(!
+have a special name. Those are called `logical operators` or sometimes referred as `boolean operators`. We will learn about three of them - AND **(&& in JS)**, OR **(|| in JS)** and NOT **(!
 in JS)**. Those notations are usually the same for the majority of languages but it is subject of
 change depending on the language
 
-Before diving into code, let's bring some other examples to make this clearer.  Most people know,
+Before diving into code, let's bring some other examples to make this clearer. Most people know,
 that computers do calculation by adding bunch of 0s and 1s. It's like having a room full of people,
 where each person evaluates only one value, giving one result, `true` or `false`. Having only one
 person doing this is not quiet usefull, but add more people, and the 'computational power' of the
@@ -72,41 +71,41 @@ architecture and is based on so called `boolean algebra`.
 We do this kind of comparisons every day. For example, when searching for a hotel, we filter results
 by certain criteria, like we want the hotel to have 5 `or` 4 stars, `not` to allow smoking`and` be
 kid-friendly. The search result will give all 5 and 4 star hotels, will include kid friendly hotels,
-but won't show hotels where smoking is allowed.  Now let's take a look at how these logical
+but won't show hotels where smoking is allowed. Now let's take a look at how these logical
 operations are represented and implemented in JavaScript.
 
-
 ### AND (&&)
+
 AND operator returns `true` only if both operands are true, otherwise, it returns `false`.
 
-
-|  Value 1 |   Value 2     | Returns |
-|:----------|:-------------|:------|
-| true |    true   | `t && t` - true |
-| true | false | `t && f` -  false |
-| false | false | `f && f` - false |
-|false | (3 > 5 ) | `f && f` - false |
-|'str1' | 'str2' | `t && t ` - str2 (weird JS)
-|'str' | false | `t && f` - false
+| Value 1 | Value 2  | Returns                    |
+| :------ | :------- | :------------------------- |
+| true    | true     | `t && t` - true            |
+| true    | false    | `t && f` - false           |
+| false   | false    | `f && f` - false           |
+| false   | (3 > 5 ) | `f && f` - false           |
+| 'str1'  | 'str2'   | `t && t` - str2 (weird JS) |
+| 'str'   | false    | `t && f` - false           |
 
 ### OR (||)
 
 OR operator `true` in all cases of comparing boolean operands except `false && false`.
 
-|  Value 1 |   Value 2     | Returns |
-|:----------|:-------------|:------|
-| true |    true   | `t || t` - true |
-| true | false | `t || f` -  true |
-| false | false | `f || f` - false |
-|false | (3 > 5 ) | `f || f` - false |
-|'str1' | 'str2' | `t || t ` - str1 |
-|false | 'str' | `t || f` - 'str' |
-|'str' | true | `t || t` - 'str' |
+| Value 1 | Value 2  | Returns          |
+| :------ | :------- | :--------------- |
+| true    | true     | `t || t` - true  |
+| true    | false    | `t || f` - true  |
+| false   | false    | `f || f` - false |
+| false   | (3 > 5 ) | `f || f` - false |
+| 'str1'  | 'str2'   | `t || t` - str1  |
+| false   | 'str'    | `t || f` - 'str' |
+| 'str'   | true     | `t || t` - 'str' |
 
 ### NOT (!)
+
 NOT operator returns `true` in all cases, except the case if its single operand can be converted to `true`.
 
-`!true ` - returns `false`
+`!true` - returns `false`
 `!false` - returns `true`
 `!'str'` - returns `false`
 
@@ -122,29 +121,29 @@ some of them are `falsy`. Usually, emptiness corresponds to `false` while any ot
 corresponds to `true`. Let's look at some examples.
 
 ```javascript
-!!'' === false // '' is falsy
-!!'a' === true // 'a' is truthy
-!!0 === false // 0 is falsy
-!!-4 === true // -4 is truthy, even if it's negative, because it's not empty
-!!NaN === false // NaN is falsy
-!!null === false // null is falsy
-!!{} === true // null means emptiness, the absence of the object, while empty object is still an object. it's just empty.
-!![] === true // This can be more treated like {}
-!!undefined === false // Not defined, not there => falsy
+!!'' === false; // '' is falsy
+!!'a' === true; // 'a' is truthy
+!!0 === false; // 0 is falsy
+!!-4 === true; // -4 is truthy, even if it's negative, because it's not empty
+!!NaN === false; // NaN is falsy
+!!null === false; // null is falsy
+!!{} === true; // null means emptiness, the absence of the object, while empty object is still an object. it's just empty.
+!![] === true; // This can be more treated like {}
+!!undefined === false; // Not defined, not there => falsy
 ```
 
 So as you see, usually the values that are used to describe the absence are falsy and the others are
 truthy. It's a bit philosophical and this is how programming is beautiful. :smile:
 
-_NOTE::: The return values of the `&&` and `||` operators are **not** necessarily `Boolean` values,
+\_NOTE::: The return values of the `&&` and `||` operators are **not** necessarily `Boolean` values,
 as they can be used with operands that are not booleans, however they can still be considered
 `Boolean` operators since their return values can always be converted to `truthy/falsey` values.
 
-This means that in some cases we may use && but get results of other type. Some examples are_
+This means that in some cases we may use && but get results of other type. Some examples are\_
 
 ```javascript
-false || 'I will be evaluated'
-true && 'I will be evaluated'
+false || 'I will be evaluated';
+true && 'I will be evaluated';
 ```
 
 ### Short-circuit evaluation
@@ -191,7 +190,7 @@ true && true && '' && true && true
 ```
 
 The same logic applies to OR operator, as it evaluates to true if **at least one** of the `operands`
-is true. Can you explain how will OR work?  Can you also answer those correctly?
+is true. Can you explain how will OR work? Can you also answer those correctly?
 
 ```
 false || undefined || 'Haha' || 0
@@ -224,8 +223,8 @@ sunglass example it will be something like:
 
 ```javascript
 if (temperature >= 10 && weather === 'sunny') {
-    wear(cool_tshirt);
-    wear(sunglasses);
+  wear(cool_tshirt);
+  wear(sunglasses);
 }
 ```
 
@@ -236,10 +235,10 @@ hoodie.
 
 ```javascript
 if (temperature >= 10 && weather === 'sunny') {
-    wear(cool_tshirt);
-    wear(sunglasses);
+  wear(cool_tshirt);
+  wear(sunglasses);
 } else {
-    wear(warm_hoodie);
+  wear(warm_hoodie);
 }
 ```
 
@@ -250,16 +249,16 @@ statement. Using `else .. if` we can specify as many cases as we want.
 
 ```javascript
 if (temperature >= 10 && weather === 'sunny') {
-    wear(cool_tshirt);
-    wear(sunglasses);
+  wear(cool_tshirt);
+  wear(sunglasses);
 } else if (temperature <= -15) {
-    wear(warm_coat);
-    wear(warm_hoodie);
-    wear(scarf);
-    wear(hat);
-    wear(warm_socks); // Granny was here :)
+  wear(warm_coat);
+  wear(warm_hoodie);
+  wear(scarf);
+  wear(hat);
+  wear(warm_socks); // Granny was here :)
 } else {
-    wear(warm_hoodie);
+  wear(warm_hoodie);
 }
 ```
 
@@ -278,13 +277,13 @@ Okay let's do this.
 
 ```javascript
 if (color === 'blue') {
-    console.log('Leonardo');
+  console.log('Leonardo');
 } else if (color === 'red') {
-    console.log('Raphael')
+  console.log('Raphael');
 } else if (color === 'orange') {
-    console.log('Michelangelo')
+  console.log('Michelangelo');
 } else {
-    console.log('Donatello');
+  console.log('Donatello');
 }
 ```
 
@@ -304,41 +303,41 @@ if (color === 'blue') {
 
 This piece of code is long and hard to read. That's why we have `switch` statement, which is used exactly for cases like this one.
 
+### Switch
 
- ### Switch
+So, as we've already said, `switch` provied a better way to write the better readable code doing
+the same thing as the example above does. `switch` is useful when you have some variable and for
+each `case` of the value you want to do something. It won't work with and or anything, it's used to
+branch the program depending just on a value of a single variable. Look how much the readability is
+increased, keeping the same functionality as the above code.
 
- So, as we've already said, `switch` provied a better way to write the better readable code doing
- the same thing as the example above does. `switch` is useful when you have some variable and for
- each `case` of the value you want to do something. It won't work with and or anything, it's used to
- branch the program depending just on a value of a single variable. Look how much the readability is
- increased, keeping the same functionality as the above code.
-
- ```javascript
- switch(color) {
-    case 'blue':
-         console.log('Leonardo');
-         break;
-    case 'red':
-         console.log('Raphael');
-         break;
-    case 'orange':
-         console.log('Michelangelo');
-         break;
-    case 'purple':
-         console.log('Donatello);
-         break;
-    default:
-        console.log('Have you even seen TMNT???');
+```javascript
+switch(color) {
+   case 'blue':
+        console.log('Leonardo');
         break;
- }
- ```
+   case 'red':
+        console.log('Raphael');
+        break;
+   case 'orange':
+        console.log('Michelangelo');
+        break;
+   case 'purple':
+        console.log('Donatello);
+        break;
+   default:
+       console.log('Have you even seen TMNT???');
+       break;
+}
+```
 
- Let's see what's new in this code.
- 1. Keyword switch - we put the keyword and then again open parantheses. This time in paranteses we specify the `variable` for which we will switch the cases.
- 2. Keyword case - in the body of the switch (the block starting with `{` and ending with `}`) we see multiple `case` statements. We use `case` to specify a certain probable value, a guess of the value of the variable.
- 3. Logic after the case - after the case value is specified, we put `:` and start to write the logic of the things that needs to be done if the value of the variable matches with that certain case.
- 4. break statement - The thing is that JS kinda does not differentiate the cases, so whenever some cases matches, it will start to execute the code of **ALL** the cases below the match case (You are adviced now to try to delete the break-s and see what happens). To prevent this we use `break` keyboard to exit the switch statement. Sometimes that auto-executing thing may be useful, sometimes it creates problems. We will see a case when it's useful a little bit later.
- 5. default case - This is a special case using the keyword `default` that will handle the case when none of the "guesses" of the value were right. In this case, if the color is something else than 'red', 'blue', 'orange' or 'purple', it will execute the code inside default case.
+Let's see what's new in this code.
+
+1. Keyword switch - we put the keyword and then again open parantheses. This time in paranteses we specify the `variable` for which we will switch the cases.
+2. Keyword case - in the body of the switch (the block starting with `{` and ending with `}`) we see multiple `case` statements. We use `case` to specify a certain probable value, a guess of the value of the variable.
+3. Logic after the case - after the case value is specified, we put `:` and start to write the logic of the things that needs to be done if the value of the variable matches with that certain case.
+4. break statement - The thing is that JS kinda does not differentiate the cases, so whenever some cases matches, it will start to execute the code of **ALL** the cases below the match case (You are adviced now to try to delete the break-s and see what happens). To prevent this we use `break` keyboard to exit the switch statement. Sometimes that auto-executing thing may be useful, sometimes it creates problems. We will see a case when it's useful a little bit later.
+5. default case - This is a special case using the keyword `default` that will handle the case when none of the "guesses" of the value were right. In this case, if the color is something else than 'red', 'blue', 'orange' or 'purple', it will execute the code inside default case.
 
 It may happen that you want to do the same thing in multiple cases. Let's say we get the name of the
 month and we want to output the weather of that month. So 'july' will output 'summer', 'december'

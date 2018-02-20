@@ -7,7 +7,7 @@ description: A strong first conference
 discussionId: "2017-12-20-first-conference"
 ---
 
-*By Edgar Aroutiounian*,
+_By Edgar Aroutiounian_,
 catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 
 ## Genesis

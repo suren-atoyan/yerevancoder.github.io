@@ -7,7 +7,7 @@ description: some useful material for you
 discussionId: "2017-12-21-useful-material"
 ---
 
-*By Edgar Aroutiounian*,
+_By Edgar Aroutiounian_,
 catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 
 Here are some **JavaScript** resources you can use when learning.
@@ -49,11 +49,11 @@ These are lecture notes done for nodejs
 
 ## JavaScript conf
 
-### Shahen Hovhannisyan: 
+### Shahen Hovhannisyan:
 
 [V8 Engine](https://docs.google.com/presentation/d/1maSE3MD3RgtAGwvTj1mTDNTdmumpbUgm48azCcbp6r0/edit#slide=id.p)
 
-### Michael Manukyan: 
+### Michael Manukyan:
 
 [Production Webpack](http://jsconf17.mmanukyan.io/#/)
 

@@ -9,7 +9,7 @@ discussionId: "2018-02-08-js-types-primitives-variable-initialization"
 
 ## Primitives
 
-What is data type? 
+What is data type?
 
 A data type is a classification that specifies which type of value
 a `variable` has and what type of operations
@@ -24,6 +24,7 @@ numbers and etc.
 Let's list those!
 
 Primitives:
+
 * number
 * string
 * boolean
@@ -32,14 +33,15 @@ Primitives:
 * symbol (new to ES6)
 
 Object:
+
 * object
 
 The examples of objects are:
+
 * Function
 * Array
 * Map
 * Set
-
 
 So basically, everything that is not an object is considered as a
 Primitive data type. Smart right? :D There are a lot of differences
@@ -51,6 +53,7 @@ Let's get some practice already!
 if you've been on our installation day, then most probably you have
 UNIX-based Operating System (Ubuntu, MacOS, Debian, Kali, BSD, etc.).
 You already should have `atom` and `node`. Let's setup our workplace.
+
 ```bash
 # go to Documents directory
 cd ~/Documents
@@ -63,6 +66,7 @@ atom file.js
 # file with
 node file.js
 ```
+
 OR
 
 Open your Unix terminal and type `node`. However, this is not convenient
@@ -93,16 +97,20 @@ number in the console:
 5
 // evaluated to: 5
 ```
+
 ---
+
 I'm using a symbol `//` called `comments`. Basically, JS doesn't
 evaluate everything that is after `//` on the line. It is a very useful
 thing when you want to describe what your code does.
 
 JS is not going to evaluate this:
+
 ```js
 // yo, I'm not evaluated
 // :(
 ```
+
 ---
 
 So we tried to evaluate 5 and JS evaluated that to 5. Simple!
@@ -137,8 +145,7 @@ type mathematical operation symbols:
 // evaluated to: 8.75
 ```
 
-JS also has a special value called `NaN` which basically means `Not A
-Number`. We are going to discuss it later in the course.
+JS also has a special value called `NaN` which basically means `Not A Number`. We are going to discuss it later in the course.
 
 ### string
 
@@ -153,7 +160,9 @@ those:
 > 'Hello world!'
 // evaluated to: 'Hello world!'
 ```
+
 and
+
 ```js
 > "Hello world!"
 // evaluated to: 'Hello world!'
@@ -227,7 +236,7 @@ evaluation:
 // evaluated to: false
 
 // greater than or equal
-> 10 >= 10 
+> 10 >= 10
 // evaluated to: true
 ```
 
@@ -239,7 +248,7 @@ difference later in the course.
 ### undefined and null
 
 We also can use it for any other data type, but that's something that
-we would like to discuss later in the course :D 
+we would like to discuss later in the course :D
 
 JS also has data types that basically mean `nothing`.
 
@@ -252,10 +261,9 @@ you'll get used to it!
 We can also use boolean operators on these data types:
 
 ```js
-undefined === undefined // true
+undefined === undefined; // true
 
-'hello' === 'hello' // true
-
+'hello' === 'hello'; // true
 ```
 
 ### symbol
@@ -279,6 +287,7 @@ few ways of initializing a variable. The first way is using `let`:
 // initialized a variable called a
 let a;
 ```
+
 Now we just initialized a `variable` which has a value of nothing. As
 we've already discussed, a value of nothing in JS is represented as
 `undefined`.
@@ -309,7 +318,7 @@ In the majority of programming languages, you are actually not able to
 do so. There you initialize a `variable` and tell it to ONLY store one
 data type. It is also possible in Javascript, but for that, you have to
 use `TypeScript` or `Flow`. We are going to cover it later in the
-course. For now, you can just google it! :D 
+course. For now, you can just google it! :D
 
 ### const
 
@@ -384,6 +393,7 @@ console.log(hello);
 console.log(hey);
 console.log('OMG');
 ```
+
 and the output is something like:
 
 ```bash
@@ -412,7 +422,7 @@ let c = 2;
 ++c; // increments c by 1
 console.log(c); // 3
 
-// we also can do 
+// we also can do
 // c++;
 // that increments the value of c by 1
 // but it does it in the other way.

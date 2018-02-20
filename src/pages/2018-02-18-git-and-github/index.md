@@ -7,201 +7,195 @@ description: Learn about git and start your cool projects.
 discussionId: "2018-02-18-git-and-github"
 ---
 
-  # Introduction to git
+# Introduction to git
 
-  ## What is git?
+## What is git?
 
-  Alright, we are already familiar to javascript basics, and we might want to create some cool projects.
+Alright, we are already familiar to javascript basics, and we might want to create some cool projects.
 
-  Imagine that you and your friends are working on the same project.
-  you probably are continually writing new source code and  changing the existing source code.
-  In this case the team need some software tools that help them manage changes to source code over time.
-  Version control software (VCS) keeps track of every modification to the code in a special kind of database.
-  If a mistake is made, developers can turn back the clock and compare earlier versions of the code to help fix
-  the mistake while minimizing disruption to all team members.
-  Developing software without using version control is risky, like not having backups.
+Imagine that you and your friends are working on the same project.
+you probably are continually writing new source code and changing the existing source code.
+In this case the team need some software tools that help them manage changes to source code over time.
+Version control software (VCS) keeps track of every modification to the code in a special kind of database.
+If a mistake is made, developers can turn back the clock and compare earlier versions of the code to help fix
+the mistake while minimizing disruption to all team members.
+Developing software without using version control is risky, like not having backups.
 n
-  Git is a free, open source and the most commonly used distributed version control system (DVCS) today.
+Git is a free, open source and the most commonly used distributed version control system (DVCS) today.
 
-  Git was started by Linus Trovalds, the same person who created Linux.
+Git was started by Linus Trovalds, the same person who created Linux.
 
-  ## What is github?  
+## What is github?
 
-   
+GitHub is a hosting service for Git repositories.
+GitHub is a website where you can upload a copy of your Git repository.
 
-   GitHub is a hosting service for Git repositories.
-   GitHub is a website where you can upload a copy of your Git repository.
+Git and Github are not the same things:
+Git is the tool, GitHub is the service for projects that use Git.
 
-   Git and Github are not the same things:
-   Git is the tool, GitHub is the service for projects that use Git.
+GitHub provides free plans for open-source projects and paid plans offering unlimited private repositories.
 
-   GitHub provides free plans for open-source projects and paid plans offering unlimited private repositories.
+Before moving on to the git basics, please create your personal github account.
 
-   Before moving on to the git basics, please create your personal github account.
+## Git basics
 
-  ## Git basics
+#### Install git
 
-  #### Install git
+$ sudo apt-get update
 
-  $ sudo apt-get update
+$ sudo apt-get install git
 
-  $ sudo apt-get install git
+$ git --version
 
-  $ git --version
+#### Create a new directory, and open it
 
-  #### Create a new directory, and open it
+$ mkdir my-directory
 
-  $ mkdir my-directory
+$ cd my-directory
 
-  $ cd my-directory
+#### Create some files
 
-  #### Create some files
+$ touch file.js
 
-  $ touch file.js
+$ touch file2.js
 
-  $ touch file2.js
+#### Create a new git repository.
 
-  #### Create a new git repository.
+$ git init
 
-  $ git init
+Directory now has an empty repository in /.git/.
 
-  Directory now has an empty repository in /.git/.
+The repository is a hidden directory where Git operates.
 
-  The repository is a hidden directory where Git operates.
+Git keeps all of its files in the .git directory.
 
-  Git keeps all of its files in the .git directory.
+#### Check the hidden files
 
-  #### Check the hidden files
+$ la
 
-  $ la
+#### Check the current state of the project
 
-  #### Check the current state of the project
+You can edit the files and check the stage of your project with the following command
 
-  You can edit the files and check the stage of your project with the following command
+$ git status
 
-  $ git status
+#### Add changes to the staged area
 
-  #### Add changes to the staged area
+$ git add ' file-name '
 
-  $ git add  ' file-name '
+#### Unstage
 
-  #### Unstage
+$ git reset ' file-name '
 
-  $ git reset  ' file-name '
+The files listed here are in the Staging Area, and they are not in our repository yet.
 
-  The files listed here are in the Staging Area, and they are not in our repository yet.
+Staging is a step before the commit process in git.
 
-  Staging is a step before the commit process in git.
+#### Commit
 
- 
+$ git commit -m "a message describing what we've changed".
 
-  #### Commit
+Now if you check the current state of the project you will see 'nothing to cmmit, working directory clean'.
 
-  $ git commit -m "a message describing what we've changed".
+#### Undo a commit
 
-  Now if you check the current state of the project you will see 'nothing to cmmit, working directory clean'.
+We can refer to our most recent commit, using HEAD pointer.
 
-  #### Undo a commit
+$ git reset Head~
 
-  We can refer to our most recent commit, using HEAD pointer.
+#### History
 
-  $ git reset Head~
+Make a few commits. and let's browse them to see what we changed.
 
-  #### History
+$ git log
 
-  Make a few commits. and let's browse them to see what we changed.
+$ git log -1
 
-  $ git log
+$ git log -2
 
-  $ git log -1
+#### Add a remote repository
 
-  $ git log -2
+To push our local repo to the GitHub server we'll need to add a remote repository.
 
-  #### Add a remote repository
+'Origin' is the default name of the remote git repository you cloned from.
 
-  To push our local repo to the GitHub server we'll need to add a remote repository.
+The URL could be your repository on GitHub.
 
-  'Origin' is the default name of the remote git repository you cloned from.
+$ git remote add origin ' URL '
 
-  The URL could be your repository on GitHub.
+#### Push command
 
-  $ git remote add origin ' URL '
+push command tells Git where to put our commits.
 
-  #### Push command
+So let's push our local changes to our origin repo (on GitHub).
 
-  push command tells Git where to put our commits.
+The name of our remote is origin and the default local branch name is master.
 
-  So let's push our local changes to our origin repo (on GitHub).
+The -u tells Git to remember the parameters, so next time simply run git push.
 
-  The name of our remote is origin and the default local branch name is master.
+$ git push -u origin master
 
-  The -u tells Git to remember the parameters, so next time simply run git push.
+#### Diff
 
-  $ git push -u origin master
+The main objective of version controlling is to enable you to work with different versions of files.
 
-  #### Diff
+Git provides a command 'diff' to let you to compare different versions of your files.
 
-  The main objective of version controlling is to enable you to work with different versions of files.
+$ git diff
 
-  Git provides a command 'diff' to let you to compare different versions of your files.
+Compares working directory with index (staged area).
 
-  $ git diff
+It shows the changes that are not staged yet.
 
-   Compares working directory with index (staged area).
+$ git diff HEAD
 
-   It shows the changes that are not staged yet.
+Compares working directory with the commited version.
 
-  $ git diff HEAD
+It shows the list of changes after your last commit.
 
-   Compares working directory with the commited version.
+$ git diff --cached
 
-   It shows the list of changes after your last commit.
+Compares index (staged area) with the commited version.
 
-  $ git diff --cached
+It shows the diff between your last commit and changes to be committed next.
 
-   Compares index (staged area) with the commited version.
+git diff --cahced will only show changes to files in the "staged" area.
 
-   It shows the diff between your last commit and changes to be committed next.
+git diff HEAD will show all changes to tracked files.
 
-   git diff --cahced will only show changes to files in the "staged" area.
+If you have all changes staged for commit, then both commands will output the same.
 
-   git diff HEAD will show all changes to tracked files.
+#### Pull command
 
-   If you have all changes staged for commit, then both commands will output the same.
+Pull command incorporates changes from a remote repository into the current branch
+We can check for changes on our GitHub repository and pull down any new changes
 
-   #### Pull command
+$ git pull origin master
 
-   Pull command incorporates changes from a remote repository into the current branch
-   We can check for changes on our GitHub repository and pull down any new changes
+#### Branch
 
-   $ git pull origin master
+Branching is a feature available in most modern version control systems.
 
-   #### Branch
+Git branches are effectively a pointer to a snapshot of your changes.
 
-   
+When you are working on a feature or bug you may want to create a copy of the code and make separate commits.
 
-   Branching is a feature available in most modern version control systems.
+#### Adding a new branch
 
-   Git branches are effectively a pointer to a snapshot of your changes.
+$ git branch ' branch-name '
 
-   When you are working on a feature or bug you may want to create a copy of the code and make separate commits.
+#### Check branches
 
-   #### Adding a new branch
+$ git branch
 
-   $ git branch ' branch-name '
+#### Switching Branches
 
-   #### Check branches
+$ git checkout ' branch-name '
 
-   $ git branch
+when you're done you can simply merge this branch back into the main master branch (or any other intended branch).
 
-   #### Switching Branches
+$ git merge ' branch-name '
 
-   $ git checkout ' branch-name '
+And finally you can git push.
 
-   when you're done you can simply merge this branch back into the main master branch (or any other intended branch).
-
-   $ git merge ' branch-name '
-
-   And finally you can git push.
-
-   $ git push
+$ git push

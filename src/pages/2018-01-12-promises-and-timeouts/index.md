@@ -7,12 +7,11 @@ description: simple way to get a timeout
 discussionId: "2019-01-12-promises-and-timeouts"
 ---
 
-*By Edgar Aroutiounian*,
+_By Edgar Aroutiounian_,
 catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 
 Here is a simple and elegant way to say "Run this shell command within a
 maximum of x seconds"
-
 
 ```javascript
 'use strict';

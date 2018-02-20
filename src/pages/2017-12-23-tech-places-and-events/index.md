@@ -7,7 +7,7 @@ description: Where to see things
 discussionId: "2017-12-23-tech-places-events"
 ---
 
-*By Edgar Aroutiounian*,
+_By Edgar Aroutiounian_,
 catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 
 ```javascript
@@ -15,7 +15,7 @@ catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
   await land_in_armenia();
   await look_for_events();
   await make_new_friends();
-})()
+})();
 ```
 
 So you just landed in Yerevan and need a quick way to get a pulse of
@@ -26,13 +26,13 @@ the tech industry ASAP. Here's your insider's crash course
 ## Yerevan-based
 
 1. [ISTC](http://istc.am)-The Innovative Solutions and Technologies
-  Center hosts many many tech events featuring some of the best minds
-  in the local Data Science scene and is home to quite a few startups.
+   Center hosts many many tech events featuring some of the best minds
+   in the local Data Science scene and is home to quite a few startups.
 2. [MIC-Armenia](http://www.micarmenia.am)-Microsoft Innovation Center
    Armenia holds many trainings, hosts talks.
 3. [AUA](https://aua.am)-Has a good computer science department,
    comparable to a top 200 USA university. They also host many tech
-   events. 
+   events.
 4. [HeroHouse](https://www.smartgate.vc/single-post/2017/12/22/Better-together-Hero-House-is-introduced-to-the-startup-community-and-friends)-An
    exciting and brand new initiative for startups in Armenia
 5. [Tumo](https://tumo.org)-A truly remarkable and unique place in the
