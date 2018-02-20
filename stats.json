@@ -1,77 +1,81 @@
 {
   "assetsByChunkName": {
     "path---2018-02-10-js-boolean-expressions-and-conditionals": [
-      "path---2018-02-10-js-boolean-expressions-and-conditionals-197cb754610ee00bbd48.js",
-      "path---2018-02-10-js-boolean-expressions-and-conditionals-197cb754610ee00bbd48.js.map"
+      "path---2018-02-10-js-boolean-expressions-and-conditionals-2bd9ac6923219c6e11c4.js",
+      "path---2018-02-10-js-boolean-expressions-and-conditionals-2bd9ac6923219c6e11c4.js.map"
     ],
     "path---2018-02-08-js-types-primitives-variable-initialization": [
-      "path---2018-02-08-js-types-primitives-variable-initialization-512f29b6410b9b97e1b0.js",
-      "path---2018-02-08-js-types-primitives-variable-initialization-512f29b6410b9b97e1b0.js.map"
+      "path---2018-02-08-js-types-primitives-variable-initialization-5954321511038f1d67db.js",
+      "path---2018-02-08-js-types-primitives-variable-initialization-5954321511038f1d67db.js.map"
     ],
     "component---src-pages-index-js": [
-      "component---src-pages-index-js-569f17e4c5608ce4f33a.js",
-      "component---src-pages-index-js-569f17e4c5608ce4f33a.js.map"
+      "component---src-pages-index-js-d0c2cd31866ebac378b6.js",
+      "component---src-pages-index-js-d0c2cd31866ebac378b6.js.map"
     ],
     "path---2018-01-09-pay-rates-in-armenian-tech": [
-      "path---2018-01-09-pay-rates-in-armenian-tech-52a632191fc0cd461896.js",
-      "path---2018-01-09-pay-rates-in-armenian-tech-52a632191fc0cd461896.js.map"
+      "path---2018-01-09-pay-rates-in-armenian-tech-d9f86e08d9e4d16bdb7a.js",
+      "path---2018-01-09-pay-rates-in-armenian-tech-d9f86e08d9e4d16bdb7a.js.map"
     ],
     "path---2018-02-04-dual-booting-linux-with-windows": [
-      "path---2018-02-04-dual-booting-linux-with-windows-449be58b31f7ab9799af.js",
-      "path---2018-02-04-dual-booting-linux-with-windows-449be58b31f7ab9799af.js.map"
+      "path---2018-02-04-dual-booting-linux-with-windows-a7a905d974772fbe98fc.js",
+      "path---2018-02-04-dual-booting-linux-with-windows-a7a905d974772fbe98fc.js.map"
     ],
     "path---2017-12-24-squash-commits-with-git": [
-      "path---2017-12-24-squash-commits-with-git-57a7708bb9c1c0107ccb.js",
-      "path---2017-12-24-squash-commits-with-git-57a7708bb9c1c0107ccb.js.map"
+      "path---2017-12-24-squash-commits-with-git-c2625bb5652e70c51c3b.js",
+      "path---2017-12-24-squash-commits-with-git-c2625bb5652e70c51c3b.js.map"
     ],
     "path---2018-02-06-simple-terminal-commands": [
-      "path---2018-02-06-simple-terminal-commands-4dff5249d44556ad3d13.js",
-      "path---2018-02-06-simple-terminal-commands-4dff5249d44556ad3d13.js.map"
+      "path---2018-02-06-simple-terminal-commands-af3dd31f21dfa1bbddeb.js",
+      "path---2018-02-06-simple-terminal-commands-af3dd31f21dfa1bbddeb.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
     "path---2017-12-21-javascript-resources": [
-      "path---2017-12-21-javascript-resources-73336f8e4197625caf3e.js",
-      "path---2017-12-21-javascript-resources-73336f8e4197625caf3e.js.map"
+      "path---2017-12-21-javascript-resources-a67e93e70c96a54980fd.js",
+      "path---2017-12-21-javascript-resources-a67e93e70c96a54980fd.js.map"
+    ],
+    "path---2018-02-18-git-and-github": [
+      "path---2018-02-18-git-and-github-419fdc03763ce05e1276.js",
+      "path---2018-02-18-git-and-github-419fdc03763ce05e1276.js.map"
     ],
     "component---node-modules-gatsby-plugin-offline-app-shell-js": [
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js",
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js.map"
     ],
     "component---src-templates-blog-post-js": [
-      "component---src-templates-blog-post-js-a2cffa4d5001d561e35d.js",
-      "component---src-templates-blog-post-js-a2cffa4d5001d561e35d.js.map"
+      "component---src-templates-blog-post-js-90d9c38e2a5943b3da2e.js",
+      "component---src-templates-blog-post-js-90d9c38e2a5943b3da2e.js.map"
     ],
     "path---2018-02-13-js-loops": [
-      "path---2018-02-13-js-loops-fb5b478c192a34461f4f.js",
-      "path---2018-02-13-js-loops-fb5b478c192a34461f4f.js.map"
+      "path---2018-02-13-js-loops-aa44c07fe493b57cc0ca.js",
+      "path---2018-02-13-js-loops-aa44c07fe493b57cc0ca.js.map"
     ],
     "path---2018-02-10-js-functions-scopes-and-var": [
-      "path---2018-02-10-js-functions-scopes-and-var-0153c562bcdfc768756b.js",
-      "path---2018-02-10-js-functions-scopes-and-var-0153c562bcdfc768756b.js.map"
+      "path---2018-02-10-js-functions-scopes-and-var-af75b72ff22ff25d3f40.js",
+      "path---2018-02-10-js-functions-scopes-and-var-af75b72ff22ff25d3f40.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-f916278b4053343b8150.js",
-      "component---src-layouts-index-js-f916278b4053343b8150.js.map"
+      "component---src-layouts-index-js-91c022be6004a7687218.js",
+      "component---src-layouts-index-js-91c022be6004a7687218.js.map"
     ],
     "path---2017-12-31-elm-intro": [
-      "path---2017-12-31-elm-intro-556c00d3069ca35383f2.js",
-      "path---2017-12-31-elm-intro-556c00d3069ca35383f2.js.map"
+      "path---2017-12-31-elm-intro-1ffccb3d35c04c5a6bbf.js",
+      "path---2017-12-31-elm-intro-1ffccb3d35c04c5a6bbf.js.map"
     ],
     "path---index": [
-      "path---index-fbfe2d76a5889457425a.js",
-      "path---index-fbfe2d76a5889457425a.js.map"
+      "path---index-16d8ba8e013d7e4c0277.js",
+      "path---index-16d8ba8e013d7e4c0277.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-78eb0160ebc5e112276c.js",
       "component---src-pages-404-js-78eb0160ebc5e112276c.js.map"
     ],
     "commons": [
-      "commons-8b3777e9b7196ecd4564.js",
+      "commons-82b530103422a77a8731.js",
       "build-js-styles.css",
-      "commons-8b3777e9b7196ecd4564.js.map",
+      "commons-82b530103422a77a8731.js.map",
       "build-js-styles.css.map"
     ],
     "path---404-html": [
@@ -79,25 +83,25 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---2017-12-20-init-post": [
-      "path---2017-12-20-init-post-49897a8cbbb85227ae16.js",
-      "path---2017-12-20-init-post-49897a8cbbb85227ae16.js.map"
+      "path---2017-12-20-init-post-cb541434fdb8eb590c8d.js",
+      "path---2017-12-20-init-post-cb541434fdb8eb590c8d.js.map"
     ],
     "path---2017-12-23-tech-places-and-events": [
-      "path---2017-12-23-tech-places-and-events-58d3e12f0df4b3ce5fa8.js",
-      "path---2017-12-23-tech-places-and-events-58d3e12f0df4b3ce5fa8.js.map"
+      "path---2017-12-23-tech-places-and-events-8994a812d3867894b43c.js",
+      "path---2017-12-23-tech-places-and-events-8994a812d3867894b43c.js.map"
     ],
     "path---offline-plugin-app-shell-fallback": [
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---2018-01-12-promises-and-timeouts": [
-      "path---2018-01-12-promises-and-timeouts-794ca81e288a55f94f0c.js",
-      "path---2018-01-12-promises-and-timeouts-794ca81e288a55f94f0c.js.map"
+      "path---2018-01-12-promises-and-timeouts-27156ee6ec06598773f6.js",
+      "path---2018-01-12-promises-and-timeouts-27156ee6ec06598773f6.js.map"
     ],
     "app": [
-      "app-5215abe809bac45f6fcc.js",
+      "app-4316818995d04629a10a.js",
       "build-js-styles.css",
-      "app-5215abe809bac45f6fcc.js.map",
+      "app-4316818995d04629a10a.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
