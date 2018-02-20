@@ -27,7 +27,7 @@ n
 
   ## What is github?  
 
-   ![](/image/Github2.png)
+   
 
    GitHub is a hosting service for Git repositories.
    GitHub is a website where you can upload a copy of your Git repository.
@@ -93,7 +93,7 @@ n
 
   Staging is a step before the commit process in git.
 
-  ![](./image/WSR.png)
+ 
 
   #### Commit
 
@@ -178,7 +178,7 @@ n
 
    #### Branch
 
-   ![](/image/index.png)
+   
 
    Branching is a feature available in most modern version control systems.
 
