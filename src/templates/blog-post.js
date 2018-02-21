@@ -3,8 +3,10 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import EffectiveDiscussionsCommentsIframe from 'gatsby-plugin-ed-comments'
 
-import Bio from '../components/Bio';
+// import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
+
+<script src="https://embed.runkit.com" data-element-id="my-element"></script>
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -13,7 +15,7 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <div>
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} /> 
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
@@ -30,7 +32,6 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
-        <Bio />
         <EffectiveDiscussionsCommentsIframe discussionId={post.frontmatter.discussionId} />
       </div>
     );

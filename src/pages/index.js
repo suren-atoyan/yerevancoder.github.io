@@ -14,11 +14,12 @@ class BlogIndex extends React.Component {
 
   static defaultProps = {
     header_style: {
-      backgroundColor: 'hsla(247.5, 50%, 3.1%, 1.0)',
+      backgroundColor: 'hsla(247.5, 50%, 3.1%, 0.9)',
       color: 'white',
       paddingLeft: '1%',
       paddingRight: '1%',
       paddingTop: '1%',
+      transition: 'all .1s ease-in-out'
     },
   };
 

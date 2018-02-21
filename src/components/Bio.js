@@ -13,16 +13,16 @@ export default ({ style = {} }) => (
       marginBottom: rhythm(2.5),
       ...style,
     }}>
-    <span>
-      <p>
-        yerevancoder.com-ը հարթակ է հայ ծրագրավորողների համար, որտեղ կարելի է կիսվել ծրագրավորման և
-        տեխնոլոգիաների մասին Ձեր մտքերով և փորձով․
-      </p>
-      <p>
+    <span
+      style={{
+        margin: '1rem'
+      }}
+    >
+      <div>
         yerevancoder.com is a place for coders in Armenia to share their thoughts, experiences in
         programming and tech. We are always looking for contributors, add a post{' '}
         <a href={'https://github.com/yerevancoder/yerevancoder.github.io'}>here</a>.
-      </p>
+      </div>
     </span>
   </div>
 );
