@@ -1,2 +1,0 @@
-webpackJsonp([0x81b8806e4260],{476:function(e,t){e.exports={data:{site:{siteMetadata:{title:"yerevancoder"}},allMarkdownRemark:{edges:[{node:{excerpt:"By Edgar Aroutiounian ,\ncatch me on  twitter Genesis The first conference dedicated just to  JavaScript  in Armenia is\nover.  JSConf 201…",fields:{slug:"/2017-12-20-init-post/"},frontmatter:{date:"20 December, 2017",title:"The success of JSConf in Armenia and what the future holds"}}}]}},pathContext:{}}}});
-//# sourceMappingURL=path---index-0c385b03f16a58e1240a.js.map

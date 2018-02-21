@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 20 Feb 2018 23:36:42 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[Loops This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in…]]></description><link>https://yerevancoder.com/2018-02-13-js-loops/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-13-js-loops/</guid><content:encoded>&lt;h1&gt;Loops&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 21 Feb 2018 11:43:37 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[Loops This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in…]]></description><link>https://yerevancoder.com/2018-02-13-js-loops/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-13-js-loops/</guid><content:encoded>&lt;h1&gt;Loops&lt;/h1&gt;
 &lt;p&gt;This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in JavaScript.&lt;/p&gt;
 &lt;h4&gt;Table of Contents&lt;/h4&gt;
 &lt;ol&gt;
@@ -373,108 +373,179 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 &lt;p&gt;Challenge. Try to make the resulting string have a comma between 3 and 4.&lt;/p&gt;
 &lt;p&gt;It won’t work if you add a comma after the 3, because the comma of the last element is ignored by the JS interpreter, just like the semicolons for example.&lt;/p&gt;
 &lt;h2&gt;Aftermath&lt;/h2&gt;
-&lt;p&gt;This is probably just 10% of all the things connected with Arrays and Objects. Talking about everything connected with them will take a lot of time, and makes no sense. The lot of stuff that will be needed can be Googled. The other 90% is on you, and on experience, as you will learn them on the go, when you will need them.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Git]]></title><description><![CDATA[Introduction to git What is git? Alright, we are already familiar to javascript basics, and we might want to create some cool projects…]]></description><link>https://yerevancoder.com/2018-02-18-git-and-github/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-18-git-and-github/</guid><pubDate>Sun, 18 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Introduction to git&lt;/h1&gt;
+&lt;p&gt;This is probably just 10% of all the things connected with Arrays and Objects. Talking about everything connected with them will take a lot of time, and makes no sense. The lot of stuff that will be needed can be Googled. The other 90% is on you, and on experience, as you will learn them on the go, when you will need them.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Git]]></title><description><![CDATA[Introduction to git What is git? Alright, we are already familiar with javascript basics, and we might want to create some cool projects…]]></description><link>https://yerevancoder.com/2018-02-18-git-and-github/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-18-git-and-github/</guid><pubDate>Sun, 18 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Introduction to git&lt;/h1&gt;
 &lt;h2&gt;What is git?&lt;/h2&gt;
-&lt;p&gt;Alright, we are already familiar to javascript basics, and we might want to create some cool projects.&lt;/p&gt;
+&lt;p&gt;Alright, we are already familiar with javascript basics, and we might want to create some cool projects.&lt;/p&gt;
 &lt;p&gt;Imagine that you and your friends are working on the same project.
 you probably are continually writing new source code and changing the existing source code.
-In this case the team need some software tools that help them manage changes to source code over time.
+In this case, the team needs some software tools that help them manage changes to source code over time.
 Version control software (VCS) keeps track of every modification to the code in a special kind of database.
 If a mistake is made, developers can turn back the clock and compare earlier versions of the code to help fix
 the mistake while minimizing disruption to all team members.
 Developing software without using version control is risky, like not having backups.
 n
 Git is a free, open source and the most commonly used distributed version control system (DVCS) today.&lt;/p&gt;
-&lt;p&gt;Git was started by Linus Trovalds, the same person who created Linux.&lt;/p&gt;
-&lt;h2&gt;What is github?&lt;/h2&gt;
+&lt;p&gt;Git was started by Linus Torvalds, the same person who created Linux.&lt;/p&gt;
+&lt;h2&gt;What is GitHub?&lt;/h2&gt;
 &lt;p&gt;GitHub is a hosting service for Git repositories.
 GitHub is a website where you can upload a copy of your Git repository.&lt;/p&gt;
 &lt;p&gt;Git and Github are not the same things:
 Git is the tool, GitHub is the service for projects that use Git.&lt;/p&gt;
 &lt;p&gt;GitHub provides free plans for open-source projects and paid plans offering unlimited private repositories.&lt;/p&gt;
-&lt;p&gt;Before moving on to the git basics, please create your personal github account.&lt;/p&gt;
+&lt;p&gt;Before moving on to the git basics, please create your personal GitHub account.&lt;/p&gt;
 &lt;h2&gt;Git basics&lt;/h2&gt;
 &lt;h4&gt;Install git&lt;/h4&gt;
-&lt;p&gt;$ sudo apt-get update&lt;/p&gt;
-&lt;p&gt;$ sudo apt-get install git&lt;/p&gt;
-&lt;p&gt;$ git —version&lt;/p&gt;
-&lt;h4&gt;Create a new directory, and open it&lt;/h4&gt;
-&lt;p&gt;$ mkdir my-directory&lt;/p&gt;
-&lt;p&gt;$ cd my-directory&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; --version
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Create a new directory and open it&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; my-directory
+$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; my-directory
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Create some files&lt;/h4&gt;
-&lt;p&gt;$ touch file.js&lt;/p&gt;
-&lt;p&gt;$ touch file2.js&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; file.js
+$ &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; file2.js
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Create a new git repository.&lt;/h4&gt;
-&lt;p&gt;$ git init&lt;/p&gt;
-&lt;p&gt;Directory now has an empty repository in /.git/.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The directory now has an empty repository in /.git/.&lt;/p&gt;
 &lt;p&gt;The repository is a hidden directory where Git operates.&lt;/p&gt;
 &lt;p&gt;Git keeps all of its files in the .git directory.&lt;/p&gt;
 &lt;h4&gt;Check the hidden files&lt;/h4&gt;
-&lt;p&gt;$ la&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ la
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Check the current state of the project&lt;/h4&gt;
 &lt;p&gt;You can edit the files and check the stage of your project with the following command&lt;/p&gt;
-&lt;p&gt;$ git status&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Add changes to the staged area&lt;/h4&gt;
-&lt;p&gt;$ git add ’ file-name ’&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add &lt;span class=&quot;token string&quot;&gt;&apos; file-name &apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Unstage&lt;/h4&gt;
-&lt;p&gt;$ git reset ’ file-name ’&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; reset &lt;span class=&quot;token string&quot;&gt;&apos; file-name &apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;p&gt;The files listed here are in the Staging Area, and they are not in our repository yet.&lt;/p&gt;
 &lt;p&gt;Staging is a step before the commit process in git.&lt;/p&gt;
 &lt;h4&gt;Commit&lt;/h4&gt;
-&lt;p&gt;$ git commit -m “a message describing what we’ve changed”.&lt;/p&gt;
-&lt;p&gt;Now if you check the current state of the project you will see ‘nothing to cmmit, working directory clean’.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;a message describing what we&apos;ve changed&quot;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Now if you check the current state of the project you will see ‘nothing to commit, working directory clean’.&lt;/p&gt;
 &lt;h4&gt;Undo a commit&lt;/h4&gt;
-&lt;p&gt;We can refer to our most recent commit, using HEAD pointer.&lt;/p&gt;
-&lt;p&gt;$ git reset Head~&lt;/p&gt;
+&lt;p&gt;We can refer to our most recent commit, using the HEAD pointer.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; reset Head~
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;History&lt;/h4&gt;
 &lt;p&gt;Make a few commits. and let’s browse them to see what we changed.&lt;/p&gt;
-&lt;p&gt;$ git log&lt;/p&gt;
-&lt;p&gt;$ git log -1&lt;/p&gt;
-&lt;p&gt;$ git log -2&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log -1
+$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log -2
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Add a remote repository&lt;/h4&gt;
 &lt;p&gt;To push our local repo to the GitHub server we’ll need to add a remote repository.&lt;/p&gt;
 &lt;p&gt;‘Origin’ is the default name of the remote git repository you cloned from.&lt;/p&gt;
 &lt;p&gt;The URL could be your repository on GitHub.&lt;/p&gt;
-&lt;p&gt;$ git remote add origin ’ URL ’&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; remote add origin &lt;span class=&quot;token string&quot;&gt;&apos; URL &apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Push command&lt;/h4&gt;
 &lt;p&gt;push command tells Git where to put our commits.&lt;/p&gt;
 &lt;p&gt;So let’s push our local changes to our origin repo (on GitHub).&lt;/p&gt;
-&lt;p&gt;The name of our remote is origin and the default local branch name is master.&lt;/p&gt;
+&lt;p&gt;The name of our remote is &lt;code&gt;origin&lt;/code&gt; and the default local branch name is master.&lt;/p&gt;
 &lt;p&gt;The -u tells Git to remember the parameters, so next time simply run git push.&lt;/p&gt;
-&lt;p&gt;$ git push -u origin master&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Diff&lt;/h4&gt;
-&lt;p&gt;The main objective of version controlling is to enable you to work with different versions of files.&lt;/p&gt;
-&lt;p&gt;Git provides a command ‘diff’ to let you to compare different versions of your files.&lt;/p&gt;
-&lt;p&gt;$ git diff&lt;/p&gt;
+&lt;p&gt;The main objective of version control is to enable you to work with different versions of files.&lt;/p&gt;
+&lt;p&gt;Git provides a command ‘diff’ that lets you to compare different versions of your files.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;diff&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;p&gt;Compares working directory with index (staged area).&lt;/p&gt;
 &lt;p&gt;It shows the changes that are not staged yet.&lt;/p&gt;
-&lt;p&gt;$ git diff HEAD&lt;/p&gt;
-&lt;p&gt;Compares working directory with the commited version.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;diff&lt;/span&gt; HEAD
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Compares working directory with the committed version.&lt;/p&gt;
 &lt;p&gt;It shows the list of changes after your last commit.&lt;/p&gt;
-&lt;p&gt;$ git diff —cached&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;diff&lt;/span&gt; --cached
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;p&gt;Compares index (staged area) with the commited version.&lt;/p&gt;
 &lt;p&gt;It shows the diff between your last commit and changes to be committed next.&lt;/p&gt;
-&lt;p&gt;git diff —cahced will only show changes to files in the “staged” area.&lt;/p&gt;
+&lt;p&gt;git diff —cahched will only show changes to files in the “staged” area.&lt;/p&gt;
 &lt;p&gt;git diff HEAD will show all changes to tracked files.&lt;/p&gt;
 &lt;p&gt;If you have all changes staged for commit, then both commands will output the same.&lt;/p&gt;
 &lt;h4&gt;Pull command&lt;/h4&gt;
 &lt;p&gt;Pull command incorporates changes from a remote repository into the current branch
 We can check for changes on our GitHub repository and pull down any new changes&lt;/p&gt;
-&lt;p&gt;$ git pull origin master&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; pull origin master
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Branch&lt;/h4&gt;
 &lt;p&gt;Branching is a feature available in most modern version control systems.&lt;/p&gt;
 &lt;p&gt;Git branches are effectively a pointer to a snapshot of your changes.&lt;/p&gt;
 &lt;p&gt;When you are working on a feature or bug you may want to create a copy of the code and make separate commits.&lt;/p&gt;
 &lt;h4&gt;Adding a new branch&lt;/h4&gt;
-&lt;p&gt;$ git branch ’ branch-name ’&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch &lt;span class=&quot;token string&quot;&gt;&apos; branch-name &apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Check branches&lt;/h4&gt;
-&lt;p&gt;$ git branch&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;h4&gt;Switching Branches&lt;/h4&gt;
-&lt;p&gt;$ git checkout ’ branch-name ’&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout &lt;span class=&quot;token string&quot;&gt;&apos; branch-name &apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;p&gt;when you’re done you can simply merge this branch back into the main master branch (or any other intended branch).&lt;/p&gt;
-&lt;p&gt;$ git merge ’ branch-name ’&lt;/p&gt;
-&lt;p&gt;And finally you can git push.&lt;/p&gt;
-&lt;p&gt;$ git push&lt;/p&gt;</content:encoded></item><item><title><![CDATA[JavaScript. Functions scopes and var.]]></title><description><![CDATA[Functions and scope What the function? Alright, we already know the very basic statements that are enough for writing some reasonable…]]></description><link>https://yerevancoder.com/2018-02-10-js-functions-scopes-and-var/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-10-js-functions-scopes-and-var/</guid><pubDate>Thu, 15 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Functions and scope&lt;/h1&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; merge &lt;span class=&quot;token string&quot;&gt;&apos; branch-name &apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;And finally, you can git push.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Additional resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;For more information and detailed explanations visit the amazing &lt;a href=&quot;https://github.com/susam/gitpr&quot;&gt;Fork and Pull Request Workflow&lt;/a&gt; repository.   &lt;/li&gt;
+&lt;li&gt;Practice your git skills with this interactive &lt;a href=&quot;https://try.github.io/levels/1/challenges/1&quot;&gt;tutorial&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[JavaScript. Functions scopes and var.]]></title><description><![CDATA[Functions and scope What the function? Alright, we already know the very basic statements that are enough for writing some reasonable…]]></description><link>https://yerevancoder.com/2018-02-10-js-functions-scopes-and-var/</link><guid isPermaLink="false">https://yerevancoder.com/2018-02-10-js-functions-scopes-and-var/</guid><pubDate>Thu, 15 Feb 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Functions and scope&lt;/h1&gt;
 &lt;h2&gt;What the function?&lt;/h2&gt;
 &lt;p&gt;Alright, we already know the very basic statements that are enough for writing some reasonable, somewhat useful programs. The next thing to do is studying functions. So what exactly are functions?&lt;/p&gt;
 &lt;p&gt;So all of you tried to solve a jigsaw puzzle right? There is a “strategy” of doing that. If you have tried to do it with your friends, usually each one of you solves just one part of the puzzle and then at the end you connect all the parts together.&lt;/p&gt;
