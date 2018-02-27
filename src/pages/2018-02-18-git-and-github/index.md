@@ -40,26 +40,30 @@ Before moving on to the git basics, please create your personal GitHub account.
 ## Git basics
 
 #### Install git
-``` bash
+
+```bash
 $ sudo apt-get update
 $ sudo apt-get install git
 $ git --version
 ```
 
 #### Create a new directory and open it
-``` bash
+
+```bash
 $ mkdir my-directory
 $ cd my-directory
 ```
 
 #### Create some files
-``` bash
+
+```bash
 $ touch file.js
 $ touch file2.js
 ```
 
 #### Create a new git repository.
-``` bash
+
+```bash
 $ git init
 ```
 
@@ -70,24 +74,28 @@ The repository is a hidden directory where Git operates.
 Git keeps all of its files in the .git directory.
 
 #### Check the hidden files
-``` bash
+
+```bash
 $ la
 ```
 
 #### Check the current state of the project
 
 You can edit the files and check the stage of your project with the following command
-``` bash
+
+```bash
 $ git status
 ```
 
 #### Add changes to the staged area
-``` bash
+
+```bash
 $ git add ' file-name '
 ```
 
 #### Unstage
-``` bash
+
+```bash
 $ git reset ' file-name '
 ```
 
@@ -97,7 +105,7 @@ Staging is a step before the commit process in git.
 
 #### Commit
 
-``` bash
+```bash
 $ git commit -m "a message describing what we've changed".
 ```
 
@@ -106,14 +114,16 @@ Now if you check the current state of the project you will see 'nothing to commi
 #### Undo a commit
 
 We can refer to our most recent commit, using the HEAD pointer.
-``` bash
+
+```bash
 $ git reset Head~
 ```
 
 #### History
 
 Make a few commits. and let's browse them to see what we changed.
-``` bash
+
+```bash
 $ git log
 $ git log -1
 $ git log -2
@@ -127,7 +137,7 @@ To push our local repo to the GitHub server we'll need to add a remote repositor
 
 The URL could be your repository on GitHub.
 
-``` bash
+```bash
 $ git remote add origin ' URL '
 ```
 
@@ -141,7 +151,7 @@ The name of our remote is `origin` and the default local branch name is master.
 
 The -u tells Git to remember the parameters, so next time simply run git push.
 
-``` bash
+```bash
 $ git push -u origin master
 ```
 
@@ -151,7 +161,7 @@ The main objective of version control is to enable you to work with different ve
 
 Git provides a command 'diff' that lets you to compare different versions of your files.
 
-``` bash
+```bash
 $ git diff
 ```
 
@@ -159,7 +169,7 @@ Compares working directory with index (staged area).
 
 It shows the changes that are not staged yet.
 
-``` bash
+```bash
 $ git diff HEAD
 ```
 
@@ -167,7 +177,7 @@ Compares working directory with the committed version.
 
 It shows the list of changes after your last commit.
 
-``` bash
+```bash
 $ git diff --cached
 ```
 
@@ -186,7 +196,7 @@ If you have all changes staged for commit, then both commands will output the sa
 Pull command incorporates changes from a remote repository into the current branch
 We can check for changes on our GitHub repository and pull down any new changes
 
-``` bash
+```bash
 $ git pull origin master
 ```
 
@@ -200,34 +210,35 @@ When you are working on a feature or bug you may want to create a copy of the co
 
 #### Adding a new branch
 
-``` bash
+```bash
 $ git branch ' branch-name '
 ```
 
 #### Check branches
 
-``` bash
+```bash
 $ git branch
 ```
 
 #### Switching Branches
 
-``` bash
+```bash
 $ git checkout ' branch-name '
 ```
 
 when you're done you can simply merge this branch back into the main master branch (or any other intended branch).
 
-``` bash
+```bash
 $ git merge ' branch-name '
 ```
 
 And finally, you can git push.
 
-``` bash
+```bash
 $ git push
 ```
 
 ## Additional resources
-- For more information and detailed explanations visit the amazing [Fork and Pull Request Workflow](https://github.com/susam/gitpr) repository.   
-- Practice your git skills with this interactive [tutorial](https://try.github.io/levels/1/challenges/1).
+
+* For more information and detailed explanations visit the amazing [Fork and Pull Request Workflow](https://github.com/susam/gitpr) repository.
+* Practice your git skills with this interactive [tutorial](https://try.github.io/levels/1/challenges/1).

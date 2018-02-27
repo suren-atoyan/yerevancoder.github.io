@@ -12,13 +12,13 @@
 This blog post is part of the posts series done for iterate hackerspace, explaining some of basic programming concepts implemented in JavaScript.
 
 ##### Table of contents
+
 [Introduction to recursion](#intro-recursion)
 [Practical examples](#practical)
-  * [Factorial](#factorial)
-  * [Fibonacci](#fibonacci)
-  * [Triangle example](#triangle)
 
-
+* [Factorial](#factorial)
+* [Fibonacci](#fibonacci)
+* [Triangle example](#triangle)
 
 ## Introduction to recursion.
 
@@ -29,13 +29,13 @@ So we talked about loops and running the same code repeteadly many times. We kno
 The most primitive example to start from is factorial. What is factorial of five? It's the product of all number up until 5.
 
 ```javascript
-factorial(5) === 1 * 2 * 3 * 4 * 5
+factorial(5) === 1 * 2 * 3 * 4 * 5;
 ```
 
 Now if you notice, this product can be represented as
 
 ```javascript
-factorial(5) === factorial(4) * 5
+factorial(5) === factorial(4) * 5;
 ```
 
 So what's this? We used factorial to define factorial. It may not make sense, but in programming this is an important notion called recursion.
@@ -48,20 +48,18 @@ This is a cool and wit example of recursion, we use the term to describe that te
 
 Here is also a graphical recursion.
 
-
-![Recursive Image](https://upload.wikimedia.org/wikipedia/commons/b/b3/Screenshot_Recursion_via_vlc.png "Recursion")
+![Recursive Image](https://upload.wikimedia.org/wikipedia/commons/b/b3/Screenshot_Recursion_via_vlc.png 'Recursion')
 
 Here are also recursion memes to make it more clear and funny :smile:
 
-![Drake Recursion](https://i.redd.it/md4l7yy3rgly.jpg "Drake recursion")
+![Drake Recursion](https://i.redd.it/md4l7yy3rgly.jpg 'Drake recursion')
 Aaaand another one
 
-![Recursion under my bed](https://pics.me.me/dad-there-is-a-recursion-under-my-bed-oad-there-29924251.png "Recursion under my bed")
+![Recursion under my bed](https://pics.me.me/dad-there-is-a-recursion-under-my-bed-oad-there-29924251.png 'Recursion under my bed')
 
 3D printer printing 3D printer
 
 ![3D Printer](http://wiki.secretgeek.net/Image/3d_printer_factory.jpg)
-
 
 So now you know that for understanding recursion you need to know what recursion is. It is main event time! Let's write some code.
 
@@ -75,11 +73,11 @@ Let's start with the most famous example -- factorial. It's just a function insi
 
 ```javascript
 const factorial = n => {
-    if (n <= 1) {
-        return 1;
-    }
-    return factorial(n - 1) * n;
-}
+  if (n <= 1) {
+    return 1;
+  }
+  return factorial(n - 1) * n;
+};
 ```
 
 So how this code works exactly. First we define the **_termination case_**. We need at least one of those so the recurison won't go on forever. For this current case we say that it should stop the recursion and return just a number `1` if n reaches 1 or 0. Can you say why?
@@ -102,11 +100,11 @@ Now, help me to write the code calculating fibonacci numbers.
 
 ```javascript
 const fib = n => {
-    if(n <= 1) {
-        return 1;
-    }
-    return fib(n - 1) + fib(n - 2);
-}
+  if (n <= 1) {
+    return 1;
+  }
+  return fib(n - 1) + fib(n - 2);
+};
 ```
 
 ### Triangle example
@@ -116,7 +114,7 @@ Do you remember the triangle example? Let's also implement it using recursion. B
 So on every call we have the triangle with 1 less width plus a newline character (As you may remember it's `'\n'`) and a line of `n` asterisks. So we know we should have something like.
 
 ```javascript
-stars(n) === stars(n - 1) + line
+stars(n) === stars(n - 1) + line;
 ```
 
 What about the termination case? Can you say a termination case for stars function?
@@ -125,18 +123,18 @@ Now as you can see, only the line part remains. Can you write a recursive functi
 
 ```javascript
 const printStarLine = n => {
-    if(n === 1) {
-        return '*';
-    }
-    return printStarLine(n - 1) + '*';
-}
+  if (n === 1) {
+    return '*';
+  }
+  return printStarLine(n - 1) + '*';
+};
 
 const stars = n => {
-    if(n === 0) {
-        return '\n';
-    }
-    return stars(n - 1) + printStarLine(n) + '\n'
-}
+  if (n === 0) {
+    return '\n';
+  }
+  return stars(n - 1) + printStarLine(n) + '\n';
+};
 ```
 
 So this is it for today. This topic is not for explaining a lot, as you can see I just showed a bunch of examples. It's more about questions and experience, which means that you need to ask your questions now and do the tasks so you can grasp this topic better.
