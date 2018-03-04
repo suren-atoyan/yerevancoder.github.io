@@ -1,4 +1,139 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Mar 2018 21:29:29 GMT</lastBuildDate><item><title><![CDATA[Function declaration and Function expression]]></title><description><![CDATA[Function declaration and Function expression Function declaration vs Function expression As we know there are couple of ways to create…]]></description><link>https://yerevancoder.com/2018-03-04-js-function-declaration-and-function-expression/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-04-js-function-declaration-and-function-expression/</guid><pubDate>Sun, 04 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Function declaration and Function expression&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Mar 2018 22:15:25 GMT</lastBuildDate><item><title><![CDATA[this variable in JavaScript]]></title><description><![CDATA[Execution Context (Aka the  this  variable) One of the hardest things to understand in JavaScript is the  this  variable, also known as the…]]></description><link>https://yerevancoder.com/2018-03-06-this-js-context/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-06-this-js-context/</guid><pubDate>Mon, 05 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Execution Context (Aka the &lt;code&gt;this&lt;/code&gt; variable)&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;One of the hardest things to understand in JavaScript is the &lt;code&gt;this&lt;/code&gt; variable, also known as the
+execution context. The &lt;code&gt;this&lt;/code&gt; variable refers to the current &lt;code&gt;object&lt;/code&gt; of which the called method is
+currently associated with.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;mari&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  speak&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Try it!&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe height=&quot;400px&quot; width=&quot;100%&quot;
+src=&quot;https://repl.it/@fxfactorial/SomberPositiveDebugging?lite=true&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot;
+allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; sandbox=&quot;allow-forms allow-pointer-lock allow-popups
+allow-same-origin allow-scripts allow-modals&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;The &lt;code&gt;this&lt;/code&gt; variable is &lt;strong&gt;dynamically&lt;/strong&gt; scoped, this means that it’s changed and doesn’t use the data
+that you might think it does when you use it.&lt;/p&gt;
+&lt;h3&gt;&lt;em&gt;the this variable&lt;/em&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;The &lt;code&gt;this&lt;/code&gt; variable is a part of the &lt;code&gt;EcmaScript&lt;/code&gt; spec, that means that it’s part of the language
+but its implementation depends on what environment you’re running your JavaScript code in. In the
+browser it refers to the &lt;code&gt;window&lt;/code&gt; object, in &lt;code&gt;node&lt;/code&gt; it refers to the global object. Open the &lt;code&gt;node&lt;/code&gt;
+repl and type &lt;code&gt;this&lt;/code&gt;, you’ll see the global object printed.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; this
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; DTRACE_NET_SERVER_CONNECTION: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Function&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  DTRACE_NET_STREAM_END: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Function&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  DTRACE_HTTP_SERVER_REQUEST: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Function&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  DTRACE_HTTP_SERVER_RESPONSE: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Function&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  DTRACE_HTTP_CLIENT_REQUEST: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Function&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  DTRACE_HTTP_CLIENT_RESPONSE: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Function&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  global: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Circular&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;,
+  process:
+  process &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    title: &lt;span class=&quot;token string&quot;&gt;&apos;node&apos;&lt;/span&gt;,
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;&lt;em&gt;Some important methods on functions&lt;/em&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;JavaScript functions also have methods on them and the most important ones are &lt;code&gt;bind&lt;/code&gt;, &lt;code&gt;call&lt;/code&gt;, and
+&lt;code&gt;apply&lt;/code&gt;, see another way to call a function:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// call just takes all the arguments you give it&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// and passes it to the function you are calling with .call&lt;/span&gt;
+f&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;You can also use &lt;code&gt;.apply&lt;/code&gt; but for apply you need to give an array of arguments.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+f&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;world&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;iframe height=&quot;400px&quot; width=&quot;100%&quot;
+src=&quot;https://repl.it/@fxfactorial/CalculatingWickedReciprocal?lite=true&quot; scrolling=&quot;no&quot;
+frameborder=&quot;no&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; sandbox=&quot;allow-forms
+allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals&quot;&gt;&lt;/iframe&gt;
+&lt;h3&gt;&lt;em&gt;Controling execution context&lt;/em&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;Notice that for both &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt; we gave &lt;code&gt;null&lt;/code&gt;. This means that we aren’t going to provide
+a custom execution context, that the function will get to use whatever the &lt;code&gt;this&lt;/code&gt; variable would
+have been. Now we will control the execution context:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;mari&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  speak&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; other_obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;nane&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+obj&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;speak&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;other_obj&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Run this code and you’ll see that &lt;code&gt;nane&lt;/code&gt; is printed to the screen, not &lt;code&gt;mari&lt;/code&gt;.&lt;/p&gt;
+&lt;iframe height=&quot;400px&quot; width=&quot;100%&quot; src=&quot;https://repl.it/@fxfactorial/PhonyMinorBloatware?lite=true&quot;
+scrolling=&quot;no&quot; frameborder=&quot;no&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; sandbox=&quot;allow-forms
+allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals&quot;&gt;&lt;/iframe&gt;
+&lt;h3&gt;&lt;em&gt;Binding a context for a function&lt;/em&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;Now we will talk about the most powerful and important method on functions, &lt;code&gt;.bind&lt;/code&gt;. The big
+annoyance in JavaScript is that the execution context, the &lt;code&gt;this&lt;/code&gt; variable that you end up using at
+runtime is not always the one you think will be used. This is because the &lt;code&gt;this&lt;/code&gt; variable is
+&lt;code&gt;dynamically&lt;/code&gt; scoped, not &lt;code&gt;lexically&lt;/code&gt; scoped. To make sure that our function uses the execution
+content that we want used we have to use &lt;code&gt;.bind&lt;/code&gt;, &lt;code&gt;.bind&lt;/code&gt; creates a new function that uses the
+execution context that you provide.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;aram&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// At the top level this refers to the global object&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;gohar&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;last_name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// This is using ES6 string interpolation, aka the ${}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toUpperCase&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;last_name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; g&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;obj&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;baz&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;iframe height=&quot;400px&quot; width=&quot;100%&quot; src=&quot;https://repl.it/@fxfactorial/LowestFrugalAnalysts?lite=true&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; sandbox=&quot;allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;So &lt;code&gt;f&lt;/code&gt; is a new function which is bound, we did a bind on g, to the JavaScript object &lt;code&gt;obj&lt;/code&gt;, we can
+also do other wacky things with &lt;code&gt;.bind&lt;/code&gt; like partial function application.&lt;/p&gt;
+&lt;h3&gt;&lt;em&gt;Useful for Partial function application&lt;/em&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;Partial function application is like making a new function from another function but where some of
+the arguments are used with other values; its clearer with an example.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;aram&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// At the top level this refers to the global object&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;gohar&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;last_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; age&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;last_name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;age&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// The first argument must always be the new execution context&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// and the other arguments end up being the&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// arguments of the original function&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; g&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;obj&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;baz&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;iframe height=&quot;400px&quot; width=&quot;100%&quot; src=&quot;https://repl.it/@fxfactorial/ClassicFondNumber?lite=true&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; allowtransparency=&quot;true&quot; allowfullscreen=&quot;true&quot; sandbox=&quot;allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;See how &lt;code&gt;&apos;baz&apos;&lt;/code&gt; ends up taking the argument value of &lt;code&gt;last_name&lt;/code&gt;, this is positional.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this&quot;&gt;&lt;strong&gt;Be sure to read over and over, MDN article on this variable&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Function declaration and Function expression]]></title><description><![CDATA[Function declaration and Function expression Function declaration vs Function expression As we know there are couple of ways to create…]]></description><link>https://yerevancoder.com/2018-03-04-js-function-declaration-and-function-expression/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-04-js-function-declaration-and-function-expression/</guid><pubDate>Sun, 04 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Function declaration and Function expression&lt;/h1&gt;
 &lt;h2&gt;Function declaration vs Function expression&lt;/h2&gt;
 &lt;p&gt;As we know there are couple of ways to create functions in Javascript: you can store function in variable and declare it directly. The former is known as function expression and the latter is known as function declaration. First, let’s take a look at function expression.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
