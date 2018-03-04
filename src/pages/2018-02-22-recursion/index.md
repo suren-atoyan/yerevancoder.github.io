@@ -1,10 +1,10 @@
 ---
- title: Javascript: Recursion
- tags: javascript, development
- author: Robert Gevorgyan
- date: "2018-02-22"
- description: Continuation of introduction of important coding topics using Javascript
- discussionId: "2018-02-22-recursion"
+title: JavaScript, Recursion
+tags: javascript, development
+author: Robert Gevorgyan
+date: "2018-02-22"
+description: Continuation of introduction of important coding topics using Javascript
+discussionId: "2018-02-22-recursion"
 ---
 
 # Using the function inside itself.

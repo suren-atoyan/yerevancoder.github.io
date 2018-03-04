@@ -1,10 +1,10 @@
 ---
- title: Javascript Loops
- tags: javascript, development
- author: Robert Gevorgyan
- date: "2018-02-13"
- description: Learn about for, while and do .. while loops.
- discussionId: "2018-02-13-js-loops"
+title: Javascript Loops
+tags: javascript, development
+author: Robert Gevorgyan
+date: "2018-02-13"
+description: Learn about for, while and do .. while loops.
+discussionId: "2018-02-13-js-loops"
 ---
 
 # Loops

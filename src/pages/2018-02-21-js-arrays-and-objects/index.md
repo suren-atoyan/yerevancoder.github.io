@@ -1,10 +1,10 @@
 ---
- title: Javascript Objects and Arrays
- tags: javascript, development
- author: Robert Gevorgyan
- date: "2018-02-21"
- description: A little talk about arrays, objects and usefult methods associated with them.
- discussionId: "2018-02-21-js-arrays-and-objects"
+title: JavaScript Objects and Arrays
+tags: javascript, development
+author: Robert Gevorgyan
+date: "2018-02-21"
+description: A little talk about arrays, objects and useful methods associated with them.
+discussionId: "2018-02-21-js-arrays-and-objects"
 ---
 
 # A lists of things

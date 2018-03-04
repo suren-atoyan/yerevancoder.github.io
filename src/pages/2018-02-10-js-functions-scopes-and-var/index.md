@@ -2,7 +2,7 @@
 title: JavaScript. Functions scopes and var.
 tags: javascript, development
 author: Robert Gevorgyan
-date: "2018-02-15"
+date: "2018-02-10"
 description: Learn about functions, scopes and var.
 discussionId: "2018-02-10-js-functions-scopes-and-var"
 ---
