@@ -197,25 +197,32 @@ This is just getting the property of the property.
 
 We already know that we can use 'for .. in' loop to iterate over the object. In that case, the iterator variable will have the key in it.
 
-```
-const someObj = { a: 1, b: 2, c: 3};
-for(let i in someObj) {
-    console.log(i, someObj[i]);
+```javascript
+const someObj = { a: 1, b: 2, c: 3 };
+for (let i in someObj) {
+  console.log(i, someObj[i]);
 }
 ```
 
-Do you see something strange here? We used another syntax other than the `property accessor operator` to get the value associated with the current key. That's because in case of writing `someObj.i` JS will literally try to find the property `i`. It won't understand that `i` is a varable and that it needs to change that `i` with the key value. So we use array like syntax to get the value associated with the key. In this case, whatever is inside `[]` is treated like a string. So we could do something like.
+Do you see something strange here? We used another syntax other than the `property accessor operator` to get the value associated with the current key. That's because in case of writing
+`someObj.i` JS will literally try to find the property `i`. It won't understand that `i` is a
+varable and that it needs to change that `i` with the key value. So we use array like syntax to get
+the value associated with the key. In this case, whatever is inside `[]` is treated like a
+string. So we could do something like.
 
 ```javascript
 const table = { width: 15, height: 10, length: 30, material: 'wood' };
 console.log(table['width']);
 ```
 
-This is a legal syntax, but it is usually used only in cases when the name of the property is stored in the variable and the `.` operator can't be used.
+This is a legal syntax, but it is usually used only in cases when the name of the property is stored
+in the variable and the `.` operator can't be used.
 
-Getting back to the topic. Using `for .. in` loop we can iterate over the object, but just like in case of the arrays, we can use some methods and make our code cleaner and the job of others easier.
+Getting back to the topic. Using `for .. in` loop we can iterate over the object, but just like in
+case of the arrays, we can use some methods and make our code cleaner and the job of others easier.
 
-There are 2 main methods that we will need, if we need to iterate over the object. Those 2 will give back an array given the object. Let's take a look.
+There are 2 main methods that we will need, if we need to iterate over the object. Those 2 will give
+back an array given the object. Let's take a look.
 
 #### The ways that are better.
 
@@ -239,7 +246,8 @@ const someObj = { a: 1, b: 2, c: 3 };
 console.log(Object.values(someObj));
 ```
 
-_NOTE: The order of the properties is not guaranteed. This means that if you have the object created like `{a: 1, b: 2, c: 3}`, those methods won't necessarily return `["a", "b", "c"]` or `[1, 2, 3]`. It can be `["b", "a", "c"]` or `[3, 1, 2]` or any other order._
+_NOTE: The order of the properties is not guaranteed. This means that if you have the object created
+like `{a: 1, b: 2, c: 3}`, those methods won't necessarily return `["a", "b", "c"]` or `[1, 2, 3]`. It can be `["b", "a", "c"]` or `[3, 1, 2]` or any other order._
 
 ##### Other methods
 

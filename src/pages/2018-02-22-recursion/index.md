@@ -137,4 +137,6 @@ const stars = n => {
 };
 ```
 
+<iframe height="400px" width="100%" src="https://repl.it/@fxfactorial/ShabbyCutePixel?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+
 So this is it for today. This topic is not for explaining a lot, as you can see I just showed a bunch of examples. It's more about questions and experience, which means that you need to ask your questions now and do the tasks so you can grasp this topic better.
