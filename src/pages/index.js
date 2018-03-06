@@ -42,7 +42,7 @@ class BlogIndex extends React.Component {
           <Bio style={header_style} />
         </Headroom>
         {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug;
+          const { title, tags, author, date } = node.frontmatter;
           return (
             <div key={node.fields.slug}>
               <h3 style={with_margin_bottom}>
@@ -51,8 +51,8 @@ class BlogIndex extends React.Component {
                 </Link>
               </h3>
               <small>
-                {node.frontmatter.date}. {node.wordCount.words} words, {node.timeToRead} minutes to
-                read
+                {date} | {node.wordCount.words} words | {node.timeToRead} minutes to read | {author}{' '}
+                | {tags}
               </small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
@@ -84,8 +84,10 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "DD MMMM, YYYY")
             title
+            tags
+            author
+            date(formatString: "MMMM DD, YYYY")
           }
         }
       }
