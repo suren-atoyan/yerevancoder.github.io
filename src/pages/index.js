@@ -34,12 +34,13 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     let header_style = {};
     if (this.state.showing_header === true) header_style = this.props.header_style;
-    console.log({ data: this.props.data });
+    const all_authors = new Set(posts.map(({ node }) => node.frontmatter.author));
+    const authors_count = all_authors.size;
     return (
       <div>
         <Helmet title={siteTitle} />
         <Headroom onPin={this.pinned} onUnpin={this.unpinned} onUnfix={this.unfixed}>
-          <Bio style={header_style} />
+          <Bio style={header_style} authors_count={authors_count} />
         </Headroom>
         {posts.map(({ node }) => {
           const { title, tags, author, date } = node.frontmatter;
