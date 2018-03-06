@@ -1,5 +1,5 @@
 ---
-title: Javascript. Edge Cases
+title: JavaScript. Edge Cases
 tags: javascript, development
 author: Elina Hovakimyan
 date: "2018-03-06"
@@ -7,7 +7,7 @@ description: tricky parts in javascript, edge cases
 discussionId: "2018-02-08-javascript-edge-cases"
 ---
 
-# Edge cases in Javascript
+# Edge cases in JavaScript
 
 Hi everyone, today we are going to talk about the edge cases in JS
 
@@ -482,34 +482,38 @@ Let's take a look at the function below. What will it return?
 
 ```js
 const hello = function() {
-  return;
-  ('How are you?');
+  return
+  ('How are you?')
 };
 
-hello(); //undefined
+hello() //undefined
 ```
 
-Oops! It returns `undefined` instead of asking how are you. But why? Well, the reason is that it added a semicolon after `return` which means you didn't mention what to return; thus, it's undefined.
+Oops! It returns `undefined` instead of asking how are you. But why? Well, the reason is that it
+added a semicolon after `return` which means you didn't mention what to return; thus, it's
+undefined.
 
-What if you want to return several things and it's not so comfortable to write it after the `return`. You just need to add parentheses (see below).
+What if you want to return several things and it's not so comfortable to write it after the
+`return`. You just need to add parentheses (see below).
 
 ```js
 const hello = function() {
-  return 'How are you?';
-};
+  return(
+    "How are you?"
+  )
+}
 
 hello(); //How are you?
 ```
 
 ### Starting a line with parentheses || angle brackets
 
-Another tricky edge case in JavaScript is when you skip putting a semicolon and start the next line with parentheses. Look at this code.
+Another tricky edge case in JavaScript is when you skip putting a semicolon and start the next line
+with parentheses. Look at this code.
 
 ```js
-const trickyVariable = 'I am a String'(function() {
-  console.log('Be Happy If You See Me');
-})();
-
+const trickyVariable = 'I am a String'
+(function() { console.log('Be Happy If You See Me') })()
 // Uncaught TypeError: "I am a String" is not a function
 ```
 
