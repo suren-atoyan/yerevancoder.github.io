@@ -9,6 +9,8 @@ import { rhythm } from '../utils/typography';
 // import 'prismjs/themes/prism-solarizedlight.css';
 import 'prismjs/themes/prism-tomorrow.css';
 
+const with_margin_bottom = { marginBottom: rhythm(1 / 4) };
+
 class BlogIndex extends React.Component {
   state = { showing_header: false };
 
@@ -19,20 +21,20 @@ class BlogIndex extends React.Component {
       paddingLeft: '1%',
       paddingRight: '1%',
       paddingTop: '1%',
-      transition: 'all .1s ease-in-out'
+      transition: 'all .1s ease-in-out',
     },
   };
 
-  unpinned = () => this.setState({ showing_header: true });
+  unpinned = () => this.setState(() => ({ showing_header: true }));
 
-  unfixed = () => this.setState({ showing_header: false });
+  unfixed = () => this.setState(() => ({ showing_header: false }));
 
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
     let header_style = {};
     if (this.state.showing_header === true) header_style = this.props.header_style;
-
+    console.log({ data: this.props.data });
     return (
       <div>
         <Helmet title={siteTitle} />
@@ -43,15 +45,15 @@ class BlogIndex extends React.Component {
           const title = get(node, 'frontmatter.title') || node.fields.slug;
           return (
             <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}>
+              <h3 style={with_margin_bottom}>
                 <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>
+                {node.frontmatter.date}. {node.wordCount.words} words, {node.timeToRead} minutes to
+                read
+              </small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
           );
@@ -73,6 +75,10 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
+          wordCount {
+            words
+          }
+          timeToRead
           excerpt
           fields {
             slug
