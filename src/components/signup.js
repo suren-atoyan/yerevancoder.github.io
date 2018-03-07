@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import { auth, db } from '../utils/db';
+import { ROUTES } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 
 const INITIAL_STATE = { username: '', email: '', passwordOne: '', passwordTwo: '', error: null };
@@ -17,16 +18,16 @@ class SignUpForm extends Component {
     const { username, email, passwordOne } = this.state;
     const { history } = this.props;
     auth
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        // Create a user in your own accessible Firebase Database too
-        db
-          .doCreateUser(authUser.uid, username, email)
-          .then(() =>
-            this.setState(() => ({ ...INITIAL_STATE }), () => history.push('/jobs-table'))
-          )
-          .catch(error => this.setState(updateByPropertyName('error', error)));
-      })
+      .createUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser =>
+        db.ref(`users/${authUser.uid}`).set({
+          username,
+          email,
+        })
+      )
+      .then(() =>
+        this.setState(() => ({ ...INITIAL_STATE }), () => history.push(ROUTES.JOBS_TABLE))
+      )
       .catch(error => this.setState(updateByPropertyName('error', error)));
     event.preventDefault();
   };
