@@ -1,4 +1,18 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-export default () => <p>hello</p>;
+import { rhythm } from '../utils/typography';
+
+const s = { marginTop: rhythm(1.5) };
+
+class NewJobPosting extends React.Component {
+  render() {
+    return (
+      <div style={s}>
+        <p>hello world</p>
+      </div>
+    );
+  }
+}
+
+export default withRouter(NewJobPosting);
