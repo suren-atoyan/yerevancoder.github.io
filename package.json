@@ -7,6 +7,7 @@
     "url": "https://github.com/yerevancoder/yerevancoder.github.io/issues"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "firebase": "^4.10.1",
     "gatsby": "^1.9.231",
     "gatsby-link": "^1.6.39",
@@ -42,7 +43,14 @@
     "prettier": "^1.9.2"
   },
   "homepage": "https://github.com/yerevancoder/yerevancoder.github.io#readme",
-  "keywords": ["gatsby", "armenia", "coders", "hackers", "iterate", "yerevan"],
+  "keywords": [
+    "gatsby",
+    "armenia",
+    "coders",
+    "hackers",
+    "iterate",
+    "yerevan"
+  ],
   "license": "MIT",
   "main": "n/a",
   "repository": {
@@ -53,12 +61,10 @@
     "dev": "gatsby develop",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format":
-      "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public --branch master",
-    "fix-semi":
-      "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
   }
 }
