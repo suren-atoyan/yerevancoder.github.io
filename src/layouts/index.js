@@ -31,8 +31,8 @@ export default class ApplicationRoot extends React.Component {
   };
 
   getChildContext() {
-    const didAuth = authed_user_data =>
-      this.setState(() => ({ authenticated_user: { ...authed_user_data } }));
+    const didAuth = (authed_user_data, after_cb) =>
+      this.setState(() => ({ authenticated_user: { ...authed_user_data } }), after_cb);
     return {
       authenticated_user: this.state.authenticated_user,
       userDidAuthSuccessfully: didAuth,
