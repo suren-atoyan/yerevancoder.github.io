@@ -62,12 +62,16 @@ export default withRouter(
       });
     }
 
+    user_did_signin_successful = () => {
+      this.setState(() => ({ modal_content: null, modal_show: false }));
+    };
+
     modal_content = () => {
       switch (this.state.modal_content) {
         case MODAL_CONTENT.PROFILE_VIEW:
           return <p>TODO - SOMEONE MAKE A PROFILE VIEW</p>;
         case MODAL_CONTENT.LOGIN_VIEW:
-          return <Login user_did_sign_in={this.toggle_modal} />;
+          return <Login user_did_sign_in={this.user_did_signin_successful} />;
         case MODAL_CONTENT.SIGNUP_VIEW:
           return <Signup />;
         default:
@@ -98,8 +102,6 @@ export default withRouter(
 
     render() {
       let signup_or_logged_in = null;
-      // disabled={this.context.authenticated_user !== null}
-
       if (this.context.authenticated_user === null) {
         signup_or_logged_in = (
           <input
