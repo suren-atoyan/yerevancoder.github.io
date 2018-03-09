@@ -18,7 +18,7 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.1.2.tgz#15415ed12b038356f79f22f9059002a29873a15a"
 
-"@firebase/auth@0.3.4":
+"@firebase/auth@0.3.4", "@firebase/auth@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.3.4.tgz#79dd0b9d86d51fd6874fa2fff2e3c06ceef07d41"
   dependencies:
@@ -28,11 +28,25 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.1.2.tgz#c6a23b8aa721ca16951c752430167ee764659916"
 
+"@firebase/database-types@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.2.0.tgz#c442af71e4c376e6bb78f6aa62645b5a0e2b87b6"
+
 "@firebase/database@0.1.11":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.1.11.tgz#652731bfd844bb858ab616e3dc8a3d5b8181101c"
   dependencies:
     "@firebase/database-types" "0.1.2"
+    "@firebase/util" "0.1.10"
+    faye-websocket "0.11.1"
+    tslib "^1.9.0"
+
+"@firebase/database@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.2.0.tgz#43fe1c022d30e2a6aff1e0832f1e7d9e3286b05c"
+  dependencies:
+    "@firebase/database-types" "0.2.0"
+    "@firebase/logger" "0.1.0"
     "@firebase/util" "0.1.10"
     faye-websocket "0.11.1"
     tslib "^1.9.0"
@@ -49,6 +63,10 @@
     "@firebase/webchannel-wrapper" "0.2.6"
     grpc "^1.9.1"
     tslib "^1.9.0"
+
+"@firebase/logger@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.1.0.tgz#0a7b3af8a43e4b48cc9b16e518c07d8a2ea290e8"
 
 "@firebase/messaging-types@0.1.2":
   version "0.1.2"
@@ -8536,10 +8554,6 @@ react-router@^4.1.1, react-router@^4.2.0:
     path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
     warning "^3.0.0"
-
-react-runkit@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/react-runkit/-/react-runkit-0.9.0.tgz#8a97aec60c2fcf9da17b0af2bb91a877e4336b05"
 
 react-side-effect@^1.1.0:
   version "1.1.5"
