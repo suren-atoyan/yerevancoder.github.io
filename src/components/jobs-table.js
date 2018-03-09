@@ -1,6 +1,5 @@
 import React from 'react';
 import format from 'date-fns/format';
-import PropTypes from 'prop-types';
 
 import { ROW, TEXT_S } from '../utils/constants';
 
@@ -14,7 +13,7 @@ const posting_s = {
 
 const details_s = { paddingLeft: '2%', paddingRight: '2%' };
 
-const summary_s = { ...TEXT_S, display: 'list-item', cursor: 'grabbing' };
+const summary_s = { ...TEXT_S, display: 'list-item', cursor: 'pointer' };
 
 const label_s = { color: 'rgb(127, 127, 127)' };
 
@@ -26,8 +25,6 @@ const job_description_s = {
   backgroundColor: '#f5f5ea',
 };
 
-// short job description limited to 180 characters
-// job_description limited to 1000 characters
 const Posting = ({
   creation_time,
   job_location,
