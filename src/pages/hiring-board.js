@@ -64,6 +64,7 @@ export default withRouter(
 
     user_did_signin_successful = () => {
       this.setState(() => ({ modal_content: null, modal_show: false }));
+      this.forceUpdate();
     };
 
     modal_content = () => {
