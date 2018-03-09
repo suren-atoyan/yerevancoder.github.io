@@ -10,7 +10,7 @@ import JobsTable from '../components/jobs-table';
 import Login from '../components/login';
 import Signup from '../components/signup';
 import { posts_ref } from '../utils/db';
-import { ROW, TEXT_S, DISPLAY_FLEX_S, ROUTES } from '../utils/constants';
+import { ROW, TEXT_S, DISPLAY_FLEX_S, ROUTES, SPACER_30_H } from '../utils/constants';
 
 const banner_s = { ...ROW, maxHeight: '30px' };
 
@@ -22,6 +22,7 @@ const horizontal_spacer = <div style={{ width: '10px' }} />;
 
 const modal_s = {
   content: {
+    width: '50%',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -30,8 +31,6 @@ const modal_s = {
     transform: 'translate(-50%, -50%)',
   },
 };
-
-const spacer = <div style={{ height: '30px', width: '100%' }} />;
 
 const MODAL_CONTENT = {
   PROFILE_VIEW: 'profile-view',
@@ -152,7 +151,7 @@ export default withRouter(
               {signup_or_logged_in}
             </div>
           </div>
-          {spacer}
+          {SPACER_30_H}
           <JobsTable all_jobs={this.state.jobs} />
         </section>
       );

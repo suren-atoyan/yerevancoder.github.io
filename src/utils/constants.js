@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const ROUTES = {
   JOBS_TABLE: '/hiring-board',
   NEW_JOB_POSTING: '/new-job-posting',
@@ -12,3 +14,5 @@ export const DISPLAY_FLEX_S = { display: 'flex' };
 export const SUMMARY_LIMIT = 120;
 
 export const JOB_POSTING_DESCRIPTION_LIMIT = 1000;
+
+export const SPACER_30_H = <div style={{ height: '30px', width: '100%' }} />;

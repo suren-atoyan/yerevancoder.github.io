@@ -4,14 +4,26 @@ import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { DISPLAY_FLEX_S, TEXT_S } from '../utils/constants';
+import { DISPLAY_FLEX_S, TEXT_S, SPACER_30_H } from '../utils/constants';
 
 const INITIAL_STATE = { email: '', password: '', error: null };
 
-const error_message_s = {};
+const login_entry_box_prompt_s = { ...TEXT_S, textAlign: 'center' };
 
-const login_s = { ...DISPLAY_FLEX_S, flexDirection: 'column' };
-const login_message = <p style={{ ...TEXT_S, textAlign: 'center' }}>Login to post jobs</p>;
+const width_with_margin = { width: '90%', marginLeft: '5%', marginRight: '5%' };
+
+const login_entry_box_fieldset_s = {
+  ...DISPLAY_FLEX_S,
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingBottom: '10px',
+  paddingTop: '10px',
+};
+
+const login_entry_box_signin_s = { ...width_with_margin };
+
+const login_message = <p style={login_entry_box_prompt_s}>Login to post jobs</p>;
 
 export default withRouter(
   class SignInForm extends React.Component {
@@ -42,24 +54,31 @@ export default withRouter(
       const isInvalid = password === '' || email === '';
       return (
         <form onSubmit={this.onSubmit}>
-          {login_message}
-          <fieldset style={login_s}>
+          <fieldset style={login_entry_box_fieldset_s}>
+            {error ? <p style={login_entry_box_prompt_s}>{error.message}</p> : login_message}
             <input
               value={email}
               onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
               type={'text'}
+              style={width_with_margin}
               placeholder={'Email Address'}
             />
             <input
               value={password}
+              style={width_with_margin}
               onChange={event =>
                 this.setState(updateByPropertyName('password', event.target.value))
               }
               type="password"
               placeholder="Password"
             />
-            <input value={'Sign In'} disabled={isInvalid} type="submit" />
-            {error && <p style={error_message_s}>{error.message}</p>}
+            {SPACER_30_H}
+            <input
+              style={login_entry_box_signin_s}
+              value={'Sign In'}
+              disabled={isInvalid}
+              type="submit"
+            />
           </fieldset>
         </form>
       );
