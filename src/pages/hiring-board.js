@@ -42,7 +42,6 @@ const MODAL_CONTENT = {
 export default withRouter(
   class HiringBoard extends React.Component {
     state = { jobs: [], modal_show: false, modal_content: null };
-    // state = { jobs: [], modal_show: false, modal_content: MODAL_CONTENT.LOGIN_VIEW };
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
@@ -55,10 +54,12 @@ export default withRouter(
       history.push(ROUTES.NEW_JOB_POSTING);
     };
 
-    async componentDidMount() {
+    componentDidMount() {
       posts_ref.once('value', snap_shot => {
         const rows = snap_shot.val();
-        this.setState(() => ({ jobs: Object.values(rows) }));
+        if (rows) {
+          this.setState(() => ({ jobs: Object.values(rows) }));
+        }
       });
     }
 

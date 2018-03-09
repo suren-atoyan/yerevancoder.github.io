@@ -35,7 +35,7 @@ export default withRouter(
 
       return (
         <form onSubmit={this.onSubmit}>
-          <div style={full_width}>
+          <fieldset style={full_width}>
             <input
               style={half_width}
               value={username}
@@ -70,14 +70,14 @@ export default withRouter(
               type={'password'}
               placeholder={'Confirm Password'}
             />
-          </div>
-          <input
-            style={full_width}
-            type={'button'}
-            disabled={isInvalid}
-            type={'submit'}
-            value={'sign up'}
-          />
+            <input
+              style={full_width}
+              type={'button'}
+              disabled={isInvalid}
+              type={'submit'}
+              value={'sign up'}
+            />
+          </fieldset>
           {error && <p>{error.message}</p>}
         </form>
       );

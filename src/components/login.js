@@ -22,24 +22,19 @@ export default withRouter(
       userDidAuthSuccessfully: PropTypes.func,
     };
 
-    onSubmit = async event => {
+    onSubmit = event => {
       const { email, password } = this.state;
       const { user_did_sign_in } = this.props;
       event.preventDefault();
-      try {
-        const {
-          uid,
-          refreshToken,
-          metadata,
-          email: email_account,
-        } = await auth.signInWithEmailAndPassword(email, password);
-        const { userDidAuthSuccessfully } = this.context;
-        userDidAuthSuccessfully({ uid, refreshToken, metadata, email_account }, () =>
-          this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in)
-        );
-      } catch (error) {
-        this.setState(updateByPropertyName('error', error));
-      }
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then(({ uid, refreshToken, metadata, email: email_account }) => {
+          const { userDidAuthSuccessfully } = this.context;
+          userDidAuthSuccessfully({ uid, refreshToken, metadata, email_account }, () =>
+            this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in)
+          );
+        })
+        .catch(error => this.setState(updateByPropertyName('error', error)));
     };
 
     render() {

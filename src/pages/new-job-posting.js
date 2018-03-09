@@ -48,7 +48,7 @@ export default withRouter(
 
     state = { ...INIT_STATE };
 
-    submit_new_job_posting = async e => {
+    submit_new_job_posting = e => {
       e.preventDefault();
       const { value: salary_from } = this.input_salary_from;
       const { value: salary_to } = this.input_salary_from;
@@ -68,15 +68,23 @@ export default withRouter(
         const { uid: creator_uid } = this.context.authenticated_user;
         const now = new Date();
         const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
-        const reply = await db.ref(`posts`).push({
-          ...this.state,
-          creation_time: now.getTime(),
-          salary_from,
-          salary_to,
-          creator_uid,
-        });
-        await db.ref(`users/${creator_uid}/posts`).push({ post_key: reply.key });
-        this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE));
+        db
+          .ref(`posts`)
+          .push({
+            ...this.state,
+            creation_time: now.getTime(),
+            salary_from,
+            salary_to,
+            creator_uid,
+          })
+          .then(reply =>
+            db
+              .ref(`users/${creator_uid}/posts`)
+              .push({ post_key: reply.key })
+              .then(() =>
+                this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE))
+              )
+          );
       } else {
         // Handle error somehow?
       }
