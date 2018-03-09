@@ -3,10 +3,7 @@ import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import EffectiveDiscussionsCommentsIframe from 'gatsby-plugin-ed-comments';
 
-// import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
-
-<script src="https://embed.runkit.com" data-element-id="my-element" />;
 
 const post_style = {
   ...scale(-1 / 5),
