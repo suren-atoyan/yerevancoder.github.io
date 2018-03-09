@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { rhythm } from '../utils/typography';
 import JobsTable from '../components/jobs-table';
 import Login from '../components/login';
+import Signup from '../components/signup';
 import { posts_ref } from '../utils/db';
 import { ROW, TEXT_S, DISPLAY_FLEX_S, ROUTES } from '../utils/constants';
 
@@ -32,15 +33,22 @@ const modal_s = {
 
 const spacer = <div style={{ height: '30px', width: '100%' }} />;
 
+const MODAL_CONTENT = {
+  PROFILE_VIEW: 'profile-view',
+  LOGIN_VIEW: 'login-view',
+  SIGNUP_VIEW: 'signup-view',
+};
+
 export default withRouter(
   class HiringBoard extends React.Component {
-    state = { jobs: [], modal_show: false };
+    state = { jobs: [], modal_show: false, modal_content: null };
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
     };
 
     toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
+
     go_to_new_posting = () => {
       const { history } = this.props;
       history.push(ROUTES.NEW_JOB_POSTING);
@@ -53,7 +61,50 @@ export default withRouter(
       });
     }
 
+    modal_content = () => {
+      switch (this.state.modal_content) {
+        case MODAL_CONTENT.PROFILE_VIEW:
+          // TODO
+          return null;
+        case MODAL_CONTENT.LOGIN_VIEW:
+          return <Login close_container={this.toggle_modal} />;
+        case MODAL_CONTENT.SIGNUP_VIEW:
+          return <Signup />;
+        default:
+          return null;
+      }
+    };
+
+    show_login_modal = () => {
+      this.setState(({ modal_show }) => ({
+        modal_show: !modal_show,
+        modal_content: MODAL_CONTENT.LOGIN_VIEW,
+      }));
+    };
+
+    show_signup_modal = () => {
+      this.setState(({ modal_show }) => ({
+        modal_show: !modal_show,
+        modal_content: MODAL_CONTENT.SIGNUP_VIEW,
+      }));
+    };
+
     render() {
+      let signup_or_logged_in = null;
+      // disabled={this.context.authenticated_user !== null}
+
+      if (this.context.authenticated_user === null) {
+        signup_or_logged_in = (
+          <input
+            onClick={this.show_signup_modal}
+            style={post_new_s}
+            type={'button'}
+            value={'Signup'}
+          />
+        );
+      } else {
+        //
+      }
       return (
         <section style={s}>
           <Modal
@@ -62,7 +113,7 @@ export default withRouter(
             ariaHideApp={false}
             style={modal_s}
             contentLabel="Login to Yerevancoder">
-            <Login close_container={this.toggle_modal} />
+            {this.modal_content()}
           </Modal>
           <div style={banner_s}>
             <p style={TEXT_S}>Get hired now</p>
@@ -76,16 +127,17 @@ export default withRouter(
               />
               {horizontal_spacer}
               <input
-                onClick={this.toggle_modal}
+                onClick={this.show_login_modal}
                 style={post_new_s}
                 type={'button'}
                 value={'Login'}
                 disabled={this.context.authenticated_user !== null}
               />
+              {horizontal_spacer}
+              {signup_or_logged_in}
             </div>
           </div>
           {spacer}
-
           <JobsTable all_jobs={this.state.jobs} />
         </section>
       );
