@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { ROUTES } from '../utils/constants';
+import { DISPLAY_FLEX_S, TEXT_S } from '../utils/constants';
 
 const INITIAL_STATE = { email: '', password: '', error: null };
 
 const error_message_s = {};
+
+const login_s = { ...DISPLAY_FLEX_S, flexDirection: 'column' };
+const login_message = <p style={{ ...TEXT_S, textAlign: 'center' }}>Login to post jobs</p>;
 
 export default withRouter(
   class SignInForm extends React.Component {
@@ -21,7 +24,7 @@ export default withRouter(
 
     onSubmit = async event => {
       const { email, password } = this.state;
-      const { history } = this.props;
+      const { user_did_sign_in } = this.props;
       event.preventDefault();
       try {
         const {
@@ -32,12 +35,7 @@ export default withRouter(
         } = await auth.signInWithEmailAndPassword(email, password);
         const { userDidAuthSuccessfully } = this.context;
         userDidAuthSuccessfully({ uid, refreshToken, metadata, email_account }, () =>
-          this.setState(
-            () => ({ ...INITIAL_STATE }),
-            () => {
-              history.push(ROUTES.NEW_JOB_POSTING);
-            }
-          )
+          this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in)
         );
       } catch (error) {
         this.setState(updateByPropertyName('error', error));
@@ -49,20 +47,25 @@ export default withRouter(
       const isInvalid = password === '' || email === '';
       return (
         <form onSubmit={this.onSubmit}>
-          <input
-            value={email}
-            onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-            type={'text'}
-            placeholder={'Email Address'}
-          />
-          <input
-            value={password}
-            onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-            type="password"
-            placeholder="Password"
-          />
-          <input value={'Sign In'} disabled={isInvalid} type="submit" />
-          {error && <p style={error_message_s}>{error.message}</p>}
+          {login_message}
+          <fieldset style={login_s}>
+            <input
+              value={email}
+              onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+              type={'text'}
+              placeholder={'Email Address'}
+            />
+            <input
+              value={password}
+              onChange={event =>
+                this.setState(updateByPropertyName('password', event.target.value))
+              }
+              type="password"
+              placeholder="Password"
+            />
+            <input value={'Sign In'} disabled={isInvalid} type="submit" />
+            {error && <p style={error_message_s}>{error.message}</p>}
+          </fieldset>
         </form>
       );
     }

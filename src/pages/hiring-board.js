@@ -42,6 +42,7 @@ const MODAL_CONTENT = {
 export default withRouter(
   class HiringBoard extends React.Component {
     state = { jobs: [], modal_show: false, modal_content: null };
+    // state = { jobs: [], modal_show: false, modal_content: MODAL_CONTENT.LOGIN_VIEW };
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
@@ -64,15 +65,21 @@ export default withRouter(
     modal_content = () => {
       switch (this.state.modal_content) {
         case MODAL_CONTENT.PROFILE_VIEW:
-          // TODO
-          return null;
+          return <p>TODO - SOMEONE MAKE A PROFILE VIEW</p>;
         case MODAL_CONTENT.LOGIN_VIEW:
-          return <Login close_container={this.toggle_modal} />;
+          return <Login user_did_sign_in={this.toggle_modal} />;
         case MODAL_CONTENT.SIGNUP_VIEW:
           return <Signup />;
         default:
           return null;
       }
+    };
+
+    show_profile_modal = () => {
+      this.setState(({ modal_show }) => ({
+        modal_show: !modal_show,
+        modal_content: MODAL_CONTENT.PROFILE_VIEW,
+      }));
     };
 
     show_login_modal = () => {
@@ -103,7 +110,14 @@ export default withRouter(
           />
         );
       } else {
-        //
+        signup_or_logged_in = (
+          <input
+            onClick={this.show_profile_modal}
+            style={post_new_s}
+            type={'button'}
+            value={this.context.authenticated_user.email_account}
+          />
+        );
       }
       return (
         <section style={s}>
