@@ -5,7 +5,7 @@ import format from 'date-fns/format';
 
 import { rhythm } from '../utils/typography';
 import { updateByPropertyName } from '../utils/funcs';
-import { job_board_storage } from '../utils/db';
+import { db } from '../utils/db';
 import { ROUTES } from '../utils/constants';
 
 const s = { marginTop: rhythm(1.5), backgroundColor: '#f5f5ea', paddingBottom: rhythm(1.5) };
@@ -65,32 +65,27 @@ export default withRouter(
           })
           .reduce((accumulator, currentValue) => accumulator && currentValue)
       ) {
-        const { uid } = this.context.authenticated_user;
+        const { uid: creator_uid } = this.context.authenticated_user;
         const now = new Date();
         const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
-        const spotRef = job_board_storage
-          .child(uid)
-          .child(`${this.state.short_job_description}-${uuid}.json`);
-        const data = JSON.stringify({ ...this.state, now: now.getTime() });
-        const snapshot = await spotRef.putString(data);
-        if (snapshot.state === 'success') {
-          this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE));
-        }
+        const reply = await db.ref(`posts`).push({
+          ...this.state,
+          creation_time: now.getTime(),
+          salary_from,
+          salary_to,
+          creator_uid,
+        });
+        await db.ref(`users/${creator_uid}/posts`).push({ post_key: reply.key });
+        this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE));
       } else {
         // Handle error somehow?
       }
     };
 
-    test_ctx = () => {
-      console.log({ test_context: this.context });
-    };
-
     render() {
       return (
         <section style={s}>
-          <p onClick={this.test_ctx} style={new_posting_s}>
-            Post a new job
-          </p>
+          <p style={new_posting_s}>Post a new job</p>
           <form onSubmit={this.submit_new_job_posting}>
             <fieldset disabled={this.context.authenticated_user === null} style={column}>
               {/* Job Location */}

@@ -36,9 +36,10 @@ const job_description_s = {
 // short job description limited to 180 characters
 // job_description limited to 1000 characters
 const Posting = ({
-  post_date,
+  creation_time,
   job_location,
-  salary_range: { from, to },
+  salary_from: from,
+  salary_to: to,
   payment_currency,
   post_author,
   job_description,
@@ -50,7 +51,7 @@ const Posting = ({
       <summary style={summary_s}>{short_job_description}</summary>
       <div style={row}>
         <span style={label_s}>Posted by: {post_author}</span>
-        <span style={label_s}>Post date: {format(post_date, 'DD/MMM/YYYY')}</span>
+        <span style={label_s}>Post date: {format(new Date(creation_time), 'DD/MMM/YYYY')}</span>
       </div>
       <div style={row}>
         <span style={label_s}>Location: {job_location}</span>

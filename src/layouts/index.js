@@ -23,7 +23,6 @@ const yc = (
 const container_style = { maxWidth: rhythm(35), padding: `${rhythm(1.5)} ${rhythm(3 / 4)}` };
 
 export default class ApplicationRoot extends React.Component {
-  // state = { authenticated_user: null };
   state = { authenticated_user: null };
 
   static childContextTypes = {
@@ -33,7 +32,6 @@ export default class ApplicationRoot extends React.Component {
 
   getChildContext() {
     const didAuth = (authedUserData, afterCb) => {
-      console.log({ authedUserData });
       this.setState(() => ({ authenticated_user: { ...authedUserData } }), afterCb);
     };
     return {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { auth, user_profile_storage } from '../utils/db';
+import { auth, db } from '../utils/db';
 import { ROUTES } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 
@@ -15,23 +15,16 @@ class SignUpForm extends Component {
   state = { ...INITIAL_STATE };
 
   onSubmit = event => {
+    event.preventDefault();
     const { username, email, passwordOne } = this.state;
     const { history } = this.props;
     auth
       .createUserWithEmailAndPassword(email, passwordOne)
-      .then(
-        authUser => undefined
-        //     user_profile_storage
-        // db.ref(`users/${authUser.uid}`).set({
-        //   username,
-        //   email,
-        // })
-      )
+      .then(({ uid }) => db.ref(`users/${uid}`).set({ username, email }))
       .then(() =>
         this.setState(() => ({ ...INITIAL_STATE }), () => history.push(ROUTES.JOBS_TABLE))
       )
       .catch(error => this.setState(updateByPropertyName('error', error)));
-    event.preventDefault();
   };
 
   render() {

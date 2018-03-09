@@ -13,12 +13,12 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
-const root_storage = firebase.storage().ref();
+const db = firebase.database();
+
+const storage = firebase.storage();
 
 const auth = firebase.auth();
 
-const user_profile_storage = root_storage.child('users');
+const posts_ref = db.ref(`posts`);
 
-const job_board_storage = root_storage.child('job-board');
-
-export { root_storage, auth, user_profile_storage, job_board_storage };
+export { firebase, storage, auth, db, posts_ref };
