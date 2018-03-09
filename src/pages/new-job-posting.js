@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import format from 'date-fns/format';
 
 import { rhythm } from '../utils/typography';
 import { updateByPropertyName } from '../utils/funcs';
+import { job_board_storage } from '../utils/db';
+import { ROUTES } from '../utils/constants';
 
 const s = { marginTop: rhythm(1.5), backgroundColor: '#f5f5ea', paddingBottom: rhythm(1.5) };
 
@@ -28,32 +31,66 @@ const column = { display: 'flex', flexDirection: 'column', marginLeft: '10%', ma
 
 const input_s = { paddingLeft: '5px' };
 
+const INIT_STATE = {
+  job_location: '',
+  payment_currency: 'dram',
+  post_author: '',
+  job_description: '',
+  short_job_description: '',
+  contact_info: '',
+};
+
 export default withRouter(
   class NewJobPosting extends React.Component {
     static contextTypes = {
       authenticated_user: PropTypes.object,
     };
 
-    state = {
-      post_date: null,
-      job_location: null,
-      salary_range_from: null,
-      salary_range_to: null,
-      payment_currency: 'dram',
-      post_author: null,
-      job_description: null,
-      short_job_description: null,
-      contact_info: null,
+    state = { ...INIT_STATE };
+
+    submit_new_job_posting = async e => {
+      e.preventDefault();
+      const { value: salary_from } = this.input_salary_from;
+      const { value: salary_to } = this.input_salary_from;
+      const { history } = this.props;
+      let missing_field = null;
+      if (
+        salary_from !== '' ||
+        salary_to !== '' ||
+        Object.keys(this.state)
+          .map(k => {
+            const is_missing = this.state[k] !== '';
+            if (is_missing) missing_field = k;
+            return is_missing;
+          })
+          .reduce((accumulator, currentValue) => accumulator && currentValue)
+      ) {
+        const { uid } = this.context.authenticated_user;
+        const now = new Date();
+        const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
+        const spotRef = job_board_storage
+          .child(uid)
+          .child(`${this.state.short_job_description}-${uuid}.json`);
+        const data = JSON.stringify({ ...this.state, now: now.getTime() });
+        const snapshot = await spotRef.putString(data);
+        if (snapshot.state === 'success') {
+          this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE));
+        }
+      } else {
+        // Handle error somehow?
+      }
     };
 
-    submit_new_job_posting = async () => {
-      console.log({ d: this.state });
+    test_ctx = () => {
+      console.log({ test_context: this.context });
     };
 
     render() {
       return (
         <section style={s}>
-          <p style={new_posting_s}>Post a new job</p>
+          <p onClick={this.test_ctx} style={new_posting_s}>
+            Post a new job
+          </p>
           <form onSubmit={this.submit_new_job_posting}>
             <fieldset disabled={this.context.authenticated_user === null} style={column}>
               {/* Job Location */}
@@ -73,19 +110,13 @@ export default withRouter(
                 <label style={field_label}>Salary range</label>
                 <div style={row}>
                   <input
-                    value={this.state.salary_range_from}
-                    onChange={event =>
-                      this.setState(updateByPropertyName('salary_range_from', event.target.value))
-                    }
+                    ref={e => (this.input_salary_from = e)}
                     type={'number'}
                     placeholder={'300000'}
                     style={input_s}
                   />
                   <input
-                    value={this.state.salary_range_to}
-                    onChange={event =>
-                      this.setState(updateByPropertyName('salary_range_to', event.target.value))
-                    }
+                    ref={e => (this.input_salary_to = e)}
                     type={'number'}
                     placeholder={'1000000'}
                     style={input_s}
@@ -132,7 +163,7 @@ export default withRouter(
               <div style={field}>
                 <label style={field_label}>Short Job Description (120 chars)</label>
                 <textarea
-                  maxlength={120}
+                  maxLength={120}
                   rows={4}
                   cols={30}
                   onChange={event =>
@@ -147,7 +178,7 @@ export default withRouter(
               <div style={field}>
                 <label style={field_label}>Full Job Description (1000 chars)</label>
                 <textarea
-                  maxlength={1000}
+                  maxLength={1000}
                   rows={6}
                   cols={40}
                   onChange={event =>
@@ -158,7 +189,6 @@ export default withRouter(
                   style={input_s}
                 />
               </div>
-
               <input type={'submit'} value={'Submit'} />
             </fieldset>
           </form>

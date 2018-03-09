@@ -5,7 +5,7 @@ const config = {
   authDomain: 'yerevan-coder.firebaseapp.com',
   databaseURL: 'https://yerevan-coder.firebaseio.com',
   projectId: 'yerevan-coder',
-  storageBucket: '',
+  storageBucket: 'yerevan-coder.appspot.com',
   messagingSenderId: '404306745515',
 };
 
@@ -13,7 +13,12 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
-const db = firebase.database();
+const root_storage = firebase.storage().ref();
+
 const auth = firebase.auth();
 
-export { db, auth };
+const user_profile_storage = root_storage.child('users');
+
+const job_board_storage = root_storage.child('job-board');
+
+export { root_storage, auth, user_profile_storage, job_board_storage };

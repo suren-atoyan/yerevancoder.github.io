@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { auth, db } from '../utils/db';
+import { auth, user_profile_storage } from '../utils/db';
 import { ROUTES } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 
@@ -19,11 +19,13 @@ class SignUpForm extends Component {
     const { history } = this.props;
     auth
       .createUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser =>
-        db.ref(`users/${authUser.uid}`).set({
-          username,
-          email,
-        })
+      .then(
+        authUser => undefined
+        //     user_profile_storage
+        // db.ref(`users/${authUser.uid}`).set({
+        //   username,
+        //   email,
+        // })
       )
       .then(() =>
         this.setState(() => ({ ...INITIAL_STATE }), () => history.push(ROUTES.JOBS_TABLE))
@@ -44,15 +46,15 @@ class SignUpForm extends Component {
             style={half_width}
             value={username}
             onChange={event => this.setState(updateByPropertyName('username', event.target.value))}
-            type="text"
-            placeholder="Full Name"
+            type={'text'}
+            placeholder={'Full Name'}
           />
           <input
             style={half_width}
             value={email}
             onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-            type="text"
-            placeholder="Email Address"
+            type={'text'}
+            placeholder={'Email Address'}
           />
           <input
             style={half_width}
@@ -60,8 +62,8 @@ class SignUpForm extends Component {
             onChange={event =>
               this.setState(updateByPropertyName('passwordOne', event.target.value))
             }
-            type="password"
-            placeholder="Password"
+            type={'password'}
+            placeholder={'Password'}
           />
           <input
             style={half_width}
@@ -69,8 +71,8 @@ class SignUpForm extends Component {
             onChange={event =>
               this.setState(updateByPropertyName('passwordTwo', event.target.value))
             }
-            type="password"
-            placeholder="Confirm Password"
+            type={'password'}
+            placeholder={'Confirm Password'}
           />
         </div>
         <input

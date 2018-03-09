@@ -1,18 +1,20 @@
+import 'prismjs/themes/prism-tomorrow.css';
+
 import React from 'react';
 import Link from 'gatsby-link';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import Headroom from 'react-headroom';
+
 import Bio from '../components/Bio';
 import { rhythm } from '../utils/typography';
 
 // import 'prismjs/themes/prism-solarizedlight.css';
-import 'prismjs/themes/prism-tomorrow.css';
 
 const with_margin_bottom = { marginBottom: rhythm(1 / 4) };
 
 class BlogIndex extends React.Component {
-  state = { showing_header: false };
+  state = { showing_header: false, authenticated_user: null };
 
   static defaultProps = {
     header_style: {
