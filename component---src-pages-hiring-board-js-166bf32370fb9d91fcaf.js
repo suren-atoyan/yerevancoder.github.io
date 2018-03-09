@@ -29147,7 +29147,7 @@ webpackJsonp([274579804416951],[
 	  HiringBoard.prototype.render = function render() {
 	    var signup_or_logged_in = null;
 	    // disabled={this.context.authenticated_user !== null}
-	
+		debugger;
 	    if (this.context.authenticated_user === null) {
 	      signup_or_logged_in = _react2.default.createElement('input', {
 	        onClick: this.show_signup_modal,
