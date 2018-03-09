@@ -46,7 +46,7 @@ const Posting = ({
       <div style={ROW}>
         <span style={label_s}>Location: {job_location}</span>
         <span style={label_s}>
-          Salary Range, from: {from} to: {to} {payment_currency}
+          Salary Range => from: {from} to: {to} {payment_currency}
         </span>
       </div>
       <p style={job_description_s}>{job_description}</p>

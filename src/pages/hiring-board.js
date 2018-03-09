@@ -73,7 +73,7 @@ export default withRouter(
         case MODAL_CONTENT.LOGIN_VIEW:
           return <Login user_did_sign_in={this.user_did_signin_successful} />;
         case MODAL_CONTENT.SIGNUP_VIEW:
-          return <Signup />;
+          return <Signup user_did_sign_in={this.user_did_signin_successful} />;
         default:
           return null;
       }
