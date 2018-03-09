@@ -6,3 +6,4 @@ public
 .cache/
 package-lock.json
 .tern-port
+yarn-error.log
