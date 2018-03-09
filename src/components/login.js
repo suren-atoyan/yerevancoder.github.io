@@ -61,9 +61,7 @@ export default withRouter(
             type="password"
             placeholder="Password"
           />
-          <button disabled={isInvalid} type="submit">
-            Sign In
-          </button>
+          <input value={'Sign In'} disabled={isInvalid} type="submit" />
           {error && <p style={error_message_s}>{error.message}</p>}
         </form>
       );
