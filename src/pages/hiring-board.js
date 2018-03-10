@@ -40,7 +40,7 @@ const MODAL_CONTENT = {
 
 export default withRouter(
   class HiringBoard extends React.Component {
-    state = { jobs: [], modal_show: false, modal_content: null };
+    state = { jobs: [], modal_show: false, modal_content: null, user_email_account: null };
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
@@ -62,14 +62,18 @@ export default withRouter(
       });
     }
 
+    user_did_sign_in = user_email_account => {
+      this.setState(() => ({ user_email_account, modal_show: false }));
+    };
+
     modal_content = () => {
       switch (this.state.modal_content) {
         case MODAL_CONTENT.PROFILE_VIEW:
           return <p>TODO - SOMEONE MAKE A PROFILE VIEW</p>;
         case MODAL_CONTENT.LOGIN_VIEW:
-          return <Login user_did_sign_in={this.toggle_modal} />;
+          return <Login user_did_sign_in={this.user_did_sign_in} />;
         case MODAL_CONTENT.SIGNUP_VIEW:
-          return <Signup user_did_sign_in={this.toggle_modal} />;
+          return <Signup user_did_sign_in={this.user_did_sign_in} />;
         default:
           return null;
       }
@@ -97,26 +101,15 @@ export default withRouter(
     };
 
     render() {
-      let signup_or_logged_in = null;
-      if (this.context.authenticated_user === null) {
-        signup_or_logged_in = (
-          <input
-            onClick={this.show_signup_modal}
-            style={post_new_s}
-            type={'button'}
-            value={'Signup'}
-          />
-        );
-      } else {
-        signup_or_logged_in = (
-          <input
-            onClick={this.show_profile_modal}
-            style={post_new_s}
-            type={'button'}
-            value={this.context.authenticated_user.email_account}
-          />
-        );
-      }
+      const has_account = this.state.user_email_account !== null;
+      const signup_or_logged_in = (
+        <input
+          onClick={has_account ? this.show_profile_modal : this.show_signup_modal}
+          style={post_new_s}
+          type={'button'}
+          value={has_account ? this.state.user_email_account : 'Signup'}
+        />
+      );
       return (
         <section style={s}>
           <Modal
@@ -135,7 +128,7 @@ export default withRouter(
                 style={post_new_s}
                 type={'button'}
                 value={'Post New'}
-                disabled={this.context.authenticated_user === null}
+                disabled={!has_account}
               />
               {horizontal_spacer}
               <input
@@ -143,7 +136,7 @@ export default withRouter(
                 style={post_new_s}
                 type={'button'}
                 value={'Login'}
-                disabled={this.context.authenticated_user !== null}
+                disabled={has_account}
               />
               {horizontal_spacer}
               {signup_or_logged_in}

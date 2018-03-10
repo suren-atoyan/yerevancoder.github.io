@@ -35,8 +35,7 @@ export default class ApplicationRoot extends React.Component {
       this.setState(
         () => ({ authenticated_user: { ...authed_user_data } }),
         () => {
-          this.forceUpdate();
-          after_cb();
+          after_cb(authed_user_data.email_account);
         }
       );
     return {
