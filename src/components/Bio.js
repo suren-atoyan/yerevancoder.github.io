@@ -1,11 +1,12 @@
-import React from 'react';
-import Link from 'gatsby-link';
-
 // Import typefaces
 import 'typeface-montserrat';
 import 'typeface-merriweather';
 
+import React from 'react';
+import Link from 'gatsby-link';
+
 import { rhythm } from '../utils/typography';
+import { ROUTES } from '../utils/constants';
 
 const base_bio_style = {
   display: 'flex',
@@ -26,7 +27,7 @@ export default ({ style = {}, authors_count }) => (
       <a href={'https://github.com/yerevancoder/yerevancoder.github.io'}>here</a>
     </span>
     <span>
-      Post a tech job on our <Link to={'/hiring-board'}>hiring board</Link>
+      Post a tech job on our <Link to={ROUTES.JOBS_TABLE}>hiring board</Link>
     </span>
   </div>
 );
