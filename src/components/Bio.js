@@ -26,7 +26,7 @@ export default ({ style = {}, authors_count }) => (
       <a href={'https://github.com/yerevancoder/yerevancoder.github.io'}>here</a>
     </span>
     <span>
-      Post a job on our <Link to={'/hiring-board'}>hiring board</Link>
+      Post a tech job on our <Link to={'/hiring-board'}>hiring board</Link>
     </span>
   </div>
 );

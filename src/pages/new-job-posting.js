@@ -93,7 +93,7 @@ export default withRouter(
     render() {
       return (
         <section style={s}>
-          <p style={new_posting_s}>Post a new job</p>
+          <p style={new_posting_s}>Post a new tech job</p>
           <form onSubmit={this.submit_new_job_posting}>
             <fieldset disabled={this.context.authenticated_user === null} style={column}>
               {/* Job Location */}
