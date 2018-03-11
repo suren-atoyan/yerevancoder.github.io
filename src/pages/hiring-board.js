@@ -28,6 +28,7 @@ const login_action_row_post_new_s = {
 };
 
 const login_action_row_get_hired_text = { ...NO_MARGIN_BOTTOM, ...TEXT_S };
+const get_hired_text = <p className={'loginActionRow__GetHiredText'}>Get hired now</p>;
 
 const login_action_row_authing_action_s = {
   borderTop: '5px solid',
@@ -167,8 +168,8 @@ export default withRouter(
       );
 
       return (
-        <div className={'loginActionRow__GetHiredText'}>
-          <p style={login_action_row_get_hired_text}>Get hired now</p>
+        <div className={'loginActionRow__Container'}>
+          {get_hired_text}
           <div className={'loginActionRow__AuthingButtons'}>
             <input
               onClick={this.go_to_new_posting}
