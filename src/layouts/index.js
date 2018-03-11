@@ -11,6 +11,7 @@ import {
   MODAL_CSS,
   LARGER_CHECKBOX_CSS,
   MEDIA_QUERIES,
+  GLOBAL_CSS,
 } from '../utils/constants';
 
 const link_style = { boxShadow: 'none', textDecoration: 'none', color: 'inherit' };
@@ -22,7 +23,9 @@ const header_style = {
   marginBottom: rhythm(-1),
 };
 
-const global_styles = <style>{`${MODAL_CSS}${LARGER_CHECKBOX_CSS}${MEDIA_QUERIES}`}</style>;
+const global_styles = (
+  <style>{`${GLOBAL_CSS}${MODAL_CSS}${LARGER_CHECKBOX_CSS}${MEDIA_QUERIES}`}</style>
+);
 
 const yc = (
   <Link style={link_style} to={'/'}>

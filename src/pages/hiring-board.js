@@ -22,16 +22,7 @@ import {
 
 const s = { marginTop: rhythm(1.5) };
 
-const post_new_s = {
-  border: 0,
-  borderRadius: 5,
-  padding: '3px 15px',
-  boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
-  backgroundColor: 'hsl(220, 12%, 95%)',
-};
-
 const login_action_row_post_new_s = {
-  ...post_new_s,
   borderTop: '5px solid',
   borderTopColor: ARMENIA_COLORS.red,
 };
@@ -39,13 +30,11 @@ const login_action_row_post_new_s = {
 const login_action_row_get_hired_text = { ...NO_MARGIN_BOTTOM, ...TEXT_S };
 
 const login_action_row_authing_action_s = {
-  ...post_new_s,
   borderTop: '5px solid',
   borderTopColor: ARMENIA_COLORS.blue,
 };
 
 const login_action_row_signup_or_logged_in_s = {
-  ...post_new_s,
   borderTop: '5px solid',
   borderTopColor: ARMENIA_COLORS.orange,
 };
