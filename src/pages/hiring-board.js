@@ -185,7 +185,7 @@ export default withRouter(
               onClick={this.go_to_new_posting}
               style={login_action_row_post_new_s}
               type={'button'}
-              value={'Post New'}
+              value={'Post new job'}
               disabled={!has_account}
             />
             {horizontal_spacer}
