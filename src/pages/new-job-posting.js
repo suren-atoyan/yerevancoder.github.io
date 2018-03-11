@@ -52,20 +52,10 @@ export default withRouter(
     submit_new_job_posting = e => {
       e.preventDefault();
       const { value: salary_from } = this.input_salary_from;
-      const { value: salary_to } = this.input_salary_from;
+      const { value: salary_to } = this.input_salary_to;
       const { history } = this.props;
       let missing_field = null;
-      if (
-        salary_from !== '' ||
-        salary_to !== '' ||
-        Object.keys(this.state)
-          .map(k => {
-            const is_missing = this.state[k] !== '';
-            if (is_missing) missing_field = k;
-            return is_missing;
-          })
-          .reduce((accumulator, currentValue) => accumulator && currentValue)
-      ) {
+      if (this.is_invalid(k => (missing_field = k))) {
         const { uid: creator_uid } = this.context.authenticated_user;
         const now = new Date();
         const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
@@ -91,6 +81,26 @@ export default withRouter(
           );
       } else {
         // Handle error somehow?
+      }
+    };
+
+    is_invalid = (cb = null) => {
+      if (this.input_salary_from && this.input_salary_to) {
+        const { value: salary_from } = this.input_salary_from;
+        const { value: salary_to } = this.input_salary_to;
+        const result =
+          salary_from !== '' &&
+          salary_to !== '' &&
+          Object.keys(this.state)
+            .map(k => {
+              const is_missing = this.state[k] !== '';
+              if (is_missing && cb) cb(k);
+              return is_missing;
+            })
+            .reduce((accumulator, currentValue) => accumulator && currentValue);
+        return result;
+      } else {
+        return false;
       }
     };
 
@@ -189,7 +199,12 @@ export default withRouter(
                   placeholder={'Shown in the drop down in the job posting'}
                 />
               </div>
-              <input className={'NewJobPosting__SubmitButton'} type={'submit'} value={'Submit'} />
+              <input
+                className={'NewJobPosting__SubmitButton'}
+                disabled={!this.is_invalid()}
+                type={'submit'}
+                value={'Submit'}
+              />
             </fieldset>
           </form>
         </section>
