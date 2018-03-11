@@ -25,6 +25,8 @@ export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
 
 export const SESSION_USER = 'yerevan-coder-authed-user';
 
+export const ARMENIA_COLORS = { red: '#ec493c', blue: '#0c5fa1', orange: '#f58f31' };
+
 export const MODAL_CSS = `
 .ReactModal__Content {
   opacity: 0;

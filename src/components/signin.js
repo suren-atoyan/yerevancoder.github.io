@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM } from '../utils/constants';
+import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM, ARMENIA_COLORS } from '../utils/constants';
 
 const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
 
@@ -35,20 +35,14 @@ const login_entry_box_input_field = {
   boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
 };
 
-const red_flag = '#ec493c';
-
-const blue_flag = '#0c5fa1';
-
-const orange_flag = '#f58f31';
-
 const form_s = {
   NO_MARGIN_BOTTOM,
   borderTop: '10px solid',
   borderImage: `linear-gradient(to right,
-${red_flag} 33%,
-${blue_flag} 33%,
-${blue_flag} 66%,
-${orange_flag} 66%) 5`,
+${ARMENIA_COLORS.red} 33%,
+${ARMENIA_COLORS.blue} 33%,
+${ARMENIA_COLORS.blue} 66%,
+${ARMENIA_COLORS.orange} 66%) 5`,
 };
 
 const login_entry_box_fieldset_s = {

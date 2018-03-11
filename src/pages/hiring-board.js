@@ -17,6 +17,7 @@ import {
   ROUTES,
   SPACER_30_H,
   MODAL_TRANSITION,
+  ARMENIA_COLORS,
 } from '../utils/constants';
 
 const banner_s = { ...ROW, maxHeight: '30px' };
@@ -28,8 +29,27 @@ const post_new_s = {
   borderRadius: 5,
   paddingLeft: '15px',
   paddingRight: '15px',
+  paddingBottom: '30px',
   boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
   backgroundColor: 'hsl(220, 12%, 95%)',
+};
+
+const login_action_row_post_new_s = {
+  ...post_new_s,
+  borderTop: '5px solid',
+  borderTopColor: ARMENIA_COLORS.red,
+};
+
+const login_action_row_authing_action_s = {
+  ...post_new_s,
+  borderTop: '5px solid',
+  borderTopColor: ARMENIA_COLORS.blue,
+};
+
+const login_action_row_signup_or_logged_in_s = {
+  ...post_new_s,
+  borderTop: '5px solid',
+  borderTopColor: ARMENIA_COLORS.orange,
 };
 
 const horizontal_spacer = <div style={{ width: '10px' }} />;
@@ -145,7 +165,7 @@ export default withRouter(
       const signup_or_logged_in = (
         <input
           onClick={has_account ? this.show_profile_modal : this.show_signup_modal}
-          style={post_new_s}
+          style={login_action_row_signup_or_logged_in_s}
           type={'button'}
           value={has_account ? this.state.user_email_account : 'Signup'}
         />
@@ -153,7 +173,7 @@ export default withRouter(
       const signin_or_signout = (
         <input
           onClick={has_account ? this.do_signout : this.show_signin_modal}
-          style={post_new_s}
+          style={login_action_row_authing_action_s}
           type={'button'}
           value={has_account ? 'Signout' : 'Signin'}
         />
@@ -175,7 +195,7 @@ export default withRouter(
             <div style={DISPLAY_FLEX_S}>
               <input
                 onClick={this.go_to_new_posting}
-                style={post_new_s}
+                style={login_action_row_post_new_s}
                 type={'button'}
                 value={'Post New'}
                 disabled={!has_account}
