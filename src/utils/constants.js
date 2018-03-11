@@ -42,7 +42,27 @@ export const MODAL_CSS = `
 }`;
 
 export const MEDIA_QUERIES = `
+.loginActionRow__GetHiredText, .loginActionRow__AuthingButtons {
+  display:flex;
+}
 
+@media (min-width: 600px) {
+  .loginActionRow__GetHiredText, .loginActionRow__AuthingButtons {
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+}
+
+@media (max-width: 599px) {
+  .loginActionRow__GetHiredText, .loginActionRow__AuthingButtons {
+    flex-direction:column;
+    text-align:center;
+  }
+  input[type=button] {
+    margin-top:10px;
+  }
+}
 `;
 
 export const LARGER_CHECKBOX_CSS = `

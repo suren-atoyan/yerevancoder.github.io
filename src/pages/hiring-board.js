@@ -13,15 +13,12 @@ import { posts_ref } from '../utils/db';
 import {
   ROW,
   TEXT_S,
-  DISPLAY_FLEX_S,
   ROUTES,
   SPACER_30_H,
   MODAL_TRANSITION,
   NO_MARGIN_BOTTOM,
   ARMENIA_COLORS,
 } from '../utils/constants';
-
-const banner_s = { ...ROW, alignItems: 'center' };
 
 const s = { marginTop: rhythm(1.5) };
 
@@ -181,9 +178,9 @@ export default withRouter(
       );
 
       return (
-        <div style={banner_s}>
+        <div className={'loginActionRow__GetHiredText'}>
           <p style={login_action_row_get_hired_text}>Get hired now</p>
-          <div style={DISPLAY_FLEX_S}>
+          <div className={'loginActionRow__AuthingButtons'}>
             <input
               onClick={this.go_to_new_posting}
               style={login_action_row_post_new_s}
