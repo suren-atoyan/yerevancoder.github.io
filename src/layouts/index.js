@@ -64,6 +64,18 @@ export default class ApplicationRoot extends React.Component {
         <Helmet>
           <style>
             {`
+@supports (zoom:2) {
+	input[type="radio"],  input[type=checkbox]{
+	  zoom: 1.3;
+	}
+}
+
+@supports not (zoom:2) {
+	input[type="radio"],  input[type=checkbox]{
+		transform: scale(1.3);
+	}
+}
+
 .ReactModal__Content {
   opacity: 0;
 }

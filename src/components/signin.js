@@ -4,23 +4,79 @@ import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { DISPLAY_FLEX_S, TEXT_S, SPACER_30_H, NO_MARGIN_BOTTOM } from '../utils/constants';
+import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM } from '../utils/constants';
 
-const INITIAL_STATE = { email: '', password: '', error: null };
+const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
 
-const login_entry_box_prompt_s = { ...TEXT_S, textAlign: 'center' };
+const login_entry_box_prompt_s = {
+  ...TEXT_S,
+  ...NO_MARGIN_BOTTOM,
+  textAlign: 'center',
+  lineHeight: 'calc(20px - 20%)',
+  paddingBottom: '20px',
+  fontWeight: 700,
+};
 
 const width_with_margin = { width: '90%', marginLeft: '5%', marginRight: '5%' };
 
+const login_entry_box_forgot_password = {
+  ...NO_MARGIN_BOTTOM,
+  color: '#3c9ac9',
+  fontWeight: 700,
+};
+
+const login_entry_box_input_field = {
+  ...width_with_margin,
+  border: 0,
+  marginBottom: 10,
+  borderRadius: 5,
+  padding: '10px',
+  fontWeight: 400,
+  boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
+};
+
+const red_flag = '#ec493c';
+
+const blue_flag = '#0c5fa1';
+
+const orange_flag = '#f58f31';
+
+const form_s = {
+  NO_MARGIN_BOTTOM,
+  borderTop: '15px solid',
+  //   borderImage: `linear-gradient(to right,
+  //   ${red_flag} 33%,
+  // ${blue_flag} 33%,
+  // ${blue_flag} 66%,
+  // ${orange_flag} 120%) 150`,
+  borderImage: `linear-gradient(to right,
+  grey 25%,
+  yellow 25%,
+  yellow 50%,
+  red 50%,
+  red 75%,
+  teal 75%) 5`,
+};
+
 const login_entry_box_fieldset_s = {
   paddingBottom: '10px',
-  paddingTop: '10px',
+  paddingTop: '20px',
   borderColor: 'transparent',
 };
 
+const login_entry_horizontal_bar = {
+  ...width_with_margin,
+  ...NO_MARGIN_BOTTOM,
+  backgroundColor: 'grey',
+};
+
+const bar = <hr style={login_entry_horizontal_bar} />;
+
 const login_entry_box_signin_s = { ...width_with_margin };
 
-const login_message = <p style={login_entry_box_prompt_s}>Signin to post jobs</p>;
+const login_message = 'Sign in to post jobs';
+
+const space = <div style={{ height: '10px' }} />;
 
 export default withRouter(
   class SignInForm extends React.Component {
@@ -50,30 +106,71 @@ export default withRouter(
         .catch(error => this.setState(updateByPropertyName('error', error)));
     };
 
+    make_remember_forget_row() {
+      const remember_me_update = event =>
+        this.setState(updateByPropertyName('remember_me_checked', event.target.value));
+      return (
+        <div
+          style={{
+            ...width_with_margin,
+            paddingTop: '10px',
+            paddingBottom: '10px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}>
+          <div
+            style={{
+              paddingLeft: '1px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <input
+              type={'checkbox'}
+              style={{ height: '20px' }}
+              onChange={remember_me_update}
+              value={this.state.remember_me_checked}
+            />
+            <label style={{ color: '#7d8487', paddingLeft: '10px', fontWeight: 700 }}>
+              Remember me
+            </label>
+          </div>
+          <p style={login_entry_box_forgot_password}>Forgot Password</p>
+        </div>
+      );
+    }
     render() {
       const { email, password, error } = this.state;
       const isInvalid = password === '' || email === '';
+      const top_message = (
+        <p style={login_entry_box_prompt_s}>{error ? error.message : login_message}</p>
+      );
+      const email_update = event =>
+        this.setState(updateByPropertyName('email', event.target.value));
+      const password_update = event =>
+        this.setState(updateByPropertyName('password', event.target.value));
+
       return (
-        <form onSubmit={this.onSubmit} style={NO_MARGIN_BOTTOM}>
+        <form onSubmit={this.onSubmit} style={form_s}>
           <fieldset style={login_entry_box_fieldset_s}>
-            {error ? <p style={login_entry_box_prompt_s}>{error.message}</p> : login_message}
+            {top_message}
+            {bar}
+            {space}
             <input
               value={email}
-              onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+              onChange={email_update}
               type={'text'}
-              style={width_with_margin}
+              style={login_entry_box_input_field}
               placeholder={'Email Address'}
             />
             <input
               value={password}
-              style={width_with_margin}
-              onChange={event =>
-                this.setState(updateByPropertyName('password', event.target.value))
-              }
+              style={login_entry_box_input_field}
+              onChange={password_update}
               type="password"
               placeholder="Password"
             />
-            {SPACER_30_H}
+            {this.make_remember_forget_row()}
             <input
               style={login_entry_box_signin_s}
               value={'Sign In'}
