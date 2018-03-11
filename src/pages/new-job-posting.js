@@ -190,7 +190,7 @@ export default withRouter(
               </div>
               {/* Short Job Description */}
               <div style={field}>
-                <label style={field_label}>Short Job Description (120 chars)</label>
+                <label style={field_label}>Short Job Description ({SUMMARY_LIMIT} chars)</label>
                 <textarea
                   maxLength={120}
                   rows={4}
@@ -204,7 +204,9 @@ export default withRouter(
               </div>
               {/* Full job Description */}
               <div style={field}>
-                <label style={field_label}>Full Job Description (1000 chars)</label>
+                <label style={field_label}>
+                  Full Job Description ({JOB_POSTING_DESCRIPTION_LIMIT} chars)
+                </label>
                 <textarea
                   maxLength={1000}
                   rows={6}
