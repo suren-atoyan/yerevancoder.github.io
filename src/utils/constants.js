@@ -45,7 +45,7 @@ export const FORM_BASE_STYLE = {
 };
 
 export const GLOBAL_CSS = `
-.loginActionRow__GetHiredText {
+.loginActionRow__GetHiredText, legend {
   margin-bottom:0;
   font-family: Montserrat, sans-serif;
 }
@@ -57,6 +57,26 @@ input[type=button], input[type=submit] {
   box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
   background-color: hsl(220, 12%, 95%);
 }
+
+input[type=text], input[type=password], input[type=email], textarea {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 0;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 400;
+  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
+}
+
+.NewJobPosting__SubmitButton {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: Montserrat, sans-serif;
+}
+
 `;
 
 export const MODAL_CSS = `
@@ -79,10 +99,12 @@ export const MEDIA_QUERIES = `
 }
 
 @media (min-width: 620px) {
+  legend {
+    font-size:32px;
+  }
   .loginActionRow__GetHiredText {
     font-size:24px;
   }
-
   .loginActionRow__Container, .loginActionRow__AuthingButtons {
     flex-direction:row;
     justify-content:space-between;
@@ -91,6 +113,9 @@ export const MEDIA_QUERIES = `
 }
 
 @media (max-width: 619px) {
+  legend {
+    font-size:20px;
+  }
   .ReactModal__Content--after-open {
     width:90%;
   }

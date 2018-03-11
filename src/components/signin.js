@@ -15,16 +15,6 @@ const login_entry_box_forgot_password = {
   fontWeight: 700,
 };
 
-const login_entry_box_input_field = {
-  ...WIDTH_WITH_MARGIN,
-  border: 0,
-  marginBottom: 10,
-  borderRadius: 5,
-  padding: '10px',
-  fontWeight: 400,
-  boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
-};
-
 const form_s = {
   ...FORM_BASE_STYLE,
 };
@@ -123,12 +113,10 @@ export default withRouter(
               value={email}
               onChange={email_update}
               type={'text'}
-              style={login_entry_box_input_field}
               placeholder={'Email Address'}
             />
             <input
               value={password}
-              style={login_entry_box_input_field}
               onChange={password_update}
               type="password"
               placeholder="Password"

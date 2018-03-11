@@ -14,8 +14,6 @@ const text_s = { fontFamily: 'Montserrat, sans-serif' };
 
 const field_label = { ...text_s, fontSize: 20 };
 
-const new_posting_s = { ...text_s, fontSize: 24 };
-
 const field = {
   display: 'flex',
   flexDirection: 'column',
@@ -25,11 +23,14 @@ const field = {
   justifyContent: 'center',
 };
 
-const row = { display: 'flex' };
-
-const column = { display: 'flex', flexDirection: 'column', marginLeft: '10%', marginRight: '10%' };
-
-const input_s = { paddingLeft: '5px' };
+const column = {
+  display: 'flex',
+  flexDirection: 'column',
+  marginLeft: '10%',
+  marginRight: '10%',
+  paddingBottom: '15px',
+  paddingTop: '15px',
+};
 
 const INIT_STATE = {
   job_location: '',
@@ -68,10 +69,13 @@ export default withRouter(
         const { uid: creator_uid } = this.context.authenticated_user;
         const now = new Date();
         const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
+        const { job_description, short_job_description, ...rest } = this.state;
         db
           .ref(`posts`)
           .push({
-            ...this.state,
+            ...rest,
+            short_job_description: short_job_description.slice(0, 120),
+            job_description: job_description.slice(0, 1000),
             creation_time: now.getTime(),
             salary_from,
             salary_to,
@@ -93,60 +97,56 @@ export default withRouter(
     render() {
       return (
         <section style={s}>
-          <p style={new_posting_s}>Post a new tech job</p>
           <form onSubmit={this.submit_new_job_posting}>
             <fieldset disabled={this.context.authenticated_user === null} style={column}>
+              <legend>Post a new tech job</legend>
               {/* Job Location */}
               <div style={field}>
                 <label style={field_label}>Location</label>
                 <input
+                  type={'text'}
                   value={this.state.job_location}
                   onChange={event =>
                     this.setState(updateByPropertyName('job_location', event.target.value))
                   }
                   placeholder={'yerevan'}
-                  style={input_s}
                 />
               </div>
               {/* Salary Range */}
               <div style={field}>
                 <label style={field_label}>Salary range</label>
-                <div style={row}>
-                  <input
-                    ref={e => (this.input_salary_from = e)}
-                    type={'number'}
-                    placeholder={'300000'}
-                    style={input_s}
-                  />
-                  <input
-                    ref={e => (this.input_salary_to = e)}
-                    type={'number'}
-                    placeholder={'1000000'}
-                    style={input_s}
-                  />
-                </div>
+                <input
+                  ref={e => (this.input_salary_from = e)}
+                  type={'number'}
+                  placeholder={'300000'}
+                />
+                <input
+                  ref={e => (this.input_salary_to = e)}
+                  type={'number'}
+                  placeholder={'1000000'}
+                />
               </div>
               {/* Payment Currency */}
               <div style={field}>
                 <label style={field_label}>Currency Type</label>
                 <input
+                  type={'text'}
                   value={this.state.payment_currency}
                   onChange={event =>
                     this.setState(updateByPropertyName('payment_currency', event.target.value))
                   }
-                  style={input_s}
                 />
               </div>
               {/* Post Author */}
               <div style={field}>
                 <label style={field_label}>Poster Name</label>
                 <input
+                  type={'text'}
                   value={this.state.post_author}
                   onChange={event =>
                     this.setState(updateByPropertyName('post_author', event.target.value))
                   }
                   placeholder={'PicsArt'}
-                  style={input_s}
                 />
               </div>
               {/* Contact Info */}
@@ -159,7 +159,6 @@ export default withRouter(
                   value={this.state.contact_info}
                   placeholder={'jobs@techcompany.am'}
                   type={'email'}
-                  style={input_s}
                 />
               </div>
               {/* Short Job Description */}
@@ -174,7 +173,6 @@ export default withRouter(
                   }
                   value={this.state.short_job_description}
                   placeholder={'This will be the single line description on the jobs board'}
-                  style={input_s}
                 />
               </div>
               {/* Full job Description */}
@@ -189,10 +187,9 @@ export default withRouter(
                   }
                   value={this.state.job_description}
                   placeholder={'Shown in the drop down in the job posting'}
-                  style={input_s}
                 />
               </div>
-              <input type={'submit'} value={'Submit'} />
+              <input className={'NewJobPosting__SubmitButton'} type={'submit'} value={'Submit'} />
             </fieldset>
           </form>
         </section>
