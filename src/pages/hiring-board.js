@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 import { rhythm } from '../utils/typography';
 import JobsTable from '../components/jobs-table';
-import Login from '../components/login';
+import Signin from '../components/signin';
 import Signup from '../components/signup';
 import { posts_ref } from '../utils/db';
 import {
@@ -39,7 +39,7 @@ const modal_s = {
 
 const MODAL_CONTENT = {
   PROFILE_VIEW: 'profile-view',
-  LOGIN_VIEW: 'login-view',
+  SIGNIN_VIEW: 'signin-view',
   SIGNUP_VIEW: 'signup-view',
 };
 
@@ -49,7 +49,7 @@ export default withRouter(
     state = {
       jobs: [],
       modal_show: true,
-      modal_content: MODAL_CONTENT.LOGIN_VIEW,
+      modal_content: MODAL_CONTENT.SIGNIN_VIEW,
       user_email_account: null,
     };
 
@@ -81,8 +81,8 @@ export default withRouter(
       switch (this.state.modal_content) {
         case MODAL_CONTENT.PROFILE_VIEW:
           return <p>TODO - SOMEONE MAKE A PROFILE VIEW</p>;
-        case MODAL_CONTENT.LOGIN_VIEW:
-          return <Login user_did_sign_in={this.user_did_sign_in} />;
+        case MODAL_CONTENT.SIGNIN_VIEW:
+          return <Signin user_did_sign_in={this.user_did_sign_in} />;
         case MODAL_CONTENT.SIGNUP_VIEW:
           return <Signup user_did_sign_in={this.user_did_sign_in} />;
         default:
@@ -97,10 +97,10 @@ export default withRouter(
       }));
     };
 
-    show_login_modal = () => {
+    show_signin_modal = () => {
       this.setState(({ modal_show }) => ({
         modal_show: !modal_show,
-        modal_content: MODAL_CONTENT.LOGIN_VIEW,
+        modal_content: MODAL_CONTENT.SIGNIN_VIEW,
       }));
     };
 
@@ -129,7 +129,7 @@ export default withRouter(
             onRequestClose={this.toggle_modal}
             ariaHideApp={false}
             style={modal_s}
-            contentLabel="Login to Yerevancoder">
+            contentLabel="Signin to Yerevancoder">
             {this.modal_content()}
           </Modal>
           <div style={banner_s}>
@@ -144,10 +144,10 @@ export default withRouter(
               />
               {horizontal_spacer}
               <input
-                onClick={this.show_login_modal}
+                onClick={this.show_signin_modal}
                 style={post_new_s}
                 type={'button'}
-                value={'Login'}
+                value={'Signin'}
                 disabled={has_account}
               />
               {horizontal_spacer}
