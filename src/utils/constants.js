@@ -61,7 +61,7 @@ export const MEDIA_QUERIES = `
   display:flex;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 620px) {
   .loginActionRow__GetHiredText {
     font-size:24px;
   }
@@ -73,7 +73,10 @@ export const MEDIA_QUERIES = `
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 619px) {
+  .ReactModal__Content--after-open {
+    width:90%;
+  }
   .loginActionRow__GetHiredText {
     font-size:39px;
   }
