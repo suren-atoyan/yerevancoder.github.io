@@ -45,7 +45,16 @@ export const FORM_BASE_STYLE = {
 };
 
 export const GLOBAL_CSS = `
-.loginActionRow__GetHiredText, legend {
+legend {
+  margin-bottom:0;
+  font-family: Montserrat, sans-serif;
+  padding-left:5px;
+  padding-right:5px;
+  font-style:italic;
+  font-weight:700;
+}
+
+.loginActionRow__GetHiredText {
   margin-bottom:0;
   font-family: Montserrat, sans-serif;
 }
