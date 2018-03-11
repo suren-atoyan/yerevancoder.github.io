@@ -46,12 +46,22 @@ const MODAL_CONTENT = {
 
 export default withRouter(
   class HiringBoard extends React.Component {
-    state = { jobs: [], modal_show: false, modal_content: null, user_email_account: null };
+    state = {
+      jobs: [],
+      modal_show: false,
+      modal_content: null,
+      user_email_account: this.context.authenticated_user
+        ? this.context.authenticated_user.email_account
+        : null,
+    };
+
     // state = {
     //   jobs: [],
     //   modal_show: true,
     //   modal_content: MODAL_CONTENT.SIGNIN_VIEW,
-    //   user_email_account: null,
+    //   user_email_account: this.context.authenticated_user
+    //     ? this.context.authenticated_user.email_account
+    //     : null,
     // };
 
     static contextTypes = {
@@ -59,6 +69,11 @@ export default withRouter(
     };
 
     toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
+
+    shouldComponentUpdate(prev_state, next_state) {
+      console.log({ prev_state, next_state });
+      return true;
+    }
 
     go_to_new_posting = () => {
       const { history } = this.props;

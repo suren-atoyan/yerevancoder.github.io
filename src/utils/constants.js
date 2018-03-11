@@ -22,3 +22,33 @@ export const SPACER_10_H = <div style={{ height: '10px', width: '100%' }} />;
 export const MODAL_TRANSITION = 450;
 
 export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
+
+export const SESSION_USER = 'yerevan-coder-authed-user';
+
+export const MODAL_CSS = `
+.ReactModal__Content {
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transition: opacity ${MODAL_TRANSITION}ms;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+}`;
+
+export const LARGER_CHECKBOX_CSS = `
+@supports (zoom:2) {
+	input[type="radio"],  input[type=checkbox]{
+	  zoom: 1.3;
+	}
+}
+
+@supports not (zoom:2) {
+	input[type="radio"],  input[type=checkbox]{
+		transform: scale(1.3);
+	}
+}
+`;

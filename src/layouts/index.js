@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import { rhythm, scale } from '../utils/typography';
-import { MODAL_TRANSITION } from '../utils/constants';
+import { MODAL_TRANSITION, SESSION_USER, MODAL_CSS, LARGER_CHECKBOX_CSS } from '../utils/constants';
 
 const link_style = { boxShadow: 'none', textDecoration: 'none', color: 'inherit' };
 const header_style_root = { ...scale(1.5), marginBottom: rhythm(1.5), marginTop: 0 };
@@ -15,6 +15,8 @@ const header_style = {
   marginTop: 0,
   marginBottom: rhythm(-1),
 };
+
+const global_styles = <style>{`${MODAL_CSS}${LARGER_CHECKBOX_CSS}`}</style>;
 
 const yc = (
   <Link style={link_style} to={'/'}>
@@ -32,11 +34,25 @@ export default class ApplicationRoot extends React.Component {
     userDidAuthSuccessfully: PropTypes.func,
   };
 
+  componentDidMount() {
+    const existing_user = sessionStorage.getItem(SESSION_USER);
+    if (existing_user) {
+      this.setState(() => ({ authenticated_user: JSON.parse(existing_user) }));
+    }
+  }
+
+  handle_session_storage(remember_me_checked, authed_user_data) {
+    if (remember_me_checked) {
+      sessionStorage.setItem(SESSION_USER, JSON.stringify(authed_user_data));
+    }
+  }
+
   getChildContext() {
-    const didAuth = (authed_user_data, after_cb) =>
+    const didAuth = (authed_user_data, after_cb, remember_me_checked = false) =>
       this.setState(
         () => ({ authenticated_user: { ...authed_user_data } }),
         () => {
+          this.handle_session_storage(remember_me_checked, JSON.parse(authed_user_data));
           after_cb(authed_user_data.email_account);
         }
       );
@@ -48,49 +64,15 @@ export default class ApplicationRoot extends React.Component {
 
   render() {
     const { location, children } = this.props;
-    let rootPath = `/`;
-    if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-      rootPath = __PATH_PREFIX__ + `/`;
-    }
-
     let header = null;
-    if (location.pathname === rootPath) {
+    if (location.pathname === '/') {
       header = <h1 style={header_style_root}>{yc}</h1>;
     } else {
       header = <h3 style={header_style}>{yc}</h3>;
     }
     return (
       <Container style={container_style}>
-        <Helmet>
-          <style>
-            {`
-@supports (zoom:2) {
-	input[type="radio"],  input[type=checkbox]{
-	  zoom: 1.3;
-	}
-}
-
-@supports not (zoom:2) {
-	input[type="radio"],  input[type=checkbox]{
-		transform: scale(1.3);
-	}
-}
-
-.ReactModal__Content {
-  opacity: 0;
-}
-
-.ReactModal__Content--after-open {
-  opacity: 1;
-  transition: opacity ${MODAL_TRANSITION}ms;
-}
-
-.ReactModal__Content--before-close {
-  opacity: 0;
-}`}
-          </style>
-        </Helmet>
-
+        <Helmet>{global_styles}</Helmet>
         {header}
         {children()}
       </Container>

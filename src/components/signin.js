@@ -43,19 +43,12 @@ const orange_flag = '#f58f31';
 
 const form_s = {
   NO_MARGIN_BOTTOM,
-  borderTop: '15px solid',
-  //   borderImage: `linear-gradient(to right,
-  //   ${red_flag} 33%,
-  // ${blue_flag} 33%,
-  // ${blue_flag} 66%,
-  // ${orange_flag} 120%) 150`,
+  borderTop: '10px solid',
   borderImage: `linear-gradient(to right,
-  grey 25%,
-  yellow 25%,
-  yellow 50%,
-  red 50%,
-  red 75%,
-  teal 75%) 5`,
+${red_flag} 33%,
+${blue_flag} 33%,
+${blue_flag} 66%,
+${orange_flag} 66%) 5`,
 };
 
 const login_entry_box_fieldset_s = {
@@ -88,7 +81,7 @@ export default withRouter(
     };
 
     onSubmit = event => {
-      const { email, password } = this.state;
+      const { email, password, remember_me_checked } = this.state;
       const { user_did_sign_in } = this.props;
       const { userDidAuthSuccessfully } = this.context;
       event.preventDefault();
@@ -99,7 +92,8 @@ export default withRouter(
             () => ({ ...INITIAL_STATE }),
             userDidAuthSuccessfully(
               { uid, refreshToken, metadata, email_account },
-              user_did_sign_in
+              user_did_sign_in,
+              remember_me_checked
             )
           )
         )
