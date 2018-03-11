@@ -28,9 +28,9 @@ export const SESSION_USER = 'yerevan-coder-authed-user';
 export const ARMENIA_COLORS = { red: '#ec493c', blue: '#0c5fa1', orange: '#f58f31' };
 
 export const GLOBAL_CSS = `
-input[type=button] {
+input[type=button], input[type=submit] {
   border: 0;
-  border-radius: 5;
+  border-radius: 5px;
   padding: 3px 15px;
   box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
   background-color: hsl(220, 12%, 95%);
