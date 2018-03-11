@@ -27,6 +27,20 @@ export const SESSION_USER = 'yerevan-coder-authed-user';
 
 export const ARMENIA_COLORS = { red: '#ec493c', blue: '#0c5fa1', orange: '#f58f31' };
 
+export const TRIPLE_COLOR_TOP_BORDER = {
+  borderTop: '10px solid',
+  borderImage: `linear-gradient(to right,
+${ARMENIA_COLORS.red} 33%,
+${ARMENIA_COLORS.blue} 33%,
+${ARMENIA_COLORS.blue} 66%,
+${ARMENIA_COLORS.orange} 66%) 5`,
+};
+
+export const FORM_BASE_STYLE = {
+  ...NO_MARGIN_BOTTOM,
+  ...TRIPLE_COLOR_TOP_BORDER,
+};
+
 export const GLOBAL_CSS = `
 .loginActionRow__GetHiredText {
   margin-bottom:0;

@@ -4,20 +4,10 @@ import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM, ARMENIA_COLORS } from '../utils/constants';
+import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM, FORM_BASE_STYLE } from '../utils/constants';
+import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR, SPACE } from './common-styles';
 
 const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
-
-const login_entry_box_prompt_s = {
-  ...TEXT_S,
-  ...NO_MARGIN_BOTTOM,
-  textAlign: 'center',
-  lineHeight: 'calc(20px - 20%)',
-  paddingBottom: '20px',
-  fontWeight: 700,
-};
-
-const width_with_margin = { width: '90%', marginLeft: '5%', marginRight: '5%' };
 
 const login_entry_box_forgot_password = {
   ...NO_MARGIN_BOTTOM,
@@ -26,7 +16,7 @@ const login_entry_box_forgot_password = {
 };
 
 const login_entry_box_input_field = {
-  ...width_with_margin,
+  ...WIDTH_WITH_MARGIN,
   border: 0,
   marginBottom: 10,
   borderRadius: 5,
@@ -36,13 +26,7 @@ const login_entry_box_input_field = {
 };
 
 const form_s = {
-  NO_MARGIN_BOTTOM,
-  borderTop: '10px solid',
-  borderImage: `linear-gradient(to right,
-${ARMENIA_COLORS.red} 33%,
-${ARMENIA_COLORS.blue} 33%,
-${ARMENIA_COLORS.blue} 66%,
-${ARMENIA_COLORS.orange} 66%) 5`,
+  ...FORM_BASE_STYLE,
 };
 
 const login_entry_box_fieldset_s = {
@@ -51,19 +35,17 @@ const login_entry_box_fieldset_s = {
   borderColor: 'transparent',
 };
 
-const login_entry_horizontal_bar = {
-  ...width_with_margin,
-  ...NO_MARGIN_BOTTOM,
-  backgroundColor: 'grey',
-};
-
-const bar = <hr style={login_entry_horizontal_bar} />;
-
-const login_entry_box_signin_s = { ...width_with_margin };
+const login_entry_box_signin_s = { ...WIDTH_WITH_MARGIN };
 
 const login_message = 'Sign in to post jobs';
 
-const space = <div style={{ height: '10px' }} />;
+const remember_forget_row_s = {
+  ...WIDTH_WITH_MARGIN,
+  paddingTop: '10px',
+  paddingBottom: '10px',
+  display: 'flex',
+  justifyContent: 'space-between',
+};
 
 export default withRouter(
   class SignInForm extends React.Component {
@@ -98,14 +80,7 @@ export default withRouter(
       const remember_me_update = event =>
         this.setState(updateByPropertyName('remember_me_checked', event.target.value));
       return (
-        <div
-          style={{
-            ...width_with_margin,
-            paddingTop: '10px',
-            paddingBottom: '10px',
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}>
+        <div style={remember_forget_row_s}>
           <div
             style={{
               paddingLeft: '1px',
@@ -131,7 +106,7 @@ export default withRouter(
       const { email, password, error } = this.state;
       const isInvalid = password === '' || email === '';
       const top_message = (
-        <p style={login_entry_box_prompt_s}>{error ? error.message : login_message}</p>
+        <p style={LOGIN_ENTRY_BOX_PROMPT_S}>{error ? error.message : login_message}</p>
       );
       const email_update = event =>
         this.setState(updateByPropertyName('email', event.target.value));
@@ -142,8 +117,8 @@ export default withRouter(
         <form onSubmit={this.onSubmit} style={form_s}>
           <fieldset style={login_entry_box_fieldset_s}>
             {top_message}
-            {bar}
-            {space}
+            {BAR}
+            {SPACE}
             <input
               value={email}
               onChange={email_update}

@@ -3,14 +3,17 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { auth, db } from '../utils/db';
-import { ROUTES } from '../utils/constants';
+import { ROUTES, FORM_BASE_STYLE } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
+import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR } from './common-styles';
 
 const INITIAL_STATE = { username: '', email: '', passwordOne: '', passwordTwo: '', error: null };
 
 const full_width = { minWidth: '100%' };
 
 const half_width = { minWidth: '50%' };
+
+const signup_message = 'Sign up for an account';
 
 export default withRouter(
   class SignUpForm extends Component {
@@ -45,10 +48,15 @@ export default withRouter(
       const { username, email, passwordOne, passwordTwo, error } = this.state;
       const isInvalid =
         passwordOne !== passwordTwo || passwordOne === '' || username === '' || email === '';
+      const top_message = (
+        <p style={LOGIN_ENTRY_BOX_PROMPT_S}>{error ? error.message : signup_message}</p>
+      );
 
       return (
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} style={FORM_BASE_STYLE}>
           <fieldset style={full_width}>
+            {top_message}
+            {BAR}
             <input
               style={half_width}
               value={username}
@@ -91,7 +99,6 @@ export default withRouter(
               value={'sign up'}
             />
           </fieldset>
-          {error && <p>{error.message}</p>}
         </form>
       );
     }
