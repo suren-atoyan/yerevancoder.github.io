@@ -41,6 +41,10 @@ export const MODAL_CSS = `
   opacity: 0;
 }`;
 
+export const MEDIA_QUERIES = `
+
+`;
+
 export const LARGER_CHECKBOX_CSS = `
 @supports (zoom:2) {
 	input[type="radio"],  input[type=checkbox]{

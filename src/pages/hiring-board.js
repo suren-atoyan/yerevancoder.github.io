@@ -17,19 +17,18 @@ import {
   ROUTES,
   SPACER_30_H,
   MODAL_TRANSITION,
+  NO_MARGIN_BOTTOM,
   ARMENIA_COLORS,
 } from '../utils/constants';
 
-const banner_s = { ...ROW, maxHeight: '30px' };
+const banner_s = { ...ROW, alignItems: 'center' };
 
 const s = { marginTop: rhythm(1.5) };
 
 const post_new_s = {
   border: 0,
   borderRadius: 5,
-  paddingLeft: '15px',
-  paddingRight: '15px',
-  paddingBottom: '30px',
+  padding: '3px 15px',
   boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
   backgroundColor: 'hsl(220, 12%, 95%)',
 };
@@ -39,6 +38,8 @@ const login_action_row_post_new_s = {
   borderTop: '5px solid',
   borderTopColor: ARMENIA_COLORS.red,
 };
+
+const login_action_row_get_hired_text = { ...NO_MARGIN_BOTTOM, ...TEXT_S };
 
 const login_action_row_authing_action_s = {
   ...post_new_s,
@@ -160,7 +161,7 @@ export default withRouter(
       this.context.do_signout();
     };
 
-    render() {
+    make_action_row() {
       const has_account = this.state.user_email_account !== null;
       const signup_or_logged_in = (
         <input
@@ -180,6 +181,27 @@ export default withRouter(
       );
 
       return (
+        <div style={banner_s}>
+          <p style={login_action_row_get_hired_text}>Get hired now</p>
+          <div style={DISPLAY_FLEX_S}>
+            <input
+              onClick={this.go_to_new_posting}
+              style={login_action_row_post_new_s}
+              type={'button'}
+              value={'Post New'}
+              disabled={!has_account}
+            />
+            {horizontal_spacer}
+            {signin_or_signout}
+            {horizontal_spacer}
+            {signup_or_logged_in}
+          </div>
+        </div>
+      );
+    }
+
+    render() {
+      return (
         <section style={s}>
           <Modal
             closeTimeoutMS={MODAL_TRANSITION}
@@ -190,22 +212,7 @@ export default withRouter(
             contentLabel="Signin to Yerevancoder">
             {this.modal_content()}
           </Modal>
-          <div style={banner_s}>
-            <p style={TEXT_S}>Get hired now</p>
-            <div style={DISPLAY_FLEX_S}>
-              <input
-                onClick={this.go_to_new_posting}
-                style={login_action_row_post_new_s}
-                type={'button'}
-                value={'Post New'}
-                disabled={!has_account}
-              />
-              {horizontal_spacer}
-              {signin_or_signout}
-              {horizontal_spacer}
-              {signup_or_logged_in}
-            </div>
-          </div>
+          {this.make_action_row()}
           {SPACER_30_H}
           <JobsTable all_jobs={this.state.jobs} />
         </section>

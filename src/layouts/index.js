@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import { rhythm, scale } from '../utils/typography';
-import { MODAL_TRANSITION, SESSION_USER, MODAL_CSS, LARGER_CHECKBOX_CSS } from '../utils/constants';
+import {
+  MODAL_TRANSITION,
+  SESSION_USER,
+  MODAL_CSS,
+  LARGER_CHECKBOX_CSS,
+  MEDIA_QUERIES,
+} from '../utils/constants';
 
 const link_style = { boxShadow: 'none', textDecoration: 'none', color: 'inherit' };
 const header_style_root = { ...scale(1.5), marginBottom: rhythm(1.5), marginTop: 0 };
@@ -16,7 +22,7 @@ const header_style = {
   marginBottom: rhythm(-1),
 };
 
-const global_styles = <style>{`${MODAL_CSS}${LARGER_CHECKBOX_CSS}`}</style>;
+const global_styles = <style>{`${MODAL_CSS}${LARGER_CHECKBOX_CSS}${MEDIA_QUERIES}`}</style>;
 
 const yc = (
   <Link style={link_style} to={'/'}>
