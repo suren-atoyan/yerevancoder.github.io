@@ -23,7 +23,14 @@ const banner_s = { ...ROW, maxHeight: '30px' };
 
 const s = { marginTop: rhythm(1.5) };
 
-const post_new_s = { border: 0 };
+const post_new_s = {
+  border: 0,
+  borderRadius: 5,
+  paddingLeft: '15px',
+  paddingRight: '15px',
+  boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20)',
+  backgroundColor: 'hsl(220, 12%, 95%)',
+};
 
 const horizontal_spacer = <div style={{ width: '10px' }} />;
 
