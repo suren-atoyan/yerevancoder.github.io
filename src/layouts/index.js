@@ -58,12 +58,12 @@ export default class ApplicationRoot extends React.Component {
   }
 
   getChildContext() {
-    const didAuth = (authed_user_data, after_cb, remember_me_checked = false) =>
+    const didAuth = (authed_user_data, after_cb = null, remember_me_checked = false) =>
       this.setState(
         () => ({ authenticated_user: { ...authed_user_data } }),
         () => {
           this.handle_session_storage(remember_me_checked, JSON.parse(remember_me_checked));
-          after_cb(authed_user_data.email_account);
+          after_cb && after_cb(authed_user_data.email_account);
         }
       );
     const do_signout = () => {
