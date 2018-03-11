@@ -10,7 +10,14 @@ import JobsTable from '../components/jobs-table';
 import Login from '../components/login';
 import Signup from '../components/signup';
 import { posts_ref } from '../utils/db';
-import { ROW, TEXT_S, DISPLAY_FLEX_S, ROUTES, SPACER_30_H } from '../utils/constants';
+import {
+  ROW,
+  TEXT_S,
+  DISPLAY_FLEX_S,
+  ROUTES,
+  SPACER_30_H,
+  MODAL_TRANSITION,
+} from '../utils/constants';
 
 const banner_s = { ...ROW, maxHeight: '30px' };
 
@@ -22,12 +29,10 @@ const horizontal_spacer = <div style={{ width: '10px' }} />;
 
 const modal_s = {
   content: {
-    width: '50%',
     top: '50%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
   },
 };
@@ -40,7 +45,13 @@ const MODAL_CONTENT = {
 
 export default withRouter(
   class HiringBoard extends React.Component {
-    state = { jobs: [], modal_show: false, modal_content: null, user_email_account: null };
+    // state = { jobs: [], modal_show: false, modal_content: null, user_email_account: null };
+    state = {
+      jobs: [],
+      modal_show: true,
+      modal_content: MODAL_CONTENT.LOGIN_VIEW,
+      user_email_account: null,
+    };
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
@@ -113,6 +124,7 @@ export default withRouter(
       return (
         <section style={s}>
           <Modal
+            closeTimeoutMS={MODAL_TRANSITION}
             isOpen={this.state.modal_show}
             onRequestClose={this.toggle_modal}
             ariaHideApp={false}

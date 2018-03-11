@@ -2,8 +2,10 @@ import React from 'react';
 import Link from 'gatsby-link';
 import { Container } from 'react-responsive-grid';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 
 import { rhythm, scale } from '../utils/typography';
+import { MODAL_TRANSITION } from '../utils/constants';
 
 const link_style = { boxShadow: 'none', textDecoration: 'none', color: 'inherit' };
 const header_style_root = { ...scale(1.5), marginBottom: rhythm(1.5), marginTop: 0 };
@@ -59,6 +61,24 @@ export default class ApplicationRoot extends React.Component {
     }
     return (
       <Container style={container_style}>
+        <Helmet>
+          <style>
+            {`
+.ReactModal__Content {
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transition: opacity ${MODAL_TRANSITION}ms;
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+}`}
+          </style>
+        </Helmet>
+
         {header}
         {children()}
       </Container>

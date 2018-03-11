@@ -14,7 +14,7 @@ import { rhythm } from '../utils/typography';
 const with_margin_bottom = { marginBottom: rhythm(1 / 4) };
 
 class BlogIndex extends React.Component {
-  state = { showing_header: false, authenticated_user: null };
+  state = { showing_header: false };
 
   static defaultProps = {
     header_style: {
