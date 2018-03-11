@@ -52,7 +52,7 @@ export default class ApplicationRoot extends React.Component {
       this.setState(
         () => ({ authenticated_user: { ...authed_user_data } }),
         () => {
-          this.handle_session_storage(remember_me_checked, JSON.parse(authed_user_data));
+          this.handle_session_storage(remember_me_checked, JSON.parse(remember_me_checked));
           after_cb(authed_user_data.email_account);
         }
       );
