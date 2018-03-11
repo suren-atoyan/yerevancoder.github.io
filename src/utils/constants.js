@@ -45,6 +45,24 @@ export const FORM_BASE_STYLE = {
 };
 
 export const GLOBAL_CSS = `
+.Profile__Container > * {
+  margin:0;
+  font-family: Montserrat, sans-serif;
+}
+
+.Profile__Container {
+  padding:15px;
+}
+
+.Profile__User {
+  display:flex;
+}
+
+.Profile__PostingsTable {
+  height:400px;
+  overflow-y: scroll;
+}
+
 legend {
   margin-bottom:0;
   font-family: Montserrat, sans-serif;
@@ -86,6 +104,9 @@ input[type=text], input[type=password], input[type=email], textarea {
   font-family: Montserrat, sans-serif;
 }
 
+.Profile__CreationTime:nth-child(2) {
+  text-align:right;
+}
 `;
 
 export const MODAL_CSS = `
@@ -107,9 +128,18 @@ export const MEDIA_QUERIES = `
   display:flex;
 }
 
-@media (min-width: 620px) {
+@media (min-width: 650px) {
+  .Profile__User > * {
+
+  }
+  .Profile__User {
+    justify-content:space-between;
+  }
   legend {
     font-size:32px;
+  }
+  .ReactModal__Content--after-open {
+    width:50%;
   }
   .loginActionRow__GetHiredText {
     font-size:24px;
@@ -121,7 +151,11 @@ export const MEDIA_QUERIES = `
   }
 }
 
-@media (max-width: 619px) {
+@media (max-width: 649px) {
+  .Profile__User > div {
+    flex-direction:column;
+    align-items:center;
+  }
   legend {
     font-size:20px;
   }

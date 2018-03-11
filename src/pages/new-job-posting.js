@@ -57,11 +57,21 @@ export default withRouter(
         const { uid: creator_uid } = this.context.authenticated_user;
         const now = new Date();
         const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
-        const { job_description, short_job_description, ...rest } = this.state;
+        const {
+          job_description,
+          job_location,
+          short_job_description,
+          post_author,
+          payment_currency,
+          ...rest
+        } = this.state;
         db
           .ref(`posts`)
           .push({
             ...rest,
+            payment_currency,
+            job_location,
+            post_author,
             short_job_description: short_job_description.slice(0, 120),
             job_description: job_description.slice(0, 1000),
             creation_time: now.getTime(),
@@ -72,7 +82,16 @@ export default withRouter(
           .then(reply =>
             db
               .ref(`users/${creator_uid}/posts`)
-              .push({ post_key: reply.key })
+              .push({
+                post_key: reply.key,
+                creation_time: now.getTime(),
+                post_author,
+                salary_from,
+                job_location,
+                payment_currency,
+                salary_to,
+                short_job_description: short_job_description.slice(0, 120),
+              })
               .then(() =>
                 this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE))
               )

@@ -9,6 +9,7 @@ import { rhythm } from '../utils/typography';
 import JobsTable from '../components/jobs-table';
 import Signin from '../components/signin';
 import Signup from '../components/signup';
+import Profile from '../components/profile';
 import { posts_ref } from '../utils/db';
 import { ROW, ROUTES, SPACER_30_H, MODAL_TRANSITION, ARMENIA_COLORS } from '../utils/constants';
 
@@ -64,7 +65,7 @@ export default withRouter(
     // state = {
     //   jobs: [],
     //   modal_show: true,
-    //   modal_content: MODAL_CONTENT.SIGNUP_VIEW,
+    //   modal_content: MODAL_CONTENT.PROFILE_VIEW,
     //   user_email_account: this.context.authenticated_user
     //     ? this.context.authenticated_user.email_account
     //     : null,
@@ -103,7 +104,7 @@ export default withRouter(
     modal_content = () => {
       switch (this.state.modal_content) {
         case MODAL_CONTENT.PROFILE_VIEW:
-          return <p>TODO - SOMEONE MAKE A PROFILE VIEW</p>;
+          return <Profile jobs={this.state.jobs} />;
         case MODAL_CONTENT.SIGNIN_VIEW:
           return <Signin user_did_sign_in={this.user_did_sign_in} />;
         case MODAL_CONTENT.SIGNUP_VIEW:

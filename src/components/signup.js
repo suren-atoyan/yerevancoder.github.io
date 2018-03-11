@@ -36,7 +36,12 @@ export default withRouter(
             .ref(`users/${uid}`)
             .set({ username, email })
             .then(() => {
-              userDidAuthSuccessfully({ uid, refreshToken, metadata, email_account: email });
+              userDidAuthSuccessfully({
+                uid,
+                refreshToken,
+                metadata,
+                email_account: email,
+              });
               this.setState(() => ({ ...INITIAL_STATE }), () => history.push(ROUTES.JOBS_TABLE));
             })
             .then(user_did_sign_in)
