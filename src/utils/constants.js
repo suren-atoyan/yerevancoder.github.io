@@ -34,6 +34,9 @@ ${ARMENIA_COLORS.red} 33%,
 ${ARMENIA_COLORS.blue} 33%,
 ${ARMENIA_COLORS.blue} 66%,
 ${ARMENIA_COLORS.orange} 66%) 5`,
+  borderBottomWidth: 0,
+  borderLeftWidth: 0,
+  borderRightWidth: 0,
 };
 
 export const FORM_BASE_STYLE = {
