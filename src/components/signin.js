@@ -23,7 +23,7 @@ const login_entry_box_fieldset_s = {
 
 const login_entry_box_signin_s = { ...width_with_margin };
 
-const login_message = <p style={login_entry_box_prompt_s}>Login to post jobs</p>;
+const login_message = <p style={login_entry_box_prompt_s}>Signin to post jobs</p>;
 
 export default withRouter(
   class SignInForm extends React.Component {
