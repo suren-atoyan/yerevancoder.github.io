@@ -18,3 +18,5 @@ export const JOB_POSTING_DESCRIPTION_LIMIT = 1000;
 export const SPACER_30_H = <div style={{ height: '30px', width: '100%' }} />;
 
 export const MODAL_TRANSITION = 450;
+
+export const NO_MARGIN_BOTTOM = { marginBottom: '0px' };

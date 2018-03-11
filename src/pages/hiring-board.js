@@ -33,6 +33,7 @@ const modal_s = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
+    padding: 0,
     transform: 'translate(-50%, -50%)',
   },
 };
@@ -45,13 +46,13 @@ const MODAL_CONTENT = {
 
 export default withRouter(
   class HiringBoard extends React.Component {
-    // state = { jobs: [], modal_show: false, modal_content: null, user_email_account: null };
-    state = {
-      jobs: [],
-      modal_show: true,
-      modal_content: MODAL_CONTENT.SIGNIN_VIEW,
-      user_email_account: null,
-    };
+    state = { jobs: [], modal_show: false, modal_content: null, user_email_account: null };
+    // state = {
+    //   jobs: [],
+    //   modal_show: true,
+    //   modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    //   user_email_account: null,
+    // };
 
     static contextTypes = {
       authenticated_user: PropTypes.object,

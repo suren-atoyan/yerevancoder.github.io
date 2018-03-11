@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { DISPLAY_FLEX_S, TEXT_S, SPACER_30_H } from '../utils/constants';
+import { DISPLAY_FLEX_S, TEXT_S, SPACER_30_H, NO_MARGIN_BOTTOM } from '../utils/constants';
 
 const INITIAL_STATE = { email: '', password: '', error: null };
 
@@ -13,12 +13,9 @@ const login_entry_box_prompt_s = { ...TEXT_S, textAlign: 'center' };
 const width_with_margin = { width: '90%', marginLeft: '5%', marginRight: '5%' };
 
 const login_entry_box_fieldset_s = {
-  ...DISPLAY_FLEX_S,
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
   paddingBottom: '10px',
   paddingTop: '10px',
+  borderColor: 'transparent',
 };
 
 const login_entry_box_signin_s = { ...width_with_margin };
@@ -57,7 +54,7 @@ export default withRouter(
       const { email, password, error } = this.state;
       const isInvalid = password === '' || email === '';
       return (
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} style={NO_MARGIN_BOTTOM}>
           <fieldset style={login_entry_box_fieldset_s}>
             {error ? <p style={login_entry_box_prompt_s}>{error.message}</p> : login_message}
             <input
