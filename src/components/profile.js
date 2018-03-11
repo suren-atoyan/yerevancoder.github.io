@@ -35,6 +35,8 @@ const PostingRecord = ({ record }) => {
 
 const no_postings_yet = <p style={{ ...TEXT_S, fontWeight: 700 }}>No Postings yet</p>;
 
+const user_not_logged_in = 'User not logged in, cannot show profile';
+
 export default class ProfileControl extends React.Component {
   state = {
     current_user: firebase.auth().currentUser,
@@ -57,7 +59,7 @@ export default class ProfileControl extends React.Component {
         })
         .catch(error => this.setState(updateByPropertyName('error', error.message)));
     } else {
-      console.error('Not logged in');
+      this.setState(updateByPropertyName('error', user_not_logged_in));
     }
   }
   static contextTypes = {
