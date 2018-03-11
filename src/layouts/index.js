@@ -32,6 +32,7 @@ export default class ApplicationRoot extends React.Component {
   static childContextTypes = {
     authenticated_user: PropTypes.object,
     userDidAuthSuccessfully: PropTypes.func,
+    do_signout: PropTypes.func,
   };
 
   componentDidMount() {
@@ -56,9 +57,14 @@ export default class ApplicationRoot extends React.Component {
           after_cb(authed_user_data.email_account);
         }
       );
+    const do_signout = () => {
+      sessionStorage.removeItem(SESSION_USER);
+      this.setState(() => ({ authenticated_user: null }));
+    };
     return {
       authenticated_user: this.state.authenticated_user,
       userDidAuthSuccessfully: didAuth,
+      do_signout,
     };
   }
 

@@ -23,7 +23,7 @@ const banner_s = { ...ROW, maxHeight: '30px' };
 
 const s = { marginTop: rhythm(1.5) };
 
-const post_new_s = { borderRadius: 20 };
+const post_new_s = { border: 0 };
 
 const horizontal_spacer = <div style={{ width: '10px' }} />;
 
@@ -66,6 +66,7 @@ export default withRouter(
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
+      do_signout: PropTypes.func,
     };
 
     toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
@@ -127,6 +128,11 @@ export default withRouter(
       }));
     };
 
+    do_signout = () => {
+      this.setState(() => ({ user_email_account: null }));
+      this.context.do_signout();
+    };
+
     render() {
       const has_account = this.state.user_email_account !== null;
       const signup_or_logged_in = (
@@ -137,6 +143,15 @@ export default withRouter(
           value={has_account ? this.state.user_email_account : 'Signup'}
         />
       );
+      const signin_or_signout = (
+        <input
+          onClick={has_account ? this.do_signout : this.show_signin_modal}
+          style={post_new_s}
+          type={'button'}
+          value={has_account ? 'Signout' : 'Signin'}
+        />
+      );
+
       return (
         <section style={s}>
           <Modal
@@ -159,13 +174,7 @@ export default withRouter(
                 disabled={!has_account}
               />
               {horizontal_spacer}
-              <input
-                onClick={this.show_signin_modal}
-                style={post_new_s}
-                type={'button'}
-                value={'Signin'}
-                disabled={has_account}
-              />
+              {signin_or_signout}
               {horizontal_spacer}
               {signup_or_logged_in}
             </div>
