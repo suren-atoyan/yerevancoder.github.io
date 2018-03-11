@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { auth, db } from '../utils/db';
 import { ROUTES, FORM_BASE_STYLE } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
-import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR } from './common-styles';
+import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR, SPACE } from './common-styles';
 
 const INITIAL_STATE = { username: '', email: '', passwordOne: '', passwordTwo: '', error: null };
 
@@ -61,6 +61,7 @@ export default withRouter(
       return (
         <form onSubmit={this.onSubmit} style={FORM_BASE_STYLE}>
           <fieldset style={full_width}>
+            {SPACE}
             {top_message}
             {BAR}
             <input
