@@ -21,3 +21,9 @@ const login_entry_horizontal_bar = {
 export const BAR = <hr style={login_entry_horizontal_bar} />;
 
 export const SPACE = <div style={{ height: '10px' }} />;
+
+export const LOGIN_ENTRY_BOX_FIELDSET_S = {
+  paddingBottom: '10px',
+  paddingTop: '20px',
+  borderColor: 'transparent',
+};

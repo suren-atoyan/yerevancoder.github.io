@@ -5,15 +5,24 @@ import PropTypes from 'prop-types';
 import { auth, db } from '../utils/db';
 import { ROUTES, FORM_BASE_STYLE } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
-import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR, SPACE } from './common-styles';
+import {
+  LOGIN_ENTRY_BOX_PROMPT_S,
+  WIDTH_WITH_MARGIN,
+  BAR,
+  SPACE,
+  LOGIN_ENTRY_BOX_FIELDSET_S,
+} from './common-styles';
 
 const INITIAL_STATE = { username: '', email: '', passwordOne: '', passwordTwo: '', error: null };
 
-const full_width = { minWidth: '100%' };
-
-const half_width = { minWidth: '50%' };
-
 const signup_message = 'Sign up for an account';
+
+const signup_fieldset = {
+  ...LOGIN_ENTRY_BOX_FIELDSET_S,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
 
 export default withRouter(
   class SignUpForm extends Component {
@@ -60,12 +69,12 @@ export default withRouter(
 
       return (
         <form onSubmit={this.onSubmit} style={FORM_BASE_STYLE}>
-          <fieldset style={full_width}>
+          <fieldset style={signup_fieldset}>
             {SPACE}
             {top_message}
             {BAR}
+            {SPACE}
             <input
-              style={half_width}
               value={username}
               onChange={event =>
                 this.setState(updateByPropertyName('username', event.target.value))
@@ -74,14 +83,12 @@ export default withRouter(
               placeholder={'Full Name'}
             />
             <input
-              style={half_width}
               value={email}
               onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
               type={'text'}
               placeholder={'Email Address'}
             />
             <input
-              style={half_width}
               value={passwordOne}
               onChange={event =>
                 this.setState(updateByPropertyName('passwordOne', event.target.value))
@@ -90,7 +97,6 @@ export default withRouter(
               placeholder={'Password'}
             />
             <input
-              style={half_width}
               value={passwordTwo}
               onChange={event =>
                 this.setState(updateByPropertyName('passwordTwo', event.target.value))
@@ -98,13 +104,7 @@ export default withRouter(
               type={'password'}
               placeholder={'Confirm Password'}
             />
-            <input
-              style={full_width}
-              type={'button'}
-              disabled={isInvalid}
-              type={'submit'}
-              value={'sign up'}
-            />
+            <input type={'button'} disabled={isInvalid} type={'submit'} value={'Create Account'} />
           </fieldset>
         </form>
       );

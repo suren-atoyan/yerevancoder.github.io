@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
 import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM, FORM_BASE_STYLE } from '../utils/constants';
-import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR, SPACE } from './common-styles';
+import {
+  LOGIN_ENTRY_BOX_PROMPT_S,
+  WIDTH_WITH_MARGIN,
+  BAR,
+  SPACE,
+  LOGIN_ENTRY_BOX_FIELDSET_S,
+} from './common-styles';
 
 const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
 
@@ -17,12 +23,6 @@ const login_entry_box_forgot_password = {
 
 const form_s = {
   ...FORM_BASE_STYLE,
-};
-
-const login_entry_box_fieldset_s = {
-  paddingBottom: '10px',
-  paddingTop: '20px',
-  borderColor: 'transparent',
 };
 
 const login_entry_box_signin_s = { ...WIDTH_WITH_MARGIN };
@@ -105,7 +105,7 @@ export default withRouter(
 
       return (
         <form onSubmit={this.onSubmit} style={form_s}>
-          <fieldset style={login_entry_box_fieldset_s}>
+          <fieldset style={LOGIN_ENTRY_BOX_FIELDSET_S}>
             {top_message}
             {BAR}
             {SPACE}
