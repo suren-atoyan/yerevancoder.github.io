@@ -6,7 +6,7 @@ import format from 'date-fns/format';
 import { rhythm } from '../utils/typography';
 import { updateByPropertyName } from '../utils/funcs';
 import { db } from '../utils/db';
-import { ROUTES, TEXT_S } from '../utils/constants';
+import { ROUTES, TEXT_S, JOB_POSTING_DESCRIPTION_LIMIT, SUMMARY_LIMIT } from '../utils/constants';
 
 const s = { marginTop: rhythm(1.5), backgroundColor: '#f5f5ea', paddingBottom: rhythm(1.5) };
 
@@ -72,8 +72,8 @@ export default withRouter(
             payment_currency,
             job_location,
             post_author,
-            short_job_description: short_job_description.slice(0, 120),
-            job_description: job_description.slice(0, 1000),
+            short_job_description: short_job_description.slice(0, SUMMARY_LIMIT),
+            job_description: job_description.slice(0, JOB_POSTING_DESCRIPTION_LIMIT),
             creation_time: now.getTime(),
             salary_from,
             salary_to,
@@ -90,7 +90,7 @@ export default withRouter(
                 job_location,
                 payment_currency,
                 salary_to,
-                short_job_description: short_job_description.slice(0, 120),
+                short_job_description: short_job_description.slice(0, SUMMARY_LIMIT),
               })
               .then(() =>
                 this.setState(() => ({ ...INIT_STATE }), () => history.push(ROUTES.JOBS_TABLE))
