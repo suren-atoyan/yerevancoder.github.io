@@ -10,15 +10,7 @@ import JobsTable from '../components/jobs-table';
 import Signin from '../components/signin';
 import Signup from '../components/signup';
 import { posts_ref } from '../utils/db';
-import {
-  ROW,
-  TEXT_S,
-  ROUTES,
-  SPACER_30_H,
-  MODAL_TRANSITION,
-  NO_MARGIN_BOTTOM,
-  ARMENIA_COLORS,
-} from '../utils/constants';
+import { ROW, ROUTES, SPACER_30_H, MODAL_TRANSITION, ARMENIA_COLORS } from '../utils/constants';
 
 const s = { marginTop: rhythm(1.5) };
 
@@ -27,7 +19,6 @@ const login_action_row_post_new_s = {
   borderTopColor: ARMENIA_COLORS.red,
 };
 
-const login_action_row_get_hired_text = { ...NO_MARGIN_BOTTOM, ...TEXT_S };
 const get_hired_text = <p className={'loginActionRow__GetHiredText'}>Get hired now</p>;
 
 const login_action_row_authing_action_s = {
@@ -73,7 +64,7 @@ export default withRouter(
     // state = {
     //   jobs: [],
     //   modal_show: true,
-    //   modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    //   modal_content: MODAL_CONTENT.SIGNUP_VIEW,
     //   user_email_account: this.context.authenticated_user
     //     ? this.context.authenticated_user.email_account
     //     : null,

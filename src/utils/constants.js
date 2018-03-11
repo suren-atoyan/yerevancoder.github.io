@@ -30,7 +30,7 @@ export const ARMENIA_COLORS = { red: '#ec493c', blue: '#0c5fa1', orange: '#f58f3
 export const GLOBAL_CSS = `
 .loginActionRow__GetHiredText {
   margin-bottom:0;
-  font-family: 'Montserrat, sans-serif';
+  font-family: Montserrat, sans-serif;
 }
 
 input[type=button], input[type=submit] {
