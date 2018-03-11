@@ -6,13 +6,11 @@ import format from 'date-fns/format';
 import { rhythm } from '../utils/typography';
 import { updateByPropertyName } from '../utils/funcs';
 import { db } from '../utils/db';
-import { ROUTES } from '../utils/constants';
+import { ROUTES, TEXT_S } from '../utils/constants';
 
 const s = { marginTop: rhythm(1.5), backgroundColor: '#f5f5ea', paddingBottom: rhythm(1.5) };
 
-const text_s = { fontFamily: 'Montserrat, sans-serif' };
-
-const field_label = { ...text_s, fontSize: 20 };
+const field_label = { ...TEXT_S, fontSize: 20 };
 
 const field = {
   display: 'flex',
