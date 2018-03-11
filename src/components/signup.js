@@ -41,7 +41,8 @@ export default withRouter(
             })
             .then(user_did_sign_in)
             .catch(error => this.setState(updateByPropertyName('error', error)))
-        );
+        )
+        .catch(error => this.setState(updateByPropertyName('error', error)));
     };
 
     render() {
