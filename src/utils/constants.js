@@ -1,4 +1,5 @@
 import React from 'react';
+import color from 'color';
 
 export const ROUTES = {
   JOBS_TABLE: '/hiring-board',
@@ -44,6 +45,12 @@ export const FORM_BASE_STYLE = {
   ...TRIPLE_COLOR_TOP_BORDER,
 };
 
+export const LIGHT_BLUE = color(ARMENIA_COLORS.blue)
+  .lighten(0.9)
+  .fade(0.4)
+  .hsl()
+  .string();
+
 export const GLOBAL_CSS = `
 .Profile__Container > * {
   margin:0;
@@ -55,12 +62,27 @@ export const GLOBAL_CSS = `
 }
 
 .Profile__User {
+  background-color:hsl(220, 12%, 95%);
+  padding:10px;
   display:flex;
 }
 
 .Profile__PostingsTable {
   height:400px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  background-color: hsl(220, 12%, 95%);
   overflow-y: scroll;
+  padding-top:135px;
+}
+
+.Profile__PostingRecord {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  border-bottom-width:10px;
 }
 
 legend {
@@ -139,7 +161,7 @@ export const MEDIA_QUERIES = `
     font-size:32px;
   }
   .ReactModal__Content--after-open {
-    width:50%;
+    width:60%;
   }
   .loginActionRow__GetHiredText {
     font-size:24px;

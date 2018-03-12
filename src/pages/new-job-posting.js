@@ -8,7 +8,11 @@ import { updateByPropertyName, is_number } from '../utils/funcs';
 import { db } from '../utils/db';
 import { ROUTES, TEXT_S, JOB_POSTING_DESCRIPTION_LIMIT, SUMMARY_LIMIT } from '../utils/constants';
 
-const s = { marginTop: rhythm(1.5), backgroundColor: '#f5f5ea', paddingBottom: rhythm(1.5) };
+const new_job_page = {
+  marginTop: rhythm(1.5),
+  backgroundColor: '#f5f5ea',
+  paddingBottom: rhythm(1.5),
+};
 
 const field_label = { ...TEXT_S, fontSize: 20 };
 
@@ -41,9 +45,7 @@ const INIT_STATE = {
 
 export default withRouter(
   class NewJobPosting extends React.Component {
-    static contextTypes = {
-      authenticated_user: PropTypes.object,
-    };
+    static contextTypes = { authenticated_user: PropTypes.object };
 
     state = { ...INIT_STATE };
 
@@ -105,9 +107,10 @@ export default withRouter(
       if (this.input_salary_from && this.input_salary_to) {
         const { value: salary_from } = this.input_salary_from;
         const { value: salary_to } = this.input_salary_to;
-        const result =
+        const validated =
           is_number(salary_from) &&
           is_number(salary_to) &&
+          +salary_from <= +salary_to &&
           Object.keys(this.state)
             .map(k => {
               const is_missing = this.state[k] !== '';
@@ -115,7 +118,7 @@ export default withRouter(
               return is_missing;
             })
             .reduce((accumulator, currentValue) => accumulator && currentValue);
-        return result;
+        return validated;
       } else {
         return false;
       }
@@ -123,7 +126,7 @@ export default withRouter(
 
     render() {
       return (
-        <section style={s}>
+        <section style={new_job_page}>
           <form onSubmit={this.submit_new_job_posting}>
             <fieldset disabled={this.context.authenticated_user === null} style={column}>
               <legend>Post a new tech job</legend>

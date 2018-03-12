@@ -7,30 +7,73 @@ import { TRIPLE_COLOR_TOP_BORDER, TEXT_S } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 import { firebase, posts_ref, db } from '../utils/db';
 
-const posting_record = { backgroundColor: 'aliceblue' };
+const paddingHorizontal = { paddingLeft: '5px', paddingRight: '5px' };
 
-const PostingRecord = ({ record }) => {
+const paddingVertical = { paddingTop: '5px', paddingBottom: '5px' };
+
+const textarea_s = {
+  margin: 0,
+  height: '100%',
+  width: '100%',
+  backgroundColor: 'white',
+  boxShadow: 'none',
+  resize: 'none',
+};
+
+const red_x_s = {
+  cursor: 'pointer',
+  paddingLeft: '8px',
+  paddingRight: '8px',
+};
+
+const flex_column = { display: 'flex', flexDirection: 'column' };
+
+const weighted = { fontWeight: 600 };
+
+const date_and_currency = { ...flex_column, height: '100%', justifyContent: 'center' };
+
+const flexed_column = {
+  ...flex_column,
+  flex: 1,
+  height: '100%',
+};
+
+const flexed_with_between = { display: 'flex', justifyContent: 'space-between' };
+
+const PostingRecord = ({ record, delete_record }) => {
   const {
-    post_key,
     creation_time,
-    post_author,
-    salary_from,
-    job_location,
-    payment_currency,
-    salary_to,
     short_job_description,
+    payment_currency,
+    job_location,
+    salary_from,
+    salary_to,
   } = record;
-  console.log({
-    post_key,
-    creation_time,
-    post_author,
-    salary_from,
-    job_location,
-    payment_currency,
-    salary_to,
-    short_job_description,
-  });
-  return <div style={posting_record}>{post_key}</div>;
+  const post_day = format(new Date(creation_time), 'DD/MMM');
+  return (
+    <div className={'Profile__PostingRecord'}>
+      <div style={date_and_currency}>
+        <span style={paddingHorizontal}>{post_day}</span>
+        <span style={paddingHorizontal}>{payment_currency}</span>
+      </div>
+      <div style={flexed_column}>
+        <textarea readonly={true} style={textarea_s}>
+          {short_job_description}
+        </textarea>
+        <div style={flexed_with_between}>
+          <span style={weighted}>{job_location}</span>
+          <span style={weighted}>
+            {salary_from}
+            {' ≤ '}Salary{' ≤ '}
+            {salary_to}
+          </span>
+        </div>
+      </div>
+      <span style={red_x_s} onClick={delete_record}>
+        {'❌'}
+      </span>
+    </div>
+  );
 };
 
 const no_postings_yet = <p style={{ ...TEXT_S, fontWeight: 700 }}>No Postings yet</p>;
@@ -44,6 +87,8 @@ export default class ProfileControl extends React.Component {
     data: [],
     data_loaded: false,
   };
+
+  static contextTypes = { authenticated_user: PropTypes.object };
 
   componentDidMount() {
     const { current_user } = this.state;
@@ -64,9 +109,6 @@ export default class ProfileControl extends React.Component {
       this.setState(updateByPropertyName('error', user_not_logged_in));
     }
   }
-  static contextTypes = {
-    authenticated_user: PropTypes.object,
-  };
 
   make_profile_view() {
     const profile_made_on = format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/');
@@ -87,6 +129,9 @@ export default class ProfileControl extends React.Component {
             <span>{profile_made_on}</span>
           </div>
         </div>
+        <p style={{ textAlign: 'center', fontWeight: 700, ...paddingVertical }}>
+          All My Job Postings
+        </p>
         <div className={'Profile__PostingsTable'}>{content}</div>
       </div>
     );
