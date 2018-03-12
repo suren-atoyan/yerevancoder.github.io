@@ -40,6 +40,8 @@ const flexed_column = {
 
 const flexed_with_between = { display: 'flex', justifyContent: 'space-between' };
 
+const obj_to_array = obj => Object.keys(obj).map(key => ({ ...obj[key], users_post_key: key }));
+
 const PostingRecord = ({ record, delete_record }) => {
   const {
     creation_time,
@@ -57,9 +59,7 @@ const PostingRecord = ({ record, delete_record }) => {
         <span style={paddingHorizontal}>{payment_currency}</span>
       </div>
       <div style={flexed_column}>
-        <textarea readonly={true} style={textarea_s}>
-          {short_job_description}
-        </textarea>
+        <textarea readOnly={true} defaultValue={short_job_description} style={textarea_s} />
         <div style={flexed_with_between}>
           <span style={weighted}>{job_location}</span>
           <span style={weighted}>
@@ -90,16 +90,16 @@ export default class ProfileControl extends React.Component {
 
   static contextTypes = { authenticated_user: PropTypes.object };
 
+  query_for_data = uid => db.ref(`users/${uid}/posts`).once('value');
+
   componentDidMount() {
     const { current_user } = this.state;
     if (current_user) {
-      db
-        .ref(`users/${current_user.uid}/posts`)
-        .once('value')
+      this.query_for_data(current_user.uid)
         .then(rows => {
           const data = rows.val();
           if (data) {
-            this.setState(() => ({ data: Object.values(data), data_loaded: true }));
+            this.setState(() => ({ data: obj_to_array(data), data_loaded: true }));
           } else {
             this.setState(() => ({ data_loaded: true }));
           }
@@ -110,12 +110,42 @@ export default class ProfileControl extends React.Component {
     }
   }
 
+  delete_job_posting(post_key, users_post_key) {
+    const { current_user } = this.state;
+    const { force_query } = this.props;
+    posts_ref
+      .child(post_key)
+      .remove()
+      .then(() =>
+        db
+          .ref(`users/${current_user.uid}/posts`)
+          .child(users_post_key)
+          .remove()
+          .then(() =>
+            this.query_for_data(current_user.uid).then(rows => {
+              const data = rows.val();
+              if (data) {
+                this.setState(() => ({ data: obj_to_array(data) }));
+              }
+            })
+          )
+      )
+      .then(force_query)
+      .catch(err => console.log({ err }));
+  }
+
   make_profile_view() {
     const profile_made_on = format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/');
     const account_name = this.context.authenticated_user.email_account;
     const content =
       this.state.data.length !== 0
-        ? this.state.data.map(job => <PostingRecord key={job.post_key} record={job} />)
+        ? this.state.data.map(job => (
+            <PostingRecord
+              delete_record={this.delete_job_posting.bind(this, job.post_key, job.users_post_key)}
+              key={job.post_key}
+              record={job}
+            />
+          ))
         : no_postings_yet;
     return (
       <div className={'Profile__Container'}>

@@ -71,10 +71,7 @@ export default withRouter(
     //     : null,
     // };
 
-    static contextTypes = {
-      authenticated_user: PropTypes.object,
-      do_signout: PropTypes.func,
-    };
+    static contextTypes = { authenticated_user: PropTypes.object, do_signout: PropTypes.func };
 
     toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
@@ -88,13 +85,16 @@ export default withRouter(
       history.push(ROUTES.NEW_JOB_POSTING);
     };
 
-    componentDidMount() {
-      posts_ref.once('value', snap_shot => {
+    query_data = () =>
+      posts_ref.once('value').then(snap_shot => {
         const rows = snap_shot.val();
         if (rows) {
           this.setState(() => ({ jobs: Object.values(rows) }));
         }
       });
+
+    componentDidMount() {
+      this.query_data();
     }
 
     user_did_sign_in = user_email_account => {
@@ -104,7 +104,7 @@ export default withRouter(
     modal_content = () => {
       switch (this.state.modal_content) {
         case MODAL_CONTENT.PROFILE_VIEW:
-          return <Profile jobs={this.state.jobs} />;
+          return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
         case MODAL_CONTENT.SIGNIN_VIEW:
           return <Signin user_did_sign_in={this.user_did_sign_in} />;
         case MODAL_CONTENT.SIGNUP_VIEW:

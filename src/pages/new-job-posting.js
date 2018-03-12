@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import format from 'date-fns/format';
 
 import { rhythm } from '../utils/typography';
 import { updateByPropertyName, is_number } from '../utils/funcs';
@@ -58,7 +57,6 @@ export default withRouter(
       if (this.is_invalid(k => (missing_field = k))) {
         const { uid: creator_uid } = this.context.authenticated_user;
         const now = new Date();
-        const uuid = format(now, 'DD/MMM/YYYY/ss').replace(/\//g, '-');
         const {
           job_description,
           job_location,
