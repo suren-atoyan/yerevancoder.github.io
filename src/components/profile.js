@@ -55,6 +55,8 @@ export default class ProfileControl extends React.Component {
           const data = rows.val();
           if (data) {
             this.setState(() => ({ data: Object.values(data), data_loaded: true }));
+          } else {
+            this.setState(() => ({ data_loaded: true }));
           }
         })
         .catch(error => this.setState(updateByPropertyName('error', error.message)));
@@ -73,7 +75,6 @@ export default class ProfileControl extends React.Component {
       this.state.data.length !== 0
         ? this.state.data.map(job => <PostingRecord key={job.post_key} record={job} />)
         : no_postings_yet;
-
     return (
       <div className={'Profile__Container'}>
         <div className={'Profile__User'}>
@@ -92,8 +93,7 @@ export default class ProfileControl extends React.Component {
   }
 
   render() {
-    const { current_user, data_loaded } = this.state;
-    const content = data_loaded ? this.make_profile_view() : <Spinner />;
+    const content = this.make_profile_view();
     return <div style={TRIPLE_COLOR_TOP_BORDER}>{content}</div>;
   }
 }
