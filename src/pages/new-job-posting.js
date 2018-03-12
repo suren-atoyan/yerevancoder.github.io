@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import format from 'date-fns/format';
 
 import { rhythm } from '../utils/typography';
-import { updateByPropertyName } from '../utils/funcs';
+import { updateByPropertyName, is_number } from '../utils/funcs';
 import { db } from '../utils/db';
 import { ROUTES, TEXT_S, JOB_POSTING_DESCRIPTION_LIMIT, SUMMARY_LIMIT } from '../utils/constants';
 
@@ -106,8 +106,8 @@ export default withRouter(
         const { value: salary_from } = this.input_salary_from;
         const { value: salary_to } = this.input_salary_to;
         const result =
-          salary_from !== '' &&
-          salary_to !== '' &&
+          is_number(salary_from) &&
+          is_number(salary_to) &&
           Object.keys(this.state)
             .map(k => {
               const is_missing = this.state[k] !== '';
