@@ -35,8 +35,7 @@ export default withRouter(
     onSubmit = event => {
       event.preventDefault();
       const { username, email, passwordOne } = this.state;
-      const { history } = this.props;
-      const { user_did_sign_in } = this.props;
+      const { history, user_did_sign_in } = this.props;
       const { userDidAuthSuccessfully } = this.context;
       auth
         .createUserWithEmailAndPassword(email, passwordOne)
