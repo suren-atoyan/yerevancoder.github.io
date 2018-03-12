@@ -136,7 +136,8 @@ export default class ProfileControl extends React.Component {
 
   make_profile_view() {
     const profile_made_on = format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/');
-    const account_name = this.context.authenticated_user.email_account;
+    const account_name =
+      this.context.authenticated_user !== null ? this.context.authenticated_user.email_account : '';
     const content =
       this.state.data.length !== 0
         ? this.state.data.map(job => (
