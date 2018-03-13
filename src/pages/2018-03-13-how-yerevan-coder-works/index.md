@@ -33,8 +33,9 @@ Blog posts are easy to write and require knowledge of only two things, [git](htt
 and [markdown](https://en.wikipedia.org/wiki/Markdown). To learn `git`, you need practice and we use
 it so that we can save the blog posts to the github repo and make pull requests (a request for
 someone to accept your work into a master copy of the source code). I recommend looking at this
-interactive website for learning [git](https://learngitbranching.js.org/). For markdown, look at
-other blog posts and keep this
+interactive website for learning [git](https://learngitbranching.js.org/) and our own blog
+[post](https://yerevancoder.com/2018-02-18-git-and-github/). For markdown, look at the source code
+of other blog posts and keep this
 [cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) open.
 
 ## How to write a blog post
