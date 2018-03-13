@@ -25,7 +25,9 @@ export default ({ style = {}, authors_count }) => (
       programming and tech. {authors_count} coders have already contributed and we are always
       looking for more contributors, use this{' '}
       <a href={'https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/'}>post</a> as a guide
-      on how to add a new blog post.
+      on how to add a new blog post and check out this{' '}
+      <a href={'https://yerevancoder.com/2017-12-21-javascript-resources/'}>post</a> for many inpage
+      lecture notes on learning JavaScript.
     </span>
     <span>
       Post a tech job on our <Link to={ROUTES.JOBS_TABLE}>hiring board</Link>
