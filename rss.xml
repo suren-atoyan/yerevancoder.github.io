@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Mar 2018 22:16:28 GMT</lastBuildDate><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Mar 2018 22:26:05 GMT</lastBuildDate><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
 very important JavaScript library called  react…]]></description><link>https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</guid><pubDate>Tue, 13 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;web application&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;yerevancoder&lt;/code&gt;, (yc), is a &lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;gatsby&lt;/a&gt; web application and its built using a
 very important JavaScript library called &lt;a href=&quot;https://reactjs.org/&quot;&gt;react&lt;/a&gt;. The site is a hybrid app
@@ -10,6 +10,12 @@ service). This means that we can build everything for our application with just 
 don’t have to run a server. Because the site is a github pages site, we don’t pay for hosting (the
 computers that physically provide the &lt;code&gt;HTML&lt;/code&gt; and &lt;code&gt;JavaScript&lt;/code&gt;). Serverless &lt;code&gt;JavaScript&lt;/code&gt; applications
 are very popular now because you can build an entire startup just by writing &lt;code&gt;JavaScript&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GitHub&lt;/code&gt; gives us a free domain at &lt;code&gt;http://yerevancoder.github.io&lt;/code&gt; but you’ll notice that the site
+is &lt;code&gt;https://yerevancoder.com&lt;/code&gt;. So we have a custom domain name, this is done by having a &lt;code&gt;CNAME&lt;/code&gt;
+file at &lt;code&gt;public/CNAME&lt;/code&gt;. However that doesn’t provide us with
+&lt;a href=&quot;https://en.wikipedia.org/wiki/HTTPS&quot;&gt;https&lt;/a&gt;, so for that part we use
+&lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;cloudflare&lt;/a&gt; which provides us with free
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Denial-of-service_attack&quot;&gt;DDoS&lt;/a&gt; protection and &lt;code&gt;https&lt;/code&gt;.&lt;/p&gt;
 &lt;h2&gt;The blog posts&lt;/h2&gt;
 &lt;p&gt;Blog posts are easy to write and require knowledge of only two things, &lt;a href=&quot;https://git-scm.com/&quot;&gt;git&lt;/a&gt;
 and &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;markdown&lt;/a&gt;. To learn &lt;code&gt;git&lt;/code&gt;, you need practice and we use
