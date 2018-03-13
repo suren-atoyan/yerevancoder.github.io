@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Mar 2018 22:32:32 GMT</lastBuildDate><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Mar 2018 22:50:43 GMT</lastBuildDate><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
 very important JavaScript library called  react…]]></description><link>https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</guid><pubDate>Tue, 13 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;web application&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;yerevancoder&lt;/code&gt;, (yc), is a &lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;gatsby&lt;/a&gt; web application and its built using a
 very important JavaScript library called &lt;a href=&quot;https://reactjs.org/&quot;&gt;react&lt;/a&gt;. The site is a hybrid app
@@ -21,8 +21,9 @@ file at &lt;code&gt;public/CNAME&lt;/code&gt;. However that doesn’t provide us
 and &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;markdown&lt;/a&gt;. To learn &lt;code&gt;git&lt;/code&gt;, you need practice and we use
 it so that we can save the blog posts to the github repo and make pull requests (a request for
 someone to accept your work into a master copy of the source code). I recommend looking at this
-interactive website for learning &lt;a href=&quot;https://learngitbranching.js.org/&quot;&gt;git&lt;/a&gt;. For markdown, look at
-other blog posts and keep this
+interactive website for learning &lt;a href=&quot;https://learngitbranching.js.org/&quot;&gt;git&lt;/a&gt; and our own blog
+&lt;a href=&quot;https://yerevancoder.com/2018-02-18-git-and-github/&quot;&gt;post&lt;/a&gt;. For markdown, look at the source code
+of other blog posts and keep this
 &lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;cheatsheet&lt;/a&gt; open.&lt;/p&gt;
 &lt;h2&gt;How to write a blog post&lt;/h2&gt;
 &lt;p&gt;Exact steps to write a blog post:&lt;/p&gt;
