@@ -20,6 +20,13 @@ don't have to run a server. Because the site is a github pages site, we don't pa
 computers that physically provide the `HTML` and `JavaScript`). Serverless `JavaScript` applications
 are very popular now because you can build an entire startup just by writing `JavaScript`.
 
+`GitHub` gives us a free domain at `http://yerevancoder.github.io` but you'll notice that the site
+is `https://yerevancoder.com`. So we have a custom domain name, this is done by having a `CNAME`
+file at `public/CNAME`. However that doesn't provide us with
+[https](https://en.wikipedia.org/wiki/HTTPS), so for that part we use
+[cloudflare](https://www.cloudflare.com/) which provides us with free
+[DDoS](https://en.wikipedia.org/wiki/Denial-of-service_attack) protection and `https`.
+
 ## The blog posts
 
 Blog posts are easy to write and require knowledge of only two things, [git](https://git-scm.com/)
