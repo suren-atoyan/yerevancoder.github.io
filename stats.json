@@ -48,6 +48,10 @@
       "path---2017-12-21-javascript-resources-4c851f7895b2a6f949a0.js",
       "path---2017-12-21-javascript-resources-4c851f7895b2a6f949a0.js.map"
     ],
+    "path---2018-03-13-how-yerevan-coder-works": [
+      "path---2018-03-13-how-yerevan-coder-works-1240ba2c81b92be3fbed.js",
+      "path---2018-03-13-how-yerevan-coder-works-1240ba2c81b92be3fbed.js.map"
+    ],
     "path---2018-02-18-git-and-github": [
       "path---2018-02-18-git-and-github-08e4d076cef323323d2f.js",
       "path---2018-02-18-git-and-github-08e4d076cef323323d2f.js.map"
@@ -81,8 +85,8 @@
       "path---2018-03-06-javascript-edge-cases-c8c55427ced7ceee33c9.js.map"
     ],
     "path---index": [
-      "path---index-9c920dd927adeea75576.js",
-      "path---index-9c920dd927adeea75576.js.map"
+      "path---index-5b41aeb6f625251756f9.js",
+      "path---index-5b41aeb6f625251756f9.js.map"
     ],
     "path---new-job-posting": [
       "path---new-job-posting-a0e39f21c11f6a62c5ab.js",
@@ -127,9 +131,9 @@
       "path---2018-01-12-promises-and-timeouts-71739a70e676a4063048.js.map"
     ],
     "app": [
-      "app-9a9a7138d74cc109b39b.js",
+      "app-59f31637e8fd0b9cbc90.js",
       "build-js-styles.css",
-      "app-9a9a7138d74cc109b39b.js.map",
+      "app-59f31637e8fd0b9cbc90.js.map",
       "build-js-styles.css.map"
     ],
     "path---2018-03-04-js-function-declaration-and-function-expression": [

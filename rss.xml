@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Mon, 12 Mar 2018 17:17:47 GMT</lastBuildDate><item><title><![CDATA[JavaScript. Edge Cases]]></title><description><![CDATA[Edge cases in JavaScript Hi everyone, today we are going to talk about the edge cases in JS Small Decimal Values The most (in)famous side…]]></description><link>https://yerevancoder.com/2018-03-06-javascript-edge-cases/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-06-javascript-edge-cases/</guid><pubDate>Tue, 06 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Edge cases in JavaScript&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Mar 2018 22:16:28 GMT</lastBuildDate><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
+very important JavaScript library called  react…]]></description><link>https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</guid><pubDate>Tue, 13 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;web application&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;yerevancoder&lt;/code&gt;, (yc), is a &lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;gatsby&lt;/a&gt; web application and its built using a
+very important JavaScript library called &lt;a href=&quot;https://reactjs.org/&quot;&gt;react&lt;/a&gt;. The site is a hybrid app
+because some of the site is generated on the server side (the blog posts) and some parts (the hiring
+board) are dynamic and made on the client with &lt;code&gt;JavaScript&lt;/code&gt;. Gatsby is also a ‘serverless’ application
+because we use &lt;a href=&quot;https://firebase.google.com/&quot;&gt;firebase&lt;/a&gt; to provide for things like user
+authentication and a database, (because our traffic is low we don’t pay firebase for the
+service). This means that we can build everything for our application with just JavaScript and we
+don’t have to run a server. Because the site is a github pages site, we don’t pay for hosting (the
+computers that physically provide the &lt;code&gt;HTML&lt;/code&gt; and &lt;code&gt;JavaScript&lt;/code&gt;). Serverless &lt;code&gt;JavaScript&lt;/code&gt; applications
+are very popular now because you can build an entire startup just by writing &lt;code&gt;JavaScript&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;The blog posts&lt;/h2&gt;
+&lt;p&gt;Blog posts are easy to write and require knowledge of only two things, &lt;a href=&quot;https://git-scm.com/&quot;&gt;git&lt;/a&gt;
+and &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;markdown&lt;/a&gt;. To learn &lt;code&gt;git&lt;/code&gt;, you need practice and we use
+it so that we can save the blog posts to the github repo and make pull requests (a request for
+someone to accept your work into a master copy of the source code). I recommend looking at this
+interactive website for learning &lt;a href=&quot;https://learngitbranching.js.org/&quot;&gt;git&lt;/a&gt;. For markdown, look at
+other blog posts and keep this
+&lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;cheatsheet&lt;/a&gt; open.&lt;/p&gt;
+&lt;h2&gt;How to write a blog post&lt;/h2&gt;
+&lt;p&gt;Exact steps to write a blog post:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First &lt;a href=&quot;https://help.github.com/articles/fork-a-repo/&quot;&gt;fork&lt;/a&gt; the main
+&lt;a href=&quot;https://github.com/yerevancoder/yerevancoder.github.io&quot;&gt;repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository&quot;&gt;clone&lt;/a&gt; your &lt;code&gt;fork&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd&lt;/code&gt; to your recently cloned directory and install all the dependencies with either &lt;code&gt;yarn&lt;/code&gt; or
+&lt;code&gt;npm&lt;/code&gt;. So something like:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone YOUR_FORK_OF_YEREVAN_CODER
+$ &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; YOUR_FORK_OF_YEREVAN_CODER
+$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# OR just type yarn&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;Now run &lt;code&gt;npm run dev&lt;/code&gt; or just &lt;code&gt;yarn dev&lt;/code&gt;. This will start a local web server on &lt;code&gt;localhost:8000&lt;/code&gt;
+and you can see the site automatically rebuilt whenever you make a change, it lets you iterate
+very fast, the automatic refresh is called
+&lt;a href=&quot;https://webpack.js.org/concepts/hot-module-replacement/&quot;&gt;hot-module-replacement&lt;/a&gt; and gatsby sets
+it up for us.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;/hmr-refresh-is-awesome-f44d5d1f56a6e1617b4b9051a60facd5.gif&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Note that &lt;code&gt;gatsby&lt;/code&gt; will generate an &lt;code&gt;HTML&lt;/code&gt; file for JavaScript files under &lt;code&gt;src/pages&lt;/code&gt;, so make a
+new directory with &lt;code&gt;mkdir&lt;/code&gt; under &lt;code&gt;src/pages&lt;/code&gt;. Notice how the other directories are organized with
+the date and title in the directory names.&lt;/p&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;Under your new directory, create an &lt;code&gt;index.md&lt;/code&gt; file. This is your blog post and you write it in
+&lt;code&gt;markdown&lt;/code&gt;, be sure to make sure that the top part of the markdown file is set up correctly,&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-e089a.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 20.3125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAvklEQVQY02WQzQ6DIBCEeRorakVBFFCUHpr+eGua9ND3f47pgqlp0sOXGdhdMgvTakTQDtpZ9N7BBId+dsl3o92RxiSNtVr14FWH4vgPs63Byy6Y1hnnZ8B881juHtIZZIVCXm0cSgUeh0SXfMZVqu/wrYc5afEeAx4h4LIGTFefUgwLETY0nc1pREsphR4grUleUeKokW6yKIUGE2LATI8uDa3VDCnZtzk2ab+trOi+oAFeU0riV5OnWk7f8AEr4oHDTMlTCQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;meta data&quot;
+        title=&quot;&quot;
+        src=&quot;/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-fb8a0.png&quot;
+        srcset=&quot;/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-1a291.png 148w,
+/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-2bc4a.png 295w,
+/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-fb8a0.png 590w,
+/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-526de.png 885w,
+/static/meta-data-1d45f5f6a568a0a0efe31213b1e59189-e089a.png 1152w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;Once you are happy with the post, create a &lt;a href=&quot;https://help.github.com/articles/about-pull-requests/&quot;&gt;pull
+request&lt;/a&gt; and someone with commit access
+for the main yerevancoder repo will either merge the PR or will give some comments.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is basically the flow of all open source projects so its important to get some experience in
+it, the dynamic part which is the React coding part, will be explained in part two.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[JavaScript. Edge Cases]]></title><description><![CDATA[Edge cases in JavaScript Hi everyone, today we are going to talk about the edge cases in JS Small Decimal Values The most (in)famous side…]]></description><link>https://yerevancoder.com/2018-03-06-javascript-edge-cases/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-06-javascript-edge-cases/</guid><pubDate>Tue, 06 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Edge cases in JavaScript&lt;/h1&gt;
 &lt;p&gt;Hi everyone, today we are going to talk about the edge cases in JS&lt;/p&gt;
 &lt;h2&gt;Small Decimal Values&lt;/h2&gt;
 &lt;p&gt;The most (in)famous side effect of using binary floating-point
