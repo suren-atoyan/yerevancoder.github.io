@@ -10,42 +10,106 @@ discussionId: "2017-12-21-useful-material"
 _By Edgar Aroutiounian_,
 catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 
-Here are some **JavaScript** resources you can use when learning.
+Here are some **JavaScript** resources, including nodejs and ReactJS lecture notes that you can just
+slide through.
 
 ## nodejs
 
 These are lecture notes done for nodejs
 
-### English
+# English
 
-[lecture-1](http://iteratehackerspace.com/backend-bootcamp-english/lecture1.html)
-[lecture-2](http://iteratehackerspace.com/backend-bootcamp-english/lecture2.html)
-[lecture-3](http://iteratehackerspace.com/backend-bootcamp-english/lecture3.html)
-[lecture-4](http://iteratehackerspace.com/backend-bootcamp-english/lecture4.html)
-[lecture-5](http://iteratehackerspace.com/backend-bootcamp-english/lecture5.html)
-[lecture-6](http://iteratehackerspace.com/backend-bootcamp-english/lecture6.html)
-[lecture-7](http://iteratehackerspace.com/backend-bootcamp-english/lecture7.html)
-[lecture-8](http://iteratehackerspace.com/backend-bootcamp-english/lecture8.html)
+## lecture-1
 
-### հայերեն
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture1.html" width="1" height="1" />
 
-[lecture-1](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture1.html)
-[lecture-2](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture2.html)
-[lecture-3](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture3.html)
-[lecture-4](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture4.html)
-[lecture-5](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture5.html)
-[lecture-6](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture6.html)
-[lecture-7](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture7.html)
-[lecture-8](http://iteratehackerspace.com/backend-bootcamp-armenian/lecture8.html)
+## lecture-2
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture2.html" width="1" height="1" />
+
+## lecture-3
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture3.html" width="1" height="1" />
+
+## lecture-4
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture4.html" width="1" height="1" />
+
+## lecture-5
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture5.html" width="1" height="1" />
+
+## lecture-6
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture6.html" width="1" height="1" />
+
+## lecture-7
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture7.html" width="1" height="1" />
+
+## lecture-8
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture8.html" width="1" height="1" />
+
+# հայերեն
+
+## դասախոսություն-1
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture1.html" width="1" height="1" />
+
+## դասախոսություն-2
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture2.html" width="1" height="1" />
+
+## դասախոսություն-3
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture3.html" width="1" height="1" />
+
+## դասախոսություն-4
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture4.html" width="1" height="1" />
+
+## դասախոսություն-5
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture5.html" width="1" height="1" />
+
+## դասախոսություն-6
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture6.html" width="1" height="1" />
+
+## դասախոսություն-7
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture7.html" width="1" height="1" />
+
+## դասախոսություն-8
+
+<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture8.html" width="1" height="1" />
 
 ## ReactJS
 
-[lecture-1](http://iteratehackerspace.com/frontend-bootcamp-english/lecture-1)
-[lecture-2](http://iteratehackerspace.com/frontend-bootcamp-english/lecture-2)
-[lecture-3](http://iteratehackerspace.com/frontend-bootcamp-english/lecture-3)
-[lecture-4](http://iteratehackerspace.com/frontend-bootcamp-english/lecture-4)
-[lecture-5](http://iteratehackerspace.com/frontend-bootcamp-english/lecture-5)
-[lecture-6](http://iteratehackerspace.com/frontend-bootcamp-english/lecture-6)
+## lecture-1
+
+<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-1" width="1" height="1" />
+
+## lecture-2
+
+<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-2" width="1" height="1" />
+
+## lecture-3
+
+<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-3" width="1" height="1" />
+
+## lecture-4
+
+<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-4" width="1" height="1" />
+
+## lecture-5
+
+<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-5" width="1" height="1" />
+
+## lecture-6
+
+<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-6" width="1" height="1" />
 
 ## JavaScript conf
 
@@ -55,7 +119,9 @@ These are lecture notes done for nodejs
 
 ### Michael Manukyan:
 
-[Production Webpack](http://jsconf17.mmanukyan.io/#/)
+## Production Webpack
+
+<iframe src="http://jsconf17.mmanukyan.io/" width="1" height="1" />
 
 ## General Հուշաթերթիկ
 
