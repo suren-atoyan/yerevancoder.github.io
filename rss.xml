@@ -1,4 +1,73 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Mar 2018 23:13:40 GMT</lastBuildDate><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Mar 2018 14:00:06 GMT</lastBuildDate><item><title><![CDATA[Front End (ReactJS) Developer Learning Path]]></title><description><![CDATA[General Requirements Note: This list is proposed by RenderForest, for newbie devs that apply for a job in our company.
+This is not a…]]></description><link>https://yerevancoder.com/2018-03-14-Front-End-ReactJS-Developer-Learning-Path/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-14-Front-End-ReactJS-Developer-Learning-Path/</guid><pubDate>Wed, 14 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;General Requirements&lt;/h2&gt;
+&lt;p&gt;Note: This list is proposed by RenderForest, for newbie devs that apply for a job in our company.
+This is not a complete list, nor it is a single answer to all questions.
+But we thought that this might be helpful for community and for those who want to learn modern front-end development with ReactJs technology.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic understanding of HTML/CSS &lt;a href=&quot;https://www.codecademy.com/en/tracks/web&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Have already read this &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript&quot;&gt;(A reintroduction to JavaScript)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Basic working knowledge of JavaScript&lt;/li&gt;
+&lt;li&gt;CS Related university grad or 3rd course or above.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;General JavaScript Knowledge&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Git / github - or Bitbucket &lt;a href=&quot;https://try.github.io/levels/1/challenges/1&quot;&gt;(learn)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Basic understanding of&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NodeJs npm (npm install, uninstall, —save …)&lt;/li&gt;
+&lt;li&gt;Webpack &lt;a href=&quot;https://webpack.js.org/guides/getting-started/&quot;&gt;(learn)&lt;/a&gt;
+&lt;a href=&quot;https://auth0.com/blog/webpack-a-gentle-introduction/&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Asynchronous functions &lt;a href=&quot;https://medium.com/@siddharthac6/javascript-execution-of-synchronous-and-asynchronous-codes-40f3a199e687&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Promises
+&lt;a href=&quot;https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261&quot;&gt;(learn)&lt;/a&gt;
+&lt;a href=&quot;https://learn.javascript.ru/promise&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Be familiar with&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ES6 syntax &lt;a href=&quot;https://webapplog.com/es6/&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;What are Cookies? &lt;a href=&quot;https://www.nczonline.net/blog/2009/05/05/http-cookies-explained/&quot;&gt;(learn)&lt;/a&gt;
+&lt;a href=&quot;https://www.w3schools.com/js/js_cookies.asp&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;What is package.json for? &lt;a href=&quot;http://nodesource.com/blog/the-basics-of-package-json-in-node-js-and-npm/&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Have written an array sorting function (bubble sort, quick sort.. Or any)
+&lt;a href=&quot;http://www.8bitavenue.com/2015/09/sorting-algorithms-explained-by-examples/&quot;&gt;(learn)&lt;/a&gt;
+&lt;a href=&quot;https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html&quot;&gt;(learn)&lt;/a&gt;
+&lt;a href=&quot;http://macr.ae/article/sorting-algorithms.html&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;General Help - &lt;a href=&quot;https://nodeschool.io/#workshoppers&quot;&gt;(learn)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;For Front-End (ReactJS) development.&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Do any small project on ReactJS, understand the component lifecycle.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://reactjs.org/docs/state-and-lifecycle.html&quot;&gt;(state)&lt;/a&gt;,
+&lt;a href=&quot;https://reactjs.org/docs/react-component.html&quot;&gt;(component)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Get familiar with redux &lt;a href=&quot;https://egghead.io/courses/getting-started-with-redux&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;FlowType - read a bit about static type checking in JavaScript and watch these videos&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=TjmTuglpAXQ&quot;&gt;(Video 1)&lt;/a&gt;,
+&lt;a href=&quot;https://www.youtube.com/watch?v=oaBzhS6O4ew&quot;&gt;(Video 2)&lt;/a&gt;,
+&lt;a href=&quot;https://www.youtube.com/watch?v=V1po0BT7kac&quot;&gt;(Video 3)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Additional Topics To Study&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Mastering JavaScript Callbacks &lt;a href=&quot;https://github.com/emarukyan/mastering-callbacks-javascript/&quot;&gt;(tasks)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Recursion &lt;a href=&quot;https://github.com/AlbertHambardzumyan/recursion&quot;&gt;(learn)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://teachyourselfcs.com/&quot;&gt;Teach Yourself Computer Science&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[How yerevancoder.com works and how you can contribute (Part One)]]></title><description><![CDATA[web application yerevancoder , (yc), is a  gatsby  web application and its built using a
 very important JavaScript library called  react…]]></description><link>https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-13-how-yerevan-coder-works/</guid><pubDate>Tue, 13 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;web application&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;yerevancoder&lt;/code&gt;, (yc), is a &lt;a href=&quot;https://www.gatsbyjs.org/&quot;&gt;gatsby&lt;/a&gt; web application and its built using a
 very important JavaScript library called &lt;a href=&quot;https://reactjs.org/&quot;&gt;react&lt;/a&gt;. The site is a hybrid app
