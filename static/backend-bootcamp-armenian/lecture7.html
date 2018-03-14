@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Review
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+
+
+Ծանոթագրություն
+<small>
+Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
+տերմիններ, չեն թարգմանվել։ Երբեմն բառերի մոտավոր թարգմանությունները
+գրվել են նրանց կողքին՝ փակագծերում։ (թարգմ․՝ Լ․ Հովհաննիսյան)
+</small>
+## «Review» (ամփոփում)
+
+####Էդգար Հարությունյան
+---------------------
+<small>«ISTC» (Ինովացիոն լուծումների և տեխնոլոգիաների կենտրոն)</small>
+
+«Backend» ծրագրավորման դասընթաց
+
+7-րդ շաբաթ, աշուն 2016
+
+Երևան, Հայաստան
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Review»_
+-----------
+<font size = 5>Առայսօր՝ մեր դասընթացի ընթացքում ուսումնասիրել ենք որոշ
+կարևորագույն գաղափարներ։ Այժմ եկեք հատուկ վերանայենք
+մեր անցած նյութը, որպեսզի ձեզանից յուրաքանչյուրն ունենա
+առնվազն նվազագույն մակարդակ որոշ հենքային հասկացությունների,
+գաղափարների վերաբերյալ։ Հիշեք, որ բացի այս դասախոսություններից
+Դուք պետք է տրամադրեք հավելյալ *ԺԱՄԵՐ*, պետք է գրեք կոդ, հասկանաք
+այն և շարունակ կարդաք ներկայացված նյութերն ու իմ կողմից
+տրամադրված «link»֊երը։ Նաև փորձեք փնտրել և կարդալ անհրաժեշտ
+տեղեկություններ «wikipedia»֊ում։
+<br><br>
+Ամփոփելիս մենք կկենտրոնանանք մեր անցած նյութերից միայն
+«node fundamentals»֊ի և «networking»֊ի հետ կապված գաղափարների վրա։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«node fundamentals»_
+----------------------
+<font size = 5>«node»֊ն ինքնին «async»(ոչ սինխրոն) է։ Վերհիշենք, որ
+«programming» նշանակում է կոդի օգնությամբ թելադրել
+համակարգչին ինչ անել։ Վերջինս իր մեջ ներառում է նաև ժամանակի
+գաղափար․ մենք ցանկանում ենք, որ տվյալ կոդը գործի դրվի մեկ այլ
+կոդից հետո, այսինքն՝ մենք ենք սահմանում նրանց
+կատարման հերթականությունը։ Նման ձևով գրված կոդը կոչվում է
+«sequential» (հաջորդական), «synchronous» (սինխրոն)։
+<br>
+Ենթադրենք՝ ունենք այսպիսի կոդ․</font>
+
+```
+const file_content = read_file('./names.txt', 'r');
+const lines = file_content.split('\n');
+for (let line of lines) {
+  console.log(`Length: of line:${line} is: ${line.length}`);
+}
+```
+<font size = 5>Այստեղ սկզբում կկատարվի «read_file»֊ը, ապա
+«.split»֊ը, այնուհետև կաշխատի «for loop»֊ը։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«node fundamentals»..._
+------------------------------
+<font size = 5>
+«read_file»֊ը ֆունկցիա է, որը կարդալու է ֆայլը, այսինքն՝ այն
+կատարելու է որոշ «input/output» գործողություններ։ «Input/Output»-ը,
+որը նշանակում է կարդալ «physical hardware»֊ից (օրինակ՝ «harddrive»),
+իրականում չափազանց դանդաղ գործողություն է՝ համեմատած մնացած
+ամեն ինչի հետ, ինչ որ կատարում է համակարգիչը։
+<br>
+Եկեք մտածենք․․․ իսկ ի՞նչ կլինի, եթե «names.txt»֊ը լինի «300GB»
+ծավալով ֆայլ։ Այդ դեպքում ծրագիրը չի անցնի «read_file»֊ից առաջ,
+քանի դեռ այդ ֆունկցիան չի ավարտվել (վերադարձել)։ Այս երևույթը կոչվում
+է «blocking I/O function call»: «network»֊ի հետ առնչվող ցանկացած բան
+կարող է հանդիսանալ «blocking I/O function call», օրինակ
+«socket»֊ից կարդալը։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«node fundamentals»..._
+------------------------------
+<font size = 5>Ժամանակակից «networked application»֊ները հանդիսանում են
+«web app»֊եր, «mobile app»֊եր, և նրանք պահանջում են մեծ ռեսուրսներ։
+Վերջինս ավանդական ձևով իրականացնելու համար պետք է օգտագործել
+բազմաթիվ պրոցեսներ կամ «thread»֊ներ։ Այդ երկուսն էլ, անշուշտ, օգտագործման
+ամենահեշտ տարբերակներից չեն։
+<br>«node»֊ի հանճարեղությունը կայանում է
+նրանում, որ այն ի սկզբանե կառուցվել է «networked application»֊ների
+համար, այն հաջողությամբ դառնում է մասշտաբային։
+<br>
+«node»֊ն ի վիճակի է կատարել դա «async» կոդավորման միջոցով («by default»):
+«async» կոդավորումը նշանակում է, որ կոդն ընթանում է անորոշ
+հերթականությամբ (եթե միայն նայած լինեք «source code»֊ին):
+Օրինակ 5-րդ տողում գրված կոդը կարող է իրականանալ 10-րդ տողում
+գրվածից հետո։</font>
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«node fundamentals»..._
+------------------------------
+<font size = 5>Այսպիսով, մեր նախորդ օրինակը «async» ոճով կգրվի այսպես․</font>
+
+```
+read_file('./names.txt', 'r', file_contents => {
+  const lines = file_content.split('\n');
+  for (let line of lines) {
+    console.log(`Length: of line:${line} is: ${line.length}`);
+  }
+});
+```
+<font size = 5>Քանի որ ֆայլի կարդալը «I/O (Input/Output)» գործողություն
+է, ապա այն պոտենցիալ «block» ծրագիր է։ Այդ պատճառով ստեղծում ենք
+հետևյալ «read_file» ֆուկցիան, որը
+կփորձի կարդալ ֆայլը և անմիջապես
+կվերադառնա, այսինքն՝ «blocking» չի անի հիմնական ծրագիրը։
+«read_file»֊ն ունի նաև, որպես 3-րդ արգումենտ գրանցված «callback»,
+որը տրված է որպես ֆունկցիա։ Այն գործի կդրվի *ԵՐԲ*
+տվյալները վերջապես գան (տեղ հասնեն)։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«node fundamentals»..._
+------------------------------
+<font size = 6>«callback»֊ը տեղակայված է «event loop»֊ում։ «node»֊ում դա
+միակ «JavaScript» «thread»֊ն է, որը պետք է կատարի ամբողջ «JavaScript»
+կոդը, ինչպես նաև անցնի <br> «event loop»֊ի բազմազան գործողությունների
+հերթերի միջով։
+Այդ պատճառով *ԾԱՅՐԱՀԵՂ* կարևոր է երբեք «block» չանել «thread»֊ը․
+չանել այնպիսի գործողություններ, ինչպիսիք են
+« while(true) { } »֊ը կամ «blocking system I/O call»֊ը՝ օրինակ
+«sleep(10)»։ «event loop»֊ն արգելափակելիս՝ արգելափակվում են
+բոլոր կարևոր «system timer»֊ները և «library code»֊ը։</font>
+
+Պարտադիր կարդացեք հետևյալ
+[*link*](https://github.com/nodejs/node/blob/v6.x/doc/topics/event-loop-timers-and-nexttick.md)֊ը,
+այն հենց «node»֊ի «source code»֊ից է։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»_
+---------------
+<font size = 6>«Networking»֊ը այն երևույթն է, երբ մեկից ավելի համակարգիչներ
+հաղորդակցվում են իրար հետ։ Հիշեք, քանի որ համակարգիչները հաղորդակցվում
+են լարերի՝ օրինակ «ethernet cable»֊ի կամ «radio»֊ի՝ օրինակ «WiFi»֊ի
+միջոցով, ապա տվյալների միակ տեսակը, որը նրանք կարող են ուղարկել,
+տվյալների տողեր են։ Ահա թե ինչու «node core APIs»֊ից շատերն
+օգտագործում են «Buffer» օբյեկտներ, որովհետև «Buffer»֊ն ամենաարդյունավետ
+եղանակն է տվյալների տողերը պահելու համար։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»..._
+-----------------------
+<font size = 6>«Networking»֊ը կազմված է մի քանի շերտերից, որոնք
+կառուցված են մեկը մյուսի
+հիման վրա։ «TCP/IP network stack»֊ը սկսվում է «*link*» շերտից,
+ինչպես օրինակ «ethernet cables»֊ները։ «link»֊ի վերին շերտում գտնվում է
+«IP»֊ն, սա թույլ է տալիս տեղեկանալ անհատական համակարգիչների մասին։
+Նրա վերին շերտում գտնվում է «TCP»֊ն, այսինքն «routing»֊ը, այլ կերպ
+ասած՝ այն միջոցը, որն ապահովում է տվյալների մատակարարումը մասնավոր
+համակարգիչներին՝ անցնելով այլ համակարգիչների միջով «network»֊ում։
+Վերջապես վերջին շերտը «Application layer»֊ն է, այսինքն «HTTP(S)»֊ի
+և նման բաների համար նախատեսված շերտը։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»..._
+-----------------------
+<font size = 6>Այսպիսով, պատկերավոր կարելի է ներկայացնել այսպես․</font>
+
+```
+
+	   |-----------------
+	   | Application Layer <- Examples: HTTP, HTTPS, FTP, SSH
+
+	   |-----------------
+	   | Transport Layer   <- Examples: TCP, sockets, UDP
+
+	   |-----------------
+	   | IP Layer          <- Examples: 192.4.212.4
+
+	   |-----------------
+	   | Link Layer        <- Examples: Ethernet cable, WiFi.
+
+```
+<font size = 6>Յուրաքանչյուր «layer» կառուցված է ստորին շերտի հիման վրա։
+Ուրեմն, ո՞րն է «TCP»֊ի և «HTTP»֊ի միջև տարբերությունը։
+Պարզապես «HTTP»֊ն կառուցված է «TCP»֊ի հիման վրա։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»..._
+-----------------------
+<font size = 5> Ծրագրավորման հիմնական աբստրակցիան (գաղափարը), որն օգտագործվում է
+«networking»֊ի համար, կոչվում է «socket»։ «socket»֊ը
+սովորաբար իրագործվում է «C/C++» մակարդակում, սակայն «node»֊ը
+հնարավորություն է տալիս օգտագործել այն որպես սովորական «JavaScript»
+օբյեկտ։ «socket»֊ն այն հիմնական միջոցն է, որը կիրառվում է
+ծրագրավորման լեզուներում մեկից ավելի համակարգիչների
+հաղորդակցման համար։ Մենք կարող ենք ստեղծել տարբեր տիպի
+«socket»֊ներ, օրինակ «TCP socket»֊ներ կամ «UDP socket»֊ներ։
+<br><br>
+Սովորաբար «socket»֊ը ստանում ենք որպես «callback»֊երի արգումենտ
+կամ կարող ենք դրանք ստեղծել ուղղակիորեն՝ կիրառելով «net» մոդուլը։</font>
+
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/index-am.html)
+
+    </script>
+  </section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

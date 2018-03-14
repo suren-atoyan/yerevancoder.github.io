@@ -21,95 +21,95 @@ These are lecture notes done for nodejs
 
 ## lecture-1
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture1.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture1.html" width="1" height="1" />
 
 ## lecture-2
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture2.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture2.html" width="1" height="1" />
 
 ## lecture-3
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture3.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture3.html" width="1" height="1" />
 
 ## lecture-4
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture4.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture4.html" width="1" height="1" />
 
 ## lecture-5
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture5.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture5.html" width="1" height="1" />
 
 ## lecture-6
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture6.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture6.html" width="1" height="1" />
 
 ## lecture-7
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture7.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture7.html" width="1" height="1" />
 
 ## lecture-8
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-english/lecture8.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-english/lecture8.html" width="1" height="1" />
 
 # հայերեն
 
 ## դասախոսություն-1
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture1.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture1.html" width="1" height="1" />
 
 ## դասախոսություն-2
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture2.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture2.html" width="1" height="1" />
 
 ## դասախոսություն-3
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture3.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture3.html" width="1" height="1" />
 
 ## դասախոսություն-4
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture4.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture4.html" width="1" height="1" />
 
 ## դասախոսություն-5
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture5.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture5.html" width="1" height="1" />
 
 ## դասախոսություն-6
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture6.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture6.html" width="1" height="1" />
 
 ## դասախոսություն-7
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture7.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture7.html" width="1" height="1" />
 
 ## դասախոսություն-8
 
-<iframe src="http://iteratehackerspace.com/backend-bootcamp-armenian/lecture8.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/backend-bootcamp-armenian/lecture8.html" width="1" height="1" />
 
 ## ReactJS
 
 ## lecture-1
 
-<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-1" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1" width="1" height="1" />
 
 ## lecture-2
 
-<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-2" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-2" width="1" height="1" />
 
 ## lecture-3
 
-<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-3" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-3" width="1" height="1" />
 
 ## lecture-4
 
-<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-4" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-4" width="1" height="1" />
 
 ## lecture-5
 
-<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-5" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-5" width="1" height="1" />
 
 ## lecture-6
 
-<iframe src="http://iteratehackerspace.com/frontend-bootcamp-english/lecture-6" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-6" width="1" height="1" />
 
 ## JavaScript conf
 

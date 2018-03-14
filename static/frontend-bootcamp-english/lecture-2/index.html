@@ -1,0 +1,260 @@
+
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <!-- https://cdnjs.com/libraries/reveal.js -->
+    <title> Introduction to React </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/sky.css"
+          id="theme">
+    <!-- See the names choices here: https://github.com/isagalaev/highlight.js/tree/master/src/styles -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     const link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     const pdf_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+     const paper_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/paper.css';
+     link.href = window.location.search.match(/print-pdf/gi) ? pdf_css : paper_css;
+     document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+     
+  section h4 {
+    display:flex;
+    justify-content:space-between;
+  }
+
+  code { font-size: large !important; }
+
+  .links, .plain-text { font-size: 1.40rem !important;  }
+
+  .title-slide > p, h1, a {
+    font-size: xx-large !important;
+    padding: 0.25rem;
+  }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides"><section class="title-slide"><h1 style="font-size:xx-large;">Introduction to React</h1><hr/><p>Why do we even want React?</p><p style="text-decoration:underline;"><a href="http://istc.am/en/">Innovative Solutions and Technologies Center</a>(ISTC)</p><p style="text-decoration:underline;">Yerevan, Armenia</p><p style="font-style:italic;">By <a href="https://twitter.com/edgararout">Edgar Aroutiounian</a>, Summer 2017</p><p>Progress: <meter min="0" max="100" value="0"></meter></p></section><section><h4>What the browser gives us <meter min="0" max="100" value="7"></meter></h4><hr/><p class="plain-text">The web browser provides us with an environment to run our
+JavaScript code, of course we have the standard JavaScript objects like Array, Date,
+but the browser also provides many more APIs, collectively this is called the DOM API,
+where DOM stands for Document Object Model</p><p class="plain-text">Many of the objects and functions that the DOM provides we will use
+in the front end of our web applications, for example here we used
+fetch, Headers, URLSearchParams and document; all four are provided by the
+DOM API and not by the JavaScript language.</p><pre><code class="javascript hljs">// function to get new data, remember that fetch returns a Promise
+fetch(&#x27;/login&#x27;, {
+  method: &#x27;post&#x27;,
+  headers: new Headers({
+    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;,
+    Accept: &#x27;Content-Type&#x27;: &#x27;application/json&#x27;
+  }),
+  body: JSON.stringify({username: &#x27;barev&#x27;, password: &#x27;dzez&#x27;})
+});
+// object that helps us extract query parameters from a string, can be used as:
+const params = new URLSearchParams(document.location.search)</code></pre></section><section><h4>What about making elements <meter min="0" max="100" value="14.142857142857142"></meter></h4><hr/><p class="plain-text">Sometimes though using the DOM APIs directly is tedious and error prone.
+for example, the API for controling and adding elements to the UI,
+things like document.createElement</p><pre><code class="javascript hljs">const elem = document.createElement(&#x27;p&#x27;);
+elem.textContent = &#x27;Hello world&#x27;;
+document.body.appendChild(elem);</code></pre><p class="plain-text">Of course we can build applications using the raw DOM API for making HTML
+element but the DOM API for creating elements is better not touched at all
+and instead we use JavaScript libraries.</p></section><section><h4>Getting started with React project <meter min="0" max="100" value="21.285714285714285"></meter></h4><hr/><p class="plain-text">Getting started with React used to be a bit harder as you had to deal with
+tools like webpack and babel. However now it is much easier and we will use yarn, the
+new JavaScript package manager. Install yarn on your respective platform as described here:</p><a class="links" href="https://yarnpkg.com/lang/en/docs/install/">https://yarnpkg.com/lang/en/docs/install/</a><p class="plain-text">once you have yarn installed, you can make a new React project by doing:</p><pre><code class="javascript hljs">$ yarn create react-app istc_web_app</code></pre><p class="plain-text">where istc_web_app can be whatever name you want for your project.</p><p class="plain-text">now after cd into the project directory, we can start the project by running</p><pre><code class="javascript hljs">$ yarn start</code></pre><p class="plain-text">That will start a local development server, it will open a browser
+for you and tell you in the terminal what is the location of the server.</p></section><section><h4>Model of React (Jargon) <meter min="0" max="100" value="28.428571428571427"></meter></h4><hr/><p class="plain-text">First it is important to note that React just by itself is
+a library for making UI, it is the view layer of our application. React does not
+reimplement the browser environment the way that other libraries like Angular do, instead
+it emphasises using plain JavaScript idioms.</p><p class="plain-text">Because React is just a view library, you can integrate it into existing
+projects, like existing Angular, Backbone or whatever project. Often though we
+will pair React with other libraries, usually react-router
+for handling routing and redux or mobx for state management and some library to help
+us with CSS styling</p><p class="plain-text">In the Web version, React creates an abstraction layer for us over the DOM. We
+create something called &#x27;Components&#x27; and these Components collectively create a tree that
+represents the UI.</p><p class="plain-text">The great thing about React is that it does not assume the existence
+of the DOM and hence we can use our React code on the server side, this lets us render
+our React components on the server, known as Server Side Rendering (SSR)</p></section><section><h4>Components (JSX) <meter min="0" max="100" value="35.57142857142857"></meter></h4><hr/><p class="plain-text">React uses a special syntax extension to JavaScript called JSX. JSX
+looks like HTML but it is not, it is a syntax transformation that is changed into
+React function calls</p><pre><code class="javascript hljs">// We must have this import for JSX to work
+import React from &#x27;react&#x27;;
+class Header extends React.Component {
+  render() {
+    return (
+      &lt;section&gt;&lt;h3&gt;Hello World&lt;/h3&gt;&lt;/section&gt;
+    );
+  }
+}</code></pre><p class="plain-text">And that is the same as</p><pre><code class="javascript hljs">render() {
+  return (
+    React.createElement(&#x27;section&#x27;, {},
+      React.createElement(&#x27;h3&#x27;, {}, &#x27;Hello World&#x27;));
+  );
+}</code></pre></section><section><h4>JSX, a more complicated example <meter min="0" max="100" value="42.714285714285715"></meter></h4><hr/><pre><code class="javascript hljs">render() {
+  const s = { backgroundColor:&#x27;red&#x27; };
+  const header_s = { fontSize: &#x27;1rem&#x27; };
+  return (
+    &lt;section style={s}&gt;
+      &lt;h3 style={header_s}&gt;Hello World&lt;/h3&gt;
+    &lt;/section&gt;
+  );
+}</code></pre><p class="plain-text">again, same as</p><pre><code class="javascript hljs">render() {
+  const s = { backgroundColor:&#x27;red&#x27; };
+  const header_s = { fontSize: &#x27;1rem&#x27; };
+  return (
+    React.createElement(&#x27;section&#x27;, {style: { backgroundColor:&#x27;red&#x27; }},
+      React.createElement(&#x27;h3&#x27;, {style: { fontSize: &#x27;1rem&#x27; }}, &#x27;Hello World&#x27;))
+  );
+}</code></pre></section><section><h4>What&#x27;s the point of JSX? <meter min="0" max="100" value="49.857142857142854"></meter></h4><hr/><p class="plain-text">You can see that writing JSX is clearer than using the React.createElement
+function call. This way we can type less and you can &#x27;see&#x27; the structure of the UI that
+you are creating, like the hierarchy and you can reference any
+JavaScript expression in the JSX, but you need to wrap it with
+{}</p><pre><code class="javascript hljs">render () {
+  const name = &#x27;First name&#x27;;
+  const teacher = &#x27;Edgar&#x27;;
+  return &lt;p&gt; My {name} is {teacher}&lt;/p&gt;;
+}</code></pre><a class="links" href="https://facebook.github.io/react/docs/introducing-jsx.html">https://facebook.github.io/react/docs/introducing-jsx.html</a></section><section><h4>Conditionally render <meter min="0" max="100" value="57"></meter></h4><hr/><p class="plain-text">Sometimes we want to conditionally include a component,
+there&#x27;s a few ways to do that but here is one way</p><pre><code class="javascript hljs">render() {
+  let content = null;
+  if (this.props.showName === true) {
+    content = &lt;p&gt;I am {this.props.first_name}&lt;/p&gt;;
+  } else {
+    content = &lt;p&gt;Please provide your name&lt;/p&gt;;
+  }
+  return &lt;div&gt;{content}&lt;/div&gt;;
+}</code></pre><a class="links" href="https://facebook.github.io/react/docs/jsx-in-depth.html">https://facebook.github.io/react/docs/jsx-in-depth.html</a></section><section><h4>Component Lifecycles <meter min="0" max="100" value="64.14285714285714"></meter></h4><hr/><p class="plain-text">Notice that we made Components by extending React.Component,
+why do we do that and what do we get from that?</p><p class="plain-text">First notice that we always define a render method. This is because every
+React component must provide a render method, the render must return something that
+says how this component must look on the UI, React is a view library afterall.</p><p class="plain-text">In general, the lifecycle methods are different hooks in the life of the
+Component, as it mounts, as it renders, when it receives props, when it unmounts.
+Implementing a lifecycle method will be your chance to hook onto that event</p><a class="links" href="https://facebook.github.io/react/docs/react-component.html">https://facebook.github.io/react/docs/react-component.html</a></section><section><h4>Example of lifecycle method <meter min="0" max="100" value="71.28571428571429"></meter></h4><hr/><p class="plain-text">One of the most important lifecycle methods is componentDidMount</p><pre><code class="javascript hljs">import React from &#x27;react&#x27;;
+
+class Profile extends React.Component {
+  // CDM is also a place to put a call to fetch
+  componentDidMount() {
+    console.log(&#x27;Component successfully mounted into DOM&#x27;);
+  }
+  render() {
+    return &lt;p&gt;I am {this.props.name}&lt;/p&gt;;
+  }
+}</code></pre><p class="plain-text">Look at the other lifecycle methods, not each of them run on the server side.
+For example CDM does not run on the server side, but componentWillMount does
+run on the server side.</p><p class="plain-text">Assignment: Implement each of the lifecycle methods, add a console.log
+there so that you see the order of lifecycle methods being called</p></section><section><h4>Event handling <meter min="0" max="100" value="78.42857142857143"></meter></h4><hr/><p class="plain-text">We can handle events as well with methods</p><pre><code class="javascript hljs">class Header extends React.Component {
+  constructor() {
+    super();
+    this.click_handler = this.click_handler.bind(this);
+  }
+  click_handler(e) { console.log(e.target.value); }
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;input type={&#x27;button&#x27;} value={&#x27;Hello World&#x27;} onPress={this.click_handler} /&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre></section><section><h4>Event handling (Context issues) <meter min="0" max="100" value="85.57142857142857"></meter></h4><hr/><p class="plain-text">Notice that we did</p><pre><code class="javascript hljs">this.click_handler = this.click_handler.bind(this);</code></pre><p class="plain-text">This is because ES6 classes do not autobind their context
+and hence we have to make a new function (Remember that .bind returns
+a new function) with the context (this) bound to the React Component</p><p class="plain-text">We don&#x27;t have this problem is we use fat arrows class properties
+because class properties, as we have shown in lecture one, are really shortcuts
+for making properties on the instance itself</p><pre><code class="javascript hljs">class Header extends React.Component {
+
+  click_handler = e =&gt; {
+    console.log(e.target.value);
+  }
+}</code></pre></section><section><h4>Using Components in other Components <meter min="0" max="100" value="92.71428571428571"></meter></h4><hr/><p class="plain-text">We saw that the render method must give back a UI element, but we can
+also give back custom components that we make. React will just recursively ask
+each Component how it looks like, aka calling that Component&#x27;s render method</p><pre><code class="javascript hljs">class ShoppingItem extends React.Component {
+  render() {
+    return &lt;p style={{backgroundColor:&#x27;aliceblue&#x27;}}&gt;This is a shopping Item&lt;/p&gt;;
+  }
+}</code></pre><pre><code class="javascript hljs">class Cart extends React.Component {
+  render() {
+    return (
+    &lt;div&gt;
+      &lt;ShoppingItem/&gt;
+      &lt;ShoppingItem/&gt;
+    &lt;/div&gt;
+    );
+   }
+}</code></pre></section><section><h4>Using Components in other Components cont... <meter min="0" max="100" value="99.85714285714286"></meter></h4><hr/><p class="plain-text">Notice, to use custom Components as elements to render in another
+Component&#x27;s render function, that Component must have a capital letter. ShoppingItem,
+not shoppingItem. This is how React knows whether it is a native HTML element or a
+custom component.</p></section></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       slideNumber: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'fade', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.min.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src:
+	 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.min.js',
+	   async: true },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.min.js',
+	   async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

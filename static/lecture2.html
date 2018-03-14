@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Introduction to JavaScript
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# Introduction to JavaScript
+
+## Edgar Aroutiounian
+---------------------
+#### ISTC backend development course, Week-2, Fall 2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Programming Languages_
+--------------------------
+Programming languages generally fall into two categories,
+
+1. Compiled
+2. Interpreted
+
+Examples of (1) include **C**, **C++** and **OCaml**
+
+Examples of (2) include **Python**, **JavaScript** and **Ruby**
+
+(Java isn't exactly 1 or 2 as it compiles to Java bytecode and
+then it's interpreted by the JVM)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Short History of JavaScript_
+--------------------------------
+The first web browser was called
+[**Mosaic**](https://en.wikipedia.org/wiki/Mosaic_(web_browser)
+and the web itself was made so that physicists could share
+research papers. Research papers are static content,
+that is they don't change. Think about your HTML,
+it doesn't change.
+
+Then businesses discovered the web and immediately interactively was
+needed. People needed the websites to do things, to take credit cards,
+to animate things, to change the site; for that you need a real
+programming language.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Short History of JavaScript, cont..._
+-----------------------------------------
+There was a race to provide a programming language for the web.
+[Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich) at NetScape,
+now at Mozilla, rushed and in eight days created **JavaScript**.
+At the time NetScape was in competition with Microsoft and Microsoft
+also created a programming language for the web, it was
+called **VBScript**
+
+(Because JavaScript was made in only eight days, the
+language has some serious mistakes)
+
+One of the reasons why JavaScript won and VBScript died is the former
+is open-source and the latter was closed source. This is why JavaScript is also
+known as **EcmaScript**, there is an open spec, standard.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Engines_
+-------------
+An engine is another name for an interpreter, remember
+that JavaScript is interpreted, not compiled. The first JavaScript engine,
+written by Eich, was **SpiderMonkey**, it is
+implemented in **C++** and still used in **FireFox** Today there are
+quite a few JS engines,
+
+1. SpiderMonkey, used in FireFox
+2. Chakra, used in Edge
+3. JavaScriptCore, used in Safari, Mobile Safari,
+   ReactNative, original version of Chrome
+4. V8, created by Google, used in Chrome and the
+   foundation of **nodejs**
+
+...and more
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _nodejs_
+------------
+In this course we will be using **nodejs**, also just known as
+**node**, and the latest version of JavaScript called EcmaScript 6 (ES6).
+This is so that you know the latest technologies used in Silicon Valley.
+
+**node** was made in 2009 by an amazing programmer named Ryan Dahl,
+he basically took **V8**, added an event loop and some low-level IO
+calls. Since then the project has taken off and now node is used by
+basically all startups and big name users like Groupon, IBM, LinkedIn,
+Microsoft, Netflix, PayPal, SAP, Walmart, Yahoo!, Cisco Systems and many more.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _nodejs cont..._
+--------------------
+We are learning on the latest versions of node,
+which support the majority of ES6 (EcmaScript 6). You can play with the
+node repl at any time by starting it on the command line:
+
+```
+$ node
+> var a = 10;
+undefined
+```
+I encourage you to always test out ideas directly in the **node** repl, keep
+one terminal always running the **node** repl and another terminal for
+running JavaScript code from a file.
+
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Installation notes_
+------------------------
+node works on all the major platforms, Windows, Linux, OS X; we work on Linux.
+if on a Debian or Debian downstream project like Ubuntu you can do:
+```
+$ curl -sL https://deb.nodesource.com/setup_7.x | sudo bash -
+$ sudo aptitude install nodejs -y
+```
+
+we also use the `Atom` text editor
+
+```
+$ wget https://github.com/atom/atom/releases/download/v1.15.0/atom-amd64.deb
+$ sudo dpkg -i atom-amd64.deb
+$ sudo npm install tern -g
+$ apm install react atom-ternjs
+```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _Installation notes cont..._
+---------------------------------
+Then you can make JavaScript programs by making a JavaScript file with `Atom`
+```
+$ atom code.js
+```
+And run the code:
+```
+$ node code.js
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: variables_
+-----------------
+Every programming language has **variables**. A variable, also called
+an identifier, is way to refer to data in memory. Fundamental data types
+in JavaScript include **String**, **Boolean**, **Number** and others.
+
+Note that comments, aka non runnable code, start with **//**
+
+Example:
+
+```
+// Creates a variable called a with the data 123, the type of
+// a is Number
+var a = 123;
+
+// Creates a variable called name with the data 'Student'
+// the type of name is String
+var name = 'Student';
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: variables cont..._
+-----------------------------------
+
+**NOTE** Every language also has `keywords`, these are words that you cannot use
+as identifiers, they are reserved for the language itself, examples: `if`, `for`,
+`var`, `function`, and more.
+
+
+Notice that our variables that we created started with `var`
+In ES6, EcmaScript 6, we have three ways of declaring variables.
+
+```
+var a = 10;
+const b = 'hello';
+let g = true;
+```
+
+What is the difference between the three?
+For that we need to talk about scope.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope_
+-----------------------
+Scope is a fundamental idea in all programming languages and it's especially
+important in JavaScript. It basically means where it's legal to use a variable.
+In ES6 scopes are introduced by `blocks`, some examples of things that
+introduce blocks include conditionals, loops, and functions.
+
+```
+// imagine that this file is called prog.js
+if (true) {
+  var name = '123';
+}
+// we can print anything to the terminal screen with console.log
+console.log(name);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+if we try running the previous code:
+```
+$ node prog.js
+```
+Then we'll see that '123' is printed to the screen. Here we say that
+the conditional leaks scope, the variable `name` is escaping the scope.
+Now if we try using `let`, then we'll see a difference:
+```
+// imagine that this file is called prog.js
+if (true) {
+  let name = '123';
+}
+// we can print anything to the terminal screen with console.log
+console.log(name);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+if we try running the code that used `let`:
+```
+$ node prog.js
+```
+Then we get an `exception`, a fatal error not handled by you
+```
+ReferenceError: name is not defined
+at repl:1:13
+at realRunInThisContextScript (vm.js:22:35)
+at sigintHandlersWrap (vm.js:98:12)
+at ContextifyScript.Script.runInThisContext (vm.js:24:12)
+at REPLServer.defaultEval (repl.js:313:29)
+at bound (domain.js:280:14)
+at REPLServer.runBound [as eval] (domain.js:293:12)
+at REPLServer.onLine (repl.js:513:10)
+at emitOne (events.js:101:20)
+at REPLServer.emit (events.js:188:7)
+```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+
+As programmers we ALWAYS need to read the error messages. The error message here
+tells you that the variable is not defined, that is, its not in scope. Why? Because
+we created the variable `name` with `let` and variables created with `let` are
+scoped to the `block` in which they are created. that is, you're only allowed
+to use that variable in the block that you created it in. Another example:
+```
+// Silly for loop.
+for (var i = 0; i < 3; i++) {
+console.log(i);
+}
+console.log(i)
+```
+Here we make a variable `i` which we made only to do a loop three times
+but its still accessible, usable outside the loop.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+We always want to scope variables as close as possible to their usage,
+their actual needs. Another modifier is `const`. Now we need to talk
+about mutation.
+```
+let a = 'Karen';
+a = 'Հասմիկ';
+```
+What happened? We changed, we **mutated**, the variable from the string 'Karen'
+to the new string 'Հասմիկ'. Also notice that we only have to use the `let` modifier
+the first time we make the variable.
+	  </script>
+	</section>
+
+      <section data-markdown>
+	    <script type="text/template">
+### _JavaScript: scope cont..._
+-------------------------------
+What if we don't want the variable to change?
+For that we use `const`
+```
+const a = 'Karen';
+a = 'Հասմիկ';
+```
+`exception`:
+```
+TypeError: Assignment to constant variable.
+  at repl:1:3
+  at realRunInThisContextScript (vm.js:22:35)
+  at sigintHandlersWrap (vm.js:98:12)
+  at ContextifyScript.Script.runInThisContext (vm.js:24:12)
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: scope cont..._
+--------------------------------
+So `const` is like `let` semantically, aka the meaning of how it's used
+and scoping but with the additional benefit that variables made with
+`const` are not allowed to be reassigned. The final one, `var`, is function scoped.
+
+It is important to understand this fundamental concept of scope.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: control structure_
+-----------------------------------
+Now we will talk about control structure, for the moment we will focus on
+synchronous code, that is code that executes top to down. That is node will read
+your code from the beginning to end and do everything that you tell it to do.
+We've seen two control structures already, the `if` conditional and the `for` loop.
+
+```
+// Inside the () needs to be a boolean expression
+// something that evaluates to true or false.
+if (10 > 5) {
+  console.log('Hello world');
+}
+```
+`for` loops
+```
+for (let j = 0; j < 4; j++) {
+  console.log(j + 5);
+}
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: control structure cont..._
+-------------------------------------------
+Control structures help us structure, organize our code, which way
+it should 'go', what it should do.
+
+The conditional can also take an `else`
+```
+if (5 < 3) {
+  console.log('This is impossible);
+} else {
+  console.log('Of course 5 is not less than 3');
+}
+```
+Another loop construct is the `while` control structure.
+```
+let i = 0;
+while (i < 4) {
+  console.log('Keep talking');
+  // i++ is short for i = i + 1;
+  i++
+}
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects_
+---------------------------------
+Now we need to talk about containers. A container is something that contains other
+things! Let's say we want to talk about all the students in the classroom, how
+can we use one variable to talk about all those students? The easiest way is to
+use something an `array`.
+
+```
+let students = ['Միքայել', 'Gohar', 'Владимир'];
+```
+`students` is an array and its size is three.
+You can make an array by using `[]`, for example
+```
+let emp = []
+```
+makes a variable `emp` which starts as an empty array.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------
+We can access elements in the arrays by indexing.
+
+```
+// Arrays start from a 0 index.
+//               0          1            2
+let students = ['Միքայել', 'Gohar', 'Владимир'];
+console.log(students[1]);
+```
+If you try to access an element out of bounds, out of the range of the
+array then you get `undefined` (A mistake in the language)
+```
+console.log(students[42]);
+```
+And that will print undefined to the terminal screen.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------
+Objects in JavaScript are a way to keep keys and values. Think of a phonebook,
+we want to say someone's name is associated with a mobile number.
+
+```
+const friends = {Gevorg: '09-34231', Sammy: '08-23123'};
+console.log(friends.Gevorg);
+console.log(friends['Sammy']);
+```
+
+We make JavaScript objects with `{}` and pairs of keys, values.
+So `Gevorg` is a key and its value is `'09-34231'`. The size of our
+`friends` object is two.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------
+We can loop over arrays; using the old style for loop.
+```
+const students = ['Միքայել', 'Gohar', 'Владимир'];
+for (let i = 0; i < students.length; i++) {
+  console.log(students[i]);
+}
+```
+Notice that the `students` variable as a property called length. A property is
+anything that can be accessed with `.` of an identifier. I recommend that for that kind of
+logic you use the new style for loop.
+```
+const students = ['Միքայել', 'Gohar', 'Владимир'];
+// If we don't want to mutate s, then we use const, otherwise use let
+for (const s of students) {
+  console.log(s.toUpperCase());
+}
+```
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------------
+if you need to make sure that you have a collection of only unique things, then
+you need to use a `Set`
+
+```
+// iterable will only have the elements 1 2 3
+const iterable = new Set([1, 1, 2, 2, 3, 3]);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Arrays, Sets, Maps, Objects cont..._
+-----------------------------------------------------
+Another collection type is called `Map`. Maps are new in EcmaScript 6
+
+```
+const iterable = new Map([["a", 1], ["b", 2], ["c", 3]]);
+for (const [key, value] of iterable) {
+  console.log(value);
+}
+```
+
+Notice that there's a common theme, having an ability to go over
+one thing at a time of a collection. This is called `iterating` over
+a collection.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions_
+---------------------------
+Notice how we've been writing the code. We've been just writing
+it at the top level, at the file level. The code is not **reusable**.
+
+To fix that, we use **functions**. A function is a block of code that
+runs whenever we **call** the function. Functions are also values in
+JavaScript which means that we can put them in variables, in arrays.
+
+This is very powerful, some programming languages do not accept
+functions as values, for example Java.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+
+Here is a simple example, we make a function, assign it to
+the constant variable `speaker` and then call the variable
+as a function. Note that variables inside a function are
+block scoped and will be deleted after the function returns,
+aka finishes.
+
+```
+const speaker = function() {
+  console.log('Hello world');
+};
+
+speaker();
+```
+functions in JavaScript don't have to explicitly give back a value.
+If you don't have a `return` then the function gives back `undefined`
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+
+Functions can take data, we call that data the **parameters** of
+the function.
+
+```
+const speaker = function(param) {
+  console.log(param);
+};
+
+const s = 'Hello World';
+speaker(s);
+```
+The actual data given to the function is called its **arguments**.
+Here we called the variable speaker as a function with the
+argument `s` which was a variable for the data `'Hello World'`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+JavaScript functions are also **vararg** functions, that means that
+the functions can take as many arguments as given, even if the
+function has less parameters than the number of arguments given to it.
+
+```
+const speaker = function(param1, param2) {
+  console.log(param1);
+  console.log(param2);
+}
+// Not an error
+speaker('Foo', 'Bar', 'Baz', 'Catz');
+```
+All the arguments given to a function are stored in the variable
+`arguments`, it is only accessible inside a function scope.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Functions cont..._
+-----------------------------------
+Modern `ES6` lets you collect all the arguments in a variable using `...`
+```
+const speaker = function(param1, param2, ...rest) {
+  // param1 is 'Foo', param2 is 'Bar'
+  // ...rest is an array with 'Baz', 'Catz'
+  console.log(param1);
+  console.log(param2);
+}
+speaker('Foo', 'Bar', 'Baz', 'Catz');
+```
+You can also provide default values
+```
+const speaker = function(param1, param2='World') {
+  console.log(param1 + param2);
+}
+speaker('Hello');
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context_
+-------------------------------------------
+One of the hardest things to understand in JavaScript is
+the `this` variable, also known as the execution context.
+
+The `this` variable refers to the current `object`.
+
+```
+const obj = {
+  name: 'mari',
+  speak: function() {
+    console.log(this.name);
+  }
+};
+obj.speak();
+```
+The `this` variable is **dynamically** scoped, this means that it's
+changed and doesn't use the data that you might think it does when
+you use it.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+The `this` variable is a part of the `EcmaScript` spec, that means
+that it's part of the language but its implementation depends on what
+environment you're running your JavaScript code in. In the browser it
+refers to the `window` object, in `node` it refers to the global object.
+Open the `node` repl and type `this`, you'll see the global object printed.
+```
+$ node
+> this
+{ DTRACE_NET_SERVER_CONNECTION: [Function],
+  DTRACE_NET_STREAM_END: [Function],
+  DTRACE_HTTP_SERVER_REQUEST: [Function],
+  DTRACE_HTTP_SERVER_RESPONSE: [Function],
+  DTRACE_HTTP_CLIENT_REQUEST: [Function],
+  DTRACE_HTTP_CLIENT_RESPONSE: [Function],
+  global: [Circular],
+  process:
+  process {
+    title: 'node',
+```
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+JavaScript functions also have methods on them and the most
+important ones are `bind`, `call`, and `apply`.
+
+Another way to call a function
+```
+const f = function(g) { console.log(g)}
+// call just takes all the arguments you give it
+// and passes it to the function you are calling with .call
+f.call(null, 'hello')
+```
+You can also use `.apply` but for apply you need to give an
+array of arguments.
+```
+const f = function(g, h) { console.log(g + h)}
+f.apply(null, ['hello', 'world'])
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+Notice that for both `.call` and `.apply` we gave `null`.
+This means that we aren't going to provide a custom execution context,
+that the function will get to use whatever the `this` variable would
+have been. Now we will control the execution context:
+
+```
+const obj = {
+  name: 'mari',
+  speak: function() {
+    console.log(this.name);
+  }
+};
+const other_obj = { name:'nane' };
+obj.speak.call(other_obj);
+```
+Run this code and you'll see that `nane` is printed to the screen, not `mari`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+Now we will talk about the most powerful and important
+method on functions, `.bind`. The big annoyance in
+JavaScript is that the execution context, the `this`
+variable that you end up using at runtime is not always
+the one you think will be used. This is because the `this`
+variable is `dynamically` scoped, not `lexically` scoped.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+To make sure that our function uses the execution
+content that we want used we have to use `.bind`.
+
+`.bind` creates a new function that uses the execution context
+that you provide.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+
+```
+const obj = {
+  name:'aram'
+};
+// At the top level this refers to the global object
+this.name = 'gohar';
+const g = function(last_name) {
+// This is using ES6 string interpolation, aka the ${}
+  return `${this.name.toUpperCase()} ${last_name}`;
+}
+const f = g.bind(obj)
+console.log(f('baz'));
+```
+
+So `f` is a new function which is bound, we did a bind on g,
+to the JavaScript object `obj`.
+
+We can also do other wacky things with `.bind` like partial
+function application.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: execution context cont..._
+-------------------------------------------
+Partial function application is like making a new function
+from another function but where some of the arguments are used
+with other values; its clearer with an example.
+
+```
+const obj = {
+  name:'aram'
+};
+// At the top level this refers to the global object
+this.name = 'gohar';
+const g = function(last_name, age) {
+  return `${this.name} ${last_name} ${age}`;
+}
+// The first argument must always be the new execution context
+// and the other arguments end up being the
+// arguments of the original function
+const f = g.bind(obj, 'baz');
+console.log(f(22));
+```
+See how `'baz'` ends up taking the argument value of `last_name`,
+this is positional.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Fat Arrows_
+----------------------------
+Now we're going to talk about a new feature of the
+JavaScript langauge, part of ES6, called `fat arrows`.
+
+Fat arrow functions are like regular functions except
+for some syntax differences and what execution context
+they use; they use the `this` variable from its lexical scope.
+
+We will be using them extensively, they are
+very fun.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Fat Arrows cont..._
+------------------------------------
+```
+const f = function(first, second) {
+  return first + second;
+}
+```
+
+is the same thing as:
+
+```
+const g = (first, second) => {
+  return first + second;
+}
+```
+Notice that we don't have to write `function`, less typing
+for us and we use `=>`
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Fat Arrows cont..._
+------------------------------------
+if your function takes only one parameter, then you don't
+need `()` for the parameter list.
+
+```
+const g = name => {
+  return `Hi: ${name.toUpperCase()}`;
+}
+```
+If the function is only one expression, then you don't need
+`{}` or even `return`
+```
+const g = name => `Hi: ${name.toUpperCase()}`;
+```
+This makes it super fun to use fat arrow functions with things like
+`.map` and `.filter`.
+
+```
+const evens = [1, 2, 3, 4, 5, 6, 7].filter(x => x % 2 === 0);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Objects again_
+-------------------------------
+Notice that we made objects directly, JavaScript objects are
+the way to make new data types.
+
+The way to make new data types is to use....functions!
+
+Will this work? Try it.
+
+```
+const Person = function(first_name, last_name) {
+  this.f_name = first_name;
+  this.l_name = last_name;
+  this.speak = function() {
+    console.log(`My name is: ${this.f_name} ${this.l_name}`);
+  }
+}
+const armo = Person('famous', 'gampr');
+armo.speak();
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Objects again_
+-------------------------------
+The previous example didn't work because it matters **how** we
+call a function, do we call it as a **function** or
+like a **constructor**. In the previous example we
+called Person like a function and so the
+execution that it used ended up being the global object because the
+function wasn't bound to a particular `this` variable and so it kept
+looking up in the scope chain until it found one. You can think of
+this like doing `cd ..` in the shell, eventually
+you will hit `/` and you can't go any higher than `/`, similiarly
+the global `this` variable is always available. Check `this.f_name`,
+you'll see it has 'famous' attached to it, not a good thing.
+
+(fat arrows can't be called as constructors)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Objects again․․․_
+-------------------------------
+So we need to make sure that we get a **new** execution context
+when we call the function, we need to call the function as a constructor
+
+```
+const Person = function(first_name, last_name) {
+  // if this is now called as a constructor, that is
+  // if called used `new` then `this` is just an empty
+  // JavaScript object, its {} and here we are assigning
+  // new properties to it.
+  this.f_name = first_name;
+  this.l_name = last_name;
+  this.speak = function() {
+    console.log(`My name is: ${this.f_name} ${this.l_name}`);
+  }
+}
+const armo = new Person('famous', 'gampr');
+armo.speak();
+```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Classes_
+-------------------------------
+Notice that it wasn't an error to call the function
+as a constructor or as a function, `node` was okay
+with either, you only got an error when you tried to
+use a property that didn't exist.
+
+A convention emerged that functions with uppercase names
+were meant to be called as constructors.
+
+This was still error prone so ES6 introduced `classes`․
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Classes cont..._
+---------------------------------
+
+```
+class person {
+  constructor(name, last_name) {
+    this.f_name = name;
+    this.last_name = last_name;
+  }
+  speak () {
+    console.log(`My name is : ${this.f_name} ${this.last_name});
+  }
+}
+const gor = new person('gor', 'gampr');
+gor.speak();
+```
+Notice, if we don't call person with `new` then we'll
+get an TypeError exception.
+
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/)
+
+    </script>
+  </section>
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

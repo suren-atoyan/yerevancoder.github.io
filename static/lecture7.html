@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Review
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# Review
+
+## Edgar Aroutiounian
+---------------------
+#### ISTC backend development course, Week-7, Fall 2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Review_
+-----------
+We have gone over some big new ideas so far in the course. Now let's
+do a specific review so that everyone is on the same minimum level on
+some core concepts, ideas. Remember that you need to spend *HOURS*
+outside of these lectures, you need to write the code,
+understand it and read through documentation
+and the links that are provided. Also try reading their `wikipedia`
+pages.
+
+Of all the material we've covered so far,
+this review focuses on `node` fundamentals and networking ideas.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _node fundamentals_
+----------------------
+node is async by default. Recall what programming
+itself means, it means we are telling the computer what to do via code.
+That also has an idea of time, we want some code to happen after other
+code. Like do this first and then do that, writing such code is called
+sequential, synchronous code.
+
+Some pretend code:
+```
+const file_content = read_file('./names.txt', 'r');
+const lines = file_content.split('\n');
+for (let line of lines) {
+  console.log(`Length: of line:${line} is: ${line.length}`);
+}
+```
+This code must do `read_file` before the call to `.split`. After both
+finish then it does the `for` loop.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _node fundamentals cont..._
+------------------------------
+
+`read_file` is a function which has to read a file, which means it has
+to do some input/output. Input/Output, that is reading from physical
+hardware, like a harddrive, is really super slow compared to everything
+else the computer can be doing.
+
+Think about it, what if `names.txt` is a 300GB sized file? Then
+your program will not continue past `read_file` until that function
+`returns`, that is until it finishes. This is called a
+blocking I/O function call. Everything network related can be
+a blocking I/O function call, like reading from a socket.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _node fundamentals cont..._
+------------------------------
+Modern networked applications are web apps, mobile apps and
+they want a lot of resources. To do this traditionally we'd
+need to use multiple processes or threads. Both aren't the
+easiest options to use. The genius of `node` is that it is
+build from the beginning for networked applications, it scales
+very very well.
+
+`node` is able to do this by doing `async` coding by default.
+async coding means that the code runs in an unknown order if you
+were only looking at the source code, it means that something
+on line 5 can happen after something on line 10.
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+## _node fundamentals cont..._
+------------------------------
+So our previous example would be written in async style as:
+
+```
+read_file('./names.txt', 'r', file_contents => {
+  const lines = file_content.split('\n');
+  for (let line of lines) {
+    console.log(`Length: of line:${line} is: ${line.length}`);
+  }
+});
+```
+Since reading a file is an I/O (Input/Output) operation, it could potentially
+block the program. Because of that a function like `read_file` will
+try reading the file and instantly return, that is stop blocking the
+main program. `read_file` also registers the callback that we gave as the
+3rd argument as the function to call *WHEN* the data does finally arrive.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _node fundamentals cont..._
+------------------------------
+The callback is put onto the event loop. In node that is only one
+`JavaScript` thread, which has to do all the JavaScript code and
+also go through the event loop's various queues of things to do.
+Because of this, it is *EXTREMELY* important that you never block
+the thread, that means do something like `while(true) { }` or
+a blocking system I/O call, like `sleep(10)`. Blocking the event
+loop blocks all kinds of important system timers and library code.
+
+Be sure to read this
+[*link*](https://github.com/nodejs/node/blob/v6.x/doc/topics/event-loop-timers-and-nexttick.md),
+its straight from `node`'s source code.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Networking_
+---------------
+Networking is whenever we have two or computers talk to one another.
+Remember that because the computers are talking to one another over
+a wire, like an ethernet cable, or via radio, like WiFi then the
+only kind of data they can send is just raw data. This is why many of
+the `node` core APIs use the `Buffer` object because `Buffer` is the
+most efficient way to hold raw data.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Networking Cont..._
+-----------------------
+Networking is made up of several layers with one build on top of
+the others. The TCP/IP network stack starts with the *link* layer,
+this is like the ethernet cables. On top of the link layer is the IP
+layer, this is how we know about individual computers. On top of that
+is the TCP layer, that is routing aka making sure that data gets to
+a particular computer while going through other computers on the network,
+finally the last layer is the Application layer, that is our layer of things
+like HTTP(S).
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Networking Cont..._
+-----------------------
+So conceptually imagine it like this:
+
+```
+
+	   |-----------------
+	   | Application Layer <- Examples: HTTP, HTTPS, FTP, SSH
+
+	   |-----------------
+	   | Transport Layer   <- Examples: TCP, sockets, UDP
+
+	   |-----------------
+	   | IP Layer          <- Examples: 192.4.212.4
+
+	   |-----------------
+	   | Link Layer        <- Examples: Ethernet cable, WiFi.
+```
+Each layer builds on top of the one below it. So what's the
+difference between `TCP` and `HTTP`? HTTP is built *ON TOP* of
+TCP.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Networking Cont..._
+-----------------------
+Our main programming abstraction used for networking is called a
+`socket`. A `socket` is usually implemented at the `C/C++` level
+but node gives it to use as an easy to use `JavaScript` object.
+A socket is the main way we use programming languages to have
+two or more computers talk to each other. We can make different
+kinds of sockets, like `TCP` sockets or `UDP` sockets.
+
+Usually we get a `socket` as an argument to our callbacks or we can
+make them directly using the `net` module.
+
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/)
+
+    </script>
+  </section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

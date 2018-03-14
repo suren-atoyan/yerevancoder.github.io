@@ -1,0 +1,232 @@
+
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <!-- https://cdnjs.com/libraries/reveal.js -->
+    <title> Styling Components </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/sky.css"
+          id="theme">
+    <!-- See the names choices here: https://github.com/isagalaev/highlight.js/tree/master/src/styles -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     const link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     const pdf_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+     const paper_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/paper.css';
+     link.href = window.location.search.match(/print-pdf/gi) ? pdf_css : paper_css;
+     document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+     
+  section h4 {
+    display:flex;
+    justify-content:space-between;
+  }
+
+  code { font-size: large !important; }
+
+  .links, .plain-text { font-size: 1.40rem !important;  }
+
+  .title-slide > p, h1, a {
+    font-size: xx-large !important;
+    padding: 0.25rem;
+  }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides"><section class="title-slide"><h1 style="font-size:xx-large;">Styling Components</h1><hr/><p>FlexBox, inline styling and styled-components</p><p style="text-decoration:underline;"><a href="http://istc.am/en/">Innovative Solutions and Technologies Center</a>(ISTC)</p><p style="text-decoration:underline;">Yerevan, Armenia</p><p style="font-style:italic;">By <a href="https://twitter.com/edgararout">Edgar Aroutiounian</a>, Summer 2017</p><p>Progress: <meter min="0" max="100" value="0"></meter></p></section><section><h4>Making a real application <meter min="0" max="100" value="7"></meter></h4><hr/><p class="plain-text">So far we have only made Components on bland HTML elements. HTML
+elements however only describe the content of our application. They don&#x27;t talk
+about layout or styling.</p><p class="plain-text">Styling and intelligent layout is what will make our applications
+really shine and show quality work.</p><a class="links" href="https://alistapart.com/article/indefenseofeyecandy">https://alistapart.com/article/indefenseofeyecandy</a></section><section><h4>Layout using CSS, the point of it <meter min="0" max="100" value="14.692307692307693"></meter></h4><hr/><p class="plain-text">You should start by understanding the Browser&#x27;s model for showing elements
+on the screen. To the browser, everything is a box.</p><a class="links" href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model">https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model</a><p class="plain-text">Elements are either blocks or inline by default, this roughly means that block
+elements will start a new line whereas inline elements will stay on the same line.
+An Example of a block element is a &lt;p&gt; tag, example of inline is &lt;span&gt;.</p><p class="plain-text">We can control this with CSS with the display property</p><pre><code class="javascript hljs">p { display: inline; }</code></pre><p class="plain-text">Controlling the layout of our application is critical to making a great user
+experience and having the UI adapt to whatever screen size we might encounter
+(Responsive design)</p></section><section><h4>Styling in React <meter min="0" max="100" value="22.384615384615387"></meter></h4><hr/><p class="plain-text">Of course we can style our Components as well using existing CSS</p><pre><code class="javascript hljs">const Banner = () =&gt; (
+  &lt;nav className={&#x27;top-nav-bar&#x27;}&gt;
+    &lt;p className={&#x27;top-nav-bar-elem&#x27;}&gt;First&lt;/p&gt;
+    &lt;p className={&#x27;top-nav-bar-elem&#x27;}&gt;Second&lt;/p&gt;
+  &lt;/nav&gt;
+)</code></pre><p class="plain-text">Notice that unlike HTML we write in .html files, we said &#x27;className&#x27; instead
+of class. That is because class is a reserved keyword in JavaScript</p></section><section><h4>Styling in React cont... <meter min="0" max="100" value="30.076923076923077"></meter></h4><hr/><p class="plain-text">We can also apply styling directly to elements and this is
+called inline-styling.</p><pre><code class="javascript hljs">const AboutMe = ({pageMaker}) =&gt; {
+  const me_style = {fontSize: &#x27;24px&#x27;,  fontFamily: &#x27;Optima&#x27;};
+  return &lt;p style={me_style}&gt;{pageMaker}&lt;/p&gt;;
+};</code></pre><p class="plain-text">This will end up creating a HTML element that will look like this in the
+web browser</p><pre><code class="javascript hljs">&lt;p style=&#x27;font-size:24px; font-family:Optima&#x27;&gt;</code></pre><p class="plain-text">Notice that the key names in the JavaScript object are camel cased (fontFamily).
+This is because JavaScript keynames, identifiers can&#x27;t have a - in their name. Keep
+this in mind when you&#x27;re reading CSS docs and trying to write the styles as an object.</p></section><section><h4>Flexbox overview <meter min="0" max="100" value="37.769230769230774"></meter></h4><hr/><p class="plain-text">Flexbox is a 2 dimensional layout algorithm. We turn it on with &#x27;display: flex&#x27;
+in our container elements.</p><pre><code class="javascript hljs">render () {
+  return (
+    &lt;div style={{display: &#x27;flex&#x27;}}&gt;
+      &lt;p&gt;first&lt;/p&gt;
+      &lt;p&gt;second&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><p class="plain-text">The enclosing div is now the flex container and the child elements are the
+flex children. This is an important distinction because once we turn on flex, then
+some properties only make sense for the parent and some only do for the child.</p></section><section><h4>Flexbox overview cont... <meter min="0" max="100" value="45.46153846153847"></meter></h4><hr/><p class="plain-text">Flexbox makes many traditionally hard things to do in CSS (vertical centering)
+very easy to do. Flexbox is so nice that Facebook reimplemented the algorithm for
+ReactNative and it is the only layout system available there.</p><p class="plain-text">On web, the default direction of flex is row oriented, you can control that
+property with &#x27;flex-direction&#x27; on the container element
+(The element with display: flex). The alternative is to make it column oriented, that is
+to make the children elements be displayed from top to bottom instead of left to right,
+try it!</p><pre><code class="javascript hljs">// Change flexDirection to &#x27;row&#x27;, see what happens
+// Also change justifyContent to space-around or space-between
+return (
+  &lt;div style={{display: &#x27;flex&#x27;, justifyContent: &#x27;center&#x27;,
+               flex: 1, flexDirection: &#x27;column&#x27;, height: &#x27;400px&#x27;}}&gt;
+    &lt;p style={{padding: &#x27;1rem&#x27;, backgroundColor:&#x27;aliceblue&#x27;}}&gt;First&lt;/p&gt;
+    &lt;p style={{padding: &#x27;1rem&#x27;, backgroundColor:&#x27;aliceblue&#x27;}}&gt;Second&lt;/p&gt;
+    &lt;p style={{padding: &#x27;1rem&#x27;, backgroundColor:&#x27;aliceblue&#x27;}}&gt;Third&lt;/p&gt;
+  &lt;/div&gt;
+);</code></pre></section><section><h4>Flexbox overview cont... <meter min="0" max="100" value="53.15384615384615"></meter></h4><hr/><p class="plain-text">Learning Flexbox is one of the most important web technologies.</p><p class="plain-text">Avoid too many tutorials, all you really need is to study this page
+over and over again, along with lots of practice.</p><a class="links" href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></section><section><h4>CSS in JS <meter min="0" max="100" value="60.84615384615385"></meter></h4><hr/><p class="plain-text">Traditionally, web applications separated out the HTML from CSS and from
+JavaScript. Since React, the whole landscape has changed and now we are adding
+all that logic seemingly in the same place, with Components. Now we have shown
+inline styling but inline styling has some limitation, namely that we can&#x27;t do
+CSS pseduo-selectors and media queries.</p><a class="links" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries</a><p class="plain-text"></p><a class="links" href="https://developer.mozilla.org/en/docs/Web/CSS/Pseudo-classes">https://developer.mozilla.org/en/docs/Web/CSS/Pseudo-classes</a><p class="plain-text">With React Components though, you can get around this by using className and
+still having some CSS style sheets.</p></section><section><h4>Styled Components <meter min="0" max="100" value="68.53846153846155"></meter></h4><hr/><p class="plain-text">Quite a few libraries have come about to solve this problem of CSS in JS,
+along with the limitations of inline-styling; we will emphasis styled-components.</p><pre><code class="javascript hljs">$ yarn add styled-components</code></pre><p class="plain-text">styled-components takes the idea of React to the next level allowing us to
+add styling as a reusable Component. As an added benefit, styled-components also
+works on React-Native.</p><p class="plain-text">Be sure to read the docs after this lecture</p><a class="links" href="https://www.styled-components.com/docs">https://www.styled-components.com/docs</a></section><section><h4>styled-components, cont... <meter min="0" max="100" value="76.23076923076923"></meter></h4><hr/><pre><code class="javascript hljs">import styled from &#x27;styled-components&#x27;;
+
+const BoxWrapper = styled.div`
+  display: flex;
+  height: 400px;
+  justify-content: space-around;
+`;
+
+const content = (
+  &lt;BoxWrapper&gt;
+    &lt;p&gt;Hello&lt;/p&gt;
+    &lt;p&gt;World&lt;/p&gt;
+  &lt;/BoxWrapper&gt;
+);</code></pre><p class="plain-text">Let&#x27;s break this down. Noticed that we used styled.div with two backticks.
+This is a regular feature of the JavaScript language. It is actually a function
+call to the styled.div function. Also notice that the CSS we use in the template
+string is 100% CSS, with all the power of CSS, this means we can use media queries,
+and pseudo-selectors with no problems and now whenever we make a BoxWrapper component,
+it will have this CSS applied to it with a real CSS class. Just we don&#x27;t make that
+class name for the div, it will be auto generated for us by styled-components.</p></section><section><h4>styled-components, cont... <meter min="0" max="100" value="83.92307692307693"></meter></h4><hr/><pre><code class="javascript hljs">const TextContent = styled.p`
+  padding: 1rem;
+  text-align: center;
+  background-color: red;
+  &amp;:hover {
+    background-color: orange;
+  }
+`;
+const make_text = t =&gt; &lt;TextContent&gt;{t}&lt;/TextContent&gt;;
+const content = (
+  &lt;BoxWrapper&gt;
+    {make_text(&#x27;Hello&#x27;)}
+    {make_text(&#x27;World&#x27;)}
+  &lt;/BoxWrapper&gt;
+);</code></pre><p class="plain-text">See the &#x27;&amp;:hover&#x27;? Its technically not legal CSS but styled-components
+allows us to use the sass syntax helpers. Try this out.</p></section><section><h4>styled-components, cont... <meter min="0" max="100" value="91.61538461538461"></meter></h4><hr/><p class="plain-text">Notice that the components made by styled components are plain React
+components, this means that we can also even pass props to them!</p><pre><code class="javascript hljs">const TextContent = styled.p`
+  padding: 1rem;
+  text-align: center;
+  color: ${props =&gt; props.main === true ? &#x27;orange&#x27;: &#x27;blue&#x27;};
+  background-color: red;
+`;
+// Or even shorter in the styled.p call
+// color: ${({main}) =&gt; main === true ? &#x27;orange&#x27;: &#x27;blue&#x27;};
+
+const make_main_text = t =&gt; &lt;TextContent main={true}&gt;{t}&lt;/TextContent&gt;;</code></pre><p class="plain-text">Since remember that props is just a JavaScript Object passed to
+components when they are created, we can just object destructure on them immediately</p></section><section><h4>styled-components, cont... <meter min="0" max="100" value="99.3076923076923"></meter></h4><hr/><p class="plain-text">We can also override styles!</p><pre><code class="javascript hljs">const TextWithMorePadding = styled(TextContent)`
+  padding: 1.75rem;
+`;</code></pre><p class="plain-text">This will take the styled component that we previously made, the TextContent
+and it will override the padding of 1rem but the newer 1.75rem while still keeping the
+other CSS values. This way we can easily make base components of styling and then
+make other, specialized Components.I recommend making a single styles.js file
+where you place all your styled-components and then export them for your project</p><pre><code class="javascript hljs">import styled from &#x27;styled-components&#x27;;
+const TextContent = styled.p`
+  padding: 1rem;
+  text-align: center;
+  color: ${({main}) =&gt; main === true ? &#x27;orange&#x27;: &#x27;blue&#x27;};
+  background-color: red;
+`;
+export { TextContent };</code></pre></section></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       slideNumber: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'fade', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.min.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src:
+	 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.min.js',
+	   async: true },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.min.js',
+	   async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

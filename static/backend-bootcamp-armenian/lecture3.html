@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Module system and the Event loop
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+Ծանոթագրություն
+<small>
+Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
+տերմիններ, չեն թարգմանվել։ Երբեմն բառերի մոտավոր թարգմանությունները
+գրվել են նրանց կողքին՝ փակագծերում։ (թարգմ․՝ Լ․ Հովհաննիսյան)
+</small>
+
+###### Ներածական կուրս
+###« Module System &nbsp; and &nbsp; the Event Loop »
+####Էդգար Հարությունյան
+--------------------
+<small>«ISTC» (Ինովացիոն լուծումների և տեխնոլոգիաների կենտրոն)</small>
+
+«Backend» ծրագրավորման դասընթաց
+
+3-րդ շաբաթ, աշուն 2016
+
+Երևան, Հայաստան
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _« Modularity»_
+--------------------------
+Նկատենք հետևյալ փաստը՝ կապված մեր ծրագրերի հետ,
+նրանք բոլորը գրվել են մեկ ֆայլում։ Մինչև հիմա դա
+նորմալ էր, սակայն պրոեկտի աճելուն զուգահեռ կոդը
+հասկանալը ավելի է բարդանալու։ Մեզ անհրաժեշտ է
+մի միջոց պրոեկտը տարբեր մասերի բաժանելու համար,
+այդպիսով մենք կկարողանանք թիմում տարբեր ծրագրավորողների
+տալ տարբեր «codebase»֊եր (ծրագրային բազաներ) դրանց
+վրա աշխատելու համար։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _« module system »_
+
+--------------------------------
+Ժամանակակից ծրագրավորման մի շարք լեզուներ ունեն «module system»֊ի գաղափար, միջոց՝ ինչպես կազմակերպել կոդը, օրինակ՝
+ «Python»֊ը, «Ruby»֊ն, «OCaml»֊ը։
+
+
+Որոշ հին լեզուներ բոլորովին չունեն «module system»,
+օրինակ՝ «C»֊ն, «C++»֊ը։
+
+
+ «EcmaScript/JavaScript spec»֊ը ի սկզբանե չէր ներառում
+«module system», քանի որ «JavaScript»֊ի ծրագրերն
+ընդամենը պահվում էին «`<script>` tag»֊ի ներսում և
+սովորաբար բավականին կարճ էին։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _« module system »..._
+------------------
+«EcmaScript6»֊ը ներկայացրեց մի նոր «module system»
+«JavaScript»֊ի համար։
+Այն հետևյալ տեսքն ուներ․
+
+```
+import React from 'react';
+```
+Սակայն «node»֊ը ներկայացրեց «module system»
+«ES6»֊ից առաջ, որը կոչվում էր «commonjs.»։
+
+
+«node module»֊ներն ավելի հզոր էին, դրանց կարելի էր
+տալ պարամետրեր (can be parametrized), սակայն
+«ES6 module»֊ները թույլ էին տալիս առավել հաջող
+ստատիկ անալիզ։ Քանի որ սա « backend» դասընթաց է,
+մենք կկենտրոնանանք «node modules»֊ի վրա։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« node modules »_
+------------------
+«module system»֊ը չափազանց պարզ է «node»֊ում,
+և հնարավոր է այն արդեն օգտագործած լինեք։
+
+
+```
+const fs = require('fs');
+```
+
+«require»֊ը մի ֆունկցիա է, որը գալիս է
+«node runtime environment»֊ի հետ, այն
+«JavaScript language spec»֊ի մասը չէ։
+Մենք տալիս ենք  «require»֊ին «string», և այն
+հերթով անցնում է  «module loading path»֊ի միջով։
+«local path»֊ը կարելի իմանալ հետևյալ կերպ․
+
+```
+$ npm root
+```
+Իսկ «global system wide path»֊ը՝ այսպես․
+```
+$ npm root -g
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« node modules »..._
+------------
+
+```
+const foo_bar = require('fs');
+```
+
+Նկատենք, որ անկախ այն հանգամանքից, թե ինչ է պահանջում
+«require»֊ը, այն կարելի է կցել ցանկացած անունով փոփոխականի։
+Պարտադիր չէ, որ փոփոխականի անունը լինի նույնը, ինչ֊որ
+«module»֊ինը։
+    </script>
+ </section>
+
+<section data-markdown>
+  <script type="text/template">
+### _« node modules »..._
+
+1. Նկատենք, որ եթե պահանջենք այնպիսի «module»֊ի անուն,
+   որը գոյություն չունի, ապա կստանանք «exception»։
+
+2. «JavaScript» ֆայլն ավտոմատ կերպով ստեղծում է «module»,
+   սակայն այն պահանջելիս՝ անհրաժեշտ չէ ավելացնել
+   «.js» ընդլայնում։
+
+3. «module system»֊ն օգտագործում ենք, որպեսզի
+   ստեղծենք «public/private» գաղափար։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մեր սեփական « m o d u l e »-ները_
+---------------------
+Այժմ կստեղծենք մեր սեփական «module»֊ները։
+«node»֊ով աշխատող ցանկացած «JavaScript» ֆայլ
+ստանում է որոշակի հատուկ փոփոխականներ՝ «variables»,
+«module» և «exports»։ Այս փոփոխականները մեզ թույլ
+կտան  ղեկավարել, թե ինչ են «module»֊ները  ցուցադրում
+արտաքին աշխարհին, այսինքն մյուս «module»֊ներին։
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մեր սեփական « m o d u l e »-ները․․․_
+------------------------
+Դիտարկենք հետևյալ «directory structure»֊ը
+(դիրեկտորիաների կառուցվածք), յուրաքանչյուր
+«\»֊ը «directory» է․
+
+```
+project
+ \
+  src
+  | first.js
+  | second.js
+  \
+   lib
+   | third.js
+```
+Այնուհետև կարող ենք անել հետևյալը.
+
+```
+// Imagine this is second.js
+const first = require('./first');
+const another = require('./lib/third');
+```
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _Մեր սեփական « m o d u l e »-ները․․․_
+------------------------
+Այսպիսով՝ եկեք վերջապես ստեղծենք «module»֊ներ․
+
+```
+// Imagine this is ex.js
+exports.name = 'Hello World';
+exports.make_upper = str => str.toUpperCase();
+exports.fancy = function() {
+  console.log(this.name.toUpperCase());
+}
+```
+Այժմ կարող ենք բեռնել (load up) «node repl»֊ը.
+```
+$ node
+> const g = require('./ex');
+```
+Եվ դուք կարող եք խաղալ դրա հետ։
+Հարց՝ «Ինչի՞ն  է «bind» արված «this»-ը
+«fancy» ֆունկցիայում»։
+(«exports» փոփոխականն ընդամենը «JavaScript»
+  օբյեկտ է։)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մեր սեփական « m o d u l e »-ները․․․_
+------------------------
+Նկատենք, որ «module»֊ը պարզապես արտահանում է այն,
+ինչը ստույգ նշանակվել էր  «exports» լինելու համար։
+Այսկերպ ապահովում ենք «public interface»֊ը․ այն ամենը,
+ինչ նշանակված չէր «exports»֊ով, թաքցված է։ Ահա, թե
+ինչպես ենք իրականացնում «public/private»֊ը «node»֊ում։
+
+```
+// Imagine this is ex.js
+
+// This fat arrow function, func, is only visible inside the module.
+// other modules can't see it, can't use it directly.
+const func = () => console.log('Some silly function');
+
+exports.name = 'Hello World';
+exports.make_upper = str => str.toUpperCase();
+exports.fancy = function() {
+  func();
+  console.log(this.name.toUpperCase());
+};
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մեր սեփական « m o d u l e »-ները․․․_
+------------------------
+
+<font size = 5>
+Նկատենք, որ յուրաքանչյուր «exports» լինող մեծության համար
+անհրաժեշտ էր օգտագործել «exports»։ Վերջինիս համար
+գոյություն ունի «module» փոփոխականի օգտագործման մի գեղեցիկ
+կարճ ճանապարհ (short cut)։ </font>
+
+```
+// Image this is ex.js
+const some_hidden_value = 'barev';
+module.exports = {
+  name : 'name',
+  make_upper : str => str.toUpperCase(),
+  // Notice we use the short cut for defining functions
+  // in a JavaScript object literal
+  fancy() {
+    console.log(some_hidden_value);
+    console.log(this.name.toUpperCase());
+  }
+};
+```
+<font size = 5> Իսկ կիրառումը ճիշտ նույնն է:</font>
+```
+$ node
+> require('./ex').make_upper('hello')
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մեր սեփական « m o d u l e »-ները․․․_
+------------------------
+
+Ահա թե ինչու են «node module»֊ներն ավելի
+հզոր, քան «ES6 module»֊ները։ Դրանք կարելի է
+«parametrize» անել, այսինքն՝ ստեղծել հարմարեցված
+(custom) «module»֊ներ տրված
+արժեքների հիման վրա։
+
+```
+// Imagine called ex.js
+module.exports = param => {
+  switch(param) {
+  case 'special':
+    return {spot: 10, names : ['hello', 'world']};
+  default:
+    return {spot : -10, names : []};
+  }
+};
+```
+
+```
+$ node
+> require('./ex')();
+> require('./ex')('special');
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+#### _Որոշ &nbsp; նկատառումներ « m o d u l e » ֊ ների մասին <br> « n o d e »֊ում_
+-------------------------------------
+
+1. Մոդուլները «node»֊ում «cached» (պահեստավորվող) են: Դա նշանակում է, որ
+միևնույն «value»֊ն կարելի է
+ձեռք բերել «require»֊ով ամեն անգամ, երբ բեռնում եք
+(load) այն։ Եթե ցանկանում եք, որ «module»֊ը յուրաքանչյուր
+օգտագործման ժամանակ լինի թարմ բեռնված ,
+ապա կատարեք
+
+«module.exports = `<a function>»`
+
+հնարքը, որը ներկայացված էր դասընթացի նախորդ  էջերում։
+
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+#### _Որոշ &nbsp; նկատառումներ « m o d u l e » ֊ ների մասին <br> « n o d e »֊ում․․․_
+-------------------------------------
+<font size = 6>
+`2.` «node»֊ի հետ եկող բոլոր «module»֊ները, այսինքն
+&nbsp;&nbsp;&nbsp; ստանդարտ գրադարանը, որն օֆիցիալ կոչվում է «node core»,
+կոմպիլյացվում են «node binary»֊ի, ինչպես «fs»֊ը և
+«http»֊ն։ Դրանց դոկումենտացիային կարող եք ծանոթանալ
+[այստեղ](https://nodejs.org/api/)։ </font>
+<font size = 6><br>
+`3.`Նույնիսկ, եթե դուք կոչեք ձեր ֆայլը «http.js»,
+իսկ &nbsp;&nbsp;հետո փորձեք բեռնել այն «require('http')»֊ով,
+«node»֊ը միևնույնն է կշարունակի ընտրել իր
+«core module»֊ը։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«The Event Loop»_
+--------------------
+
+
+«node»֊ն աշխատեցնում է իր «event loop»֊ն ընդամենը
+մեկ «thread»֊ի իրականացմամբ։ Վերջինս նշանակում է,
+որ այն ամենն, ինչ անում ենք «node»֊ում ավարտին է
+հասնում ընդամենը մեկ «thread»֊ով, այստեղ գոյություն
+չունի ոչ մի իրական «multithreading»։ Արդյո՞ք դա խնդիր է։
+Իրականում ոչ, քանի որ «node»֊ը ձևավորված է, որպեսզի
+հաղթահարի «networked application»֊ի
+«Input/Output (IO)» (մուտք/ելք) գործողության
+պատճառով «blocked» լինելու կարևորագույն խնդիրը։
+    </script>
+  </section>
+
+<section data-markdown>
+  <script type="text/template">
+### _«The Event Loop»․․․_
+--------------------
+
+Խնդրի լուծման հիմնական բանալին «node»֊ում
+«event loop»֊ը երբեք չարգելափակելն է (not to block)։
+Դա նշանակում է, որ այնպիսի գործողություններ,
+ինչպես «sleep»֊ը, վատ միտք է, «CPU intensive tasks»֊ը
+վատ միտք է (ինչպիսիք են  թվային վերլուծությունները,
+պարզ թվերի հաշվումը, մատրիցաների բազմապատկումը):
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«The Event Loop»․․․_
+----------------------------
+Վերհիշենք, որ «node»֊ը կառուցված է «V8»֊ի՝ «Google»֊ի
+«JavaScript interpreter»֊ի հիման վրա։ Սակայն «node»֊ը
+նաև կառուցվել է  օգտագործելով [«libuv»](https://github.com/libuv/libuv)
+գրադարանը․ վերջինս «cross platform asynchronous I/O»
+(բազմապլատֆորմային ոչ սինխրոն մուտքի/ելքի) գրադարան է։
+Այն «C» գրադարան է, որին «node»֊ը կապված է, այն
+ստեղծում է մի քանի «thread»֊ներ «thread pool»֊ում,
+դրանք օգտագործվում են  «IO» կանչերով։
+
+    </script>
+  </section>
+
+<section data-markdown>
+  <script type="text/template">
+### _«The Event Loop»․․․_
+
+«node»֊ն օգտագործում է  «event-based» անունով
+ծրագրավորման մոդել։ Դուք մոտավորապես արդեն ծանոթ եք
+դրան. յուրաքանչյուր  «GUI» ծրագիր գրված է
+«event-based» ոճով։ Դա նշանակում է, որ դուք եք ասում,
+թե ո՛ր կոդը պետք է աշխատի ամեն մի մասնավոր իրադարձության
+դեպքում։
+Օրինակ, թե ինչ տեղի կունենա, երբ մկնիկի կոճակը սեղմեք։
+	  </script>
+	</section>
+
+  <section data-markdown>
+	  <script type="text/template">
+### _«The Event Loop»․․․_
+----------------------------
+<font size = 5>
+Իրադարձությունները պատկերավոր այսպես են ընթանում․</font>
+
+<img src="https://images.contentful.com/hspc7zpa5cvq/understanding-the-nodejs-event-loop-diagram/71a2cfa55079ce73bbde6f3e9504f1d5/understanding-the-nodejs-event-loop-diagram.png"/>
+<font size = 5>
+Այս ցիկլի շուրջ պտտվող յուրաքանչյուր բան կոչվում է 'tick'։
+Կարող եք գրանցել ֆունկցիան հաջորդ «loop» շրջադարձի
+համար «process.nextTick»֊ով։
+
+<br>
+Փորձեք հասկանալ այս նկարը․ եթե մտածեք նրա մասին, ապա
+պարզ կդառնա, թե ինչու չեք կարող ստանալ
+ժամանակի կոնկրետ պահերը ձեր «timer based» կոդում։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«The Event Loop»․․․_
+----------------------------
+«node»֊ը հեշտացնում է «this»֊ի
+հետ առնչվելը  «EventEmitter» օբյեկտի օգտագործմամբ։
+
+```
+const EventEmitter = require('events');
+const util = require('util');
+
+function MyThing() {
+  EventEmitter.call(this);
+  setImmediate(emitThing1, this);
+}
+
+util.inherits(MyThing, EventEmitter);
+
+function emitThing1(self) {
+  self.emit('thing1');
+}
+
+const mt = new MyThing;
+
+mt.on('thing1', function onThing1() {
+  console.log('did some code');
+});
+```
+--> Համոզված եղեք, որ կբացատրենք այս ամենը <--
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«The Event Loop»․․․_
+----------------------------
+Ինչո՞ւ երբեք չի կարելի արգելափակել (block) <br> «loop»֊ը։
+
+```
+const EE = require('events').EventEmitter;
+const ee = new EE;
+let die = false;
+
+ee.on('die', function() {
+  die = true;
+});
+
+setTimeout(function() {
+  ee.emit('die');
+}, 1000);
+
+while(!die) { }
+
+console.log('done');
+```
+
+Ի՞նչն այն չէ այս կոդի հետ։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«The Event Loop»․․․_
+----------------------------
+
+Նկատենք, որ «timeout»֊ը երբեք չի անջատվում,
+չնայած որ թվում է, թե պետք է։ Այն երբևիցե
+չի էլ պատրաստվում, որովհետև «event loop thread»֊ը
+երբեք չի տեղաշարժվում, այսինքն՝ այն չի կարող կրկին
+անցնել «loop»֊ը։(Վերհիշեք նկարը, որը
+ցուցադրված էր ավելի շուտ,  «event loop»֊ը
+թույլ չի տալիս ստուգել բոլոր գրանցված ֆունկցիաները)։
+
+
+Այսպիսով  թույլ տվեք պարզաբանել․
+
+
+ԵՐԲԵՔ ՄԻ ԱՐԳԵԼԱՓԱԿԵՔ «THREAD»֊ը։
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/index-am.html)
+
+    </script>
+  </section>
+
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

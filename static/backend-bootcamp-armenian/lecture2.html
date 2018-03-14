@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Introduction to JavaScript
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+  Ծանոթագրություն
+ <small>
+ Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
+ տերմիններ, չեն թարգմանվել։ Երբեմն բառերի մոտավոր թարգմանությունները
+ գրվել են նրանց կողքին՝ փակագծերում։ (թարգմ․՝ Լ․ Հովհաննիսյան)
+ </small>
+
+ ###### Ներածական կուրս
+ ###« J a v a S c r i p t »
+ ####Էդգար Հարությունյան
+ --------------------
+ <small>«ISTC» (Ինովացիոն լուծումների և տեխնոլոգիաների կենտրոն)</small>
+
+ «Backend» ծրագրավորման դասընթաց
+
+  2-րդ շաբաթ, աշուն 2016
+
+ Երևան, Հայաստան
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Ծրագրավորման լեզուներ_
+--------------------------
+<font size = 6>
+Ծրագրավորման լեզուները սովորաբար բաժանվում են երկու կատեգորիաների՝
+
+<p>1․ կոմպիլյացվող (compiled)</p>
+
+<p>2. ինտերպրետացվող (interpreted)</p>
+
+<p>1-ի օրինակները ներառում են «C»֊ն, «C++»֊ը և «Ocaml»֊ը։</p>
+
+<p>2-ի օրինակները ներառում են «Python»֊ը, «JavaScript»֊ը և «Ruby»֊ն։
+</p>
+(«Java»֊ն ճշգրիտ ո՛չ մեկն է, ո՛չ էլ մյուսը, քանի որ այն
+սկզբում կոմպիլյացնում է «Java» բայթ կոդ, իսկ այնուհետև այդ կոդն
+ինտերպրետացվում է «JVM»֊ի միջոցով։)
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« J a v a S c r i p t »֊ի հակիրճ պատմությունը_
+--------------------------------
+<font size = 6>
+Առաջին Վեբ բրաուզերը կոչվում էր
+«[**Mosaic**](https://en.wikipedia.org/wiki/Mosaic_(web_browser%29)»:
+Նրա ստեղծման արդյունքում Վեբն էլ ինքնին ստեղծվեց,
+որպեսզի ֆիզիկոսները կարողանային կիսել իրենց հետազոտական
+նյութերը։ Հետազոտական նյութերն ունեն ստատիկ բովանդակություն,
+այսինքն չեն փոփոխվում։ Մտածեք ձեր «HTML»-ի մասին, այն չի փոփոխվում։
+</font>
+	  </script>
+	</section>
+
+<section data-markdown>
+  <script type="text/template">
+### _« J a v a S c r i p t »֊ի հակիրճ պատմությունը..._
+--------------------------------
+<font size = 6>
+Երբ բիզնես կազմակերպությունները հայտնաբերեցին Վեբ֊ը,
+այն անմիջապես ինտերակտիվ կերպով դարձավ պահանջված։
+Մարդկանց անհրաժեշտ էին Վեբ կայքերը տարբեր
+գործողությունների՝ կրեդիտ քարտեր վերցնելու, ինչ֊որ բաներ
+կենդանացնելու(animate), կայքերը փոփոխելու համար։
+Իսկ դրա համար անհրաժեշտ էր իրական ծրագրավորման լեզու։
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« J a v a S c r i p t »֊ի հակիրճ պատմությունը..._
+-----------------------------------
+<font size = 6>
+
+Սկսվեց Վեբի համար ծրագրավորման լեզու ապահովելու մի մրցարշավ։
+[Բրենդան Այկ](https://hy.wikipedia.org/wiki/%D4%B2%D6%80%D5%A5%D5%B6%D5%A4%D5%A1%D5%B6_%D4%B1%D5%B5%D5%AF)֊ը «NetScape»֊ից
+(այժմ «Mozilla») առաջ նետվեց և ութ օրում ստեղծեց «JavaScrpit»-ը։
+Այդ ժամանակ «NetScape»-ը մրցակցության մեջ էր «Microsoft»-ի հետ,
+և «Microsoft»֊ն էլ իր հերթին ստեղծեց ծրագրավորման
+լեզու Վեբի համար։ Վերջինս կոչվեց «VBScript»:
+
+<p>(Քանի որ «JavaScript»-ը ստեղծվեց ընդամենը ութ օրում,
+այդ պատճառով լեզուն ուներ  լուրջ թերություններ։)</p>
+</font>
+
+<section data-markdown>
+  <script type="text/template">
+### _« J a v a S c r i p t »֊ի հակիրճ պատմությունը..._
+-----------------------------------
+<font size = 6>
+
+Պատճառներից մեկը, թե ինչու «JavaScript»֊ը հաղթեց,
+իսկ «VBScript»-ը մեռավ, այն էր, որ առաջինս բաց և հասանելի էր
+(open-source) բոլորին, իսկ վերջինիս(VBScript)
+սկզբնաղբյուրը փակ էր(close-source): Ահա թե ինչու է «JavaScript»֊ը
+նաև հայտնի որպես «EcmaScript», գոյություն ունի նրա բաց
+սպեցիֆիկացիան (spec), ստանդարտը։
+
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« E n g i n e s » (շարժիչներ)_
+-------------
+<p>
+«Engine»֊ը «interpreter»-ի մեկ այլ անվանումն է,
+հիշեք, որ «JavaScript»֊ն ինտերպրետացվող լեզու է,
+ո՛չ կոմպիլյացվող։
+</p>
+Առաջին «JavaScript engine»-ը,
+որը գրել էր Բրենդան Այկը, «SpiderMonkey»-ն էր, այն
+իրականացվել է «C++»֊ում և առայսօր էլ օգտագործվում է
+«FireFox»-ում։
+  </script>
+</section>
+  <section data-markdown>
+	  <script type="text/template">
+### _« E n g i n e s » (շարժիչներ)..._
+-------------
+<font size = 6>
+  Ներկայումս կան ընդամենը մի քանի «JS engine»֊ներ․
+<p>1․«SpiderMonkey», օգտագործվում է «FireFox»֊ում</p>
+<p>2․«Chakra», օգտագործվում է «Edge»֊ում</p>
+<p>3․«JavaScriptCore», օգտագործվում է «Safari»֊ում,
+«Mobile Safari»֊ում, «ReactNative»֊ում, «Chrome»֊ի բնօրինակում</p>
+<p>4․«V8»՝ ստեղծված Google֊ի կողմից, օգտագործվում է
+  «Chrome»֊ում և «nodejs»֊ի  հիմունքներում։</p>
+․․․ և այլն
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« N O D E J S »_
+------------
+<font size = 6>
+<p>  Այս դասընթացում  կօգտագործենք «nodejs»-ը
+  (հայտնի է նաև որպես «node»), ինչպես նաև  «JavaScript»-ի
+  վերջին տարբերակը, որը կոչվում  է «EcmaScript6» (ES6):
+  Մեր նպատակն է ծանոթանալ «Sylicon Valley»֊ում կիրառվող
+  վերջին տեխնոլոգիաներին։</P>
+<p>
+  «Node»-ը 2009թ․ ստեղծել է Ryan Dahl անունով մի հիանալի
+  ծրագրավորող։ Նա հիմնականում վերցրել է «V8»-ը, ավելացրել
+  «event loop»֊ը և այլ ցածր մակարդակի «IO» (մուտք֊ելք) կանչեր։
+  Այդ պահից ի վեր պրոեկտը թռիչք է ունեցել, և այժմ հիմնականում
+  բոլոր «startup»-ներն օգտագործում են հենց այն, ինչպես նաև խոշոր
+  ընկերություններ՝ ինչպիսիք են «Groupon», «IBM», «LinkedIn»,
+  «Microsoft», «Netflix», «PayPal», «SAP», «Walmart»,
+  «Yahoo!», «Cisco Systems» և շատ ուրիշներ։</p>
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« N O D E J S »..._
+--------------------
+<font size = 6>
+  <p>
+Մենք սովորում ենք «node»-ի ամենավերջին տարբերակների հիման վրա,
+որոնք աջակցում են «ES6» (EcmaScript)-ի գործիքների մեծամասնությանը։
+Կարող եք խաղալ «node repl»֊ով, երբ ցանկանաք, եթե գործի դնեք
+այն հրամանների տողում․ </p> </font>
+
+   ```
+   $ node
+   > var a = 10;
+   undefined
+   ```
+<p><font size = 6>
+Խորհուրդ է տրվում միշտ թեստավորել ձեր գաղափարները հենց «repl»-ում։ Պահեք մի տերմինալը (terminal) մշտապես բաց՝
+ «node repl»-ով աշխատելու համար, իսկ մյուսը՝
+«JavaScript» ֆայլից աշխատելու համար։
+</p></font>
+</font>
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+#### _« Installation notes » (ինստալյացիոն նկատառումներ)_
+---------------------------
+<font size = 6>
+«node»-ն աշխատում է բոլոր խոշոր պլատֆորմների վրա՝ «Windows»,
+«Linux», «OS X»։ Մենք աշխատում ենք «Linux»-ով։ Եթե օգտվում եք «Debian»֊ից
+կամ «Debian»֊ի «downstream» պրոեկտից, ինչպիսին է «Ubuntu»֊ն,
+ապա կարող եք անել հետևյալը․
+</font>
+```
+$ curl -sL https://deb.nodesource.com/setup_7.x | sudo bash -
+$ sudo aptitude install nodejs -y
+```
+<font size = 6>Օգտագործում ենք նաև «Atom» տեքստային խմբագիրը․</font>
+```
+$ wget https://github.com/atom/atom/releases/download/v1.15.0/atom-amd64.deb
+$ sudo dpkg -i atom-amd64.deb
+$ sudo npm install tern -g
+$ apm install react atom-ternjs
+```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _«Installation notes»..._
+---------------------------------
+Այնուհետև կարող եք ստեղծել «JavaScript» ծրագրեր՝
+ստեղծելով «JS» ֆայլ «Atom» խմբագրով․
+```
+$ atom code.js
+```
+Ապա գործի դնել կոդը․
+```
+$ node code.js
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« J a v a S c r i p t »։ « v a r i a b l e s »_
+
+_(J S փոփոխականներ)_
+
+-----------------
+<font size = 5>
+Յուրաքանչյուր ծրագրավորման լեզու ունի փոփոխականներ։
+Փոփոխականը, որը կոչվում է նաև «identifier» (նույնացուցիչ),
+հիշողության տվյալների բազային դիմելու եղանակ է։
+Ֆունդամենտալ տվյալների տիպերը (data types) «JavaScript»-ում
+ներառում են «String»֊ը, «Boolean»֊ը, «Number»֊ը և այլն։
+Նկատենք, որ comment-ը (դիտողությունը), այսինքն ոչ
+աշխատանքային կոդը, սկսվում է «//» ֊ով։
+Օրինակ․
+</font>
+```
+// Creates a variable called a with the data 123, the type of
+// a is Number
+var a = 123;
+
+// Creates a variable called name with the data 'Student'
+// the type of name is String
+var name = 'Student';
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« J a v a S c r i p t »։ « v a r i a b l e s »..._
+-----------------------------------
+<font size = 6>
+Նշենք, որ յուրաքանչյուր լեզու ունի «keyword»-եր
+(հիմնաբառ կամ հուշող բառ), սրանք այն բառերն են, որոնք
+չեք կարող օգտագործել որպես փոփոխականներ, դրանք
+պահուստային են՝ հենց ինքնին այդ լեզվի համար,
+օրինակ՝ «if», «for», «var», «function» և այլն։
+
+
+Նկատենք, որ փոփոխականները, որոնք հայտարարում էինք,
+սկսվում էին «var»-ով։ «EcmaScript»֊ում դրա համար
+գոյություն ունի երեք եղանակ․
+</font>
+
+```
+var a = 10;
+const b = 'hello';
+let g = true;
+```
+<font size = 6>Ո՞րն է տարբերությունն այս երեքի միջև։
+Դա հասկանալու համար պետք է խոսել «scope»-ի (շրջանակ) մասին։
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript: scope»_
+-----------------------
+
+<font size = 6>
+«Scope»-ը ֆունդամենտալ գաղափար է բոլոր ծրագրավորման
+լեզուներում և հատկապես կարևոր է «JavaScript»֊ում։
+Այն գլխավորապես նշանակում է, թե որտեղ է իրավական (legal)
+փոփոխականի կիրառումը։ «ES6»֊ում «scope»֊երը ներկայացվում են
+բլոկներով։ Որոշ օրինակներ, որոնք ներկայացնում են բլոկները,
+ներառում են «conditional»֊ներ (պայմանականներ),
+«loops»(ցիկլեր) և «functions»(ֆունկցիաներ)։
+</font>
+```
+// imagine that this file is called prog.js
+if (true) {
+  var name = '123';
+}
+// we can print anything to the terminal screen with console.log
+console.log(name);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript: scope»..._
+-------------------------------
+Եթե փորձենք աշխատեցնել նախորդ կոդը՝
+```
+$ node prog.js
+```
+ապա կտեսնեք, որ «123»֊ը տպվում է էկրանին։
+Այս դեպքում ասում ենք, որ «conditional»-ն արտահոսում է
+(leaks) «scope»-ը․ փոփոխականի անունը շրջանցում է «scope»-ը։ Այժմ, եթե փորձենք օգտագործել «let»-ը, ապա կտեսնենք տարբերությունը․
+
+```
+// imagine that this file is called prog.js
+if (true) {
+  let name = '123';
+}
+// we can print anything to the terminal screen with console.log
+console.log(name);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript: scope»․․․_
+-------------------------------
+Գործի դնենք վերոհիշյալ կոդը, որն օգտագործում էր «let»․
+
+```
+$ node prog.js
+```
+Արդյունքում կստանանք «exception» (բացառություն)
+«a fatal error not handled by you»․
+
+```
+ReferenceError: name is not defined
+at repl:1:13
+at realRunInThisContextScript (vm.js:22:35)
+at sigintHandlersWrap (vm.js:98:12)
+at ContextifyScript.Script.runInThisContext (vm.js:24:12)
+at REPLServer.defaultEval (repl.js:313:29)
+at bound (domain.js:280:14)
+at REPLServer.runBound [as eval] (domain.js:293:12)
+at REPLServer.onLine (repl.js:513:10)
+at emitOne (events.js:101:20)
+at REPLServer.emit (events.js:188:7)
+```
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript: scope»․․․_
+-------------------------------
+<font size = 5>
+Որպես ծրագրավորող՝ մեզ ՄՇՏԱՊԵՍ անհրաժեշտ է կարդալ
+«error message»-ներ։ «Error message»-ն այստեղ հայտնում է,
+որ փոփոխականը որոշված չէ, այսինքն՝ այն «scope»-ում չէ։
+Ինչո՞ւ,  &nbsp; որովհետև մենք ստեղծեցինք փոփոխականի անունը
+«let»-ով, իսկ «let»֊ով ստեղծված փոփոխականները
+շրջափակված են այն բլոկում, որում դրանք ստեղծվել են։
+Մեկ այլ օրինակ․
+</font>
+
+```
+// Silly for loop.
+for (var i = 0; i < 3; i++) {
+console.log(i);
+}
+console.log(i)
+```
+
+<font size = 5>
+Այստեղ մենք ստեղծում ենք «i» փոփոխական, որն
+օգտագործվելու է միայն 3֊անգամյա ցիկլի համար,
+սակայն այն դեռևս հասանելի է և օգտագործվում է
+ցիկլից դուրս։
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript: scope»․․․_
+-------------------------------
+<font size = 6><p>
+Մենք միշտ ցանկանում ենք շրջափակել (սահմանափակել) փոփոխականները
+որքան հնարավոր է դրանց օգտագործման շրջանակներին (սահմաններին) մոտ։
+Հաջորդ մոդիֆիկատորը «const»-ն է։ Այժմ անհրաժեշտ է
+խոսել մուտացիայի (mutation) մասին :
+</font></p>
+
+```
+let a = 'Karen';
+a = 'Հասմիկ';
+```
+
+Ի՞նչ կատարվեց։ Մենք փոփոխեցինք, մուտացիայի ենթարկեցինք
+փոփոխականը՝ &nbsp; ‘Karen’ «string»-ից մի նոր՝ ‘Hasmik’ «string»-ի։
+Նկատենք նաև, որ առաջին անգամ փոփոխական ստեղծելիս անհրաժեշտ էր
+օգտագործել «let» մոդիֆիկատորը:
+	  </script>
+	</section>
+
+      <section data-markdown>
+	    <script type="text/template">
+### _«JavaScript: scope»․․․_
+-------------------------------
+Իսկ եթե չենք ցանկանում փոփոխել փոփոխականը, ապա
+օգտագործում ենք «const» մոդիֆիկատորը․
+
+```
+const a = 'Karen';
+a = 'Հասմիկ';
+```
+«exception»՝
+```
+TypeError: Assignment to constant variable.
+  at repl:1:3
+  at realRunInThisContextScript (vm.js:22:35)
+  at sigintHandlersWrap (vm.js:98:12)
+  at ContextifyScript.Script.runInThisContext (vm.js:24:12)
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript: scope»․․․_
+--------------------------------
+Այսպիսով, «const»-ն իմաստաբանորեն նման է «let»-ին,
+այսինքն՝ նրանց օգտագործման և «scoping»֊ի առումով,
+բայց հավելյալ առավելությունն այն է, որ «const»֊ով
+ստեղծված փոփոխականները չի թույլատրվում
+վերանշանակել (reassigne):
+
+
+Վերջինը՝ «var»֊ը, «function scoped» է։
+
+
+Շատ կարևոր է հասկանալ այս ֆունդամենտալ «scope»-ի
+հասկացությունը։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»։ «control structure»_
+(կառավարման կառուցվածք)
+
+-----------------------------------
+<font size = 5>
+Այժմ  կխոսենք կառավարման կառուցվածքի (control structure)
+մասին։ Ներկա պահին կկենտրոնանանք «synchronous» (սինխրոն)
+կոդի վրա, այն կոդի, որն իրականացվում է վերից վար։
+Այսինքն՝ «node»-ը կկարդա ձեր կոդը սկսած սկզբից դեպի վերջ
+և կանի այն ամենը, ինչ որ դուք կթելադրեք։ Մենք արդեն
+ծանոթ ենք երկու կառավարման կառուցվածքի՝ «for loop»-ին
+և «if»֊ին։
+</font>
+```
+// Inside the () needs to be a boolean expression
+// something that evaluates to true or false.
+if (10 > 5) {
+  console.log('Hello world');
+}
+```
+<font size = 5>«for loops» </font>
+```
+for (let j = 0; j < 4; j++) {
+  console.log(j + 5);
+}
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»։ «control structure»..._
+-------------------------------------------
+<font size = 6>
+«Control structure»֊ներն օգնում են մեզ կառուցել,
+կազմակերպել մեր կոդը (թե ինչ ճանապարհով այն գնա և ինչ անի)։
+«Conditional»-ը կարող է նաև ստանալ «else»․</font>
+
+```
+if (5 < 3) {
+  console.log('This is impossible);
+} else {
+  console.log('Of course 5 is not less than 3');
+}
+```
+Մեկ այլ ցիկլային կոնստրուկցիա է «while» կառավարման
+կառուցվածքը։
+```
+let i = 0;
+while (i < 4) {
+  console.log('Keep talking');
+  // i++ is short for i = i + 1;
+  i++
+}
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Arrays», «Sets», «Maps», «Objects»_
+---------------------------------
+<font size = 5>
+Այժմ կխոսենք «container»-ի (կուտակիչ, կոնտեյներ) մասին։
+«container»֊ը ինչ֊որ բաներ ներառելու, պահելու համար է։
+Ենթադրենք ուզում ենք խոսել դասասենյակում գտնվող
+ուսանողների մասին։ Իսկ  ինչպե՞ս  կարող ենք օգտագործել մեկ
+փոփոխական բոլոր ուսանողներին անդրադառնալու համար։ Ամենապարզ
+եղանակը «array»֊ի (զանգված) օգտագործումն է․
+</font>
+
+```
+let students = ['Միքայել', 'Gohar', 'Владимир'];
+```
+<font size = 5>
+Ուսանողներն իրենցից ներկայացնում են «array», իսկ դրա չափը
+3 է։ «array» կարող եք ստեղծել՝ օգտագործելով «[]»,
+օրինակ՝
+</font>
+
+```
+let emp = []
+```
+<font size = 5>ստեղծում է մի փոփոխական՝ «emp»,
+  որը դատարկ «array» է։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Arrays», «Sets», «Maps», «Objects»..._
+-----------------------------------------
+<font size = 6>
+Կարող ենք ձեռք բերել այդ էլեմենտները «array»-ից՝
+համարակալելով դրանք։</font>
+
+```
+// Arrays start from a 0 index.
+//               0          1            2
+let students = ['Միքայել', 'Gohar', 'Владимир'];
+console.log(students[1]);
+```
+<font size = 6>
+Եթե փորձեք ստանալ որևէ էլեմենտ համարակալված սահմանից
+այն կողմ, ապա կստանաք  «undefined» (չորոշված)։ Սա լեզվի
+սխալներից է։</font>
+
+```
+console.log(students[42]);
+```
+<font size = 6>
+Արդյունքում  տերմինալի էկրանին կտպվի «undefined»։
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Arrays», «Sets», «Maps», «Objects»..._
+-----------------------------------------
+<font size = 6>
+Օբյեկտները (objects) «JavaScript»-ում «key» (բանալի) և «value»
+(արժեք) զույգեր պահելու միջոց են։ Պատկերացնենք հեռախոսագրքույկ,
+որով ուզում ենք ասել, որ ինչ֊որ մեկի անունն ասոցացվում է նրա
+հեռախոսահամարի հետ։</font>
+
+```
+const friends = {Gevorg: '09-34231', Sammy: '08-23123'};
+console.log(friends.Gevorg);
+console.log(friends['Sammy']);
+```
+<font size = 5>
+Այստեղ ստեղծում ենք «JavaScript» օբյեկտներ «{}» և
+«keys», «values» զույգեր։ Այսպիսով՝ «Gevorg»֊ը «key»-ն է,
+իսկ նրա «value»-ն (արժեք) ` ‘09-34231’ է:
+Մեր «friends» օբյեկտի չափը 2 է։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Arrays», «Sets», «Maps», «Objects»..._
+-----------------------------------------
+<font size = 5>
+Կարող ենք հերթով անցնել (to loop) « array»-ի էլեմենտների վրայով։
+Այժմ օգտագործենք  «loop»֊ի հին տարբերակը․
+ </font>
+
+```
+const students = ['Միքայել', 'Gohar', 'Владимир'];
+for (let i = 0; i < students.length; i++) {
+  console.log(students[i]);
+}
+```
+<font size = 5>
+Նկատենք, որ «students» փոփոխականը որպես հատկանիշ կանչեց
+«length»-ին։ Հատկանիշին (property) կարելի է կանչել
+փոփոխականի «․»֊ով։ Խորհուրդ է տրվում այդ տեսակ
+տրամաբանության համար օգտագործել «loop»-ի նոր ոճը։
+</font>
+
+```
+const students = ['Միքայել', 'Gohar', 'Владимир'];
+// If we don't want to mutate s, then we use const, otherwise use let
+for (const s of students) {
+  console.log(s.toUpperCase());
+}
+```
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+### _«JavaScript»: «Arrays», «Sets», «Maps», «Objects»..._
+-----------------------------------------------
+Եթե ուզում եք համոզված լինել, որ ունեք էլեմենտների միայն
+մեկական օրինակ պահող «collection» (հավաքածու), ապա ձեզ
+անհրաժեշտ է օգտագործել «Set»֊ը․
+
+```
+// iterable will only have the elements 1 2 3
+const iterable = new Set([1, 1, 2, 2, 3, 3]);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Arrays», «Sets», «Maps», «Objects»..._
+-----------------------------------------------------
+Մեկ այլ «collection»-ի տեսակ է «Map»֊ը։
+«Map»֊երը նոր են «EcmaScript6»֊ում։
+
+```
+const iterable = new Map([["a", 1], ["b", 2], ["c", 3]]);
+for (const [key, value] of iterable) {
+  console.log(value);
+}
+```
+
+Նկատենք, որ այստեղ կա մի ընդհանուր թեմա․ «collection»-ի
+ժամանակ պետք է հերթով անցնել միայն մեկ բանի
+վրայով։ Սա կոչվում է «iterating» (հերթագայում)
+«collection»-ի վրայով։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Functions»_
+(ֆունկցիաներ)
+
+---------------------------
+<font size = 6>
+<p>
+Հիշենք, թե ինչպես էինք գրում կոդը։ Մենք այն գրում էինք
+ընդամենը վերին մակարդակով՝ ֆայլի մակարդակով։
+Այդ դեպքում կոդը չի կարող վերաօգտագործվել։</p>
+
+<p>
+Դա ուղղելու համար օգտագործում ենք ֆունկցիաներ։
+Ֆունկցիան կոդի մի բլոկ է, որը գործում է, երբ կանչում ենք այն։
+«JavaScript»-ում ֆունկցիաները նաև արժեքներ են (values)։
+Դա նշանակում է, որ նրանց կարող ենք տեղադրել փոփոխականների,
+«array»-ների մեջ։</p>
+
+<p>
+Սա շատ հզոր գործիք է, քանի որ որոշ ծրագրավորման
+լեզուներ թույլ չեն տալիս օգտագործել ֆունկցիաները որպես
+փոփոխականներ, օրինակ՝ «Java»-ն։</p>
+
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+
+### _«JavaScript»: «Functions»․․․_
+-----------------------------------
+<font size = 5>
+Բերենք մի պարզ օրինակ․ ստեղծենք ֆունկցիա, նշանակենք այն
+«speaker» հաստատուն փոփոխականով, այնուհետև կանչենք այդ
+փոփոխականը որպես ֆունկցիա։ Նկատենք, որ փոփոխականները
+ֆունկցիայի ներսում բլոկով շրջափակված են (block scoped),
+և դրանք կջնջվեն, երբ ֆունկցիան վերադառնա (ավարտվի)։
+</font>
+
+```
+const speaker = function() {
+  console.log('Hello world');
+};
+
+speaker();
+```
+<font size = 5>
+Ֆունկցիաները «JavaScript»-ում միանշանակ պարտադիր չէ, որ
+վերադարձնեն որևէ արժեք։ Եթե չունեք «return» (վերադարձ), ապա
+ֆունկցիան վերադարձնում է «undefined»:
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Functions»․․․_
+-----------------------------------
+<font size = 6><p>
+Ֆունկցիաները կարող են ընդունել տվյալներ։ Այդ տվյալներն
+անվանում են ֆունկցիայի պարամետրեր (parameters):
+</font></p>
+
+```
+const speaker = function(param) {
+  console.log(param);
+};
+
+const s = 'Hello World';
+speaker(s);
+```
+<font size =6><p>
+Իսկ ֆունկցիային տրվող փաստացի տվյալները կոչվում են
+արգումենտներ(arguments)։ Բերված օրինակում կանչում ենք
+«speaker» փոփոխականը՝ որպես ֆունկցիա «s» արգումենտով,
+որն էլ փոփոխական է «'Hello World'» տվյալի համար։
+</font></p>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Functions»․․․_
+-----------------------------------
+<font size = 6><p>
+«JavaScript»֊ի ֆունկցիաները նաև «vararg» ֆունկցիաներ են։ Դա նշանակում է, որ նրանք կարող են վերցնել այնքան
+արգումենտ, որքան որ տրվի, նույնիսկ եթե ֆունկցիան
+ունի ավելի քիչ պարամետր, քան տրված արգումենտների քանակն է։
+Օրինակ՝</font></p>
+
+```
+const speaker = function(param1, param2) {
+  console.log(param1);
+  console.log(param2);
+}
+// Not an error
+speaker('Foo', 'Bar', 'Baz', 'Catz');
+```
+<font size = 6><p>
+Ֆունկցիային տրվող բոլոր արգումենտները պահվում են
+փոփոխականի արգումենտներում, դրանք հասանելի են միայն
+ֆունկցիայի «scope»-ում։
+</font></p>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Functions»․․․_
+-----------------------------------
+Ժամանակակից «EC6»-ը թույլ է տալիս հավաքել (collect)
+բոլոր արգումենտները փոփոխականում՝ օգտագործելով ...
+
+```
+const speaker = function(param1, param2, ...rest) {
+  // param1 is 'Foo', param2 is 'Bar'
+  // ...rest is an array with 'Baz', 'Catz'
+  console.log(param1);
+  console.log(param2);
+}
+speaker('Foo', 'Bar', 'Baz', 'Catz');
+```
+Կարող եք նաև տալ «default» արժեքներ․
+```
+const speaker = function(param1, param2='World') {
+  console.log(param1 + param2);
+}
+speaker('Hello');
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»_
+-------------------------------------------
+<font size = 6><p>
+«JavaScript»-ում ամենածանր ընկալվող հասկացություններից է
+«this» փոփոխականը։ Այն հայտնի է նաև որպես «execution context»
+(կատարման համատեքստ): «this» փոփոխականն անդրադառնում  կամ հղվում
+է տվյալ (ներկայիս) օբյեկտին։
+</font></p>
+```
+const obj = {
+  name: 'mari',
+  speak: function() {
+    console.log(this.name);
+  }
+};
+obj.speak();
+```
+<font size = 6><p>
+«this» փոփոխականը «dynamically scoped» է, սա նշանակում է,
+որ այն փոփոխվում է և չի օգտագործում տվյալներ, որոնք ձեր
+կարծիքով պետք է օգտագործեր նրան դիմելիս։</font></p>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»_
+-------------------------------------------
+<font size = 6><p>
+«this» փոփոխականը  կազմում է «EcmaScript spec»֊ի մի
+մասը, սակայն դրա իմպլեմենտացիան (իրականացումը) կախված է
+նրանից, թե ինչ միջավայրում (environment) եք ձեր «JavaScript»
+կոդն աշխատեցնում։ Բրաուզերում այն հղվում է գլոբալ օբյեկտին։
+Բացեք «node repl»-ը և տպեք հետևյալը, կտեսնեք, որ գլոբալ
+օբյեկտը տպվեց էկրանին։
+</font></p>
+```
+$ node
+> this
+{ DTRACE_NET_SERVER_CONNECTION: [Function],
+  DTRACE_NET_STREAM_END: [Function],
+  DTRACE_HTTP_SERVER_REQUEST: [Function],
+  DTRACE_HTTP_SERVER_RESPONSE: [Function],
+  DTRACE_HTTP_CLIENT_REQUEST: [Function],
+  DTRACE_HTTP_CLIENT_RESPONSE: [Function],
+  global: [Circular],
+  process:
+  process {
+    title: 'node',
+```
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»_
+-------------------------------------------
+<font size = 6><p>
+«JavaScript»֊ի ֆունկցիաներն ունեն նաև իրենց կցված մեթոդներ:
+Դրանցից ամենակարևորներից են «bind»֊ը (կապել),
+«call»֊ը (կանչել) և «apply»֊ը (կիրառել)։
+
+
+Ահա ֆունկցիան կանչելու մեկ այլ ճանապարհ․
+</font></p>
+```
+const f = function(g) { console.log(g)}
+// call just takes all the arguments you give it
+// and passes it to the function you are calling with .call
+f.call(null, 'hello')
+```
+<font size = 6><p>
+Կարող եք նաև օգտագործել «.apply» մեթոդը, սակայն դրա համար
+նրան պետք է տալ արգումենտների «array»։
+</font></p>
+```
+const f = function(g, h) { console.log(g + h)}
+f.apply(null, ['hello', 'world'])
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»..._
+-------------------------------------------
+<font size = 5><p>
+Նկատենք, որ թե՛ «.call»֊ին, թե՛ «.apply»֊ին մենք
+տալիս ենք «null»։ Վերջինս նշանակում է, որ մենք չենք
+պատրաստվում տրամադրել  հարմարեցված (custom)
+«execution context», որը ֆունկցիան կստանա օգտագործման
+համար՝ ինչպիսին էլ որ  «this» փոփոխականը լինի։
+Այժմ մենք կղեկավարենք (control) «execution context»-ը։
+</font></p>
+```
+const obj = {
+  name: 'mari',
+  speak: function() {
+    console.log(this.name);
+  }
+};
+const other_obj = { name:'nane' };
+obj.speak.call(other_obj);
+```
+<font size = 5><p>
+Աշխատեցրեք այս կոդը, արդյունքում կտեսնեք, որ «nane»֊ն
+տպվեց էկրանին, այլ ոչ թե «mari»֊ն։
+</font></p>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»..._
+-------------------------------------------
+<font size = 6>
+Այժմ անդրադառնանք ֆունկցիայի ամենահզոր և կարևոր մեթոդին՝
+«.bind»֊ին։ Մեծ գլխացավանքներից մեկը «JavaScript»֊ում
+«execution context»-ն է՝ «this» փոփոխականը, որը
+գործի է դրվում ծրագիրն աշխատեցնելիս։ Միշտ չէ, որ դա իրենից
+ներկայացնում է այն, ինչ կցանկանայիք օգտագործել։
+Դա այն պատճառով է, որ «this» փոփոխականը «dynamically scoped» է,
+այլ ոչ թե «lexically scoped»։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»..._
+-------------------------------------------
+Որպեսզի համոզված լինենք, որ ֆուկցիան
+օգտագործում է մեր նախընտրած «execution context»֊ը («this»-ը),
+ապա կօգտագործենք «.bind»-ը։
+
+«.bind»-ը ստեղծում է մի նոր ֆունկցիա, որն օգտագործում է
+այն «execution context»-ը, որը դուք եք տրամադրում։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»..._
+-------------------------------------------
+
+```
+const obj = {
+  name:'aram'
+};
+// At the top level this refers to the global object
+this.name = 'gohar';
+const g = function(last_name) {
+// This is using ES6 string interpolation, aka the ${}
+  return `${this.name.toUpperCase()} ${last_name}`;
+}
+const f = g.bind(obj)
+console.log(f('baz'));
+```
+Այսպիսով՝ «f»-ը մի նոր ֆունկցիա է, որը կցված է (bound)
+«obj»֊ին (մենք «bind» ենք արել «g»֊ով «JavaScript» «obj»
+օբյեկտին)։
+
+
+Կարելի է նաև կատարել այլ խելահեղ բաներ «.bind»-ով,
+ինչպիսին է, օրինակ, «partial function application»֊ը։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «execution context»..._
+-----------------------------------
+<font size = 5><p>
+«Partial function application»֊ը նման է մեկ այլ ֆունկցիայից
+նոր ֆունկցիա ստանալուն, սակայն այդտեղ որոշ արգումենտներ
+օգտագործվում են այլ արժեքներով։ Դա ավելի պարզ կդառնա օրինակում․
+</font></p>
+```
+const obj = {
+  name:'aram'
+};
+// At the top level this refers to the global object
+this.name = 'gohar';
+const g = function(last_name, age) {
+  return `${this.name} ${last_name} ${age}`;
+}
+// The first argument must always be the new execution context
+// and the other arguments end up being the
+// arguments of the original function
+const f = g.bind(obj, 'baz');
+console.log(f(22));
+```
+<font size = 5><p>
+Նկատեք, թե ինչպես է «baz»-ն ավարտվում՝ վերցնելով
+«last_name»-ի արգումենտային արժեքը, սա դիրքային է։
+</font></p>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Fat Arrows»_
+----------------------------
+<font size = 6>
+Այժմ կխոսենք «JavaScript»-ի մի նոր գործիքի մասին, որը
+«ES6»-ի մասն է կազմում, այն կոչվում է «fat arrows»։
+
+<p>
+«Fat arrow» ֆունկցիաները նման են «regular» ֆունկցիաներին,
+բացառությամբ մի քանի «syntax»-ային տարբերությունների,
+և թե ինչ «execution context»֊ներ են օգտագործում․ նրանք
+օգտագործում են «this» փոփոխականն իրենց «lexical scope»-ից։
+<p/>
+
+Մենք լայնորեն կկիրառենք դրանք, քանզի նրանք բավականին
+զվարճալի են։
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Fat Arrows»..._
+------------------------------------
+```
+const f = function(first, second) {
+  return first + second;
+}
+```
+
+Սա նույնն է՝ ինչ
+
+```
+const g = (first, second) => {
+  return first + second;
+}
+```
+Նկատենք, որ «function» գրելն անհրաժեշտ չէր, մենք ավելի
+քիչ տպագրեցինք և օգտագործեցինք « => » նշանը :
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Fat Arrows»..._
+------------------------------------
+<font size = 5><p>
+Եթե ֆունկցիան ընդունում է միայն մեկ պարամետր, ապա
+ձեզ անհրաժեշտ չէ «()»֊ը պարամետրերի ցուցակի համար։
+</font></p>
+```
+const g = name => {
+  return `Hi: ${name.toUpperCase()}`;
+}
+```
+<font size = 5><p>
+Եթե ֆունկցիան իրենից ներկայացնում է ընդամենը մեկ
+արտահայտություն, ապա անհրաժեշտ չէ դնել «{}»
+և նունիսկ՝ «return»֊ը:
+</font></p>
+
+```
+const g = name => `Hi: ${name.toUpperCase()}`;
+```
+<font size = 5><p>
+Այնպիսի գործիքների հետ, ինչպիսիք են «.map»-ը  և
+«.filter»֊ը, «fat arrow»-ի օգտագործումը դառնում է գերզվարճալի։
+</font></p>
+
+```
+const evens = [1, 2, 3, 4, 5, 6, 7].filter(x => x % 2 === 0);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Objects»_&nbsp; <font size = 6>(կրկին)</font>
+
+-------------------------------
+<font size = 6>
+Ուշադրություն դարձնենք, որ օբյեկտները ստեղծվում են
+ուղղակիորեն։ «JavaScript»֊ի օբյեկտները նոր տվյալների տիպեր
+ստեղծելու միջոց են։
+
+<p>
+Նոր տվյալների տիպեր ստեղծելու եղանակ է ֆունկցիաների
+օգտագործումը։
+</p>
+
+Արդյո՞ք սա կաշխատի։ Փորձենք․
+</font>
+
+```
+const Person = function(first_name, last_name) {
+  this.f_name = first_name;
+  this.l_name = last_name;
+  this.speak = function() {
+    console.log(`My name is: ${this.f_name} ${this.l_name}`);
+  }
+}
+const armo = Person('famous', 'gampr');
+armo.speak();
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Objects»_&nbsp; <font size = 6>(կրկին)</font>
+
+-------------------------------
+<font size = 5>
+Նախորդ օրինակը չի աշխատի, քանի որ կարևոր է, թե ինչպես ենք
+կանչում ֆունկցիաներին՝ որպես «function», թե՞ որպես
+«constructor»։ Այստեղ «Person»֊ը կանչեցինք որպես ֆունկցիա,
+և այդպիսով «execution»֊ը, լինելով «global object», ավարտվեց,
+քանի որ ֆունկցիան կապված չէր մասնավոր «this» փոփոխականի հետ։ Ապա
+այն շարունակելով փնտրել « scope chain »֊ում՝ ի վերջո
+գտավ մեկին։ Դա կարելի է պատկերացնել ինչպես «cd ..» հրամանը
+«shell»֊ում շարունակ կատարելիս, վերջիվերջո կհասնեք «/»
+և չեք կարողանա շարժվել ավելի վեր, քան «/»֊ը, նմանապես
+գլոբալ «this» փոփոխականը մշտապես հասանելի է։
+<p>
+Ստուգեք «this.f_name»֊ը, կտեսնեք, որ այն
+ունի իրեն կցված «famous», դա լավ չէ։</p>
+
+<p>
+(«fat arrow»֊ներին չի կարելի կանչել որպես «constructor»֊ներ)
+</p>
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Objects»_&nbsp; <font size = 6>(կրկին)</font>
+-------------------------------
+
+Այսպիսով՝ պետք է համոզված լինել, որ ֆունկցիան կանչելիս
+ձեռք ենք բերում «new execution context», վերջինիս պետք է
+կանչել որպես «constructor»։
+
+```
+const Person = function(first_name, last_name) {
+  // if this is now called as a constructor, that is
+  // if called used `new` then `this` is just an empty
+  // JavaScript object, its {} and here we are assigning
+  // new properties to it.
+  this.f_name = first_name;
+  this.l_name = last_name;
+  this.speak = function() {
+    console.log(`My name is: ${this.f_name} ${this.l_name}`);
+  }
+}
+const armo = new Person('famous', 'gampr');
+armo.speak();
+```
+
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Classes»_
+-------------------------------
+Տեսանք, որ ֆունկցիան որպես «function» կամ որպես
+«constructor» կանչելը «error» չէր տալիս։ «node»֊ը
+երկուսն էլ նորմալ ընդունեց։ «error» ստացանք  միայն այն ժամանակ,
+երբ փորձեցինք օգտագործել մի «property», որը գոյություն չուներ։
+
+
+Պարզվեց, որ այդ մեծատառ անուններով «function»֊ները
+նախատեսված էին կանչվելու որպես «constructor»֊ներ։
+Այսպիսով՝ «ES6»֊ը, ինչպես նախկինում, թույլ էր տալիս սխալներ,
+այդ պատճառով էլ նրանում ներառվեցին «class»-ներ։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«JavaScript»: «Classes»..._
+---------------------------------
+
+```
+class person {
+  constructor(name, last_name) {
+    this.f_name = name;
+    this.last_name = last_name;
+  }
+  speak () {
+    console.log(`My name is : ${this.f_name} ${this.last_name});
+  }
+}
+const gor = new person('gor', 'gampr');
+gor.speak();
+```
+Նկատենք, որ եթե «person»֊ին կանչում ենք «new»֊ով,
+ապա ստանում ենք «TypeError exception»։
+
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/index-am.html)
+
+    </script>
+  </section>
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

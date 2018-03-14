@@ -1,0 +1,263 @@
+
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <!-- https://cdnjs.com/libraries/reveal.js -->
+    <title> Essential JavaScript for React, modern Web Dev </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/sky.css"
+          id="theme">
+    <!-- See the names choices here: https://github.com/isagalaev/highlight.js/tree/master/src/styles -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     const link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     const pdf_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+     const paper_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/paper.css';
+     link.href = window.location.search.match(/print-pdf/gi) ? pdf_css : paper_css;
+     document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+     
+  section h4 {
+    display:flex;
+    justify-content:space-between;
+  }
+
+  code { font-size: large !important; }
+
+  .links, .plain-text { font-size: 1.40rem !important;  }
+
+  .title-slide > p, h1, a {
+    font-size: xx-large !important;
+    padding: 0.25rem;
+  }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides"><section class="title-slide"><h1 style="font-size:xx-large;">Essential JavaScript for React, modern Web Dev</h1><hr/><p>Common JavaScript idioms, an abridged whirlwind tour</p><p style="text-decoration:underline;"><a href="http://istc.am/en/">Innovative Solutions and Technologies Center</a>(ISTC)</p><p style="text-decoration:underline;">Yerevan, Armenia</p><p style="font-style:italic;">By <a href="https://twitter.com/edgararout">Edgar Aroutiounian</a>, Summer 2017</p><p>Progress: <meter min="0" max="100" value="0"></meter></p></section><section><h4>EcmaScript 6 <meter min="0" max="100" value="7"></meter></h4><hr/><p class="plain-text">Modern Web Development uses the latest versions and features of JavaScript,
+which is offically known as EcmaScript</p><p class="plain-text">As of June 2017, most browsers support all of EcmaScript except
+for the ES6 module system, aka</p><pre><code class="javascript hljs">import React, { Component } from &#x27;react&#x27;;</code></pre><p class="plain-text">Technically that isn&#x27;t even legal ES6 because the ES6 module loader specification
+does not allow the creation of &#x27;naked&#x27; imports, that is imports that don&#x27;t
+specify a specific path or URI. However in practice this doesn&#x27;t really matter
+because we use babel and webpack to compile
+our JavaScript code into code that can run on today&#x27;s browsers.</p><a class="links" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/import">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/import</a><p class="plain-text">Note, this lecture is going to move VERY fast and YOU MUST READ the links I post to MDN,
+please look at</p><a class="links" href="http://iteratehackerspace.com/backend-bootcamp-english/lecture2.html">http://iteratehackerspace.com/backend-bootcamp-english/lecture2.html</a><p class="plain-text">for a more comprehensive introduction to JavaScript (uses nodejs)</p></section><section><h4>Classes (not really, they are functions) <meter min="0" max="100" value="14.142857142857142"></meter></h4><hr/><p class="plain-text">ES6 introduced the concept of classes, but these &#x27;classes&#x27; are really just syntaxical
+sugar on top of plain JavaScript functions.</p><pre><code class="javascript hljs">class Person {
+  constructor(age, name) {this.age = age; this.name = name; }
+  speak() { console.log(&#x27;My name is&#x27;, this.name); }
+}
+
+const friend = new Person(27, &#x27;Ruzanna&#x27;);
+// This is the same as doing:
+function Person(age, name) { this.age = age; this.name = name; }
+Person.prototype.speak = function() { console.log(&#x27;My name is&#x27;, this.name); }
+
+const acquaint = new Person(23, &#x27;Tigran&#x27;);</code></pre><p class="plain-text">The benefit of using the class approach is that
+1) Calling without &#x27;new&#x27; is a TypeError exception,
+2) The code looks more familiar to programmers coming from other languages</p><a class="links" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes</a></section><section><h4>Using prototypes <meter min="0" max="100" value="21.285714285714285"></meter></h4><hr/><p class="plain-text">JavaScript is a prototype based language, that means that
+every Object has a prototype. When we defined classes, all the &#x27;methods&#x27; defined in the
+class are functions that are created for the prototype and the properties
+of the prototype (the things we access with . operator) are available for any Object
+that is on that prototype chain. Having a function defined on the prototype is better for
+memory usage than on each object because then we only make 1 copy of that function
+rather for each instance of the object. This is a common pattern</p><pre><code class="javascript hljs">class F {
+  constructor() {
+    this.speak = () =&gt; console.log(&#x27;Hello world&#x27;);
+  }
+  alternative_speak() { console.log(&#x27;Hello world&#x27;); }
+};
+// Both a1, a2 have methods .speak and .alternative_speak
+const a1 = new F;
+const a2 = new F;</code></pre><p class="plain-text">In this example the interpreter created only one alternative_speak function,
+it is on the prototype of F, but the interpreter is forced to create two speak functions
+because we have created the function (a fat arrow function) as a property created on each new
+instance of F</p><a class="links" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes</a></section><section><h4>Binding context <meter min="0" max="100" value="28.428571428571427"></meter></h4><hr/><p class="plain-text">JavaScript classes do not autobind their context, `this` object</p><p class="plain-text">Practically speaking, that means you will often see React code that binds functions</p><pre><code class="javascript hljs">class F {
+  constructor() {
+    this.handler = this.handler.bind(this);
+  }
+  handler(e) {
+    console.log(e.target.value);
+  }
+}</code></pre><p class="plain-text">In class we showed an example of the issues of not having the right context, the
+same issue comes up in React.</p><a class="links" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this</a></section><section><h4>static in JavaScript <meter min="0" max="100" value="35.57142857142857"></meter></h4><hr/><p class="plain-text">The static keyword also exists in JavaScript, it creates a property on
+the class object itself, not on the prototype. One library that uses this is
+react-navigation</p><pre><code class="javascript hljs">class HomeScreen extends Component {
+  static navigationOptions = ({navigation}) =&gt; ({
+    title: &#x27;Home Screen&#x27;,
+  });
+  // the render function
+}</code></pre><p class="plain-text">The navigationOptions property is on the HomeScreen object,
+not on the prototype of HomeScreen</p><a class="links" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static</a></section><section><h4>Object destructuring <meter min="0" max="100" value="42.714285714285715"></meter></h4><hr/><p class="plain-text">In the previous example, this</p><pre><code class="javascript hljs">static navigationOptions = ({navigation}) =&gt; ({</code></pre><p class="plain-text">might have looked strange, specifically the &#x27;({navigation})&#x27; part.
+It is called object destructuring, its a way to pull out values from Objects
+by key name directly. Here are some examples</p><pre><code class="javascript hljs">const foreman = {
+  name: &#x27;Gor&#x27;, age: 28,
+  location: &#x27;Yerevan&#x27;, profession(){ console.log(this.age, this.name); }
+};
+// We only pulled out name and age as variable names based on keys
+const { name, age } = foreman;
+console.log(name, age);
+const { not_found } = foreman;</code></pre></section><section><h4>Object destructuring in functions <meter min="0" max="100" value="49.857142857142854"></meter></h4><hr/><p class="plain-text">The previous example</p><pre><code class="javascript hljs">static navigationOptions = ({navigation}) =&gt; ({</code></pre><p class="plain-text">Is actually an example of object destructuring in function parameters, we do this because
+often times we pass Objects to function, so we might as well be able to pick out the fields right
+from the beginning.</p><pre><code class="javascript hljs">const person = {name: &#x27;Lilit&#x27;, profession: &#x27;programmer&#x27;};
+const say_profession = ({profession}) =&gt; {
+  console.log(&#x27;I am a &#x27;, profession);
+}
+say_profession(person);</code></pre><p class="plain-text">Notice that we didn&#x27;t have to give a name to all the fields in the object, we just
+pick the key names that we care about</p><a class="links" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment</a></section><section><h4>Class properties <meter min="0" max="100" value="57"></meter></h4><hr/><p class="plain-text">As of June 2017, Class properties are at stage-2 TC39. That means that they aren&#x27;t
+an official part of the EcmaScript specificiation but most likely will be. We can still use it with
+the help of tools like babel, used under the hood of create-react-app</p><pre><code class="javascript hljs">class F {
+  state = { items: []};
+  open_dropdown = () =&gt; {
+     console.log(&#x27;Some logic here&#x27;);
+  };
+}</code></pre><p class="plain-text">And that is really the same as</p><pre><code class="javascript hljs">class F {
+  constructor() {
+    this.open_dropdown = () =&gt; {
+      console.log(&#x27;Some logic here&#x27;);
+    }
+    this.state = { items: []};
+  }
+}</code></pre></section><section><h4>Object spread <meter min="0" max="100" value="64.14285714285714"></meter></h4><hr/><p class="plain-text">Another feature you&#x27;ll often see is something called Object spread, this is also not
+offical EcmaScript yet babel will compile it into Object.assign function calls</p><pre><code class="javascript hljs">const professional = {name: &#x27;Artur&#x27;, langs: [&#x27;C#&#x27;, &#x27;JavaScript&#x27;, &#x27;Armenian&#x27;]};
+const with_more = {...professional, background: [&#x27;WebDevelopment&#x27;]};</code></pre><p class="plain-text">We are making a new object called with_more that is a copy of professiona, but with the
+extra key background</p><a class="links" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator</a></section><section><h4>import/export in ES6 <meter min="0" max="100" value="71.28571428571429"></meter></h4><hr/><p class="plain-text">EcmaScript 2015 (ES6) finally provided the JavaScript language with a module system</p><pre><code class="javascript hljs">// Assume this file is named funcs.js
+export const f = () =&gt; console.log(&#x27;Hello&#x27;);</code></pre><p class="plain-text">This says that this module will export something called f which we can then import and use</p><pre><code class="javascript hljs">// Assume this file is called main.js
+import { f } from &#x27;./funcs&#x27;;
+f();</code></pre><p class="plain-text">Notice that we did something that looks like object destructuring; its almost that but its not.
+Also notice that there was no need to add the extension &#x27;.js&#x27;. ES6 modules are effectively
+singletons, importing it multiple times in different parts of your
+application does not make new &#x27;instances&#x27; of the module</p></section><section><h4>import/export in ES6 <meter min="0" max="100" value="78.42857142857143"></meter></h4><hr/><p class="plain-text">Notice that we did export on that function f. Sometimes though you only want to export one
+value from your module, in that case we use &#x27;export default&#x27;</p><pre><code class="javascript hljs">// assume this is called header.js
+// Notice that it was not necessary to give the class a name
+export default class extends Component {
+  render() {
+    return &lt;h2&gt;Hello World&lt;/h2&gt;;
+  }
+}</code></pre><p class="plain-text">And we use it like so</p><pre><code class="javascript hljs">import call_it_anything_you_want from &#x27;./header&#x27;;
+// Can also rename it
+import * as Whatever from &#x27;./header&#x27;;
+// renaming also works with named exports, this is usual in react-router
+import { BrowserRouter as Router } from &#x27;react-router-dom&#x27;;</code></pre><a class="links" href="https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export">https://developer.mozilla.org/en/docs/web/javascript/reference/statements/export</a></section><section><h4>Promises <meter min="0" max="100" value="85.57142857142857"></meter></h4><hr/><p class="plain-text">JavaScript coding focuses on asynchronous work, events. That means that we need a
+way to say what to do in the future and the JavaScript langauge provides us
+with something called Promises. A Promise is a way to defer work to the future</p><pre><code class="javascript hljs">const promise_example = (success=true) =&gt; {
+  return new Promise((accept, reject) =&gt; {
+    const func = () =&gt; success
+      ? accept(&#x27;You waited 3 seconds, here is the data&#x27;)
+      // Always use an Error object, it preserves the stack
+      : reject(new Error(&#x27;failure&#x27;));
+    setTimeout(func, 3 * 1000);
+  })
+}
+promise_example().then(msg =&gt; console.log(&#x27;Given&#x27;, msg));
+// Be sure to handle the errors with the .catch method
+promise_example(false)
+.then(msg =&gt; console.log(&#x27;Given&#x27;, msg))
+.catch(error_handle =&gt; console.log(error_handle.message))</code></pre><a class="links" href="https://developers.google.com/web/fundamentals/getting-started/primers/promises">https://developers.google.com/web/fundamentals/getting-started/primers/promises</a></section><section><h4>async/await <meter min="0" max="100" value="92.71428571428571"></meter></h4><hr/><p class="plain-text">Working with Promises has one small hassle, that is that we have to
+handle the .then and .catch. ES7, the next version of EcmaScript, provides new keywords
+called async and await. async, await can only be used with functions and any function that
+uses await must be wrapped with the async keyword. We can use this in browsers because babel
+will compile the async,await into ES6 generator functions and using the yield keyword. Any function
+wrapped with async returns a Promise</p><pre><code class="javascript hljs">const load_data = async path =&gt; {
+  // get a request object, fetch by default does a HTTP GET request
+  const req = await fetch(path);
+  // Get the HTTP body as JSON, no need to use JSON.parse
+  const results = await req.json();
+  return results;
+}</code></pre><p class="plain-text">fetch is a function provided by the DOM API, (also implemented in React-Native),
+that gives us the ability to download new data. fetch returns a promise so we can use
+.then on the result, or we can use async/await which will &#x27;unwrap&#x27; the promise for us</p><a class="links" href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API">https://developer.mozilla.org/en/docs/Web/API/Fetch_API</a></section><section><h4>async/await error handling <meter min="0" max="100" value="99.85714285714286"></meter></h4><hr/><p class="plain-text">async, await make asynchronous code LOOK as if it was synchronous, it
+turns the .catch error from a Promise into an exception</p><pre><code class="javascript hljs">const promise_example = (success=true) =&gt; {
+  return new Promise((accept, reject) =&gt; {
+    const func = () =&gt; success
+      ? accept(&#x27;You waited 3 seconds, here is the data&#x27;)
+      : reject(new Error(&#x27;failure&#x27;));
+    setTimeout(func, 3 * 1000);
+  })
+}
+(async () =&gt; {
+  try { await promise_example(false); }
+  catch (e) { console.log(e.message); }
+})()</code></pre><p class="plain-text">Notice the sneaky way to do a top level async/await call since async/await can
+only be used in functions</p><a class="links" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await</a></section></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       slideNumber: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'fade', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.min.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src:
+	 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.min.js',
+	   async: true },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.min.js',
+	   async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

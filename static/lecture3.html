@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Module system and the Event loop
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# Module System and the Event Loop
+
+## Edgar Aroutiounian
+---------------------
+#### ISTC backend development course, Week-3, Fall 2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Modularity_
+--------------------------
+Notice something about our programs? They have all been
+written as a single file. That is fine for now but as our
+projects grow, it will become harder and harder to think
+about the code. We need a way to split out our project
+into different pieces, this way we can give different
+programmers on the team different parts of codebase to work
+on.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _module system_
+--------------------------------
+Many modern programming languages have a notion of a module system,
+of a way to organize code, examples include `Python`, `Ruby`, `OCaml`.
+
+Some older languages don't have a module system at all, like `C`, `C++`.
+
+The EcmaScript/JavaScript spec originally did not include a module system
+since JavaScript programs were just kept inside a `<script>` tag and were
+usually quite short.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _module system cont..._
+------------------
+EcmaScript6 introduced a new module system for JavaScript.
+
+it looks like:
+```
+import React from 'react';
+```
+But `node` introduced a module system before `ES6`
+called `commonjs`. `node` modules are more powerful,
+they can be parametrized but `ES6` modules allow for
+better static analysis. Because this is a backend class,
+we will stay focused on `node` modules.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _node modules_
+------------------
+The module system is super simple in `node` and you might have already
+used it.
+
+```
+const fs = require('fs');
+```
+
+`require` is a function that comes with the `node` runtime environment,
+it is not part of the JavaScript language spec. We give `require` a
+string and it looks through module loading path. You can know the local
+path with
+```
+$ npm root
+```
+and the global system wide path with
+```
+$ npm root -g
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _node modules cont..._
+------------
+
+```
+const foo_bar = require('fs');
+```
+Notice that whatever `require` returns is bound to whatever variable
+name you give it. It doesn't have to be the same name as the module name.
+
+1. Note that trying to require a module name that doesn't exist will
+   raise an exception.
+2. JavaScript files automatically create a module but when you require them
+   you don't need to add the `.js` extension.
+3. We use the module system to create a notion of public/private.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _our own modules_
+---------------------
+Now we'll make our own modules. Each JavaScript file run by `node`
+gets some special variables, `module` and `exports`.
+These variables will let us control what things the modules exposes to the
+outside world, aka other modules.
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _our own modules..._
+------------------------
+Imagine this directory structure, each `\` is a directory
+```
+project
+ \
+  src
+  | first.js
+  | second.js
+  \
+   lib
+   | third.js
+```
+then we can do...
+
+```
+// Imagine this is second.js
+const first = require('./first');
+const another = require('./lib/third');
+```
+	  </script>
+	</section>
+	<section data-markdown>
+	  <script type="text/template">
+### _our own modules..._
+------------------------
+So let's finally make modules!
+
+```
+// Imagine this is ex.js
+exports.name = 'Hello World';
+exports.make_upper = str => str.toUpperCase();
+exports.fancy = function() {
+  console.log(this.name.toUpperCase());
+}
+```
+Then we can load up the `node` repl
+```
+$ node
+> const g = require('./ex');
+```
+And you can play with it, question, what does `this` bind to in the
+`fancy` function? (The `exports` variable is just a JavaScript object.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _our own modules..._
+------------------------
+Note that the module only exposes what was explicitly assigned to
+`exports`. This way we provide a public interface, everything not
+assigned to `exports` is hidden. This is how we do public/private in
+`node`.
+```
+// Imagine this is ex.js
+
+// This fat arrow function, func, is only visible inside the module.
+// other modules can't see it, can't use it directly.
+const func = () => console.log('Some silly function');
+
+exports.name = 'Hello World';
+exports.make_upper = str => str.toUpperCase();
+exports.fancy = function() {
+  func();
+  console.log(this.name.toUpperCase());
+};
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _our own modules..._
+------------------------
+Notice that we had to use `exports` for each value we wanted
+exposed. There is a nice short cut by using the `module` variable.
+
+```
+// Image this is ex.js
+const some_hidden_value = 'barev';
+module.exports = {
+  name : 'name',
+  make_upper : str => str.toUpperCase(),
+  // Notice we use the short cut for defining functions
+  // in a JavaScript object literal
+  fancy() {
+    console.log(some_hidden_value);
+    console.log(this.name.toUpperCase());
+  }
+};
+```
+And the usage is the exact same:
+```
+$ node
+> require('./ex').make_upper('hello')
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _our own modules..._
+------------------------
+
+And here is how `node` modules are more powerful than
+`ES6` modules, you can paramertize them, that is make custom modules
+based on given values.
+
+```
+// Imagine called ex.js
+module.exports = param => {
+  switch(param) {
+  case 'special':
+    return {spot: 10, names : ['hello', 'world']};
+  default:
+    return {spot : -10, names : []};
+  }
+};
+```
+
+```
+$ node
+> require('./ex')();
+> require('./ex')('special');
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Some Notes about modules in node_
+-------------------------------------
+1. modules in node are `cached`, that means that
+   you get the same value on `require` each time you load it.
+   If you want the module to be freshly loaded each time you use
+   it with `require` then do the `module.exports = <a function>`
+   trick that was shown previously.
+
+2. All the modules that come with node, aka the standard library
+   and offically called `node core` are compiled into the `node`
+   binary, like `fs` and `http`. You can look at their documentation
+   [here.](https://nodejs.org/api/)
+
+3. Even if you name your file `http.js` and try to load it
+   with `require('http')`, node will still pick its core module.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _The Event Loop_
+--------------------
+`node` runs its event loop on a single thread of execution.
+This means that everything we do in `node` ends up
+only running on one thread, there is no real multithreading.
+Is this a problem? Not really, because `node` was designed for networked
+application which are blocked most of the time anyway because of
+Input/Output (IO). The key point in `node` is to NEVER EVER block the event
+loop, this means things like `sleep` are bad ideas and doing CPU intensive
+tasks is a bad idea (Like numerical analysis, calcuating primes, multiplying
+matrixes).
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _The Event Loop cont..._
+----------------------------
+Recall that `node` is built on top of `V8`, Google's JavaScript
+interpreter. But `node` is also built using
+the [libuv](https://github.com/libuv/libuv) library, this is a
+cross platform asynchronous I/O library. This is a `C` library
+that `node` is linked against and it creates several threads in a thread
+pool which are used by by the IO calls.
+
+`node` uses a model of programming called `event-based` programming.
+You kind of already know about it, every GUI program is written in
+an `event-based` style. This means that you say what code should run
+when a certain even happens.
+
+example: When the mouse clicks the button, what should happen.
+	  </script>
+	</section>
+
+  <section data-markdown>
+	  <script type="text/template">
+### _The Event Loop cont..._
+----------------------------
+
+Conceptually things run like this:
+
+<img src="https://images.contentful.com/hspc7zpa5cvq/understanding-the-nodejs-event-loop-diagram/71a2cfa55079ce73bbde6f3e9504f1d5/understanding-the-nodejs-event-loop-diagram.png"/>
+
+Each run around this cycle is called a 'tick', you can register a
+function for the next go around the loop with `process.nextTick`
+
+Understand this picture, if you think about it then it should
+then be clear why you can't get exact times in your timer based
+code.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _The Event Loop cont..._
+----------------------------
+`node` makes it easy to deal with the this using
+the `EventEmitter` object.
+
+```
+const EventEmitter = require('events');
+const util = require('util');
+
+function MyThing() {
+  EventEmitter.call(this);
+  setImmediate(emitThing1, this);
+}
+
+util.inherits(MyThing, EventEmitter);
+
+function emitThing1(self) {
+  self.emit('thing1');
+}
+
+const mt = new MyThing;
+
+mt.on('thing1', function onThing1() {
+  console.log('did some code');
+});
+```
+--> Make sure that we explain all of this <--
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _The Event Loop cont..._
+----------------------------
+Why you should never block the loop
+
+```
+const EE = require('events').EventEmitter;
+const ee = new EE;
+let die = false;
+
+ee.on('die', function() {
+  die = true;
+});
+
+setTimeout(function() {
+  ee.emit('die');
+}, 1000);
+
+while(!die) { }
+
+console.log('done');
+```
+
+What's wrong with this code?
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _The Event Loop cont..._
+----------------------------
+
+Notice that the timeout never goes off, even though it
+looks like it should. It never gets to because the event
+loop thread never gets to make progress, that is it can't
+go around the loop again. (Recall the picture we
+showed earlier, the event loop doesn't get to check
+all the registered timer functions).
+
+so let me make this clear:
+NEVER BLOCK THE THREAD
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+### _JavaScript: Classes cont..._
+---------------------------------
+
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/)
+
+    </script>
+  </section>
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

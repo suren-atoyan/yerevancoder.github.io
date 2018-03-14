@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Doing multicast
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+  Ծանոթագրություն
+  <small>
+  Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
+  տերմիններ, չեն թարգմանվել։ Երբեմն բառերի մոտավոր թարգմանությունները
+  գրվել են նրանց կողքին՝ փակագծերում։ (թարգմ․՝ Լ․ Հովհաննիսյան)
+  </small>
+### «More Networking -- UDP, Multicast»
+
+####Էդգար Հարությունյան
+---------------------
+<small>«ISTC» (Ինովացիոն լուծումների և տեխնոլոգիաների կենտրոն)</small>
+
+«Backend» ծրագրավորման դասընթաց
+
+6-րդ շաբաթ, աշուն 2016
+
+Երևան, Հայաստան
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Protocols»_
+--------------
+Նախորդ դասընթացում բերված օրինակն առաջ բերեց որոշ
+ենթադրություններ։
+Մենք դիտարկեցինք մի որոշ «protocol», տվյալ դեպքում՝ «HTTP»,
+որովհետև գրել էինք
+
+```
+GET / HTTP/1.1\r\nHost:example.com\r\n\r\n
+```
+
+մյուս համակարգչին։ «HTTP protocol»֊ը թելադրում է, որ «HTTP request»֊ն
+ունի «request line»՝ «HTTP headers» և հավանաբար՝ «body»։
+Դուք կարող եք կարդալ օֆիցիալ «HTTP1.1 spec»֊ն
+[այստեղ](https://www.w3.org/Protocols/rfc2616/rfc2616.html)։
+«HTTP2»֊ն աստիճանաբար [ընդունվում է](https://http2.github.io/)։
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Routing»_
+-----------
+«HTTP»֊ն սովորաբար իրագործվում է «TCP»֊ի դեպքում, որովհետև այդ տեսակ
+«protocol»֊ին անհրաժեշտ է իմանալ՝ արդյո՞ք տվյալները հաջողությամբ են
+փոխանցվել։ Կարծես թե ցանկանում եք համոզվել, որ ստանում եք ամբողջական
+պատկերը և այլն։ «TCP»֊ն  «routing» է (ուղղորդող), («routing» նշանակում է
+մի ալգորիթմ՝ ըստ որի որոշվում է, թե ինչպես ուղարկել տվյալները
+տարբեր համակարգիչների։)
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Routing»..._
+-----------
+<font size = 5>Պարզունակ ընկալելու համար․
+<br>
+«TCP»֊ն կատարում է հետևյալը՝ ուղարկելով հաղորդագրություն, ամեն
+անգամ երբ կողմերից մեկը ստանում է այդ տվյալները։</font>
+
+```
+A
+  \  (Here A sends the message to B)
+    \ -> -> -> -> -> -> -> -> -> -> -> -> -> B
+                                          /
+(And B sends back a message              /
+to A saying it got the data)            /
+A <- <- <- <- <- <- <- <- <- <- <- <- <-
+```
+<font size = 5>Այն որոշակի հավելյալ ծախս է
+«protocol»-ի համար։ Արժեքը ներառում է ռեսուրսների օգտագործման
+հավելյալ ծախսերը, սակայն առավելությունն այն է, որ մենք տեղյակ ենք
+լինում՝ արդյոք տվյալները հաջողությամբ փոխանցվել են, թե՝ ոչ։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+
+## _«Routing»..._
+--------------------
+Երբեմն մեզ ավելի շատ հետաքրքրում է տվյալների փոխանցման քանակական
+կողմը։ Այլ կերպ ասած՝
+պարզապես ցանկանում ենք ուղարկել որքան հնարավոր է շատ «packet»֊ներ
+այլ համակարգիչներին՝ առանց անհանգստանալու արդյոք նրանք արդեն
+ունեն դրանք, թե՝ ոչ։ Նման դեպքերում օգտագործվում է մեկ այլ «protocol»՝
+«User Datagram Protocol»,
+[`UDP`](https://en.wikipedia.org/wiki/User_Datagram_Protocol)․
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Routing»..._
+--------------------
+<font size = 5>«UDP»֊ն մի «protocol» է, որն ընդամենն ուղարկում է տվյալներ
+առանց անհանգստանալու, թե տվյալներ ստացող կողմը՝ մյուս համակարգիչը,
+իսկապես ստանում է այդ տվյալները, թե՝ ոչ։ Վերջինս նշանակում է, որ եթե
+օգտագործում ենք հենց «UDP», ապա հնարավոր է ունենանք տվյալների կորուստ։
+<br><br>
+Գոյություն ունեն մի քանի «domain»֊ներ, որտեղ կարող ենք ավելի շատ
+հոգ տանել *մեծ քանակով* տվյալներ ստանալու մասին, քան՝ *բոլոր*
+տվյալները ստանալու (այսինքն մեզ համար ընդունելի է որոշ «packet»֊ների
+կորուստը)։
+<br><br>
+«UDP»֊ի գործածման օրինակները ներառում են՝
+«Skype»֊ը և այլ «VOIP»֊ներ, «Online Multiplayer» խաղեր և
+«YouTube video streaming»։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«Multicasting»_
+-----------------
+<font size = 6>Հաճախ  ցանկանում ենք
+«message»֊ներ ուղարկել ոչ թե մեկ, այլ՝ մի քանի համակարգչի։ «TCP»֊ի դեպքում ուղղակիորեն
+խոսում ենք մեկ համակարգչի հետ, սակայն դա ակնկալում է որոշակի
+հավելյալ ծախսեր։ «UDP»֊ն թույլ է տալիս «network»֊ում արդյունավետ
+ուղարկել «message»֊ներ բոլորին՝ առանց ստուգելու, արդյոք
+տեղ հասան դրանք, թե՝ ոչ
+(«Multicast»֊ի օգնությամբ)։</font>
+
+```
+                                               ----------
+                                              | Computer1 |
+                                             / ----------
+ --------          -------------------------/   ----------
+| Sender |------> | Multicast Group/Network |--| Computer2 |
+ --------          -------------------------\   -----------
+                                             \  -----------
+                                              | Computer..N |
+                                                -----------
+
+```
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Multicasting Chat»..._
+-------------------------
+<font size = 5>
+Վերջինս կարող ենք հեշտությամբ իրականացնել «node»֊ում։ Աշխատեցրեք
+«script»֊ը երկու տարբեր համակարգիչների վրա միևնույն «network»֊ում։
+(«dgram»֊ը նշանակում է «datagram» (տվյալների փաթեթ)։)</font>
+```
+"using strict";
+
+const multicast_addr = "224.1.1.1";
+const port = 6811;
+
+const udp = require("dgram");
+
+const listener = udp.createSocket({type:"udp4", reuseAddr:true});
+const sender = udp.createSocket({type:"udp4", reuseAddr:true});
+
+listener.bind(port, multicast_addr, () => {
+  listener.addMembership(multicast_addr);
+  listener.setBroadcast(true);
+});
+
+listener.on("message", function (b, other) {
+  console.log(b.toString().trim());
+});
+
+process.stdin.on("data", function (data){
+  sender.send(data, 0, data.length, port, multicast_addr);
+});
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Multicasting Chat»..._
+-------------------------
+<font size = 5>
+Վեջինս պետք է ունենա ստանդարտ «node» կոդի տեսք։ Մենք
+ստեղծում ենք որոշ «handler»֊ներ «event»֊ների համար։
+Տվյալները մուտքագրելու համար պարզապես կարդում ենք «stdin»֊ից,
+որը նշանակում է, որ մենք կկատարենք մուտքագրում «terminal»֊ի
+միջոցով։
+<br><br>
+Գլխավորապես, մենք ուղարկեցինք հաղորդագրություն «group»֊ին
+«local network»֊ում, և ով էլ որ լինի այդ «group»֊ի ցանցում,
+կստանա այդ հաղորդագությունը։ Մինչդեռ «TCP»֊ի դեպքում մենք տեղյակ ենք,
+թե ով է ստացել հաղորդագրությունը, այսինքն՝ կարող ենք ձեռք բերել
+«IP address»֊ը մյուս կողմից։ «Multicast»֊ի դեպքում միայն «protocol»֊ով
+չենք կարող իմանալ, թե ով է ստանում նամակը։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <!-- We make a protocol idea for chat client project -->
+	  <script type="text/template">
+## _«Multicasting Chat»..._
+------------------------------
+Հնարավոր է նկատած լինեք, որ այնտեղ գոյություն ունի տպագրված
+«message»֊ների կրկնողություն։ Դա այն պատճառով է, որ ուղարկողը
+միևնույն ժամանակ ստացող է, այդպիսով Դուք նույնպես ստանում եք Ձեր
+ուղարկած «message»֊ը։
+
+Որպես ծրագիր այդ երևույթը «bug» է,
+քանի որ, ըստ ծրագրի տրամաբանության, էկրանին կունենանք
+«message»֊ների կրկնօրինակներ։
+
+ՀՈՒՇՈՒՄ: Սա թող լինի Ձեր «project»֊ի բարելավվումը։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Multicasting Chat»..._
+------------------------------
+Նաև նկատած կլինեք, որ վերոհիշյալ կոդը մի տեսակ տգեղ է
+նայվում. ո՛չ մի էսթետիկա, ո՛չ մի ինստրուկցիա, ո՛չ մի
+նույնականացում (identification), թե ով է խոսողը։
+Հիշենք, որ սա «multicast» է, այդպիսով &nbsp;յուրաքանչյուրը կարող է խոսել
+որքան ուզում է, և Դուք չեք կարող իմանալ, թե ով է խոսողը՝
+մինչև որ &nbsp; ինքը &nbsp; չասի։
+
+ՀՈՒՇՈՒՄ: Վերջինս պրոեկտը բարելավվելու մեկ այլ բնագավառ է։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Գեղեցկացնել «Multicasting Chat»֊ը..._
+---------------------------------------
+<font size = 6>
+Հիշենք «htop» ծրագիրը․ այն օգտագործվում է <br> «terminal»֊ում՝
+համակարգչում ընթացող բոլոր պրոցեսների մասին տեղեկություն
+ստանալու համար։ «htop»֊ն օգտագործում է «ncurses» անունով «C»
+գրադարան։ Քանի որ մենք օգտագործում ենք «node», ապա մեզ
+հասանելի է ամբողջ «npm» էկոհամակարգը։
+<br>
+Գրադարանը, որը կարող ենք օգտագործել «terminal UI coding»֊ի համար,
+կոչվում է «[blessed](https://github.com/chjj/blessed)»:
+Գոյություն ունի նաև մեկ այլ գրադարան, որը թույլ է տալիս կատարել
+«dashboard»֊ներ, այն կոչվում է «[blessed-contrib](https://github.com/yaronn/blessed-contrib)»։
+<br>
+ՀՈՒՇՈՒՄ: Դուք պետք է օգտագործեք «blessed-contrib» պրոեկտի համար։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Multicasting Chat Protocol»_
+-------------------------------
+<font size = 5>
+Այժմ անդրադառնանք մեկ այլ խնդրի՝ կապված «message»֊ների կրկնման հետ։
+Մեզ անհրաժեշտ է ստեղծել մի «protocol», որը պետք է իրագործվի
+մեր «chat»֊ում գործող &nbsp; յուրաքանչյուր «client»֊ի կողմից ։
+<br>
+Վերհիշենք, որ կրկնակի «message» ստանալու խնդիրն այն է, որ չունենք որևէ տվյալ «message»֊ն ուղարկողի մասին։
+Այս տիպի տրամաբանությունը պետք է իրագործվի «application»֊ի մակարդակով,
+այսինքն՝ կոդի։ Մենք կարող ենք ֆորմալացնել այն որպես «protocol», որը
+նախապես համաձայնեցված հաղորդակցման  ձև է, այնպես՝ ինչպես որ «HTTP»֊ն է հանդիսանում
+«protocol»՝ կառուցված «TCP/IP»֊ի հիման վրա։ Հետևաբար մենք նույնպես
+կարող ենք ստեղծել մեր իսկ «protocol»֊ը՝ «UDP»֊ի հիման վրա։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«ISTC-SPEAK Protocol»_
+-------------------------------
+<font size = 5> Եկեք ստեղծենք «ISTC-SPEAK» անունով «protocol»: Այն պարզ,
+«UDP»֊ի վրա հիմնված, «JSON»֊ով աշխատող «protocol» է։
+<br>
+Ահա նրա նկարագիրը․</font>
+
+```
+port := 6881
+# «ping message»֊ը պետք է ուղղարկվի յուրաքանչյուր 25 վայրկյանը մեկ
+msg ping := {identifier : String, uptime : Number }
+msg message := {identifier : Number, payload : String}
+```
+<font size = 4>
+«ISTC-SPEAK»֊ը կազմված է միայն երկու տեսակ «message»֊ներից՝
+«ping» և «message»։ Յուրաքանչյուրը պետք է ունենա «String» տիպի
+«identifier field», «ping»֊ն ունի լրացուցիչ «field», որը
+հայտնում է, թե որքան ժամանակ է արդեն մեկնարկել ուղարկողը, իսկ
+«message»֊ն ունի փաստացի հաղորդագրության լրացուցիչ «field»,
+որն ուղարկողը ցանկանում է կիսել բոլորի հետ «multicast» ցանցում։
+«Ping»֊ը պետք է ուղարկել &nbsp; յուրաքանչյուր 25 վայրկյանը մեկ,
+այնպես որ «client»֊ները կարողանան վստահորեն տեղեկանալ, թե
+ով կա ցանցում։
+</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+#### _ Խմբային պրոեկտ դասարանի մնացած անդամների հետ _
+------------------------------------
+<font size = 5>
+Այժմ կիրականացնենք խմբային պրոեկտ ձեր իսկ թիմերում։ Դուք
+կիրագործեք «ISTC-SPEAK client»֊ը։ Գոյություն ունեն
+պրոեկտի երեք «requirements» (պահանջներ):
+<br>
+1. Այն պետք է ճշտորեն իրագործի «ISTC-SPEAK protocol»֊ը։<br>
+
+2. Այն պետք է լինի էսթետիկորեն հաճելի և օգտագործի «blessed»
+կամ «blessed-contrib» գրադարաններից որևէ մեկը։ Նայեք կոդի օրինակին
+իրենց համապատասխան ռեպոզիտորիաներում (repos):
+<br>
+3. Այն պետք է օգտագործի «Promises», վերջինս կբացատրվի
+հետագա դասընթացներում։</font>
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/index-am.html)
+
+    </script>
+  </section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

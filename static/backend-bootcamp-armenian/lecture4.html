@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Module system and the Event loop
+    </title>
+    <meta name="author" content="Nicolas Wormser">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+      Ծանոթագրություն
+      <small>
+      Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
+      տերմիններ, չեն թարգմանվել։ Երբեմն բառերի մոտավոր թարգմանությունները
+      գրվել են նրանց կողքին՝ փակագծերում։ (թարգմ․՝ Լ․ Հովհաննիսյան)
+      </small>
+### «Test-Driven Development»
+####(Ծրագրավորում թեստավորման միջոցով)
+
+### «Nicolas Wormser»
+--------------------
+<small>«ISTC» (Ինովացիոն լուծումների և տեխնոլոգիաների կենտրոն)</small>
+
+«Backend» ծրագրավորման դասընթաց
+
+4-րդ շաբաթ, աշուն 2016
+
+Երևան, Հայաստան
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Ինչո՞ւ &nbsp; թեստավորել_
+--------------------------
+* Արդյո՞ք համոզված եք, թե ինչ է անում Ձեր կոդը, երբ
+աշխատում է ըստ նախատեսվածի։
+* Արդյո՞ք համոզված եք, թե ինչ է անում Ձեր կոդը, երբ
+*ՉԻ* աշխատում ըստ նախատեսվածի։
+* Արդյո՞ք համոզված եք, որ կոդն անելու է այն,
+ինչ նախատեսել եք այն դեպքում, երբ մեկ ուրիշն էլ
+աշխատի նրա վրա։
+
+Եթե ունեք գոնե մեկ *«ոչ»* => թեստավորեք ձեր կոդը։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Ինչո՞ւ &nbsp; « T D D »_
+--------------------------
+
+«Test-Driven Development (TDD)»֊ը հավաստիացնում է, որ մենք՝
+ծրագրավորողներս, թեստավորում ենք մեր կոդի բոլոր
+կրիտիկական ասպեկտները՝ նույնիսկ նախքան դրանց գոյություն ունենալը։
+
+Ամեն անգամ ինչ֊որ կոդ գրելու փոխարեն կատարեք հետևյալը․
+</script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+## _Ինչո՞ւ &nbsp; « T D D »․․․_
+--------------------------
+1. Գրեք պարզագույն թեստ ամենաակնհայտ արդյունքի(ելքի) համար,
+որը պետք է ունենա Ձեր կոդն առաջին իսկ կրկնվող գործընթացի (iterate)
+ժամանակ։
+2. Գործի դրեք Ձեր թեստավորման գործիքը, որպեսզի իրականացնեք այդ
+թեստը։
+3. Այն բնականաբար ձախողում է (դեռ չեք գրել որևէ կոդ)։
+4. Գրեք *բավականաչափ* կոդ թեստը իրականացնելու համար։
+5. Կրկին սկսեք «1.»֊ից։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _« S i d e &nbsp; b e n e f i t »_<font size = 6> (կողմնակի առավելություն)</font>
+
+--------------------------
+
+Այն ստիպում է մեզ մտածել ցանկալի
+արդյունք ստանալու տեսանկյունից՝ &nbsp;նախքան կոդի ներմուծումը։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Ի՞նչ է «u n i t &nbsp; t e s t»֊ը_
+--------------------------
+
+> «unit test»֊ը «assertion»֊ների մի խումբ է, որն իրականացվում
+է կոնկրետ մեկ միավոր կոդի (օր․ ֆունկցիա) հանդեպ՝ գնահատելու նրա արժեքները։
+
+```javascript
+// Test that sum is a function
+assert(typeof sum === 'function');
+// Passing values 2 and 3 to sum should evaluate to 5
+assert.equal(sum(2,3), 5);
+```
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«With &nbsp; implementation»_<font size = 6>
+  (իրագործելիս)</font>
+
+--------------------------
+
+```javascript
+const sum = ( a, b ) => a + b;
+
+// The tests will now pass
+assert(typeof sum === 'function');
+assert.equal(sum(2,3), 5);
+```
+«assert» պնդումը կնետի «exeption», երբ «assertion»֊ը (գնահատումը)
+ տեղի չունենա, *հակառակ դեպքում ոչինչ չի անի*։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«A s s e r t i o n» գրադարաններ_
+--------------------------
+«assertion»֊ների իրականացման եղանակը
+որոշվում է մեր օգտագործած գրադարանով։
+«Javascript»֊ի համար ամենաճանաչված գրադարաններից են՝
+
+- «[Assert API](https://nodejs.org/api/assert.html)»֊ը՝ ինտեգրված
+«Node.js»֊ում
+- «[Chai](http://chaijs.com/)»
+- Եվս մեկը՝ ներառված
+«[Jasmine testing framework](https://github.com/jasmine/jasmine/)»֊ում
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _« C h a i » _
+--------------------------
+<font size = 5> «Assertion»֊ների ոճերը կախված են ընտրված «assertion»
+գրադարանից։ <br>«Chai»֊ն իրականացնում է «assertion»֊ների բոլոր
+երեք ընդհանուր ոճերը :</font><br>
+
+- <font size = 5>«Should» (պետք է)</font>
+```javascript
+sum.should.be.a('function');
+sum(2,3).should.equal(5);
+```
+- <font size = 5>«Expect» (ակնկալում է) &nbsp;&nbsp;(նման է «Jasmine»֊ի «syntax»֊ին)</font>
+```javascript
+expect(sum).to.be.a('function');
+expect(sum(2,3)).to.equal(5);
+```
+- <font size = 5>«Assert» (հաստատում է) &nbsp; (նման է «Node»֊ի «Assert API»֊ին)</font>
+```javascript
+assert.typeOf(sum, 'function');
+assert.equal(sum(2,3), 5);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մոդուլների &nbsp;&nbsp; թեստավորումը &nbsp;&nbsp;«J a s m i n e»֊ով_
+--------------------------
+<font size = 6> «Jasmine»֊ը թեստավորման «framework» է, որն օգնում է
+կազմակերպել և աշխատեցնել «unit test»֊երը մեր «application»֊ում։
+<br>
+Պրոեկտում օգտագործելու համար պետք է կատարել</font>
+
+```bash
+npm install jasmine --save-dev
+```
+
+Ապա պետք է սահմանել «`test` npm script»֊ը «`package.json`»֊ում։
+```json
+  // excerpt from package.json
+  "scripts": {
+    "test": "jasmine"
+  },
+```
+</script>
+</section>
+
+
+<section data-markdown>
+  <script type="text/template">
+### _Մոդուլների &nbsp;&nbsp; թեստավորումը &nbsp;&nbsp;«J a s m i n e»֊ով․․․_
+--------------------------
+Կարող եք օգտագործել «`jasmine init`»֊ը «`spec`» դիրեկտորիա
+ստեղծելու և « default » կոնֆիգուրացիոն ֆայլ գեներացնելու համար
+«`spec/support/jasmine.json`»֊ում։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մոդուլների &nbsp;&nbsp; թեստավորումը &nbsp;&nbsp;«J a s m i n e»֊ով․․․_
+--------------------------
+
+Պրոեկտի «root»֊ում (արմատ)
+  սահմանված մոդուլի համար</font>
+```javascript
+// file my-module.js
+module.exports = {
+  // some code here
+}
+```
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+### _Մոդուլների &nbsp;&nbsp; թեստավորումը &nbsp;&nbsp;«J a s m i n e»֊ով․․․_
+--------------------------
+պետք է ունենաք հետևյալը
+  «`mymodule-spec.js`»֊ում:</font>
+```javascript
+
+const mod = require('../my-module');
+
+describe('<string describing context 1>', function() {
+  it('<string describing test 1>', function() {
+    // <test1>
+  });
+
+  it('<string describing test 2', function() {
+    // <test2>
+  });
+});
+
+describe('<string describing context 2>', function() {
+  it('<string describing test 1>', function() {
+    // <test1>
+  });
+});
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մոդուլների &nbsp;&nbsp; թեստավորումը &nbsp;&nbsp;«J a s m i n e»֊ով․․․_
+--------------------------
+
+Կարո՞ղ եք գրել մի պարզ մոդուլ, որը կկատարի հետևյալ անցումը։
+```javascript
+// file: spec/calculator-spec.js
+
+const calculator = require('../calculator');
+
+describe('multiplication', function() {
+  it('should multiply 2 and 4', function() {
+    const product = calculator.multiply(2,3);
+    expect(product).toBe(6);
+  });
+});
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _Մոդուլների &nbsp;&nbsp; թեստավորումը &nbsp;&nbsp;«J a s m i n e»֊ով․․․_
+--------------------------
+
+```javascript
+// file: calculator.js
+
+module.exports = {
+  multiply: (num1, num2) => num1 * num2
+}
+```
+
+Այժմ կլոնավորեք (clone) `https://github.com/fuzzytern/node-jasmine-starter`
+և անցեք բոլոր թեստերը։
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/index-am.html)
+
+    </script>
+  </section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>
