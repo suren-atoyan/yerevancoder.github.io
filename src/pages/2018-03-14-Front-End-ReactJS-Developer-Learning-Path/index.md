@@ -1,12 +1,13 @@
 ---
 title: Front End (ReactJS) Developer Learning Path
-tags: front-end, JavaScript, ReactJS,  
+tags: front-end, JavaScript, ReactJS
 author: Renderforest
 date: "2018-03-14"
 description: General things you should know for being FrontEnd developer
+discussionId: "2018-03-14-Front-End-ReactJS-Developer-Learning-Path"
 ---
 
-##General Requirements
+## General Requirements
 
 Note: This list is proposed by RenderForest, for newbie devs that apply for a job in our company.
 This is not a complete list, nor it is a single answer to all questions.
@@ -17,7 +18,7 @@ But we thought that this might be helpful for community and for those who want t
 * Basic working knowledge of JavaScript
 * CS Related university grad or 3rd course or above.
 
-##General JavaScript Knowledge
+## General JavaScript Knowledge
 
 * Git / github - or Bitbucket [(learn)](https://try.github.io/levels/1/challenges/1)
 * Basic understanding of
@@ -43,7 +44,7 @@ But we thought that this might be helpful for community and for those who want t
 
 * General Help - [(learn)](https://nodeschool.io/#workshoppers)
 
-##For Front-End (ReactJS) development.
+## For Front-End (ReactJS) development.
 
 * Do any small project on ReactJS, understand the component lifecycle.
   * [(state)](https://reactjs.org/docs/state-and-lifecycle.html),
@@ -54,7 +55,7 @@ But we thought that this might be helpful for community and for those who want t
     [(Video 2)](https://www.youtube.com/watch?v=oaBzhS6O4ew),
     [(Video 3)](https://www.youtube.com/watch?v=V1po0BT7kac)
 
-##Additional Topics To Study
+## Additional Topics To Study
 
 * Mastering JavaScript Callbacks [(tasks)](https://github.com/emarukyan/mastering-callbacks-javascript/)
 * Recursion [(learn)](https://github.com/AlbertHambardzumyan/recursion)
