@@ -13,6 +13,8 @@ catch me on <a href='https://twitter.com/@edgararout'>twitter</a>
 Here are some **JavaScript** resources, including nodejs and ReactJS lecture notes that you can just
 slide through.
 
+**If you find a mistake, please submit a pull request with the fix or report it as a github issue**
+
 ## nodejs
 
 These are lecture notes done for nodejs
