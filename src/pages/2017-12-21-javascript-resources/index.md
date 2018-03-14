@@ -3,7 +3,7 @@ title: Free JavaScript learning material! (nodejs, React, JSConf)
 tags: armenia, coding, javascript, jsconf, learning
 author: Edgar Aroutiounian
 date: "2017-12-21"
-description: some useful material for you 
+description: some useful material for you
 discussionId: "2017-12-21-useful-material"
 ---
 
@@ -89,7 +89,7 @@ These are lecture notes done for nodejs
 
 ## lecture-1
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1/index.html" width="1" height="1" />
 
 ## lecture-2
 
