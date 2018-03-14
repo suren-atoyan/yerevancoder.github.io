@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Doing multicast
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# More Networking -- UDP, Multicast
+
+## Edgar Aroutiounian
+---------------------
+#### ISTC backend development course, Week-6, Fall 2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Protocols_
+--------------
+The previous example we did made some assumptions.
+We assumed a kind protocol, that is we assumed HTTP because
+we wrote
+
+```
+GET / HTTP/1.1\r\nHost:example.com\r\n\r\n
+```
+
+to the other computer. The HTTP protocol says
+that a HTTP request has the request line,
+HTTP headers and possibly a body. You can read the offical `HTTP1.1`
+spec [here](https://www.w3.org/Protocols/rfc2616/rfc2616.html).
+`HTTP2` is gradually being [adopted](https://http2.github.io/)․
+	  </script>
+	</section>
+
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Routing_
+-----------
+`HTTP` is usually implemented with TCP because this kind of protocol
+needs to know whether data has been successfully transfered. Like you want
+to be sure that you're getting the full picture on the website and such.
+TCP is a routing, (routing means an algorithm for deciding how to send data across
+different computers)․
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Routing cont..._
+-----------
+In a simplified understanding:
+TCP does it this sending an acknowledgement whenever one side
+gets the data.
+
+```
+A
+  \  (Here A sends the message to B)
+    \ -> -> -> -> -> -> -> -> -> -> -> -> -> B
+                                          /
+(And B sends back a message              /
+to A saying it got the data)            /
+A <- <- <- <- <- <- <- <- <- <- <- <- <-
+```
+This is a kind of overhead to the protocol, the cost is resource usage
+overhead but the benefit is knowing that data has or hasn't been transferred
+successfully.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Routing cont..._
+--------------------
+Sometimes we care more about performance, we just want to
+send as much packets as possible to the other computer without
+caring if the other computers got it or not. In cases like that
+we use another protocol called `User Datagram Protocol`,
+[`UDP`](https://en.wikipedia.org/wiki/User_Datagram_Protocol)․
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Routing cont..._
+--------------------
+`UDP` is a protocol which just sends the data without
+caring if the other side, the other computer getting the data,
+got the data or not. This means that if you use just UDP, then
+you might experience data loss.
+
+There are a few domains where we might care more about just getting
+as much data across than if all the data got there, that is
+we are okay with losing some packets.
+
+Examples of UDP usage include: Skype and other VOIP, Online Multiplayer
+games, and YouTube video streaming.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Multicasting_
+-----------------
+Often we don't just want to send messages to one computer but to
+many computers. With TCP we are directly talking to one computer
+but that comes with some overhead. UDP lets us efficiently send messages
+to everyone on a network without checking if they got it or not with
+some called `Multicast`
+
+```
+                                               ----------
+                                              | Computer1 |
+                                             / ----------
+ --------          -------------------------/   ----------
+| Sender |------> | Multicast Group/Network |--| Computer2 |
+ --------          -------------------------\   -----------
+                                             \  -----------
+                                              | Computer..N |
+                                                -----------
+
+```
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Multicasting Chat Cont..._
+-------------------------
+We can easily do it in `node`, run script on two different
+computers on the same network. (`dgram` means datagram)
+```
+"using strict";
+
+const multicast_addr = "224.1.1.1";
+const port = 6811;
+
+const udp = require("dgram");
+
+const listener = udp.createSocket({type:"udp4", reuseAddr:true});
+const sender = udp.createSocket({type:"udp4", reuseAddr:true});
+
+listener.bind(port, multicast_addr, () => {
+  listener.addMembership(multicast_addr);
+  listener.setBroadcast(true);
+});
+
+listener.on("message", function (b, other) {
+  console.log(b.toString().trim());
+});
+
+process.stdin.on("data", function (data){
+  sender.send(data, 0, data.length, port, multicast_addr);
+});
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Multicasting Chat Cont..._
+-------------------------
+This should look like pretty standard node code, we establish
+some handlers for events. For data input we just read from `stdin`
+which means we'll just give the input via the terminal.
+
+Basically we sent a message to a "group" on the local network and
+whoever is listening to that group will get the message. While with
+TCP we know who received the message, that is we can get an IP address
+from the other side, with multicast we don't know who got the message
+with just the protocol.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <!-- We make a protocol idea for chat client project -->
+	  <script type="text/template">
+## _Multicasting Chat Cont..._
+------------------------------
+This is a pretty bare bones client, but it does work. One thing that
+you might have noticed is that there is a duplication of messages
+printed. This is because the sender is also a receiver so you
+also get the message that you send out. As an application this is
+a bug, since application logic should have you duplicate messages on
+the screen.
+
+HINT: This will be your project improvement.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Multicasting Chat Cont..._
+------------------------------
+Another thing that you might have noticed is that its kinda ugly!
+There's no aesthetic, no instructions, no identification of who is
+talking. Remember, this is multicast so everyone can say anything
+as much as they want and you won't know who said it unless they tell
+you.
+
+HINT: This is another area of project improvement.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Making Multicasting Chat Pretty..._
+---------------------------------------
+Remember the `htop` program? It's a terminal program which told us
+about all the processes on the computer. `htop` uses something
+called `ncurses`, a hard to use `C` program. Because we are using node
+we have the entire `npm` ecosystem available to us!
+
+The library you can use for terminal UI coding is
+called [blessed](https://github.com/chjj/blessed) and another library
+which lets you do dashboards called
+[blessed-contrib](https://github.com/yaronn/blessed-contrib)
+
+HINT: You will use `blessed-contrib` for a project.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Multicasting Chat Protocol_
+-------------------------------
+Now let's address the other problem of duplication of message.
+We need to create a protocol which every implementation client of our
+chat will need to implement.
+
+Recall that the problem of duplication is that we don't know about the
+identity of who sent a message, this kind of logic needs to be implemented
+at the application level, that is our code. We can formalize that
+as a protocol, an agreed upon way of communicating, just like `HTTP` is a
+protocol built on top of `TCP/IP`, so we can also invent our own protocol
+on top of `UDP`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _ISTC-SPEAK Protocol_
+-------------------------------
+Let's invent a protocol called `ISTC-SPEAK`. It՛s a simple,
+JSON based protocol on top of UDP.
+
+Here's its description:
+
+```
+port := 6881
+# The ping message must be sent out once every 25 seconds
+msg ping := {identifier : String, uptime : Number }
+msg message := {identifier : Number, payload : String}
+```
+<small>
+`ISTC-SPEAK` is made up of only two kinds of messages, `ping`
+and `message`. Each needs to have an `identifier` field of type
+`String`, `ping` has an extra field saying how long the sender
+has been running for and `message` has an extra field of the actual
+message that the sender wants to share with everyone on the multicast
+network. Ping needs to be sent out every 25 seconds, so that clients
+can somewhat reliably know who is on the network.
+</small>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Group Project for rest of class_
+------------------------------------
+Now we'll do a group project, in your own teams, you'll
+implement a `ISTC-SPEAK` client. There are three requirements
+of this project.
+
+1. It must correctly implement the `ISTC-SPEAK` protocol
+2. It must be aesthically pleasing and use either `blessed` or the
+   `blessed-contrib` library. Look at the example code in their
+   respective repos.
+3. It must use `Promises`, that will be explained in the next lecture.
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/)
+
+    </script>
+  </section>
+
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

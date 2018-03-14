@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Module system and the Event loop
+    </title>
+    <meta name="author" content="Nicolas Wormser">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+# Test-Driven Development
+
+## Nicolas Wormser
+---------------------
+#### ISTC backend development course, Week-4, Fall 2016
+#### Yerevan, Armenia
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Why testing?_
+--------------------------
+* Are you sure about what your code does, when used as intended?
+* Are you sure about what your code does, when *NOT* used as intended?
+* Are you sure your code will still do what you intend after someone else work on it?
+
+Got at least one *no* => test your code!
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Why TDD?_
+--------------------------
+Test-Driven Development makes sure that we, developers, test all critical aspects of our code, before it even exists.
+Everytime you'd go in a place to create code, do this instead:
+
+1. Write a simple test of the most obvious outcome the first
+iteration of your code should have
+2. Run your test tool to execute that test
+3. It obviously fails (you haven't written any code yet)
+4. Write *just enough* code to make the test pass
+5. Start again from 1.
+
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Side benefit_
+--------------------------
+It enforces us to think in terms of desired outcomes
+before we start coding.
+
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _What is a unit test?_
+--------------------------
+
+> A unit test is a set of assertions performed against
+one a specific unit of code (e.g. a function) to assess
+what it evaluates to.
+
+```javascript
+// Test that sum is a function
+assert(typeof sum === 'function');
+// Passing values 2 and 3 to sum should evaluate to 5
+assert.equal(sum(2,3), 5);
+```
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _With implementation_
+--------------------------
+
+```javascript
+const sum = ( a, b ) => a + b;
+
+// The tests will now pass
+assert(typeof sum === 'function');
+assert.equal(sum(2,3), 5);
+```
+An `assert` statement will throw an exeption when the
+assertion does not pass, *do nothing otherwise*.
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Assertion libraries_
+--------------------------
+The way we run assertions is determined by which assertion
+library we use. Here are the most popular for Javascript:
+
+- The [Assert API](https://nodejs.org/api/assert.html)
+integrated within Node.js
+- [Chai](http://chaijs.com/)
+- The one included in the
+[Jasmine testing framework](https://github.com/jasmine/jasmine/)
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Chai_
+--------------------------
+Assertions styles depend on the chosen assertion library.
+`Chai` implements all three common styles of assertions:
+
+- Should
+```javascript
+sum.should.be.a('function');
+sum(2,3).should.equal(5);
+```
+- Expect (similar Jasmine's syntax)
+```javascript
+expect(sum).to.be.a('function');
+expect(sum(2,3)).to.equal(5);
+```
+- Assert (similar to Node's Assert API)
+```javascript
+assert.typeOf(sum, 'function');
+assert.equal(sum(2,3), 5);
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Testing modules with Jasmine_
+--------------------------
+Jasmine is a testing framework that helps organise and run unit tests within our application.
+
+To use it in a project:
+
+```bash
+npm install jasmine --save-dev
+```
+
+And define a `test` npm script in your `package.json`:
+```json
+  // excerpt from package.json
+  "scripts": {
+    "test": "jasmine"
+  },
+```
+You can use `jasmine init` to create a `spec` directory and generate a default configuration file in `spec/support/jasmine.json`.
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Testing modules with Jasmine - continued_
+--------------------------
+
+For a module defined at the root of your project:
+```javascript
+// file my-module.js
+module.exports = {
+  // some code here
+}
+```
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+## _Testing modules with Jasmine - continued_
+
+You would have the following in `mymodule-spec.js`:
+```javascript
+
+const mod = require('../my-module');
+
+describe('<string describing context 1>', function() {
+  it('<string describing test 1>', function() {
+    // <test1>
+  });
+
+  it('<string describing test 2', function() {
+    // <test2>
+  });
+});
+
+describe('<string describing context 2>', function() {
+  it('<string describing test 1>', function() {
+    // <test1>
+  });
+});
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Testing modules with Jasmine - continued_
+--------------------------
+
+Can you write a simple module that would make the following pass:
+```javascript
+// file: spec/calculator-spec.js
+
+const calculator = require('../calculator');
+
+describe('multiplication', function() {
+  it('should multiply 2 and 4', function() {
+    const product = calculator.multiply(2,3);
+    expect(product).toBe(6);
+  });
+});
+```
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _Testing modules with Jasmine - continued_
+--------------------------
+
+```javascript
+// file: calculator.js
+
+module.exports = {
+  multiply: (num1, num2) => num1 * num2
+}
+```
+
+Now clone `https://github.com/fuzzytern/node-jasmine-starter`
+and make all tests pass!
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/)
+
+    </script>
+  </section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

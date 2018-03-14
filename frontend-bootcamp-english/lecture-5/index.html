@@ -1,0 +1,266 @@
+
+<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <!-- https://cdnjs.com/libraries/reveal.js -->
+    <title> Various lesser known features in React </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/sky.css"
+          id="theme">
+    <!-- See the names choices here: https://github.com/isagalaev/highlight.js/tree/master/src/styles -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+     const link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     const pdf_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css';
+     const paper_css =
+       'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/paper.css';
+     link.href = window.location.search.match(/print-pdf/gi) ? pdf_css : paper_css;
+     document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style>
+     
+  section h4 {
+    display:flex;
+    justify-content:space-between;
+  }
+
+  code { font-size: large !important; }
+
+  .links, .plain-text { font-size: 1.40rem !important;  }
+
+  .title-slide > p, h1, a {
+    font-size: xx-large !important;
+    padding: 0.25rem;
+  }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides"><section class="title-slide"><h1 style="font-size:xx-large;">Various lesser known features in React</h1><hr/><p>Forms, uncontrolled components, Server Side Render (SSR) and various
+tips, tricks in React</p><p style="text-decoration:underline;"><a href="http://istc.am/en/">Innovative Solutions and Technologies Center</a>(ISTC)</p><p style="text-decoration:underline;">Yerevan, Armenia</p><p style="font-style:italic;">By <a href="https://twitter.com/edgararout">Edgar Aroutiounian</a>, Summer 2017</p><p>Progress: <meter min="0" max="100" value="0"></meter></p></section><section><h4>Outline of this lecture <meter min="0" max="100" value="9"></meter></h4><hr/><p class="plain-text">React has many tips and tricks, this lecture will touch on quite a few
+of these lesser known and used capabilities.</p></section><section><h4>Forms forms forms <meter min="0" max="100" value="18.090909090909093"></meter></h4><hr/><p class="plain-text">Form input is one of the most basic things that any web application can
+and should do. Think of all the times you have to input password, usernames,
+first names, last names, etc etc. All of these are web forms and the issue they
+raise is who should hold the state? Think of the text that is typed in an input,
+it naturally has some state, it is keeping what the user wrote.</p><p class="plain-text">With React we have a choice as so who should manage that state,
+the React code (us) or the browser. The difference between this is
+the difference between controlled and uncontrolled components.</p></section><section><h4>Controlled Components <meter min="0" max="100" value="27.181818181818183"></meter></h4><hr/><p class="plain-text">If we control the form, then we call it a controlled Component</p><pre><code class="javascript hljs">import React, { Component } from &#x27;react&#x27;;
+class UserInput extends Component {
+  state = { username: &#x27;&#x27; };
+  user_changed = e =&gt; this.setState({username: e.target.value});
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;p&gt;User is: {this.state.username}&lt;/p&gt;
+        &lt;input type={&#x27;text}
+               value={this.state.username}
+               onChange={this.user_changed}/&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre><p class="plain-text">Notice that using controlled components forces us to use a class as we
+need to have this.state. It is called controlled because we are controlling
+the value of the input, not the browser.</p></section><section><h4>Uncontrolled Components <meter min="0" max="100" value="36.272727272727266"></meter></h4><hr/><pre><code class="javascript hljs">class UserInputExample extends React.Component {
+  show_input_value = () =&gt; {
+    const { value } = this.real_input;
+    alert(`Real value was: ${value}`)
+  }
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;input type={&#x27;text&#x27;} ref={ref =&gt; this.real_input = ref}/&gt;
+        &lt;input type={&#x27;button&#x27;}
+               value={&#x27;Click me to do alert&#x27;}
+               onClick={this.show_input_value}/&gt;
+      &lt;/div&gt;
+    );
+  }
+}</code></pre><p class="plain-text">Every HTML component gives you a chance to let you have
+the real HTML element. Remember that React is a view library abstraction,
+it sits on top of the real DOM elements. However, sometimes we do have to have
+the real HTML element. React gives us that chance with the ref prop, which
+needs to be a callback. Your callback will receive the actual HTML element.</p></section><section><h4>Why use uncontrolled Components? <meter min="0" max="100" value="45.36363636363637"></meter></h4><hr/><p class="plain-text">You really shouldn&#x27;t use refs, they break the model of React but
+one area where they are useful, as you can see, is with Forms (all
+the different types of input HTML elements elements).</p><p class="plain-text">Imagine a healthcare form with 10 different input,
+for each of those form inputs, you&#x27;d have to write the value in
+this.state, write that for the value, aka value={this.state.something}
+and of course the onChange handler, which needs to
+be a function. This is a lot of coding clutter and boilerplate. Hence using
+uncontrolled components is sometimes a cleaner solution but when you are first
+starting out, you should probably use the React way, aka controlled Components.</p><a class="links" href="https://facebook.github.io/react/docs/forms.html">https://facebook.github.io/react/docs/forms.html</a></section><section><h4>Children of Components <meter min="0" max="100" value="54.45454545454545"></meter></h4><hr/><p class="plain-text">React also lets the parent Components somewhat know about their
+children. We have a handle to that in props, this.props.children</p><pre><code class="javascript hljs">class Container extends Component {
+  render () {
+    return (
+      &lt;div&gt;{this.props.children}&lt;/div&gt;
+    );
+  }
+};
+
+const App = () =&gt; (
+  &lt;Container&gt;
+    &lt;p&gt; first&lt;/p&gt;
+    &lt;p&gt; Second&lt;/p&gt;
+  &lt;/Container&gt;
+);</code></pre><p class="plain-text">This is useful when the parent component doesn&#x27;t know what its children
+components will be, you will see this in libraries like react-router.</p><a class="links" href="https://facebook.github.io/react/docs/react-api.html#react.children">https://facebook.github.io/react/docs/react-api.html#react.children</a></section><section><h4>Default props <meter min="0" max="100" value="63.54545454545454"></meter></h4><hr/><p class="plain-text">Sometimes we know ahead of time what props our Components should use,
+in those cases we can assign default props</p><pre><code class="javascript hljs">class Container extends Component {
+  render () {
+    const { name, age} = this.props;
+    return &lt;p&gt; I am {name}, and am {age} years old&lt;/p&gt;;
+  }
+};
+
+Container.defaultProps = {
+  name: &#x27;Spitak&#x27;,
+  age: 23
+};</code></pre><p class="plain-text">But of course if you explicitly give different props when making
+the Component in JSX, then those will be used instead.</p></section><section><h4>Server Side Rendering <meter min="0" max="100" value="72.63636363636363"></meter></h4><hr/><p class="plain-text">One of the best features of React is that the core of the library
+does not assume the existence of the DOM. This means that we can use React on
+the server side.</p><p class="plain-text">The benefit of it is multifold but the top reasons are that we actually
+have a site to show search engines when they crawl our site so SEO improves and
+we lessen the work for the client since we have initial HTML to show rather
+than force the client to run a lot of JavaScript code before having the user
+see anything at all.</p><p class="plain-text">This is easiest done with a node backend</p></section><section><h4>Server Side Rendering Example <meter min="0" max="100" value="81.72727272727273"></meter></h4><hr/><pre><code class="javascript hljs">import { renderToString } from &#x27;react-dom/server&#x27;;
+import Application from &#x27;../lib/silicondzor&#x27;;
+// Somewhere in our request handler
+...
+    const html = renderToString(&lt;Application/&gt;);
+          res.end(`
+&lt;!doctype html&gt;
+...some standard link, meta tags
+&lt;div id={&#x27;root}&gt;${html}&lt;/div&gt;
+`);</code></pre><a class="links" href="https://github.com/fxfactorial/silicondzor/blob/refactor/backend/server.jsx#L83">https://github.com/fxfactorial/silicondzor/blob/refactor/backend/server.jsx#L83</a><p class="plain-text"></p><a class="links" href="https://facebook.github.io/react/docs/react-dom-server.html">https://facebook.github.io/react/docs/react-dom-server.html</a></section><section><h4>Cloning children with new Props <meter min="0" max="100" value="90.81818181818183"></meter></h4><hr/><p class="plain-text">Sometimes we want to have a React element but with different props,
+this usually comes up in the context of this.props.children</p><pre><code class="javascript hljs">class Parent extends React.Component {
+  use_this_handler = (e) =&gt; {// Some code};
+  render() {
+    const with_props =
+       React.Children.map(this.props.children,
+         child =&gt; React.cloneElement(child, {click_handler: this.use_this_handler})
+    );
+    return &lt;div&gt;{with_props}&lt;/div&gt;;
+  }
+};</code></pre><p class="plain-text">Here we are going over each of the children that this component would
+usually have, but we&#x27;re replacing the click_handler prop with a different
+handler. You can see that the second argument to cloneElement is the new props
+and they will be merged with the existing props of that element.</p><a class="links" href="https://facebook.github.io/react/docs/react-api.html#cloneelement">https://facebook.github.io/react/docs/react-api.html#cloneelement</a></section><section><h4>Example usage of cloneElement <meter min="0" max="100" value="99.9090909090909"></meter></h4><hr/><p class="plain-text">Here we want to change just the size while keeping the color the same</p><pre><code class="javascript hljs">import React, { Component } from &#x27;react&#x27;;
+import Star from &#x27;react-icons/lib/fa/star&#x27;;
+import styled from &#x27;styled-components&#x27;;
+
+const Wrapper = styled.div`
+ display:flex;
+ flex:1;
+ height: 500px;
+ flex-direction: column;
+ background-color: hsla(5, 10%, 10%, 1);
+ align-items: center;
+ justify-contents: center;
+`;
+
+class MyStar extends Component {
+    render() {
+        return &lt;Star
+        style={{color:this.props.color}}
+        size={this.props.size}/&gt;;
+    }
+}
+
+class App extends Component {
+    render() {
+        const elem = (
+            &lt;MyStar
+               size={150}
+               color={&#x27;hsla(100, 50%, 50%, 1)&#x27;}/&gt;
+        );
+        const copied =
+                  React.cloneElement(elem, {size: 400});
+    return (
+      &lt;Wrapper&gt;
+        {elem}
+        {copied}
+      &lt;/Wrapper&gt;
+    );
+  }
+}
+
+export default App;</code></pre><p class="plain-text">This examples uses styled-components and react-icons, but neither are
+ strictly necessary.</p><pre><code class="javascript hljs">$ yarn add styled-components react-icons</code></pre></section></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       controls: true,
+       progress: true,
+       history: true,
+       slideNumber: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'fade', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.min.js',
+	   condition: function() { return !!document.querySelector('[data-markdown]'); } },
+	 { src:
+	 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/zoom-js/zoom.min.js',
+	   async: true },
+	 { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/notes/notes.min.js',
+	   async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>

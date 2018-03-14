@@ -1,0 +1,287 @@
+e<!doctype html>
+<html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Networking -- TCP/IP Sockets
+    </title>
+    <meta name="author" content="Edgar Aroutiounian">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+     var link = document.createElement('link');
+     link.rel = 'stylesheet';
+     link.type = 'text/css';
+     link.href = window.location.search.match(/print-pdf/gi)
+	      ?  'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+     document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+	<section data-markdown>
+	  <script type="text/template">
+      Ծանոթագրություն
+      <small>
+      Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
+      տերմիններ, չեն թարգմանվել։ Երբեմն բառերի մոտավոր թարգմանությունները
+      գրվել են նրանց կողքին՝ փակագծերում։ (թարգմ․՝ Լ․ Հովհաննիսյան)
+      </small>
+
+###« Networking -- TCP/IP, Sockets and Node »
+
+####Էդգար Հարությունյան
+---------------------
+<small>«ISTC» (Ինովացիոն լուծումների և տեխնոլոգիաների կենտրոն)</small>
+
+«Backend» ծրագրավորման դասընթաց
+
+5-րդ շաբաթ, աշուն 2016
+
+Երևան, Հայաստան
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _« Networking »_
+---------------
+
+«Networking»֊ը այն երևույթն է, երբ երկու կամ ավելի
+համակարգիչներ կապված են իրար։ Ամեն անգամ, երբ որևէ
+համակարգիչ կապ է հաստատում մեկ այլ համակարգչի հետ, ստեղծվում
+է ցանցային աշխատանքի (network) հնարավորություն:
+
+«Networking»֊ն աննկարագրելիորեն կարևոր է, և դասընթացի մնացած
+մասում մենք կկենտրոնանանք նրա վրա։
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»..._
+-----------------------
+Ձեզանից յուրաքանչյուրն արդեն ծանոթ է մեկ ճանաչված «network»֊ի
+հետ՝ «internet»֊ի։
+
+Նկատենք, որ «internet»֊ը տարբերվում է «web»֊ից։ «web»֊ը
+ կառուցված է «internet»֊ի հիման վրա և օգտագործում է մեկ այլ
+ «protocol»՝ հիմնված «internet»֊ային «protocol»֊ների վրա։
+ «web»֊ն օգտագործում է «HTTP»։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking »..._
+-----------------------
+<font size = 6> Գոյություն ունի մի երևույթ, որը կոչվում է
+  «`network` stack»։
+«network stack»֊ը գլխավորապես ընթանում է այսպես․ </font>
+
+<img src='ANS-figure1.gif' style='background-color:white'/>
+
+<font size = 6> Մենք կկենտրոնանանք «TCP» շերտի վրա և
+  կապ կհաստատենք նրա հետ
+«sockets»֊ով։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»..._
+-----------------------
+
+<font size = 6>
+«networking stack»֊ի չորս հիմնական շերտերն են՝
+<br><br>
+1. «Link»․ սա «physical hardware»֊ի շերտն է։ Մտածեք
+«physical ethernet»֊ի լարերի մասին։<br>
+2. «Network»․ այն թույլ է տալիս միարժեքորեն որոշել
+սարքերը (համակարգիչները)։ Մտածեք «`IP` address»֊ների մասին։<br>
+3. «Transport»․ այն թույլ է տալիս տեղաշարժել տվյալները
+«network»֊ով, որոնք կոչվում են «packet»֊ներ։ Մտածեք
+«TCP»֊ի մասին։<br>
+4. «Application»․ սա այն տեղն է, որտեղ կառուցում ենք
+ավելի բարձր մակարդակի «protocol»֊ներ։ Մտածեք «HTTP»֊ի,
+«FTP»֊ի և այլնի մասին։</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Networking»..._
+-----------------------
+
+<font size = 6>
+Հիշեք, որ մի համակարգչից մյուսը տեղաշարժվող ցանկացած տվյալ
+պարզապես տվյալների «`raw`» (տող) է։ «`node`»֊ում դա
+ներկայացվում է «string»֊երով կամ «Buffer» «object»֊ներով։
+«node»֊ը հատուկ կառուցված է տվյալների ինտենսիվ
+«application»֊ների համար, այսինքն՝ «networked application»֊ների։
+
+Քանի որ այդպիսի ծրագրերը տիպիկ կապված են «Input/Output»֊ին,
+«node»֊ի իրադարձությունների վրա հիմնված ոչ սինխրոն ոճը
+(event based async style) կատարյալ է այդ տեսակ
+գործածությունների համար։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Sockets»_
+-----------------------
+<font size = 5>«networked computer»֊ների հետ շփվելու միջոցը «socket»֊ներն են։
+«Socket»֊ներն իրականացվում են «C/C++» մակարդակով։ Կարող եք
+կարդալ «`C` function call»֊ի մասին, որը «socket» է ստեղծում հետևյալ կերպ․</font>
+
+```
+$ man socket
+```
+<font size = 5>Այն պետք է ցույց տա հետևյալը․</font>
+
+```
+NAME
+socket -- create an endpoint for communication
+
+SYNOPSIS
+#include <sys/socket.h>
+
+int
+socket(int domain, int type, int protocol);
+...
+```
+<font size = 5>Նկատենք, որ նշվում է «`domain`»֊ը,
+  «`type`»֊ը և «`protocol`»֊ը։</font>
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«Sockets»..._
+--------------------
+<font size = 6>Գոյություն ունեն տարբեր տիպի «socket֊ներ՝ «`Unix` sockets»
+և «`internet` sockets», «`HTTP`»֊ն մասնավորապես կառուցված է
+«`TCP` socket»֊ների հիման վրա։ Մենք կաշխատենք
+«UDP socket»֊ներով։ «`TCP`»֊ի և «`UDP`»֊ի միջև տարբերությունն
+այն է, թե ինչպես են տվյալներն ուղղորդվում, այսինքն տեղաշարժվում
+«network»֊ում, և արդյոք կապի երկու կողմերին էլ անհրաժեշտ է իմանալ, թե
+հաղորդագրությունն իրականում հասել է հաջորդ կողմին։
+<br>
+(«web server»֊ը իրենից ներկայացնում  է հիմնականում «TCP socket»֊ի
+շուրջը գրված կոդ։)</font>
+
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+## _«node and sockets»_
+---------------------
+«node»֊ը բավականին հեշտացնում է «socket»֊ների հետ աշխատանքը։
+Մենք կօգտագործենք «net module»֊ը։ Նրա «documentation»֊ին
+կարող եք ծանոթանալ
+[այստեղ](https://nodejs.org/api/net.html)։ Խորհուրդ է տրվում հաճախ կարդալ այն։
+
+«socket» օբյեկտը «node»֊ում «EventEmitter» է, այսինքն՝ այն
+թողարկում է (emit) իրադարձություններ (events) և տալիս է
+դրանք տնօրինելու հնարավորություն։
+	  </script>
+	</section>
+
+	<section data-markdown>
+	  <script type="text/template">
+### _«node and sockets»․․․_
+---------------------
+<small> Կոդը միտումնավոր է տրված որպես նկար, այդպիսով
+չեք կարողանա կատարել «copy paste», Դուք պետք է այն տպագրեք ։</small>
+<img src='nodejs_socket.png' style='max-height:500px'/>
+	  </script>
+	</section>
+
+  <section data-markdown>
+    <script type="text/template">
+
+[HOME](http://iteratehackerspace.com/index-am.html)
+
+    </script>
+  </section>
+
+      </div>
+    </div>
+
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+
+    <script>
+     // Full list of configuration options available at:
+     // https://github.com/hakimel/reveal.js#configuration
+     Reveal.initialize({
+       slideNumber:true,
+       controls: true,
+       progress: true,
+       history: true,
+       center: true,
+       transitionSpeed:'slow',
+       previewLinks:false,
+       transition: 'convex', // none/fade/slide/convex/concave/zoom
+       // Optional reveal.js plugins
+       dependencies: [
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+       ]
+     });
+    </script>
+  </body>
+</html>
