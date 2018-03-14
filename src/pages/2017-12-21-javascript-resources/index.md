@@ -89,27 +89,27 @@ These are lecture notes done for nodejs
 
 ## lecture-1
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1/index.html" width="1" height="1" />
 
 ## lecture-2
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-2" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-2/index.html" width="1" height="1" />
 
 ## lecture-3
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-3" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-3/index.html" width="1" height="1" />
 
 ## lecture-4
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-4" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-4/index.html" width="1" height="1" />
 
 ## lecture-5
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-5" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-5/index.html" width="1" height="1" />
 
 ## lecture-6
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-6" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-6/index.html" width="1" height="1" />
 
 ## JavaScript conf
 
