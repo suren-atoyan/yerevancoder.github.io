@@ -30,7 +30,9 @@ export default ({ style = {}, authors_count }) => (
       lecture notes on learning JavaScript.
     </span>
     <span>
-      Post a tech job on our <Link to={ROUTES.JOBS_TABLE}>hiring board</Link>
+      Post a tech job on our <Link to={ROUTES.JOBS_TABLE}>hiring board</Link> and consider checking
+      out the source code{' '}
+      <a href={'https://github.com/yerevancoder/yerevancoder.github.io'}>here</a>.
     </span>
   </div>
 );
