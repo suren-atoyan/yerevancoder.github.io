@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Mar 2018 19:09:47 GMT</lastBuildDate><item><title><![CDATA[Front End (ReactJS) Developer Learning Path]]></title><description><![CDATA[General Requirements Note: This list is proposed by RenderForest, for newbie devs that apply for a job in our company.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Mar 2018 20:11:09 GMT</lastBuildDate><item><title><![CDATA[Front End (ReactJS) Developer Learning Path]]></title><description><![CDATA[General Requirements Note: This list is proposed by RenderForest, for newbie devs that apply for a job in our company.
 This is not a…]]></description><link>https://yerevancoder.com/2018-03-14-Front-End-ReactJS-Developer-Learning-Path/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-14-Front-End-ReactJS-Developer-Learning-Path/</guid><pubDate>Wed, 14 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;General Requirements&lt;/h2&gt;
 &lt;p&gt;Note: This list is proposed by RenderForest, for newbie devs that apply for a job in our company.
 This is not a complete list, nor it is a single answer to all questions.
@@ -3659,6 +3659,7 @@ catch me on  twitter Here are some  JavaScript  resources, including nodejs and 
 catch me on &lt;a href=&apos;https://twitter.com/@edgararout&apos;&gt;twitter&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Here are some &lt;strong&gt;JavaScript&lt;/strong&gt; resources, including nodejs and ReactJS lecture notes that you can just
 slide through.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If you find a mistake, please submit a pull request with the fix or report it as a github issue&lt;/strong&gt;&lt;/p&gt;
 &lt;h2&gt;nodejs&lt;/h2&gt;
 &lt;p&gt;These are lecture notes done for nodejs&lt;/p&gt;
 &lt;h1&gt;English&lt;/h1&gt;
