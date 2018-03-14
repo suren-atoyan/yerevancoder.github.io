@@ -89,7 +89,7 @@ These are lecture notes done for nodejs
 
 ## lecture-1
 
-<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1/index.html" width="1" height="1" />
+<iframe src="https://yerevancoder.com/frontend-bootcamp-english/lecture-1" width="1" height="1" />
 
 ## lecture-2
 
