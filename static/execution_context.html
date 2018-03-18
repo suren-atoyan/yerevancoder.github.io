@@ -1,0 +1,487 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>JavaScript Execution Context</title>
+
+  <link rel="stylesheet" href="presentation_dependencies/css/reveal.css">
+  <link rel="stylesheet" href="presentation_dependencies/css/theme/night.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="presentation_dependencies/lib/css/atom-one-dark.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'presentation_dependencies/css/print/pdf.css' : 'presentation_dependencies/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <section data-markdown>
+        <textarea data-template>
+          <h3 style="color:#e7ad52">JavaScript Execution Context</h3>
+        </textarea>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            #### Introduction
+
+            Imagine someone says, __iterate hackerspace__.
+            What would come to your mind by hearing that ?
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            Imagine I say __this__ hackerspace. Actually the same thing would come to your mind,
+            becuase RIGHT NOW we are in iterate hackerspace.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            And finally, let's imagine we are talking to someone,
+            and they say this building, this street, this city, etc...
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            The first thing that we notice is that, the person we are talking to can say the same thing
+            (this, this, this) and depending
+            on the place or the environment we are in, we can understand different things.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            The same thing can happen in code, we have defined a top level constant variable
+            <span style="color:red">foo</span>, and let's say we are NEVER defining another variable with the same name
+            in another function or a block. In that case <span style="color:red">foo</span>, is never going to change. It is always going to stay the same.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            For example, I say Yerevan, Baghramyan ave 40. Wherever that someone reads that, they are going to know that means AUA.
+            But, if right now, I say this building, this building means AUA, until we actually are in AUA.
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            #### this
+
+            That is exactly the way JS this variable works. Depending on the execution context it is in, it can mean very different things.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### Top level this
+
+            ```js
+            console.log(this);
+
+            /*
+              Browser
+
+              Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, frames: Window, …}
+            */
+
+            /*
+              Node
+
+              global object
+            */
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### this
+
+            ```js
+            const joe = {
+              name: 'Joe',
+              greet: function() {
+                console.log(`Hello, my name is ${this.name}.`);
+              }
+            };
+
+            joe.greet(); // 'Hello, my name is Joe.'
+            ```
+          </textarea>
+        </section>
+      </section>
+
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            #### Global context
+
+            In the global execution context (outside of any function), this refers to the global object.
+
+            ```js
+            // Browser
+            console.log(this === window); // true
+
+            a = 37;
+            console.log(window.a); // 37
+
+            this.b = "iterate hackerspace";
+            console.log(window.b); // "iterate hackerspace"
+            console.log(b); // "iterate hackerspace"
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### Global context
+
+            In the global execution context (outside of any function), this refers to the global object.
+
+            ```js
+            // Node
+            console.log(this === global); // true
+
+            a = 37;
+            console.log(global.a); // 37
+
+            this.b = "iterate hackerspace";
+            console.log(global.b); // "iterate hackerspace"
+            console.log(b); // "iterate hackerspace"
+            ```
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            #### Function context
+
+            ```js
+            function f(propertyName){
+              console.log(this[propertyName])
+            }
+
+            a = 5;
+            f('a'); // 5
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### Function context
+
+            ```js
+            const obj = {
+              a: 'hello',
+              f: function(propertyName){
+                console.log(this[propertyName])
+              }
+            }
+
+            obj.f('a'); // 'hello'
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### Function context
+
+            ```js
+            const obj = {
+              a: 'hello',
+              f: function(){
+                console.log(this.a)
+              }
+            }
+
+            obj.f(); // 'hello'
+            ```
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            #### Forcing context
+
+            There are several ways of forcing a context on a function. An easy way to imagine what forcing a context does to a function,
+            is changing the <span style="color:red">this</span> by the object we want.
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            #### Forcing context
+
+            ```js
+            const obj = {
+              a: 'obj',
+              f: function(){
+                console.log(this.a);
+              }
+            };
+
+            const object = { a: 'object' };
+
+            obj.f(); // 'obj'
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            #### Forcing context
+
+            Now, we want to call the function with the context of <span style="color:red">_object_</span>
+            , means, we want to force the context of <span style="color:red">_object_</span>
+            on <span style="color:red">_obj.f_</span> function.
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            #### .call .apply
+
+            ```js
+            const obj = {
+              a: 'obj',
+              f: function(){
+                console.log(this.a);
+              }
+            };
+
+            const object = { a: 'object' };
+
+            obj.f.call(object);  // 'object'
+            obj.f.apply(object); // 'object'
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### .call .apply
+
+            <span style="color:red">.call</span> and <span style="color:red">.apply</span> are methods that any js function inherits from prototype. They both get the new context as the first argument
+            and they instantly call the function with it.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### .call .apply
+
+            ```js
+            const obj = {
+              a: 5,
+              f: function(x, y){
+                console.log(x + y + this.a);
+              }
+            };
+
+            const object = {a: 0};
+
+            obj.f(1,1); // 7
+            obj.f.call(object, 1, 1); // 2
+            obj.f.apply(object, [1, 1]); // 2
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### .bind
+
+            <span style="color:red">_.bind_</span> is also a function like
+            <span style="color:red">_.call_</span> and <span style="color:red">_.apply_</span> but
+            instead of calling the function with a forced context, it is returning a new function bound to the context given.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### .bind
+
+            ```js
+            const obj = {
+              a: 'obj',
+              f: function(){
+                console.log(this.a);
+              }
+            };
+
+            const object = { a: 'object' };
+
+            obj.f.bind(object)(); // 'object'
+
+            const boundFunction = obj.f.bind(object);
+            boundFunction(); // 'object'
+            ```
+          </textarea>
+        </section>
+      </section>
+
+      <section>
+        <section data-markdown>
+          <textarea data-template>
+            #### arrow functions
+
+            Besides regular functions, js has arrow functions. Their biggest difference is that arrow functions do not have
+            their own context.
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### arrow functions
+
+            arrow function syntax
+
+            ```js
+            const sum = (n1, n2) => {
+              return n1+n2;
+            };
+
+            const square = n => { // no braces
+              return n ** 2; // n*n
+            };
+
+            const sq = n => n*n;
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### arrow functions
+
+            ```js
+            function createObject() {
+              console.log('Inside `createObject`:', this.foo);
+              return {
+                foo: 42,
+                bar: function() {
+                  console.log('Inside `bar`:', this.foo);
+                }
+              };
+            }
+
+            createObject.call({foo: 21}).bar();
+            // Inside `createObject`: 21
+            // Inside `bar`: 42
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            #### arrow functions
+
+            ```js
+            function createObject() {
+              console.log('Inside `createObject`:', this.foo);
+              return {
+                foo: 42,
+                bar: () => {
+                  console.log('Inside `bar`:', this.foo);
+                }
+              };
+            }
+
+            createObject.call({foo: 21}).bar();
+            // Inside `createObject`: 21
+            // Inside `bar`: 21
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ```js
+            const obj = {
+              elements: [0,1,2,3,4,5,6,7,8,9],
+              exponent: 2,
+              calc: function(){
+                return this.elements.map( e => e ** this.exponent);
+              }
+            };
+
+            console.log(obj.calc()); // [0,1,4,9,16,25,36,49,64,81]
+            console.log(obj.calc.call({
+              exponent: 3,
+              elements: obj.elements
+            })); // [0,1,8,27,64,125,216,343,512,729]
+            ```
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ```js
+            const obj = {
+              elements: [0,1,2,3,4,5,6,7,8,9],
+              exponent: 2,
+              calc: function(){
+                return this.elements.map(function(e){
+                  return e ** this.exponent;
+                });
+              }
+            };
+
+            console.log(obj.calc()); // [NaN,NaN,NaN,...]
+            ```
+          </textarea>
+        </section>
+      </section>
+
+
+      <section data-markdown>
+        <textarea data-template>
+          ## Q and A
+
+          #### THANK YOU!
+        </textarea>
+      </section>
+    </div>
+  </div>
+  <script src="presentation_dependencies/lib/js/head.min.js"></script>
+  <script src="presentation_dependencies/js/reveal.js"></script>
+
+  <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+      dependencies: [
+        { src: 'presentation_dependencies/plugin/markdown/marked.js' },
+        { src: 'presentation_dependencies/plugin/markdown/markdown.js' },
+        { src: 'presentation_dependencies/plugin/notes/notes.js', async: true },
+        { src: 'presentation_dependencies/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+  </script>
+</body>
+
+</html>
