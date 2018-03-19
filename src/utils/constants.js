@@ -51,7 +51,7 @@ export const LIGHT_BLUE = color(ARMENIA_COLORS.blue)
   .hsl()
   .string();
 
-export const GLOBAL_CSS = `
+const GLOBAL_CSS = `
 .Profile__Container > * {
   margin:0;
   font-family: Montserrat, sans-serif;
@@ -131,7 +131,7 @@ input[type=text], input[type=password], input[type=email], textarea {
 }
 `;
 
-export const MODAL_CSS = `
+const MODAL_CSS = `
 .ReactModal__Content {
   opacity: 0;
 }
@@ -145,7 +145,7 @@ export const MODAL_CSS = `
   opacity: 0;
 }`;
 
-export const MEDIA_QUERIES = `
+const MEDIA_QUERIES_CSS = `
 .loginActionRow__Container, .loginActionRow__AuthingButtons {
   display:flex;
 }
@@ -197,7 +197,7 @@ export const MEDIA_QUERIES = `
 }
 `;
 
-export const LARGER_CHECKBOX_CSS = `
+const LARGER_CHECKBOX_CSS = `
 @supports (zoom:2) {
 	input[type="radio"],  input[type=checkbox]{
 	  zoom: 1.3;
@@ -210,3 +210,7 @@ export const LARGER_CHECKBOX_CSS = `
 	}
 }
 `;
+
+export const global_styles = (
+  <style>{`${GLOBAL_CSS}${MODAL_CSS}${LARGER_CHECKBOX_CSS}${MEDIA_QUERIES_CSS}`}</style>
+);
