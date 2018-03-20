@@ -8,18 +8,10 @@ import Link from 'gatsby-link';
 import { rhythm } from '../utils/typography';
 import { ROUTES } from '../utils/constants';
 
-const base_bio_style = {
-  display: 'flex',
-  flexDirection: 'column',
-  marginLeft: '1rem',
-  marginRight: '1rem',
-  marginTop: '1rem',
-};
-
 const spacing_style = { marginBottom: rhythm(1.0) };
 
-export default ({ style = {}, authors_count }) => (
-  <div style={{ ...base_bio_style, ...style }}>
+export default ({ showing_header, authors_count }) => (
+  <div className={showing_header ? 'Headroom__Container--ShowingHeader' : ''}>
     <span style={spacing_style}>
       yerevancoder.com is a place for coders in Armenia to share their thoughts, experiences in
       programming and tech. {authors_count} coders have already contributed and we are always

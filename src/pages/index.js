@@ -16,17 +16,6 @@ const with_margin_bottom = { marginBottom: rhythm(1 / 4) };
 class BlogIndex extends React.Component {
   state = { showing_header: false };
 
-  static defaultProps = {
-    header_style: {
-      backgroundColor: 'hsla(247.5, 50%, 3.1%, 0.9)',
-      color: 'white',
-      paddingLeft: '1%',
-      paddingRight: '1%',
-      paddingTop: '1%',
-      transition: 'all .1s ease-in-out',
-    },
-  };
-
   unpinned = () => this.setState(() => ({ showing_header: true }));
 
   unfixed = () => this.setState(() => ({ showing_header: false }));
@@ -34,16 +23,11 @@ class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
-    let header_style = {};
-    if (this.state.showing_header === true) header_style = this.props.header_style;
     const all_authors = new Set(posts.map(({ node }) => node.frontmatter.author));
     const authors_count = all_authors.size;
     return (
       <div>
         <Helmet title={siteTitle} />
-        <Headroom onPin={this.pinned} onUnpin={this.unpinned} onUnfix={this.unfixed}>
-          <Bio style={header_style} authors_count={authors_count} />
-        </Headroom>
         {posts.map(({ node }) => {
           const { title, tags, author, date } = node.frontmatter;
           return (

@@ -20,7 +20,7 @@ export const SPACER_30_H = <div style={{ height: '30px', width: '100%' }} />;
 
 export const SPACER_10_H = <div style={{ height: '10px', width: '100%' }} />;
 
-export const MODAL_TRANSITION = 450;
+const MODAL_TRANSITION = 450;
 
 export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
 
@@ -52,6 +52,44 @@ export const LIGHT_BLUE = color(ARMENIA_COLORS.blue)
   .string();
 
 const GLOBAL_CSS = `
+.InformationBar {
+  display:flex;
+  flex-direction:column;
+}
+.InformationBar > * {
+  font-family: Montserrat, sans-serif;
+  margin:0;
+  color:#37425D;
+  font-weight:600;
+}
+.Headroom__Container {
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 1%;
+  transition: all .1s ease-in-out;
+}
+
+.Headroom__Container--ShowingHeader {
+  background-color: hsla(247.5, 50%, 3.1%, 0.9);
+  display: flex;
+  color: white;
+  flex-direction: column;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.ApplicationContainer__Container {
+  display:flex;
+  padding:0;
+}
+
+.ApplicationContainer__MainContent {
+  display:flex;
+  background-color:#FAF5F1;
+  flex-direction:column;
+}
+
 .Profile__Container > * {
   margin:0;
   font-family: Montserrat, sans-serif;
@@ -151,6 +189,40 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (min-width: 650px) {
+  .InformationBar__SiteBannerName {
+    font-size:30px;
+  }
+  .InformationBar > * {
+    text-shadow: 2px 2px 3px gold;
+  }
+  .InformationBar {
+    position: fixed;
+    justify-content:space-around;
+    z-index:99;
+    left:0;
+    bottom:0;
+    top:0;
+    background: linear-gradient(
+      to bottom,
+      #C5C9CF,
+      #C5C9CF 50%,
+      #FAF5F1 50%,
+      #FAF5F1
+    );
+    background-size: 100% 20px;
+    width:250px;
+    padding:10px;
+  }
+
+  .ApplicationContainer__MainContent {
+    padding-left:calc(250px);
+    width:100%;
+  }
+
+  .ApplicationContainer__BusinessContent {
+    padding-left:15px;
+  }
+
   .Profile__User > * {
 
   }
@@ -174,6 +246,24 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (max-width: 649px) {
+  .InformationBar {
+    justify-content:space-between;
+  }
+  .InformationBar > * {
+    padding-bottom:10px;
+  }
+  .ApplicationContainer__MainContent {
+
+  }
+
+  .Headroom__Container--ShowingHeader > * {
+    font-size:3px;
+  }
+
+  .ApplicationContainer__Container {
+    flex-direction:column;
+  }
+
   .Profile__User > div {
     flex-direction:column;
     align-items:center;

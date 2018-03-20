@@ -5,16 +5,10 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import { rhythm, scale } from '../utils/typography';
-import { MODAL_TRANSITION, SESSION_USER, global_styles } from '../utils/constants';
+import { SESSION_USER, global_styles, ROUTES } from '../utils/constants';
 
 const link_style = { boxShadow: 'none', textDecoration: 'none', color: 'inherit' };
 const header_style_root = { ...scale(1.5), marginBottom: rhythm(1.5), marginTop: 0 };
-
-const header_style = {
-  fontFamily: 'Montserrat, sans-serif',
-  marginTop: 0,
-  marginBottom: rhythm(-1),
-};
 
 const yc = (
   <Link style={link_style} to={'/'}>
@@ -23,6 +17,28 @@ const yc = (
 );
 
 const container_style = { maxWidth: rhythm(35), padding: `${rhythm(1.5)} ${rhythm(3 / 4)}` };
+
+const FixedSideBar = ({ authors_count }) => (
+  <aside className={'InformationBar'}>
+    <h3 className={'InformationBar__SiteBannerName'}>{yc}</h3>
+    <p>
+      yerevancoder.com is a place for coders in Armenia to share their thoughts, experiences in
+      programming and tech.
+    </p>
+    <p>
+      {authors_count} coders have already contributed and we are always looking for more
+      contributors, use this <Link to={'/2018-03-13-how-yerevan-coder-works/'}>post</Link> as a
+      guide on how to add a new blog post and check out this{' '}
+      <Link to={'/2017-12-21-javascript-resources/'}>post</Link> for many inpage lecture notes on
+      learning JavaScript.
+    </p>
+    <p>
+      Post a tech job on our <Link to={ROUTES.JOBS_TABLE}>hiring board</Link> and consider checking
+      out the source code{' '}
+      <a href={'https://github.com/yerevancoder/yerevancoder.github.io'}>here</a>.
+    </p>
+  </aside>
+);
 
 export default class ApplicationRoot extends React.Component {
   state = { authenticated_user: null };
@@ -67,21 +83,15 @@ export default class ApplicationRoot extends React.Component {
   }
 
   render() {
-    const { location, children } = this.props;
-    let header = null;
-    console.table({ location });
-
-    if (location.pathname === '/') {
-      header = <h1 style={header_style_root}>{yc}</h1>;
-    } else {
-      header = <h3 style={header_style}>{yc}</h3>;
-    }
+    const { children, location } = this.props;
     return (
-      <Container style={container_style}>
+      <div className={'ApplicationContainer__Container'}>
         <Helmet>{global_styles}</Helmet>
-        {header}
-        {children()}
-      </Container>
+        <FixedSideBar authors_count={10} />
+        <div className={'ApplicationContainer__MainContent'}>
+          <div className={'ApplicationContainer__BusinessContent'}>{children()}</div>
+        </div>
+      </div>
     );
   }
 }
