@@ -1,6 +1,6 @@
 ---
 title: How much should you be paid in Armenian coding jobs?
-tags: Armenia, coding, JavaScript, jsconf
+tags: armenia, jobs
 author: Edgar Aroutiounian
 date: "2018-01-09"
 description: pay rates in Armenian tech
