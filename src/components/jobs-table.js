@@ -11,7 +11,7 @@ const job_description_s = {
   borderWidth: 1,
   borderColor: 'black',
   borderStyle: 'inset',
-  padding: '2%',
+  padding: '15px',
   backgroundColor: '#f5f5ea',
 };
 
