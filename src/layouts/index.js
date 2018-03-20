@@ -84,10 +84,13 @@ export default class ApplicationRoot extends React.Component {
 
   render() {
     const { children, location } = this.props;
+    const posts = this.props.data.allMarkdownRemark.edges;
+    const all_authors = new Set(posts.map(({ node }) => node.timeToRead));
+    const authors_count = all_authors.size;
     return (
       <div className={'ApplicationContainer__Container'}>
         <Helmet>{global_styles}</Helmet>
-        <FixedSideBar authors_count={10} />
+        <FixedSideBar authors_count={authors_count} />
         <div className={'ApplicationContainer__MainContent'}>
           <div className={'ApplicationContainer__BusinessContent'}>{children()}</div>
         </div>
@@ -95,3 +98,15 @@ export default class ApplicationRoot extends React.Component {
     );
   }
 }
+
+export const pageQuery = graphql`
+  query IndexQuery_ {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          timeToRead
+        }
+      }
+    }
+  }
+`;

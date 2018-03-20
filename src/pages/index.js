@@ -23,8 +23,6 @@ class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
-    const all_authors = new Set(posts.map(({ node }) => node.frontmatter.author));
-    const authors_count = all_authors.size;
     return (
       <div>
         <Helmet title={siteTitle} />
