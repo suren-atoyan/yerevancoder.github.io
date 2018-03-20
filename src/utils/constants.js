@@ -45,11 +45,9 @@ export const FORM_BASE_STYLE = {
   ...TRIPLE_COLOR_TOP_BORDER,
 };
 
-export const LIGHT_BLUE = color(ARMENIA_COLORS.blue)
-  .lighten(0.9)
-  .fade(0.4)
-  .hsl()
-  .string();
+const SIDEBAR_FIXED_WIDTH = 250;
+
+const BUSINESS_CONTENT_PADDING = 30;
 
 const GLOBAL_CSS = `
 body {
@@ -202,7 +200,17 @@ const MEDIA_QUERIES_CSS = `
   display:flex;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 650px) and (orientation: landscape) {
+  .NewsPageContainer {
+    background-color:red;
+    height:100vh;
+  }
+  .NewsPageContainer__FixedSubmitFooter {
+    background-color:blue;
+    position: fixed;
+    bottom:0;
+    width:calc(100% - ${SIDEBAR_FIXED_WIDTH}px - ${BUSINESS_CONTENT_PADDING * 2}px);
+  }
   .InformationBar__SiteBannerName {
     font-size:30px;
   }
@@ -224,18 +232,18 @@ const MEDIA_QUERIES_CSS = `
       #FAF5F1
     );
     background-size: 100% 20px;
-    width:250px;
+    width:${SIDEBAR_FIXED_WIDTH}px;
     padding:10px;
   }
 
   .ApplicationContainer__MainContent {
-    padding-left:calc(250px);
+    padding-left:${SIDEBAR_FIXED_WIDTH}px;
     width:100%;
   }
 
   .ApplicationContainer__BusinessContent {
-    padding-left:15px;
-    padding-right:15px;
+    padding-left:${BUSINESS_CONTENT_PADDING}px;
+    padding-right:${BUSINESS_CONTENT_PADDING}px;
   }
 
   .Profile__User > * {
