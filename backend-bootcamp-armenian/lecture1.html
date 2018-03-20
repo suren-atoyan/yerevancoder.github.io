@@ -1,5 +1,28 @@
 <!doctype html>
 <html lang="en">
+  <!--
+       The MIT License (MIT)
+
+       Copyright (c) 2015 Tom Panning
+
+       Permission is hereby granted, free of charge, to any person obtaining a copy
+       of this software and associated documentation files (the "Software"), to deal
+       in the Software without restriction, including without limitation the rights
+       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+       copies of the Software, and to permit persons to whom the Software is
+       furnished to do so, subject to the following conditions:
+
+       The above copyright notice and this permission notice shall be included in
+       all copies or substantial portions of the Software.
+
+       THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+       IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+       FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+       AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+       THE SOFTWARE.
+     -->
   <head>
     <meta charset="utf-8">
 
@@ -30,8 +53,8 @@
      link.rel = 'stylesheet';
      link.type = 'text/css';
      link.href = window.location.search.match(/print-pdf/gi)
-        ?  'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
-         : 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
+	      ?  'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css'
+	       : 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/paper.css';
      document.getElementsByTagName('head')[0].appendChild( link );
     </script>
 
@@ -46,7 +69,7 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
     <section data-markdown>
-    <script type="text/template">
+	  <script type="text/template">
  Ծանոթագրություն
 <small>
 Որոշ բառեր, որոնք իրենցից ներկայացնում են անվանումներ, հասկացություններ,
@@ -65,13 +88,13 @@
 1֊ին շաբաթ, աշուն 2016
 
 Երևան, Հայաստան
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _Օպերացիոն համակարգեր_
-     -------------------
+	  <script type="text/template">
+	   ### _Օպերացիոն համակարգեր_
+	   -------------------
 <font size="6">
 Օպերացիոն համակարգերը կառավարում են մեր համակարգիչները։
 Ձեզ կարող են ծանոթ լինել դրանցից որոշները՝ «Windows», «OSX» և «Linux»։
@@ -83,15 +106,15 @@
 ի վերջո կառավարում են «hardware»-ը, այսինքն՝ համակարգչի ֆիզիկական մասերը,
 որոնք էլ վերահսկում են հրահանգների, (հրամանների), «CPU»֊ի աշխատանքները։
 </font >
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _Ինչո՞ւ « L i n u x (Ubuntu)»_
-     ---------------------------
+	  <script type="text/template">
+	   ### _Ինչո՞ւ « L i n u x (Ubuntu)»_
+	   ---------------------------
 
-     Մենք սովորում ենք  «Linux», որովհետև․
+	   Մենք սովորում ենք  «Linux», որովհետև․
    <font size="6">
 
   1․ Եթե պատրաստվում եք դառնալ լուրջ ծրագրավորող, ապա
@@ -111,29 +134,29 @@
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ## _Դասընթացի նպատակները_
-     -------------------------------------------
+	  <script type="text/template">
+	   ## _Դասընթացի նպատակները_
+	   -------------------------------------------
 
-     1. ...հարմարավետություն «Linux»֊ի հետ
+	   1. ...հարմարավետություն «Linux»֊ի հետ
 
-     2. ...հասկանալ «git»-ը, քանի որ «git»-ն է տրամադրում  ծրագրերի և գործիքների մեծ մասը
+	   2. ...հասկանալ «git»-ը, քանի որ «git»-ն է տրամադրում  ծրագրերի և գործիքների մեծ մասը
 
-     3. ...խորությամբ տիրապետել «JavaScript»֊ին
+	   3. ...խորությամբ տիրապետել «JavaScript»֊ին
 
-     4. ...ինքնուրույն զրոյից ստեղծել պրոեկտներ
+	   4. ...ինքնուրույն զրոյից ստեղծել պրոեկտներ
 
-     5. ...հասկանալ «nodejs»֊ը, ոչ սինխրոն (async) ծրագրավորումը
+	   5. ...հասկանալ «nodejs»֊ը, ոչ սինխրոն (async) ծրագրավորումը
 
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _« L i n u x »֊ի տերմինաբանությունը_
-     -----------------------
+	  <script type="text/template">
+	   ### _« L i n u x »֊ի տերմինաբանությունը_
+	   -----------------------
   <font size = 6>
-    <p> Օպերացիոն համակարգերը բաժանվում են «kernelspace» և «userspace»
+	  <p> Օպերացիոն համակարգերը բաժանվում են «kernelspace» և «userspace»
      մասերի։ «Kernel»֊ը ղեկավարում է «kernelspace»֊ը, հիմնականում՝
      «hardware»֊ը, «CPU»֊ն, որևէ ֆիզիկական մաս։</p>
     <p> Ձեր ծրագրերն աշխատում են «userspace»֊ում և պետք է համակարգված
@@ -142,34 +165,34 @@
      Ծրագրերը երբեմն կոչվում են նաև «binary»-ներ, «process»֊ներ կամ
      «executable»֊ներ։
    </font>
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _« L i n u x »֊ի տերմինաբանությունը..._
+	  <script type="text/template">
+	   ### _« L i n u x »֊ի տերմինաբանությունը..._
 
-     Կարելի է պատկերացնել այսպես․
-     ```
-     ---------------------------------------------
-     |                                           |
-     |  `userspace`, like `git`, `nano`, `node`. |
-     |                                           |
-     |           ------------------              |
-     |          |                  |             |
-     |          |   kernelspace    |             |
-     |          |                  |             |
-     |          |                  |             |
-     |           ------------------              |
-     ---------------------------------------------
-     ```
-     Իրականության մեջ այն ավելի շատ նման է հիշողության
+	   Կարելի է պատկերացնել այսպես․
+	   ```
+	   ---------------------------------------------
+	   |                                           |
+	   |  `userspace`, like `git`, `nano`, `node`. |
+	   |                                           |
+	   |           ------------------              |
+	   |          |                  |             |
+	   |          |   kernelspace    |             |
+	   |          |                  |             |
+	   |          |                  |             |
+	   |           ------------------              |
+	   ---------------------------------------------
+	   ```
+	   Իրականության մեջ այն ավելի շատ նման է հիշողության
       ((memory)/RAM) տարանջատմանը։
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
+	  <script type="text/template">
 
 ### _« L i n u x »֊ի տերմինաբանությունը..._
 
@@ -200,30 +223,30 @@ Java, JavaScript)։
 
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _« L i n u x »֊ի տերմինաբանությունը ..._
+	  <script type="text/template">
+	   ### _« L i n u x »֊ի տերմինաբանությունը ..._
   <font size="6">
 
 «Kernel»֊ի և «userspace»֊ի համադրությունը կազմում է «GNU/Linux»֊ի տեղաբաշխումը։
 Դրանց առավել հայտնի տարբերակներից են «Ubuntu»֊ն, «Debian»֊ը, «Mint»֊ը,
 «Fedora»֊ն, «CentOS»֊ը և այլն։
 </font>
-     #### _Ծանոթագրություն_
-     ```
+	   #### _Ծանոթագրություն_
+	   ```
   Երբեմն կարող եք հանդիպել պրոեկտների «upstream» և «downstream»
   տերմիններին։ «Downstream» պրոեկտը կառուցվում է մեկ այլ՝ «upstream»
   պրոեկտի վերին շերտում։ Այսպիսով, «Ubuntu»֊ն «Debian»֊ի «downstream»
   պրոեկտն է (քանի որ «Ubuntu»֊ն ստեղծվել է «Debian»֊ի հիման վրա)։
 
-     ```
+	   ```
 
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _Սկսած «s h e l l»֊ից_
-     -----------------------------
+	  <script type="text/template">
+	   ### _Սկսած «s h e l l»֊ից_
+	   -----------------------------
 <font size="6">
 «Shell»֊ը այն սկզբնական ճանապարհն է, որի միջոցով
 հաղորդակցվում են օպերացիոն համակարգի հետ։ «Shell»֊ը,
@@ -231,25 +254,25 @@ Java, JavaScript)։
 հիմնականում նույն նշանակությունն ունեն այս դասընթացում։
 «Shell»֊ը ապահովում է որոշակի «state» (վիճակ)։
 </font>
-     #### _Ծանոթագրություն_
-     ```
+	   #### _Ծանոթագրություն_
+	   ```
      «State»֊ը «data»-ի (տվյալների) մեկ այլ անվանում է, որը ենթակա է
      փոփոխության։ Երբ մենք փոփոխում ենք այդ տվյալները, ասում ենք, որ
      մուտացիայի ենք ենթարկում(mutate) ինչ֊որ «state»(վիճակ)։
 
-     ```
-    </script>
+	   ```
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _Ֆայլերի համակարգ_
+	  <script type="text/template">
+	   ### _Ֆայլերի համակարգ_
 <font size="6">
 Ֆայլերի համակարգը կարող ենք տեղաշարժել
 Shell֊ի ներսում։ Այն կարելի է պատկերացնել
 որպես ծառ․
 </font>
-     ```
+	   ```
                     -----
                    |  /  |
                     -----
@@ -258,22 +281,22 @@ Shell֊ի ներսում։ Այն կարելի է պատկերացնել
             | home |     |  usr |
              ------       ------
            /             /
-      --------        --------
-     | coding |      | coding |
-      --------        --------
-     ```
+	    --------        --------
+	   | coding |      | coding |
+	    --------        --------
+	   ```
 
 Մեկ այլ կարևոր հասկացություն է «Path»֊ը (ուղի):
 Գոյություն ունեն երկու տիպի «path»֊եր՝ «Absolute Path»
 (բացարձակ ուղի) և «Relative Path» (հարաբերական ուղի)։
 
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     ### _Ֆայլերի համակարգ..._
-     -----------------
+	  <script type="text/template">
+	   ### _Ֆայլերի համակարգ..._
+	   -----------------
 
 
  «Absolute Path»֊ի օրինակ է  « /usr/home/coding »֊ը։
@@ -285,32 +308,32 @@ Shell֊ի ներսում։ Այն կարելի է պատկերացնել
  «Absolute Path»֊ի հետ կապված որևէ անորոշություն լինել չի կարող, թե որտեղ է գտնվում ֆայլը ֆայլերի համակարգում, սակայն
  «Relative path»֊ի դեպքում նման անորոշություն հնարավոր է։
 </font>
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _Ֆայլերի համակարգ + « B a s h ( s h e l l ) »_
-     ------------------------
+	  <script type="text/template">
+	   #### _Ֆայլերի համակարգ + « B a s h ( s h e l l ) »_
+	   ------------------------
 
 «Bash»-ի աշխատանքի ժամանակ մենք կարող ենք  ղեկավարել
 ֆայլերի համակարգը։
 
-     #### _Ծանոթագրություն_
-     Հետևյալ օրինակը՝
-     ```
-     $ pwd
-     ```
+	   #### _Ծանոթագրություն_
+	   Հետևյալ օրինակը՝
+	   ```
+	   $ pwd
+	   ```
 նշանակում է, որ  «shell» հրամանատողում պետք է տեղադրել
 «pwd» հրամանը։
 
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _Ֆայլերի համակարգ + « B a s h ( s h e l l ) »..._
-     --------------------------------
+	  <script type="text/template">
+	   #### _Ֆայլերի համակարգ + « B a s h ( s h e l l ) »..._
+	   --------------------------------
 <font size = 6>
  «Shell»-ում կան մի քանի կարևոր հրամաններ, որոնք մենք
  կoգտագործենք նորից ու նորից։
@@ -321,97 +344,97 @@ Shell֊ի ներսում։ Այն կարելի է պատկերացնել
 
  **Վերջինս ձեր դիրեկտորիան (directory) կվերածի մեկ այլ դիրեկտորիայի։**
 </font>
-     ```
-     $ cd <some_path_here>
-     ```
+	   ```
+	   $ cd <some_path_here>
+	   ```
 <font size = 6>
 **Սա կտպի տվյալ դիրեկտորիայի բովանդակությունը՝
 թե ինչ ֆայլեր է այն պարունակում։**
 </font>
-     ```
-     $ ls
-     ```
-    </script>
+	   ```
+	   $ ls
+	   ```
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _Ֆայլերի համակարգ + « B a s h ( s h e l l ) »..._
-     --------------------------------
+	  <script type="text/template">
+	   #### _Ֆայլերի համակարգ + « B a s h ( s h e l l ) »..._
+	   --------------------------------
   <font size="6">
-     **«ls»-ին նույնպես կարելի է տալ «path»՝ բացարձակ (absolute)
+	   **«ls»-ին նույնպես կարելի է տալ «path»՝ բացարձակ (absolute)
      կամ հարաբերական (relative).**
   </font>
-     ```
-     $ ls /usr/include
-     ```
+	   ```
+	   $ ls /usr/include
+	   ```
 	<font size ="6"> ** Գտնենք ֆայլի դիրեկտորիան. ** </font>
-     ```
-     $ dirname /usr/include/stdlib.h
-     ```
+	   ```
+	   $ dirname /usr/include/stdlib.h
+	   ```
 <font size = 6>
      ** «Shell»-ը նաև կարող է հրամաններ կատարել տարբեր
      հերթականությամբ, օրինակ՝ ոչ ձախից աջ։ Ներկայացված հրամանը
      թելադրում է առաջինը կատարել «dirname» հրամանը,
      ապա արդյունքը հանձնել «ls»-ին.**
 </font>
-     ```
-     $ ls $(dirname /usr/include)
-     ```
-    </script>
+	   ```
+	   $ ls $(dirname /usr/include)
+	   ```
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _Ստեղծել « shell script »֊եր_
-     --------------------------
+	  <script type="text/template">
+	   #### _Ստեղծել « shell script »֊եր_
+	   --------------------------
 <font size="6">
 Մենք հնարավորություն ունենք  ավտոմատացնելու որոշ
 «shell coding»-ներ։ «Shell»֊ը ունի նաև «for loops»,
 «while loops» հասկացությունները: Օրինակ,
 պատկերացնենք «printout.sh» անունով ֆայլը․
 </font>
-     ```
-     #!/bin/bash
-     for i in $(seq 8); do
-         mkdir week-${i}
-     done
-     ```
+	   ```
+	   #!/bin/bash
+	   for i in $(seq 8); do
+	       mkdir week-${i}
+	   done
+	   ```
 
 <font size = 6> Այս գրառումը (script) կարելի է աշխատեցնել այսպես․ </font>
-     ```
-     $ bash printout.sh
-     ```
+	   ```
+	   $ bash printout.sh
+	   ```
  Արդյունքում այն կստեղծի 8 դիրեկտորիա։
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _Ստեղծել « shell script »֊եր_
-     --------------------------
+	  <script type="text/template">
+	   #### _Ստեղծել « shell script »֊եր_
+	   --------------------------
 
 Օգտագործելով «chmod»֊ը՝ մենք կարող ենք նաև ստեղծել
 «shell script» ֆայլ՝ «printout.sh» անունով, որն իրեն
 կդրսևորի որպես մեկ այլ ծրագիր։
 
-     ````
-     $ chmod +x printout.sh
-     ```
+	   ````
+	   $ chmod +x printout.sh
+	   ```
 
 Այնուհետև  այն կարող ենք օգտագործել որպես առանձին ծրագիր։
 
-     ```
-     $ ./printout.sh
-     ```
+	   ```
+	   $ ./printout.sh
+	   ```
 
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _« g i t » Վերահսկման կառավարում (Version Control)_
-     ---------
+	  <script type="text/template">
+	   #### _« g i t » Վերահսկման կառավարում (Version Control)_
+	   ---------
 
 Ծրագրաշարի (software) հետ աշխատելիս մեզ անհրաժեշտ է լինում
 կոդը վերահսկելու մի միջոց, որը մեզ, ինչպես նաև այլ
@@ -433,13 +456,13 @@ Shell֊ի ներսում։ Այն կարելի է պատկերացնել
 
 Մենք կօգտագործենք 1֊ը՝  «git»֊ը։
 
-    </script>
+	  </script>
 	</section>
 
 	<section data-markdown>
-    <script type="text/template">
-     #### _« g i t » Վերահսկման կառավարում (Version Control)..._
-     ---------
+	  <script type="text/template">
+	   #### _« g i t » Վերահսկման կառավարում (Version Control)..._
+	   ---------
 <font size = 6><p>
 Մեր աշխատանքը կատարելու ենք «github»֊ում:
 «Github»֊ը մի բիզնես է՝ կառուցված «git»-ի հիման վրա։
@@ -451,7 +474,7 @@ Shell֊ի ներսում։ Այն կարելի է պատկերացնել
 «commit message»֊ը պետք է  գրվի ներկա ժամանակով և նկարագրի,
 թե ինչ աշխատանք է ներառված այդ «commit»-ում։
 </p> </font>
-    </script>
+	  </script>
 	</section>
 
   <section data-markdown>
@@ -483,18 +506,18 @@ Shell֊ի ներսում։ Այն կարելի է պատկերացնել
        transition: 'convex', // none/fade/slide/convex/concave/zoom
        // Optional reveal.js plugins
        dependencies: [
-   { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
-     condition: function() { return !document.body.classList; } },
-   { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
-     condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-   { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
-     condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-   { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
-     async: true,
-     condition: function() { return !!document.querySelector( 'pre code' ); },
-     callback: function() { hljs.initHighlightingOnLoad(); } },
-   { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
-   { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
+	 { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js',
+	   condition: function() { return !document.body.classList; } },
+	 { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js',
+	   condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	 { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/highlight/highlight.js',
+	   async: true,
+	   condition: function() { return !!document.querySelector( 'pre code' ); },
+	   callback: function() { hljs.initHighlightingOnLoad(); } },
+	 { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true },
+	 { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true }
        ]
      });
     </script>
