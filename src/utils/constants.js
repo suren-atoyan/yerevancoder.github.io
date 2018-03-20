@@ -5,6 +5,7 @@ export const ROUTES = {
   JOBS_TABLE: '/hiring-board',
   NEW_JOB_POSTING: '/new-job-posting',
   NEWS: '/news',
+  AVAILABLE_FOR_WORK: '/available-for-work',
 };
 
 export const ROW = { display: 'flex', justifyContent: 'space-between' };
