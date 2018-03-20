@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import get from 'lodash/get';
 import EffectiveDiscussionsCommentsIframe from 'gatsby-plugin-ed-comments';
 
 import { rhythm, scale } from '../utils/typography';
@@ -14,27 +13,38 @@ const post_style = {
 
 const with_bottom_margin = { marginBottom: rhythm(1) };
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = this.props.data.markdownRemark;
-    const { title, tags, author, date } = post.frontmatter;
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
-    return (
-      <div>
-        <Helmet title={`${title} | ${siteTitle}`} />
-        <h1>{title}</h1>
-        <p style={post_style}>
-          {date} | By {author} | {tags}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr style={with_bottom_margin} />
-        <EffectiveDiscussionsCommentsIframe discussionId={post.frontmatter.discussionId} />
-      </div>
-    );
-  }
-}
-
-export default BlogPostTemplate;
+export default ({ data }) => {
+  const post = data.markdownRemark;
+  const { title, tags, author, date } = post.frontmatter;
+  console.log({ tags });
+  const tag_names = new Set(tags.split(',').map(s => s.toLowerCase()));
+  const siteTitle = data.site.siteMetadata.title;
+  return (
+    <div>
+      <Helmet title={`${title} | ${siteTitle}`} />
+      <h1>{title}</h1>
+      <p style={post_style}>
+        {date} | By {author} | {tags}
+      </p>
+      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <hr style={with_bottom_margin} />
+      {tag_names.has('javascript') ? (
+        <iframe
+          height="400px"
+          width="100%"
+          src="https://repl.it/@fxfactorial/WarlikeIntrepidGraphics?lite=true"
+          scrolling="no"
+          frameborder="no"
+          allowtransparency="true"
+          allowfullscreen="true"
+          sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"
+        />
+      ) : null}
+      <EffectiveDiscussionsCommentsIframe discussionId={post.frontmatter.discussionId} />
+      <p>hi</p>
+    </div>
+  );
+};
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
