@@ -4,6 +4,7 @@ import color from 'color';
 export const ROUTES = {
   JOBS_TABLE: '/hiring-board',
   NEW_JOB_POSTING: '/new-job-posting',
+  NEWS: '/news',
 };
 
 export const ROW = { display: 'flex', justifyContent: 'space-between' };
@@ -56,6 +57,32 @@ body {
 
 .JobPostingCard > * {
   margin:0;
+}
+
+.BlogEntryCard > * {
+  margin:0;
+  font-family: Montserrat, sans-serif;
+}
+
+.BlogEntryCard__Byline, .BlogEntryCard__Excerpt {
+  font-family:Merriweather;
+}
+
+.BlogEntryCard__Excerpt {
+  font-weight: 500;
+}
+
+.BlogEntryCard:nth-child(2n) {
+  background-color:${color('#C5C9CF')
+    .fade(0.6)
+    .hsl()
+    .string()};
+  border-radius:5px;
+}
+
+.BlogEntryCard {
+  padding:12px;
+  margin-bottom:1rem;
 }
 
 .JobPostingCard {

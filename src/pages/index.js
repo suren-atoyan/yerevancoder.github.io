@@ -6,19 +6,9 @@ import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import Headroom from 'react-headroom';
 
-import { rhythm } from '../utils/typography';
-
 // import 'prismjs/themes/prism-solarizedlight.css';
 
-const with_margin_bottom = { marginBottom: rhythm(1 / 4) };
-
 class BlogIndex extends React.Component {
-  state = { showing_header: false };
-
-  unpinned = () => this.setState(() => ({ showing_header: true }));
-
-  unfixed = () => this.setState(() => ({ showing_header: false }));
-
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title');
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
@@ -28,17 +18,18 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => {
           const { title, tags, author, date } = node.frontmatter;
           return (
-            <div key={node.fields.slug}>
-              <h3 style={with_margin_bottom}>
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
+            <div key={node.fields.slug} className={'BlogEntryCard'}>
+              <h3>
+                <Link to={node.fields.slug}>{title}</Link>
               </h3>
-              <small>
+              <small className={'BlogEntryCard__Byline'}>
                 {date} | {node.wordCount.words} words | {node.timeToRead} minutes to read | {author}{' '}
                 | {tags}
               </small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              <p
+                className={'BlogEntryCard__Excerpt'}
+                dangerouslySetInnerHTML={{ __html: node.excerpt }}
+              />
             </div>
           );
         })}
