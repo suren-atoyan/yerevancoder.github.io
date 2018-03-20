@@ -245,7 +245,7 @@ const MEDIA_QUERIES_CSS = `
     font-size:32px;
   }
   .ReactModal__Content--after-open {
-    width:60%;
+    width:calc(375px);
   }
   .loginActionRow__GetHiredText {
     font-size:24px;
