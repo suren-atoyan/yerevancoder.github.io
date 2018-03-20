@@ -284,7 +284,7 @@ const MEDIA_QUERIES_CSS = `
     margin:0;
   }
   .InformationBar > *:not(h3) {
-    font-size:10px;
+    font-size:11px;
     padding-bottom:10px;
   }
   .InformationBar__SiteBannerName {
