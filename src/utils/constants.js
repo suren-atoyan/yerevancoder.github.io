@@ -50,9 +50,126 @@ const SIDEBAR_FIXED_WIDTH = 250;
 
 const BUSINESS_CONTENT_PADDING = 30;
 
+const MATERIAL_BLUE = `#37425D`;
+
+const MATERIAL_BEIGE = `#FAF5F1`;
+
+const MATERIAL_GREY = `#C5C9CF`;
+
 const GLOBAL_CSS = `
 body {
-  background-color: #FAF5F1;
+  background-color: ${MATERIAL_BEIGE};
+}
+
+input[type=button], input[type=submit] {
+  margin:0;
+  border: 0;
+  border-radius: 5px;
+  padding: 3px 15px;
+  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
+}
+
+input[type=text], input[type=password], input[type=email], textarea {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 0;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 400;
+  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
+}
+
+.loginActionRow__RowContainer {
+  margin:0;
+  display:inline-flex;
+  padding:10px;
+}
+
+.loginActionRow__RowContainer > input:nth-child(2n) {
+  margin-left:1rem;
+}
+
+.loginActionRow__RowContainer > input {
+  position: relative;
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  font-size: 14px;
+  border-bottom: 4px solid rgba(0, 0, 0, 0.33);
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.loginActionRow__RowContainer > input:active {
+  border-bottom: 0.25px solid rgba(0, 0, 0, 0.33);
+  top: 0.5rem;
+}
+
+.loginActionRow__RowContainer > input:active:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  height: 100%;
+  width: 100%;
+}
+
+.loginActionRow__SignUpOrLoggedIn--UserSignedIn,
+.loginActionRow__SignUpOrLoggedIn--UserSignedOut {
+  color:white;
+  background-color:${color(MATERIAL_BLUE)
+    .fade(0.2)
+    .hsl()
+    .string()};
+}
+
+.loginActionRow__SignUpOrLoggedIn--UserSignedIn,
+.loginActionRow__SignUpOrLoggedIn--UserSignedOut:active {
+  background-color:${color(MATERIAL_BLUE)
+    .fade(0.4)
+    .hsl()
+    .string()};
+}
+
+.loginActionRow__SigninOrSignOut--UserSignedIn,
+.loginActionRow__SigninOrSignOut--UserSignedOut {
+  background-color:${color(MATERIAL_GREY)
+    .fade(0.7)
+    .hsl()
+    .string()}
+}
+
+.loginActionRow__SigninOrSignOut--UserSignedIn,
+.loginActionRow__SigninOrSignOut--UserSignedOut:active {
+  background-color:${color(MATERIAL_GREY)
+    .fade(0.9)
+    .hsl()
+    .string()}
+}
+
+.AvailableForWorkContainer {
+
+}
+
+.AvailableForWorkContainer > * {
+  margin:0;
+}
+
+.AvailableForWorkContainer__PageBanner {
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:20px;
+}
+
+.AvailableForWorkContainer > *:nth-child(1) {
+  display:flex;
+  justify-content:space-between;
 }
 
 .JobPostingCard > * {
@@ -73,7 +190,7 @@ body {
 }
 
 .BlogEntryCard:nth-child(2n) {
-  background-color:${color('#C5C9CF')
+  background-color:${color(MATERIAL_GREY)
     .fade(0.6)
     .hsl()
     .string()};
@@ -99,7 +216,7 @@ body {
 .InformationBar > * {
   font-family: Montserrat, sans-serif;
   margin:0;
-  color:#37425D;
+  color:${MATERIAL_BLUE};
   font-weight:600;
 }
 .Headroom__Container {
@@ -126,7 +243,7 @@ body {
 
 .ApplicationContainer__MainContent {
   display:flex;
-  background-color:#FAF5F1;
+  background-color:${MATERIAL_BEIGE};
   flex-direction:column;
 }
 
@@ -174,26 +291,6 @@ legend {
 .loginActionRow__GetHiredText {
   margin-bottom:0;
   font-family: Montserrat, sans-serif;
-}
-
-input[type=button], input[type=submit] {
-  border: 0;
-  border-radius: 5px;
-  padding: 3px 15px;
-  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
-  background-color: hsl(220, 12%, 95%);
-}
-
-input[type=text], input[type=password], input[type=email], textarea {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
-  border: 0;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  padding: 10px;
-  font-weight: 400;
-  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
 }
 
 .NewJobPosting__SubmitButton {
@@ -253,10 +350,10 @@ const MEDIA_QUERIES_CSS = `
     top:0;
     background: linear-gradient(
       to bottom,
-      #C5C9CF,
-      #C5C9CF 50%,
-      #FAF5F1 50%,
-      #FAF5F1
+      ${MATERIAL_GREY},
+      ${MATERIAL_GREY} 50%,
+      ${MATERIAL_BEIGE} 50%,
+      ${MATERIAL_BEIGE}
     );
     background-size: 100% 20px;
     width:${SIDEBAR_FIXED_WIDTH}px;
@@ -302,11 +399,16 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (max-width: 649px) {
+  .AvailableForWorkContainer > *:nth-child(1) {
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+
   .InformationBar {
     border-bottom-width:1px;
     border-bottom-style:inset;
     border-bottom-color: black;
-    background-color: #FAF5F1;
+    background-color: ${MATERIAL_BEIGE};
     justify-content:space-between;
     margin:0;
   }
