@@ -301,6 +301,7 @@ const MEDIA_QUERIES_CSS = `
 
   .ApplicationContainer__Container {
     flex-direction:column;
+    padding:4px;
   }
 
   .Profile__User > div {
