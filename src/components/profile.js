@@ -9,7 +9,7 @@ import { firebase, posts_ref, db } from '../utils/db';
 
 const paddingHorizontal = { paddingLeft: '5px', paddingRight: '5px' };
 
-const paddingVertical = { paddingTop: '5px', paddingBottom: '5px' };
+const paddingVertical = { paddingTop: '5px' };
 
 const textarea_s = {
   margin: 0,
@@ -38,7 +38,7 @@ const flexed_column = {
   height: '100%',
 };
 
-const flexed_with_between = { display: 'flex', justifyContent: 'space-between' };
+const flexed_with_between = { display: 'flex' };
 
 const obj_to_array = obj => Object.keys(obj).map(key => ({ ...obj[key], users_post_key: key }));
 
@@ -135,7 +135,10 @@ export default class ProfileControl extends React.Component {
   }
 
   make_profile_view() {
-    const profile_made_on = format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/');
+    const profile_made_on =
+      this.state.current_user !== null
+        ? format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/')
+        : '';
     const account_name =
       this.context.authenticated_user !== null ? this.context.authenticated_user.email_account : '';
     const content =
@@ -149,7 +152,7 @@ export default class ProfileControl extends React.Component {
           ))
         : no_postings_yet;
     return (
-      <div className={'Profile__Container'}>
+      <div>
         <div className={'Profile__User'}>
           <div>
             <label>Account Name </label>
@@ -170,6 +173,12 @@ export default class ProfileControl extends React.Component {
 
   render() {
     const content = this.make_profile_view();
-    return <div style={TRIPLE_COLOR_TOP_BORDER}>{content}</div>;
+    return (
+      <div
+        className={'ReactModal__Content--after-open Profile__Container'}
+        style={TRIPLE_COLOR_TOP_BORDER}>
+        {content}
+      </div>
+    );
   }
 }

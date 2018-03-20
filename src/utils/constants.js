@@ -118,12 +118,11 @@ const GLOBAL_CSS = `
 
 .Profile__PostingsTable {
   height:400px;
+  padding-top:10px;
   display:flex;
   flex-direction:column;
-  justify-content:space-around;
   background-color: hsl(220, 12%, 95%);
   overflow-y: scroll;
-  padding-top:135px;
 }
 
 .Profile__PostingRecord {
@@ -244,9 +243,15 @@ const MEDIA_QUERIES_CSS = `
   legend {
     font-size:32px;
   }
-  .ReactModal__Content--after-open {
-    width:calc(375px);
+
+  .ReactModal__Content--after-open.SigninForm__Container {
+    width:375px;
   }
+
+  .ReactModal__Content--after-open.Profile__Container {
+    width:600px;
+  }
+
   .loginActionRow__GetHiredText {
     font-size:24px;
   }

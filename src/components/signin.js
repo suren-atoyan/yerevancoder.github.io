@@ -104,7 +104,10 @@ export default withRouter(
         this.setState(updateByPropertyName('password', event.target.value));
 
       return (
-        <form onSubmit={this.onSubmit} style={form_s}>
+        <form
+          onSubmit={this.onSubmit}
+          style={form_s}
+          className={'ReactModal__Content--after-open SigninForm__Container'}>
           <fieldset style={LOGIN_ENTRY_BOX_FIELDSET_S}>
             {top_message}
             {BAR}
