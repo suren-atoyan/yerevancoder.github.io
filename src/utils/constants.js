@@ -247,9 +247,19 @@ const MEDIA_QUERIES_CSS = `
 
 @media (max-width: 649px) {
   .InformationBar {
+    border-bottom-width:1px;
+    border-bottom-style:inset;
+    border-bottom-color: black;
+    background-color: #FAF5F1;
     justify-content:space-between;
+    margin:0;
   }
-  .InformationBar > * {
+  .InformationBar > *:not(h3) {
+    font-size:10px;
+    padding-bottom:10px;
+  }
+  .InformationBar__SiteBannerName {
+    font-weight:700;
     padding-bottom:10px;
   }
   .ApplicationContainer__MainContent {
