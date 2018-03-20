@@ -52,6 +52,17 @@ export const LIGHT_BLUE = color(ARMENIA_COLORS.blue)
   .string();
 
 const GLOBAL_CSS = `
+.JobPostingCard > * {
+  margin:0;
+}
+
+.JobPostingCard {
+  box-shadow: 3px 3px 5px 6px #ccc;
+  border-radius: 5px;
+  margin-bottom:20px;
+  padding:5px;
+}
+
 .InformationBar {
   display:flex;
   flex-direction:column;
@@ -221,6 +232,7 @@ const MEDIA_QUERIES_CSS = `
 
   .ApplicationContainer__BusinessContent {
     padding-left:15px;
+    padding-right:15px;
   }
 
   .Profile__User > * {
