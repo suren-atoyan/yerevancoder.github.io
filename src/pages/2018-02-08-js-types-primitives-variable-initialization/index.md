@@ -1,5 +1,5 @@
 ---
-title: Javascript. Types, Primitives and Variable Initialization
+title: JavaScript. Types, Primitives and Variable Initialization
 tags: javascript, development
 author: Edgar Khanzadian
 date: "2018-02-08"
