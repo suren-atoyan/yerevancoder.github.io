@@ -16,7 +16,7 @@ const with_bottom_margin = { marginBottom: rhythm(1) };
 export default ({ data }) => {
   const post = data.markdownRemark;
   const { title, tags, author, date } = post.frontmatter;
-  const tag_names = new Set(tags.split(',').map(s => s.toLowerCase()));
+  const tag_names = new Set(tags.split(',').map(s => s.trim().toLowerCase()));
   const siteTitle = data.site.siteMetadata.title;
   return (
     <div>
@@ -33,14 +33,13 @@ export default ({ data }) => {
           width="100%"
           src="https://repl.it/@fxfactorial/WarlikeIntrepidGraphics?lite=true"
           scrolling="no"
-          frameborder="no"
-          allowtransparency="true"
-          allowfullscreen="true"
+          frameBorder="no"
+          allowTransparency="true"
+          allowFullScreen="true"
           sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"
         />
       ) : null}
       <EffectiveDiscussionsCommentsIframe discussionId={post.frontmatter.discussionId} />
-      <p>hi</p>
     </div>
   );
 };
