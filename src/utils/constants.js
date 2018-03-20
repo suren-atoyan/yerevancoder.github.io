@@ -52,6 +52,10 @@ export const LIGHT_BLUE = color(ARMENIA_COLORS.blue)
   .string();
 
 const GLOBAL_CSS = `
+body {
+  background-color: #FAF5F1;
+}
+
 .JobPostingCard > * {
   margin:0;
 }
