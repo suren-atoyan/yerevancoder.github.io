@@ -16,7 +16,6 @@ const with_bottom_margin = { marginBottom: rhythm(1) };
 export default ({ data }) => {
   const post = data.markdownRemark;
   const { title, tags, author, date } = post.frontmatter;
-  console.log({ tags });
   const tag_names = new Set(tags.split(',').map(s => s.toLowerCase()));
   const siteTitle = data.site.siteMetadata.title;
   return (
