@@ -22,6 +22,8 @@ export const SPACER_30_H = <div style={{ height: '30px', width: '100%' }} />;
 
 export const SPACER_10_H = <div style={{ height: '10px', width: '100%' }} />;
 
+export const SPACER_20_W = <div style={{ width: '20px', height: '100%' }} />;
+
 export const MODAL_TRANSITION = 550;
 
 export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
@@ -67,6 +69,10 @@ body {
   flex-direction:row;
 }
 
+.PlainFlexRow.FlexSpaceBetween {
+  justify-content:space-between;
+}
+
 .FreelancerTable__FreelancerName {
   font-size:2.2rem;
   font-family:Montserrat, sans-serif;
@@ -74,15 +80,15 @@ body {
 
 .FreelancerTable__FlexRow {
   display:flex;
-  width: 90%;
-  justify-content:space-between;
-  background-color:aliceblue;
+  width: 100%;
+  padding-bottom:10px;
+  padding-top:10px;
+  justify-content:space-around;
 }
 
 .FreelancerTable__FlexColumn {
   display:flex;
   flex-direction:column;
-  background-color:red;
 }
 
 .FreelancerTable__FreelancerColumnDescription {
@@ -90,7 +96,6 @@ body {
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  background-color:orange;
   width: 100%;
 }
 
@@ -104,7 +109,7 @@ input[type=button], input[type=submit] {
 
 input[type=text], input[type=password], input[type=email], textarea {
   resize:none;
-  width: 90%;
+  width: 100%;
   margin-left: 5%;
   margin-right: 5%;
   border: 0;

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { SPACER_20_W } from '../utils/constants';
+
 const maybe_link = link =>
   link !== null && link !== undefined && link !== '' ? (
     <a className={'FreelancerTable__FreelancerProfileLink'} href={link}>
@@ -23,27 +25,31 @@ const FreelancerCard = ({
         <span className={'FreelancerTable__FreelancerName'}>{name}</span>
         <div className={'FreelancerTable__FlexRow'}>
           <div className={'FreelancerTable__FlexColumn'}>
-            <div className={'PlainFlexRow'}>
+            <div className={'PlainFlexRow FlexSpaceBetween'}>
               <label>Github:</label>
+              {SPACER_20_W}
               {maybe_link(github_link)}
             </div>
-            <div className={'PlainFlexRow'}>
+            <div className={'PlainFlexRow FlexSpaceBetween'}>
               <label>Linkedin:</label>
+              {SPACER_20_W}
               {maybe_link(linkedin_link)}
             </div>
           </div>
           <div className={'FreelancerTable__FlexColumn'}>
-            <div className={'PlainFlexRow'}>
+            <div className={'PlainFlexRow FlexSpaceBetween'}>
               <label>Resume/Personal Site:</label>
+              {SPACER_20_W}
               {maybe_link(resume_link)}
             </div>
-            <div className={'PlainFlexRow'}>
+            <div className={'PlainFlexRow FlexSpaceBetween'}>
               <label>Known Technologies:</label>
-              <span>{known_technologies}</span>
+              {SPACER_20_W}
+              <span>{known_technologies.join(', ')}</span>
             </div>
           </div>
         </div>
-        <textarea readOnly={true} value={self_description} />
+        <textarea rows={7} readOnly={true} value={self_description} />
       </div>
     </div>
   );

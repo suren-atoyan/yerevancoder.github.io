@@ -35,7 +35,9 @@ const dummy_data = [
     github_link: 'https://github.com/fxfactorial',
     linkedin_link: 'https://linkedin.com/foo-bar',
     resume_link: 'https://something.com',
-    self_description: 'I am a coder',
+    self_description: `I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder
+I am a coder, I am a coder, I am a coder, I am a coder
+`,
     known_technologies: ['javascript', 'sql', 'c++'],
   },
   {
@@ -117,8 +119,7 @@ const dummy_data = [
     linkedin_link: '',
     resume_link: '',
     self_description: '',
-    self_description: 'I am a coder',
-
+    self_description: `I am a coder`,
     known_technologies: ['javascript', 'sql'],
   },
 ];
