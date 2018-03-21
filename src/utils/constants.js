@@ -22,7 +22,7 @@ export const SPACER_30_H = <div style={{ height: '30px', width: '100%' }} />;
 
 export const SPACER_10_H = <div style={{ height: '10px', width: '100%' }} />;
 
-const MODAL_TRANSITION = 450;
+export const MODAL_TRANSITION = 550;
 
 export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
 
@@ -62,6 +62,38 @@ body {
   background-color: ${MATERIAL_BEIGE};
 }
 
+.PlainFlexRow {
+  display:flex;
+  flex-direction:row;
+}
+
+.FreelancerTable__FreelancerName {
+  font-size:2.2rem;
+  font-family:Montserrat, sans-serif;
+}
+
+.FreelancerTable__FlexRow {
+  display:flex;
+  width: 90%;
+  justify-content:space-between;
+  background-color:aliceblue;
+}
+
+.FreelancerTable__FlexColumn {
+  display:flex;
+  flex-direction:column;
+  background-color:red;
+}
+
+.FreelancerTable__FreelancerColumnDescription {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background-color:orange;
+  width: 100%;
+}
+
 input[type=button], input[type=submit] {
   margin:0;
   border: 0;
@@ -71,6 +103,7 @@ input[type=button], input[type=submit] {
 }
 
 input[type=text], input[type=password], input[type=email], textarea {
+  resize:none;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
@@ -190,16 +223,24 @@ input[type=text], input[type=password], input[type=email], textarea {
   font-weight: 500;
 }
 
-.BlogEntryCard:nth-child(2n) {
+.FreelancerTable__Freelancer {
+  display:flex;
+  justify-content:center;
+  padding:10px;
+  border-radius:5px;
+  margin-bottom:1rem;
+}
+
+.BlogEntryCard:nth-child(2n + 1), .FreelancerTable__Freelancer:nth-child(2n + 1) {
   background-color:${color(MATERIAL_GREY)
     .fade(0.6)
     .hsl()
     .string()};
-  border-radius:5px;
 }
 
 .BlogEntryCard {
   padding:12px;
+  border-radius:5px;
   margin-bottom:1rem;
 }
 

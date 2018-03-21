@@ -27,8 +27,6 @@ const form_s = {
 
 const login_entry_box_signin_s = { ...WIDTH_WITH_MARGIN };
 
-const login_message = 'Sign in to post jobs';
-
 const remember_forget_row_s = {
   ...WIDTH_WITH_MARGIN,
   paddingTop: '10px',
@@ -96,7 +94,7 @@ export default withRouter(
       const { email, password, error } = this.state;
       const isInvalid = password === '' || email === '';
       const top_message = (
-        <p style={LOGIN_ENTRY_BOX_PROMPT_S}>{error ? error.message : login_message}</p>
+        <p style={LOGIN_ENTRY_BOX_PROMPT_S}>{error ? error.message : this.props.login_message}</p>
       );
       const email_update = event =>
         this.setState(updateByPropertyName('email', event.target.value));

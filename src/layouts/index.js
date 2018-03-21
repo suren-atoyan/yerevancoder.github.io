@@ -43,11 +43,11 @@ const FixedSideBar = ({ authors_count }) => (
 export default class ApplicationRoot extends React.Component {
   state = { authenticated_user: null };
 
-  static childContextTypes = {
-    authenticated_user: PropTypes.object,
-    userDidAuthSuccessfully: PropTypes.func,
-    do_signout: PropTypes.func,
-  };
+  // static childContextTypes = {
+  //   authenticated_user: PropTypes.object,
+  //   userDidAuthSuccessfully: PropTypes.func,
+  //   do_signout: PropTypes.func,
+  // };
 
   componentDidMount() {
     const existing_user = sessionStorage.getItem(SESSION_USER);
@@ -62,25 +62,25 @@ export default class ApplicationRoot extends React.Component {
     }
   }
 
-  getChildContext() {
-    const didAuth = (authed_user_data, after_cb = null, remember_me_checked = false) =>
-      this.setState(
-        () => ({ authenticated_user: { ...authed_user_data } }),
-        () => {
-          this.handle_session_storage(remember_me_checked, JSON.parse(remember_me_checked));
-          after_cb && after_cb(authed_user_data.email_account);
-        }
-      );
-    const do_signout = () => {
-      sessionStorage.removeItem(SESSION_USER);
-      this.setState(() => ({ authenticated_user: null }));
-    };
-    return {
-      authenticated_user: this.state.authenticated_user,
-      userDidAuthSuccessfully: didAuth,
-      do_signout,
-    };
-  }
+  // getChildContext() {
+  //   const didAuth = (authed_user_data, after_cb = null, remember_me_checked = false) =>
+  //     this.setState(
+  //       () => ({ authenticated_user: { ...authed_user_data } }),
+  //       () => {
+  //         this.handle_session_storage(remember_me_checked, JSON.parse(remember_me_checked));
+  //         after_cb && after_cb(authed_user_data.email_account);
+  //       }
+  //     );
+  //   const do_signout = () => {
+  //     sessionStorage.removeItem(SESSION_USER);
+  //     this.setState(() => ({ authenticated_user: null }));
+  //   };
+  //   return {
+  //     authenticated_user: this.state.authenticated_user,
+  //     userDidAuthSuccessfully: didAuth,
+  //     do_signout,
+  //   };
+  // }
 
   render() {
     const { children, location } = this.props;

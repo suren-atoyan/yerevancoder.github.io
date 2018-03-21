@@ -75,11 +75,6 @@ export default withRouter(
 
     toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
-    shouldComponentUpdate(prev_state, next_state) {
-      console.log({ prev_state, next_state });
-      return true;
-    }
-
     go_to_new_posting = () => {
       const { history } = this.props;
       history.push(ROUTES.NEW_JOB_POSTING);
@@ -106,7 +101,12 @@ export default withRouter(
         case MODAL_CONTENT.PROFILE_VIEW:
           return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
         case MODAL_CONTENT.SIGNIN_VIEW:
-          return <Signin user_did_sign_in={this.user_did_sign_in} />;
+          return (
+            <Signin
+              login_message={'Sign in to post jobs'}
+              user_did_sign_in={this.user_did_sign_in}
+            />
+          );
         case MODAL_CONTENT.SIGNUP_VIEW:
           return <Signup user_did_sign_in={this.user_did_sign_in} />;
         default:
