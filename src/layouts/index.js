@@ -41,8 +41,10 @@ const FixedSideBar = ({ authors_count }) => (
   </aside>
 );
 
+const INIT_STATE = { authenticated_user: null, remember_me_checked: false };
+
 export default class ApplicationRoot extends React.Component {
-  state = { authenticated_user: null, remember_me_checked: false };
+  state = { ...INIT_STATE };
 
   static childContextTypes = {
     authenticated_user: PropTypes.object,
@@ -67,7 +69,6 @@ export default class ApplicationRoot extends React.Component {
 
   getChildContext() {
     const self = this;
-    // console.log({ s: self.state });
     return {
       authenticated_user: self.state.authenticated_user,
       sign_user_in: (email, password, remember_me_checked) =>
@@ -99,8 +100,8 @@ export default class ApplicationRoot extends React.Component {
               }))
           ),
       sign_user_out: () =>
-        new Promise((resolve, reject) => {
-          //
+        auth.signOut().then(() => {
+          this.setState(() => ({ ...INIT_STATE }));
         }),
     };
   }

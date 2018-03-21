@@ -64,6 +64,22 @@ body {
   background-color: ${MATERIAL_BEIGE};
 }
 
+textarea { resize:none; }
+
+.PlainFlexColumn {
+  display:flex;
+  flex-direction:column;
+}
+
+.OnePaddingLeft {
+  padding-left:1px;
+}
+
+.PlainFlexCentered {
+  align-items: center;
+  justify-content: center;
+}
+
 .PlainFlexRow {
   display:flex;
   flex-direction:row;
@@ -71,6 +87,10 @@ body {
 
 .PlainFlexRow.FlexSpaceBetween {
   justify-content:space-between;
+}
+
+.NewFreelancerFormContainer {
+
 }
 
 .FreelancerTable__FreelancerName {
@@ -89,6 +109,11 @@ body {
 .FreelancerTable__FlexColumn {
   display:flex;
   flex-direction:column;
+  background-color:red;
+}
+
+.FreelancerTable__FlexColumn > div:nth-child(2) {
+  margin-top:2em;
 }
 
 .FreelancerTable__FreelancerColumnDescription {
@@ -99,25 +124,7 @@ body {
   width: 100%;
 }
 
-input[type=button], input[type=submit] {
-  margin:0;
-  border: 0;
-  border-radius: 5px;
-  padding: 3px 15px;
-}
-
-input[type=text], input[type=password], input[type=email], textarea {
-  resize:none;
-  width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-  border: 0;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  padding: 10px;
-  font-weight: 400;
-  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
-}
+textarea {resize:none;}
 
 .loginActionRow__CustomInputField--UserSignedIn,
 .loginActionRow__CustomInputField--UserSignedOut {
@@ -312,12 +319,6 @@ input[type=text], input[type=password], input[type=email], textarea {
 .ApplicationContainer__Container {
   display:flex;
   padding:0;
-}
-
-.ApplicationContainer__MainContent {
-  display:flex;
-  background-color:${MATERIAL_BEIGE};
-  flex-direction:column;
 }
 
 .Profile__Container > * {
@@ -522,10 +523,6 @@ const MEDIA_QUERIES_CSS = `
     font-weight:700;
     padding-bottom:10px;
   }
-  .ApplicationContainer__MainContent {
-
-  }
-
   .Headroom__Container--ShowingHeader > * {
     font-size:3px;
   }
@@ -572,6 +569,89 @@ const LARGER_CHECKBOX_CSS = `
 }
 `;
 
+export const FANCY_INPUT_BOXES = {
+  NAME: 'name-box',
+  GITHUB: 'github-box',
+  LINKEDIN: 'linkedin-box',
+  RESUME_OR_PERSONAL: 'resume-or-personal-box',
+  KNOWN_TECHS: 'known-techs-box',
+};
+
+// https://codepen.io/Takumari85/pen/RaYwpJ
+const create_effects_css = box_name => `
+.effect-${box_name}{
+  border: 1px solid #ccc;
+  padding: 7px 14px;
+  transition: 0.4s;
+  width:100%;
+  background: transparent;
+}
+
+.effect-${box_name} ~ .focus-border:before,
+.effect-${box_name} ~ .focus-border:after{
+  content: "";
+position: absolute; top: 0; left: 0; width: 0; height: 2px; background-color: #3399FF;
+transition: 0.3s;
+}
+
+.effect-${box_name} ~ .focus-border:after{
+top: auto; bottom: 0;
+left: auto; right: 0;}
+
+.effect-${box_name} ~ .focus-border i:before,
+.effect-${box_name} ~ .focus-border i:after{
+  content: ""; position: absolute; top: 0;
+  left: 0; width: 2px; height: 0;
+  background-color: #3399FF;
+  transition: 0.4s;
+}
+
+.effect-${box_name} ~ .focus-border i:after{
+left: auto; right: 0;
+top: auto; bottom: 0;
+}
+
+.effect-${box_name}:focus ~ .focus-border:before,
+.effect-${box_name}:focus ~ .focus-border:after,
+.has-content.effect-${box_name} ~ .focus-border:before,
+.has-content.effect-${box_name} ~ .focus-border:after{
+  width: 100%; transition: 0.3s;
+}
+
+.effect-${box_name}:focus ~ .focus-border i:before,
+.effect-${box_name}:focus ~ .focus-border i:after,
+.has-content.effect-${box_name} ~ .focus-border i:before,
+.has-content.effect-${box_name} ~ .focus-border i:after{
+  height: 100%;
+  transition: 0.4s;
+}
+.effect-${box_name} ~ label{
+position: absolute;
+left: 14px; width: 100%; top: 10px;
+color: #aaa; transition: 0.3s; z-index: -1;
+letter-spacing: 0.5px;}
+
+.effect-${box_name}:focus ~ label,
+.has-content.effect-${box_name} ~ label{
+top: -18px; left: 0; font-size: 12px;
+color: #3399FF; transition: 0.3s;
+}
+
+`;
+
+const FANCY_INPUT_BOX = `
+:focus{outline: none;}
+/* necessary to give position: relative to parent. */
+.InputEffect {position: relative;}
+.InputEffect > input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+
+${create_effects_css(FANCY_INPUT_BOXES.NAME)}
+${create_effects_css(FANCY_INPUT_BOXES.GITHUB)}
+${create_effects_css(FANCY_INPUT_BOXES.LINKEDIN)}
+${create_effects_css(FANCY_INPUT_BOXES.RESUME_OR_PERSONAL)}
+${create_effects_css(FANCY_INPUT_BOXES.KNOWN_TECHS)}
+`;
+
 export const global_styles = (
-  <style>{`${GLOBAL_CSS}${MODAL_CSS}${LARGER_CHECKBOX_CSS}${MEDIA_QUERIES_CSS}`}</style>
+  <style>{`${GLOBAL_CSS}${MODAL_CSS}${LARGER_CHECKBOX_CSS}${MEDIA_QUERIES_CSS}${FANCY_INPUT_BOX}`}</style>
 );

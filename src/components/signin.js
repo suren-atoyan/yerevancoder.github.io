@@ -58,13 +58,7 @@ export default withRouter(
         this.setState(updateByPropertyName('remember_me_checked', event.target.value));
       return (
         <div style={remember_forget_row_s}>
-          <div
-            style={{
-              paddingLeft: '1px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
+          <div className={'PlainFlexColumn OnePaddingLeft PlainFlexCentered'}>
             <input
               type={'checkbox'}
               style={{ height: '20px' }}

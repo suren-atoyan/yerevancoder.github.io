@@ -6,6 +6,7 @@ import Signin from '../components/signin';
 import Signup from '../components/signup';
 import Profile from '../components/profile';
 import SigninBar from '../components/signin-bar';
+import NewFreelancer from '../components/new-freelancer';
 import FreelancerTable from '../components/freelancer-table';
 import { MODAL_TRANSITION } from '../utils/constants';
 import { freelancers_posts_ref } from '../utils/db';
@@ -62,18 +63,26 @@ I am a coder, I am a coder, I am a coder, I am a coder
   },
 ];
 
+const PAGE_CONTENT = { FREELANCER_TABLE: 'freelancer-table', NEW_FREELANCER: 'new-freelancer' };
+
 export default class AvailableForWorkPage extends React.Component {
   state = {
     modal_show: false,
     modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    page_content: PAGE_CONTENT.FREELANCER_TABLE,
     freelancers: dummy_data,
   };
 
-  static contextTypes = { authenticated_user: PropTypes.object, sign_user_in: PropTypes.func };
+  static contextTypes = {
+    authenticated_user: PropTypes.object,
+    sign_user_out: PropTypes.func,
+    sign_user_in: PropTypes.func,
+  };
 
   query_data = () => {
     freelancers_posts_ref.once('value').then(snap_shot => {
       const rows = snap_shot.val();
+      console.log({ rows });
       if (rows) {
         this.setState(() => ({ freelancers: Object.values(rows) }));
       }
@@ -86,10 +95,7 @@ export default class AvailableForWorkPage extends React.Component {
 
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
-  user_did_sign_in = () => {
-    console.log('User did sign in!');
-    this.setState(() => ({ modal_show: false }));
-  };
+  user_did_sign_in = () => this.setState(() => ({ modal_show: false }));
 
   modal_content = () => {
     switch (this.state.modal_content) {
@@ -110,6 +116,17 @@ export default class AvailableForWorkPage extends React.Component {
     }
   };
 
+  page_content = () => {
+    switch (this.state.page_content) {
+      case PAGE_CONTENT.FREELANCER_TABLE:
+        return <FreelancerTable freelancers={this.state.freelancers} />;
+      case PAGE_CONTENT.NEW_FREELANCER:
+        return <NewFreelancer />;
+      default:
+        return null;
+    }
+  };
+
   signin_handler = () =>
     this.setState(() => ({
       modal_show: true,
@@ -122,9 +139,11 @@ export default class AvailableForWorkPage extends React.Component {
       modal_content: MODAL_CONTENT.SIGNUP_VIEW,
     }));
 
+  show_make_new_freelancer_post = () =>
+    this.setState(() => ({ page_content: PAGE_CONTENT.NEW_FREELANCER }));
+
   render() {
-    const { authenticated_user } = this.context;
-    console.log({ authenticated_user });
+    const { authenticated_user, sign_user_out } = this.context;
     return (
       <div className={'AvailableForWorkContainer'}>
         <Modal
@@ -143,17 +162,17 @@ export default class AvailableForWorkPage extends React.Component {
           <SigninBar
             signin_handler={this.signin_handler}
             signup_handler={this.signup_handler}
-            signout_handler={f}
+            signout_handler={sign_user_out}
             signed_in_handler={f}
             is_signed_in={authenticated_user !== null}
             when_active_name={authenticated_user ? authenticated_user.email : ''}
-            custom_input_handler_signedin={f}
-            custom_input_handler_signedout={f}
+            custom_input_handler_signedin={this.show_make_new_freelancer_post}
+            custom_input_handler_signedout={null}
             custom_input_signed_in_name={ADD_YOURSELF}
             custom_input_signed_out_name={ADD_YOURSELF}
           />
         </nav>
-        <FreelancerTable freelancers={this.state.freelancers} />
+        {this.page_content()}
       </div>
     );
   }
