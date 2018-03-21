@@ -41,26 +41,18 @@ export default withRouter(
 
     static contextTypes = {
       authenticated_user: PropTypes.object,
-      userDidAuthSuccessfully: PropTypes.func,
+      sign_user_in: PropTypes.func,
     };
 
     onSubmit = event => {
       const { email, password, remember_me_checked } = this.state;
       const { user_did_sign_in } = this.props;
-      const { userDidAuthSuccessfully } = this.context;
+      const { sign_user_in } = this.context;
       event.preventDefault();
-      auth
-        .signInWithEmailAndPassword(email, password)
-        .then(({ uid, refreshToken, metadata, email: email_account }) =>
-          this.setState(
-            () => ({ ...INITIAL_STATE }),
-            userDidAuthSuccessfully(
-              { uid, refreshToken, metadata, email_account },
-              user_did_sign_in,
-              remember_me_checked
-            )
-          )
-        )
+      sign_user_in(email, password, remember_me_checked)
+        .then(() => {
+          this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in);
+        })
         .catch(error => this.setState(updateByPropertyName('error', error)));
     };
 

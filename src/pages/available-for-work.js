@@ -7,6 +7,7 @@ import Profile from '../components/profile';
 import SigninBar from '../components/signin-bar';
 import FreelancerTable from '../components/freelancer-table';
 import { MODAL_TRANSITION } from '../utils/constants';
+import { freelancers_posts_ref } from '../utils/db';
 
 const f = () => {
   console.log('Hello world');
@@ -56,72 +57,6 @@ I am a coder, I am a coder, I am a coder, I am a coder
     self_description: 'Something good about me',
     known_technologies: ['javascript', 'sql'],
   },
-  {
-    name: 'Abe15',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: 'I am some coder in SF',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe102',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: '',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe2',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: '',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe310',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: '',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe38',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: '',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe315',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: '',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe316',
-    github_link: '',
-    linkedin_link: 'https://linkedin.com/',
-    resume_link: '',
-    self_description: '',
-    self_description: 'I am a coder',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe32',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: '',
-    self_description: `I am a coder`,
-    known_technologies: ['javascript', 'sql'],
-  },
 ];
 
 export default class AvailableForWorkPage extends React.Component {
@@ -132,18 +67,32 @@ export default class AvailableForWorkPage extends React.Component {
     freelancers: dummy_data,
   };
 
+  query_data = () => {
+    freelancers_posts_ref.once('value').then(snap_shot => {
+      const rows = snap_shot.val();
+      if (rows) {
+        this.setState(() => ({ freelancers: Object.values(rows) }));
+      }
+    });
+  };
+
+  componentDidMount() {
+    this.query_data();
+  }
+
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
   user_did_sign_in = user_email_account => {
+    console.log('User did sign in!');
     this.setState(() => ({ user_email_account, modal_show: false }));
   };
 
   modal_content = () => {
     switch (this.state.modal_content) {
-      case MODAL_CONTENT.PROFILE_VIEW:
-        return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
       case MODAL_CONTENT.SIGNIN_VIEW:
         return <Signin login_message={'Sign in'} user_did_sign_in={this.user_did_sign_in} />;
+      case MODAL_CONTENT.PROFILE_VIEW:
+        return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
       case MODAL_CONTENT.SIGNUP_VIEW:
         return <Signup user_did_sign_in={this.user_did_sign_in} />;
       default:
@@ -152,10 +101,16 @@ export default class AvailableForWorkPage extends React.Component {
   };
 
   signin_handler = () =>
-    this.setState(() => ({ modal_show: true, modal_content: MODAL_CONTENT.SIGNIN_VIEW }));
+    this.setState(() => ({
+      modal_show: true,
+      modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    }));
 
   signup_handler = () =>
-    this.setState(() => ({ modal_show: true, modal_content: MODAL_CONTENT.SIGNUP_VIEW }));
+    this.setState(() => ({
+      modal_show: true,
+      modal_content: MODAL_CONTENT.SIGNUP_VIEW,
+    }));
 
   render() {
     return (
