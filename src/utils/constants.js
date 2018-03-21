@@ -24,7 +24,7 @@ export const SPACER_10_H = <div style={{ height: '10px', width: '100%' }} />;
 
 export const SPACER_20_W = <div style={{ width: '20px', height: '100%' }} />;
 
-export const MODAL_TRANSITION = 550;
+export const MODAL_TRANSITION = 500;
 
 export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
 
@@ -446,6 +446,18 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (max-width: 649px) {
+
+  .loginActionRow__RowContainer {
+    display:flex;
+    justify-content:center;
+  }
+
+  .FreelancerTable__FlexRow {
+    flex-direction:column;
+    padding-left:20px;
+    padding-right:20px;
+  }
+
   .AvailableForWorkContainer > *:nth-child(1) {
     flex-direction:column;
     justify-content:flex-start;
