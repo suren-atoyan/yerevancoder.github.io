@@ -42,7 +42,7 @@ const FixedSideBar = ({ authors_count }) => (
 );
 
 export default class ApplicationRoot extends React.Component {
-  state = { authenticated_user: null };
+  state = { authenticated_user: null, remember_me_checked: false };
 
   static childContextTypes = {
     authenticated_user: PropTypes.object,
@@ -51,10 +51,12 @@ export default class ApplicationRoot extends React.Component {
   };
 
   componentDidMount() {
-    const existing_user = sessionStorage.getItem(SESSION_USER);
-    if (existing_user) {
-      this.setState(() => ({ authenticated_user: JSON.parse(existing_user) }));
-    }
+    // const existing_user = sessionStorage.getItem(SESSION_USER);
+    // if (existing_user) {
+    //   const authenticated_user = JSON.parse(existing_user);
+    //   console.log({ authenticated_user });
+    // this.setState(() => ({ authenticated_user }));
+    // }
   }
 
   handle_session_storage(remember_me_checked, authed_user_data) {
@@ -65,21 +67,14 @@ export default class ApplicationRoot extends React.Component {
 
   getChildContext() {
     const self = this;
+    // console.log({ s: self.state });
     return {
-      authenticated_user: {},
+      authenticated_user: self.state.authenticated_user,
       sign_user_in: (email, password, remember_me_checked) =>
-        new Promise(resolve => resolve(auth.signInWithEmailAndPassword(email, password))).then(
-          ({
-            displayName,
-            email,
-            emailVerified,
-            metadata,
-            phoneNumber,
-            photoURL,
-            refreshToken,
-            uid,
-          }) =>
-            self.setState(() => ({
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then(
+            ({
               displayName,
               email,
               emailVerified,
@@ -88,8 +83,21 @@ export default class ApplicationRoot extends React.Component {
               photoURL,
               refreshToken,
               uid,
-            }))
-        ),
+            }) =>
+              self.setState(() => ({
+                remember_me_checked,
+                authenticated_user: {
+                  displayName,
+                  email,
+                  emailVerified,
+                  metadata,
+                  phoneNumber,
+                  photoURL,
+                  refreshToken,
+                  uid,
+                },
+              }))
+          ),
       sign_user_out: () =>
         new Promise((resolve, reject) => {
           //

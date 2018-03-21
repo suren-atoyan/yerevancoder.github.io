@@ -104,7 +104,6 @@ input[type=button], input[type=submit] {
   border: 0;
   border-radius: 5px;
   padding: 3px 15px;
-  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
 }
 
 input[type=text], input[type=password], input[type=email], textarea {
@@ -120,14 +119,29 @@ input[type=text], input[type=password], input[type=email], textarea {
   box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 1%, 0.20);
 }
 
+.loginActionRow__CustomInputField--UserSignedIn,
+.loginActionRow__CustomInputField--UserSignedOut {
+  background-color:transparent;
+  box-shadow:none !important;
+}
+
 .loginActionRow__RowContainer {
   margin:0;
   display:inline-flex;
   padding:10px;
 }
 
-.loginActionRow__RowContainer > input:nth-child(2n) {
+.loginActionRow__RowContainer > input:nth-child(2) {
   margin-left:1rem;
+}
+
+.loginActionRow__RowContainer > input:nth-child(3) {
+  margin-left:1rem;
+}
+
+.AvailableForWorkContainer__NavTopRow {
+  padding-top:15px;
+  padding-bottom:15px;
 }
 
 .loginActionRow__RowContainer > input {
@@ -161,33 +175,45 @@ input[type=text], input[type=password], input[type=email], textarea {
 .loginActionRow__SignUpOrLoggedIn--UserSignedOut {
   color:white;
   background-color:${color(MATERIAL_BLUE)
-    .fade(0.2)
+    .fade(0.05)
     .hsl()
     .string()};
 }
 
-.loginActionRow__SignUpOrLoggedIn--UserSignedIn,
+.loginActionRow__SignUpOrLoggedIn--UserSignedIn:active,
 .loginActionRow__SignUpOrLoggedIn--UserSignedOut:active {
+  color:${color('white')
+    .darken(0.7)
+    .hsl()
+    .string()};
   background-color:${color(MATERIAL_BLUE)
-    .fade(0.4)
+    .fade(0.2)
     .hsl()
     .string()};
 }
 
 .loginActionRow__SigninOrSignOut--UserSignedIn,
 .loginActionRow__SigninOrSignOut--UserSignedOut {
-  background-color:${color(MATERIAL_GREY)
-    .fade(0.7)
+  color:${color('white')
+    .darken(0.75)
     .hsl()
-    .string()}
+    .string()};
+  background-color:${color(MATERIAL_GREY)
+    .fade(0.4)
+    .hsl()
+    .string()};
 }
 
-.loginActionRow__SigninOrSignOut--UserSignedIn,
+.loginActionRow__SigninOrSignOut--UserSignedIn:active,
 .loginActionRow__SigninOrSignOut--UserSignedOut:active {
-  background-color:${color(MATERIAL_GREY)
-    .fade(0.9)
+  color:${color('white')
+    .darken(0.05)
     .hsl()
-    .string()}
+    .string()};
+  background-color:${color(MATERIAL_GREY)
+    .darken(0.2)
+    .hsl()
+    .string()};
 }
 
 .AvailableForWorkContainer {
@@ -442,6 +468,23 @@ const MEDIA_QUERIES_CSS = `
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
+  }
+
+  .loginActionRow__RowContainer {
+    justify-content:center;
+  }
+
+}
+
+@media (max-width: 850px) {
+  .FreelancerTable__FlexRow {
+    flex-direction:column;
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .AvailableForWorkContainer__NavTopRow {
+    flex-direction:column;
+    text-align:center;
   }
 }
 

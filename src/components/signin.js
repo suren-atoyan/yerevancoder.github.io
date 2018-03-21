@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
@@ -13,7 +12,13 @@ import {
   LOGIN_ENTRY_BOX_FIELDSET_S,
 } from './common-styles';
 
-const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
+// const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
+const INITIAL_STATE = {
+  email: 'edgar.factorial@gmail.com',
+  password: '',
+  error: null,
+  remember_me_checked: false,
+};
 
 const login_entry_box_forgot_password = {
   ...NO_MARGIN_BOTTOM,
@@ -39,20 +44,12 @@ export default withRouter(
   class SignInForm extends React.Component {
     state = { ...INITIAL_STATE };
 
-    static contextTypes = {
-      authenticated_user: PropTypes.object,
-      sign_user_in: PropTypes.func,
-    };
-
     onSubmit = event => {
       const { email, password, remember_me_checked } = this.state;
-      const { user_did_sign_in } = this.props;
-      const { sign_user_in } = this.context;
+      const { user_did_sign_in, sign_user_in } = this.props;
       event.preventDefault();
       sign_user_in(email, password, remember_me_checked)
-        .then(() => {
-          this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in);
-        })
+        .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in))
         .catch(error => this.setState(updateByPropertyName('error', error)));
     };
 

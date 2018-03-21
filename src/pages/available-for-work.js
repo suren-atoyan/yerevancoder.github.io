@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 import Signin from '../components/signin';
 import Signup from '../components/signup';
@@ -12,6 +13,8 @@ import { freelancers_posts_ref } from '../utils/db';
 const f = () => {
   console.log('Hello world');
 };
+
+const ADD_YOURSELF = 'Add yourself';
 
 const modal_s = {
   content: {
@@ -63,9 +66,10 @@ export default class AvailableForWorkPage extends React.Component {
   state = {
     modal_show: false,
     modal_content: MODAL_CONTENT.SIGNIN_VIEW,
-    user_email_account: null,
     freelancers: dummy_data,
   };
+
+  static contextTypes = { authenticated_user: PropTypes.object, sign_user_in: PropTypes.func };
 
   query_data = () => {
     freelancers_posts_ref.once('value').then(snap_shot => {
@@ -82,15 +86,21 @@ export default class AvailableForWorkPage extends React.Component {
 
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
-  user_did_sign_in = user_email_account => {
+  user_did_sign_in = () => {
     console.log('User did sign in!');
-    this.setState(() => ({ user_email_account, modal_show: false }));
+    this.setState(() => ({ modal_show: false }));
   };
 
   modal_content = () => {
     switch (this.state.modal_content) {
       case MODAL_CONTENT.SIGNIN_VIEW:
-        return <Signin login_message={'Sign in'} user_did_sign_in={this.user_did_sign_in} />;
+        return (
+          <Signin
+            login_message={'Sign in'}
+            sign_user_in={this.context.sign_user_in}
+            user_did_sign_in={this.user_did_sign_in}
+          />
+        );
       case MODAL_CONTENT.PROFILE_VIEW:
         return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
       case MODAL_CONTENT.SIGNUP_VIEW:
@@ -113,6 +123,8 @@ export default class AvailableForWorkPage extends React.Component {
     }));
 
   render() {
+    const { authenticated_user } = this.context;
+    console.log({ authenticated_user });
     return (
       <div className={'AvailableForWorkContainer'}>
         <Modal
@@ -124,7 +136,7 @@ export default class AvailableForWorkPage extends React.Component {
           contentLabel="Signin to Yerevancoder">
           {this.modal_content()}
         </Modal>
-        <div>
+        <nav className={'AvailableForWorkContainer__NavTopRow'}>
           <h4 className={'AvailableForWorkContainer__PageBanner'}>
             Freelance programmers in Armenia
           </h4>
@@ -133,10 +145,14 @@ export default class AvailableForWorkPage extends React.Component {
             signup_handler={this.signup_handler}
             signout_handler={f}
             signed_in_handler={f}
-            is_signed_in={false}
-            when_active_name={'edgar.factorial@gmail.com'}
+            is_signed_in={authenticated_user !== null}
+            when_active_name={authenticated_user ? authenticated_user.email : ''}
+            custom_input_handler_signedin={f}
+            custom_input_handler_signedout={f}
+            custom_input_signed_in_name={ADD_YOURSELF}
+            custom_input_signed_out_name={ADD_YOURSELF}
           />
-        </div>
+        </nav>
         <FreelancerTable freelancers={this.state.freelancers} />
       </div>
     );

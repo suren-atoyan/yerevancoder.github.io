@@ -7,7 +7,24 @@ export default ({
   signed_in_handler,
   is_signed_in,
   when_active_name,
+  custom_input_handler_signedin,
+  custom_input_handler_signedout,
+  custom_input_signed_in_name,
+  custom_input_signed_out_name,
 }) => {
+  const custom_input = (
+    <input
+      type={'button'}
+      value={is_signed_in ? custom_input_signed_in_name : custom_input_signed_out_name}
+      onClick={is_signed_in ? custom_input_handler_signedin : custom_input_handler_signedout}
+      className={
+        is_signed_in
+          ? 'loginActionRow__CustomInputField--UserSignedIn'
+          : 'loginActionRow__CustomInputField--UserSignedOut'
+      }
+      disabled={!is_signed_in}
+    />
+  );
   const signin_or_signout = (
     <input
       className={
@@ -17,7 +34,7 @@ export default ({
       }
       onClick={is_signed_in ? signout_handler : signin_handler}
       type={'button'}
-      value={is_signed_in ? 'Signout' : 'Signin'}
+      value={is_signed_in ? 'Sign out' : 'Sign in'}
     />
   );
   const signup_or_logged_in = (
@@ -29,11 +46,12 @@ export default ({
       }
       onClick={is_signed_in ? signed_in_handler : signup_handler}
       type={'button'}
-      value={is_signed_in ? when_active_name : 'Signup'}
+      value={is_signed_in ? when_active_name : 'Sign up'}
     />
   );
   return (
     <div className={'loginActionRow__RowContainer'}>
+      {custom_input}
       {signin_or_signout}
       {signup_or_logged_in}
     </div>
