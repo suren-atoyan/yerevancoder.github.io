@@ -2,29 +2,14 @@ import 'prismjs/themes/prism-tomorrow.css';
 
 import React from 'react';
 import Link from 'gatsby-link';
-import SigninBar from '../components/signin-bar';
 
 // import 'prismjs/themes/prism-solarizedlight.css';
 
-export default ({ data }, context) => {
+export default ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
-  const { authenticated_user } = context;
+
   return (
     <div>
-      <div className={'BlogIndex__TopCredentialBar'}>
-        <SigninBar
-          signin_handler={null}
-          signup_handler={null}
-          signout_handler={null}
-          signed_in_handler={null}
-          is_signed_in={authenticated_user !== null}
-          when_active_name={authenticated_user ? authenticated_user.email : ''}
-          custom_input_handler_signedin={null}
-          custom_input_handler_signedout={null}
-          custom_input_signed_in_name={null}
-          custom_input_signed_out_name={null}
-        />
-      </div>
       {posts.map(({ node }) => {
         const { title, tags, author, date } = node.frontmatter;
         return (

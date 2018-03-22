@@ -130,7 +130,6 @@ export default withRouter(
       const signup_or_logged_in = (
         <input
           onClick={has_account ? this.show_profile_modal : this.show_signup_modal}
-          style={login_action_row_signup_or_logged_in_s}
           type={'button'}
           value={has_account ? this.state.user_email_account : 'Signup'}
         />
@@ -138,7 +137,6 @@ export default withRouter(
       const signin_or_signout = (
         <input
           onClick={has_account ? this.do_signout : this.show_signin_modal}
-          style={login_action_row_authing_action_s}
           type={'button'}
           value={has_account ? 'Signout' : 'Signin'}
         />
@@ -150,7 +148,6 @@ export default withRouter(
           <div className={'loginActionRow__AuthingButtons'}>
             <input
               onClick={this.go_to_new_posting}
-              style={login_action_row_post_new_s}
               type={'button'}
               value={'Post new job'}
               disabled={!has_account}
