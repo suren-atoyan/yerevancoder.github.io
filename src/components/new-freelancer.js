@@ -11,14 +11,35 @@ const INIT_STATE = {
   resume_link: '',
   self_description: '',
   known_technologies: '',
+  error: null,
 };
+
+// const field_mapping = {
+//   name: 'Your Name',
+//   github_link: 'Github Link '
+// }
 
 export default class NewFreelancerEntry extends React.Component {
   state = { ...INIT_STATE };
 
   submit_new_freelancer = e => {
     e.preventDefault();
-    console.log(this.state);
+    const { submit_new_freelancer_post, freelancer_post_did_finish } = this.props;
+    const { error, ...useful_data } = this.state;
+    // let missing_field = null;
+    // Object.keys(useful_data).forEach(k => {
+    //   if (k === '') missing_field = k;
+    // });
+
+    // if (missing_field) {
+    //   this.setState(() => ({error:`Missing entry for ${field_mapping[missing_field]}`}))
+    // } else {
+
+    submit_new_freelancer_post(useful_data)
+      .then(reply => this.setState(() => ({ ...INIT_STATE })))
+      .catch(error => this.setState(updateByPropertyName('error', error.message)))
+      .then(freelancer_post_did_finish);
+    // }
   };
 
   render() {
@@ -41,6 +62,7 @@ export default class NewFreelancerEntry extends React.Component {
                   this.setState(updateByPropertyName('github_link', event.target.value))
                 }
                 label={'Github'}
+                input_type={'url'}
               />
               <WithEffectInput
                 box_name={FANCY_INPUT_BOXES.LINKEDIN}
@@ -49,6 +71,7 @@ export default class NewFreelancerEntry extends React.Component {
                   this.setState(updateByPropertyName('linkedin_link', event.target.value))
                 }
                 label={'Linkedin'}
+                input_type={'url'}
               />
               <WithEffectInput
                 box_name={FANCY_INPUT_BOXES.RESUME_OR_PERSONAL}
@@ -57,6 +80,7 @@ export default class NewFreelancerEntry extends React.Component {
                   this.setState(updateByPropertyName('resume_link', event.target.value))
                 }
                 label={'Resume/Personal site'}
+                input_type={'url'}
               />
               <WithEffectInput
                 box_name={FANCY_INPUT_BOXES.KNOWN_TECHS}

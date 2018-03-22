@@ -4,7 +4,7 @@ import { Container } from 'react-responsive-grid';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { auth } from '../utils/db';
+import { auth, freelancers_posts_ref } from '../utils/db';
 import { rhythm, scale } from '../utils/typography';
 import { SESSION_USER, global_styles, ROUTES } from '../utils/constants';
 
@@ -50,6 +50,7 @@ export default class ApplicationRoot extends React.Component {
     authenticated_user: PropTypes.object,
     sign_user_in: PropTypes.func,
     sign_user_out: PropTypes.func,
+    submit_new_freelancer_post: PropTypes.func,
   };
 
   componentDidMount() {
@@ -103,6 +104,7 @@ export default class ApplicationRoot extends React.Component {
         auth.signOut().then(() => {
           this.setState(() => ({ ...INIT_STATE }));
         }),
+      submit_new_freelancer_post: data => freelancers_posts_ref.push(data),
     };
   }
 

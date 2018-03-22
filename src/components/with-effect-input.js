@@ -12,7 +12,7 @@ export default class WithEffectInput extends React.Component {
   };
 
   render() {
-    const { box_name, on_change, label } = this.props;
+    const { box_name, on_change, label, input_type } = this.props;
     return (
       <div className={'InputEffect'}>
         <input

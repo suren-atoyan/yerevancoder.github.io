@@ -45,7 +45,7 @@ const FreelancerCard = ({
             <div className={'PlainFlexRow FlexSpaceBetween'}>
               <label>Known Technologies:</label>
               {SPACER_20_W}
-              <span>{known_technologies.join(', ')}</span>
+              <span>{known_technologies}</span>
             </div>
           </div>
         </div>

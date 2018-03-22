@@ -34,35 +34,6 @@ const MODAL_CONTENT = {
   SIGNUP_VIEW: 'signup-view',
 };
 
-const dummy_data = [
-  {
-    name: 'Abe',
-    github_link: 'https://github.com/fxfactorial',
-    linkedin_link: 'https://linkedin.com/foo-bar',
-    resume_link: 'https://something.com',
-    self_description: `I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder, I am a coder
-I am a coder, I am a coder, I am a coder, I am a coder
-`,
-    known_technologies: ['javascript', 'sql', 'c++'],
-  },
-  {
-    name: 'Abe10',
-    github_link: null,
-    linkedin_link: 'linkedin.com/foobar',
-    resume_link: 'https://goodbar',
-    self_description: 'I am a coder',
-    known_technologies: ['javascript', 'sql'],
-  },
-  {
-    name: 'Abe8',
-    github_link: '',
-    linkedin_link: '',
-    resume_link: '',
-    self_description: 'Something good about me',
-    known_technologies: ['javascript', 'sql'],
-  },
-];
-
 const PAGE_CONTENT = { FREELANCER_TABLE: 'freelancer-table', NEW_FREELANCER: 'new-freelancer' };
 
 export default class AvailableForWorkPage extends React.Component {
@@ -70,27 +41,26 @@ export default class AvailableForWorkPage extends React.Component {
     modal_show: false,
     modal_content: MODAL_CONTENT.SIGNIN_VIEW,
     page_content: PAGE_CONTENT.FREELANCER_TABLE,
-    freelancers: dummy_data,
+    freelancers: [],
   };
 
   static contextTypes = {
     authenticated_user: PropTypes.object,
     sign_user_out: PropTypes.func,
     sign_user_in: PropTypes.func,
+    submit_new_freelancer_post: PropTypes.func,
   };
 
   query_data = () => {
-    freelancers_posts_ref.once('value').then(snap_shot => {
-      const rows = snap_shot.val();
-      console.log({ rows });
-      if (rows) {
-        this.setState(() => ({ freelancers: Object.values(rows) }));
-      }
-    });
+    return freelancers_posts_ref.once('value').then(snap_shot => snap_shot.val());
   };
 
   componentDidMount() {
-    this.query_data();
+    this.query_data().then(rows =>
+      this.setState(() => ({
+        freelancers: rows ? Object.values(rows) : [],
+      }))
+    );
   }
 
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
@@ -116,12 +86,26 @@ export default class AvailableForWorkPage extends React.Component {
     }
   };
 
+  freelancer_post_did_finish = () => {
+    this.query_data().then(rows =>
+      this.setState(() => ({
+        page_content: PAGE_CONTENT.FREELANCER_TABLE,
+        freelancers: rows ? Object.values(rows) : [],
+      }))
+    );
+  };
+
   page_content = () => {
     switch (this.state.page_content) {
       case PAGE_CONTENT.FREELANCER_TABLE:
         return <FreelancerTable freelancers={this.state.freelancers} />;
       case PAGE_CONTENT.NEW_FREELANCER:
-        return <NewFreelancer />;
+        return (
+          <NewFreelancer
+            freelancer_post_did_finish={this.freelancer_post_did_finish}
+            submit_new_freelancer_post={this.context.submit_new_freelancer_post}
+          />
+        );
       default:
         return null;
     }
