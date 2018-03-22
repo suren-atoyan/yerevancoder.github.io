@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SPACER_20_W, FANCY_INPUT_BOXES } from '../utils/constants';
+import { FANCY_INPUT_BOXES } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 import WithEffectInput from './with-effect-input';
 
@@ -14,18 +14,11 @@ const INIT_STATE = {
 };
 
 export default class NewFreelancerEntry extends React.Component {
-  state = { ...INIT_STATE, has_content_classname: '' };
+  state = { ...INIT_STATE };
 
-  submit_new_freelancer = () => {
-    //
-  };
-
-  test = () => {
-    if (this.state.name !== '') {
-      this.setState(() => ({ has_content_classname: 'has-content' }));
-    } else {
-      this.setState(() => ({ has_content_classname: '' }));
-    }
+  submit_new_freelancer = e => {
+    e.preventDefault();
+    console.log(this.state);
   };
 
   render() {
@@ -41,55 +34,52 @@ export default class NewFreelancerEntry extends React.Component {
                 on_change={event => this.setState(updateByPropertyName('name', event.target.value))}
                 label={'Your name'}
               />
-              <div className={'FreelancerTable__FlexRow'}>
-                <div className={'FreelancerTable__FlexColumn'}>
-                  <div className={'PlainFlexRow FlexSpaceBetween'}>
-                    <WithEffectInput
-                      box_name={FANCY_INPUT_BOXES.GITHUB}
-                      query_field={() => this.state.github_link}
-                      on_change={event =>
-                        this.setState(updateByPropertyName('github_link', event.target.value))
-                      }
-                      label={'Github'}
-                    />
-                  </div>
-                  <div className={'PlainFlexRow FlexSpaceBetween'}>
-                    <WithEffectInput
-                      box_name={FANCY_INPUT_BOXES.LINKEDIN}
-                      query_field={() => this.state.linkedin_link}
-                      on_change={event =>
-                        this.setState(updateByPropertyName('linkedin_link', event.target.value))
-                      }
-                      label={'Linkedin'}
-                    />
-                  </div>
-                </div>
-                <div className={'FreelancerTable__FlexColumn'}>
-                  <div className={'PlainFlexRow FlexSpaceBetween'}>
-                    <WithEffectInput
-                      box_name={FANCY_INPUT_BOXES.RESUME_OR_PERSONAL}
-                      query_field={() => this.state.resume_link}
-                      on_change={event =>
-                        this.setState(updateByPropertyName('resume_link', event.target.value))
-                      }
-                      label={'Resume/Personal site'}
-                    />
-                  </div>
-                  <div className={'PlainFlexRow FlexSpaceBetween'}>
-                    <WithEffectInput
-                      box_name={FANCY_INPUT_BOXES.KNOWN_TECHS}
-                      query_field={() => this.state.known_technologies}
-                      on_change={event =>
-                        this.setState(
-                          updateByPropertyName('known_technologies', event.target.value)
-                        )
-                      }
-                      label={'Known Technologies, comma-separated'}
-                    />
-                  </div>
-                </div>
-              </div>
-              <textarea rows={7} value={this.state.self_description} />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.GITHUB}
+                query_field={() => this.state.github_link}
+                on_change={event =>
+                  this.setState(updateByPropertyName('github_link', event.target.value))
+                }
+                label={'Github'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.LINKEDIN}
+                query_field={() => this.state.linkedin_link}
+                on_change={event =>
+                  this.setState(updateByPropertyName('linkedin_link', event.target.value))
+                }
+                label={'Linkedin'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.RESUME_OR_PERSONAL}
+                query_field={() => this.state.resume_link}
+                on_change={event =>
+                  this.setState(updateByPropertyName('resume_link', event.target.value))
+                }
+                label={'Resume/Personal site'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.KNOWN_TECHS}
+                query_field={() => this.state.known_technologies}
+                on_change={event =>
+                  this.setState(updateByPropertyName('known_technologies', event.target.value))
+                }
+                label={'Known Technologies, comma-separated'}
+              />
+              <textarea
+                onChange={event =>
+                  this.setState(updateByPropertyName('self_description', event.target.value))
+                }
+                maxLength={1500}
+                rows={7}
+                placeholder={'Describe yourself for employers...(1500 char max)'}
+                value={this.state.self_description}
+              />
+              <input
+                className={'NewFreelancerFormContainer__SubmitButton'}
+                type={'submit'}
+                value={'Submit'}
+              />
             </div>
           </fieldset>
         </form>

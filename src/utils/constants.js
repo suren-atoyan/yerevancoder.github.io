@@ -87,34 +87,47 @@ textarea { resize:none; }
 
 .PlainFlexRow.FlexSpaceBetween {
   justify-content:space-between;
+  width:100%;
 }
 
 .NewFreelancerFormContainer {
 
 }
 
-.FreelancerTable__FreelancerName {
-  font-size:2.2rem;
-  font-family:Montserrat, sans-serif;
-}
-
 .FreelancerTable__FlexRow {
   display:flex;
+  flex:1;
+  justify-content:space-between;
   width: 100%;
-  padding-bottom:10px;
-  padding-top:10px;
-  justify-content:space-around;
+  padding:10px;
 }
 
 .FreelancerTable__FlexColumn {
   display:flex;
   flex-direction:column;
-  background-color:red;
 }
 
-.FreelancerTable__FlexColumn > div:nth-child(2) {
-  margin-top:2em;
+.FreelancerTable__FreelancerColumnDescription > textarea {
+  width:100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
+
+.NewFreelancerFormContainer__SubmitButton {
+  width:100%;
+  padding-top:7px;
+  padding-bottom:7px;
+  color:${color('white')
+    .darken(0.75)
+    .hsl()
+    .string()};
+  background-color:${color(MATERIAL_GREY)
+    .fade(0.4)
+    .hsl()
+    .string()};
+}
+
+form > fieldset {border:none;}
 
 .FreelancerTable__FreelancerColumnDescription {
   display:flex;
@@ -122,6 +135,15 @@ textarea { resize:none; }
   align-items:center;
   justify-content:center;
   width: 100%;
+  padding:25px;
+}
+
+.InputEffect:nth-child(n) {
+  margin-top:2rem;
+}
+
+.InputEffect:nth-child(1) {
+  margin-top:0;
 }
 
 textarea {resize:none;}
@@ -151,7 +173,7 @@ textarea {resize:none;}
   padding-bottom:15px;
 }
 
-.loginActionRow__RowContainer > input {
+.loginActionRow__RowContainer > input, .NewFreelancerFormContainer__SubmitButton {
   position: relative;
   font-family: Montserrat, sans-serif;
   display: flex;
@@ -164,12 +186,14 @@ textarea {resize:none;}
   transition: box-shadow 0.15s ease-in-out;
 }
 
-.loginActionRow__RowContainer > input:active {
+.loginActionRow__RowContainer > input:active,
+.NewFreelancerFormContainer__SubmitButton:active {
   border-bottom: 0.25px solid rgba(0, 0, 0, 0.33);
   top: 0.5rem;
 }
 
-.loginActionRow__RowContainer > input:active:before {
+.loginActionRow__RowContainer > input:active:before,
+.NewFreelancerFormContainer__SubmitButton:active:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -269,7 +293,8 @@ textarea {resize:none;}
   margin-bottom:1rem;
 }
 
-.BlogEntryCard:nth-child(2n + 1), .FreelancerTable__Freelancer:nth-child(2n + 1) {
+.BlogEntryCard:nth-child(2n + 1),
+.FreelancerTable__Freelancer:nth-child(2n + 1) {
   background-color:${color(MATERIAL_GREY)
     .fade(0.6)
     .hsl()
@@ -577,10 +602,15 @@ export const FANCY_INPUT_BOXES = {
   KNOWN_TECHS: 'known-techs-box',
 };
 
+const FANCY_INPUT_THEME_COLOR = color(MATERIAL_BLUE)
+  .fade(0.15)
+  .hsl()
+  .string();
+
 // https://codepen.io/Takumari85/pen/RaYwpJ
 const create_effects_css = box_name => `
 .effect-${box_name}{
-  border: 1px solid #ccc;
+  border: 1px solid ${MATERIAL_GREY};
   padding: 7px 14px;
   transition: 0.4s;
   width:100%;
@@ -590,8 +620,11 @@ const create_effects_css = box_name => `
 .effect-${box_name} ~ .focus-border:before,
 .effect-${box_name} ~ .focus-border:after{
   content: "";
-position: absolute; top: 0; left: 0; width: 0; height: 2px; background-color: #3399FF;
-transition: 0.3s;
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 2px;
+  background-color: ${FANCY_INPUT_THEME_COLOR};
+  transition: 0.3s;
 }
 
 .effect-${box_name} ~ .focus-border:after{
@@ -602,7 +635,7 @@ left: auto; right: 0;}
 .effect-${box_name} ~ .focus-border i:after{
   content: ""; position: absolute; top: 0;
   left: 0; width: 2px; height: 0;
-  background-color: #3399FF;
+  background-color: ${FANCY_INPUT_THEME_COLOR};
   transition: 0.4s;
 }
 
@@ -632,18 +665,33 @@ color: #aaa; transition: 0.3s; z-index: -1;
 letter-spacing: 0.5px;}
 
 .effect-${box_name}:focus ~ label,
-.has-content.effect-${box_name} ~ label{
-top: -18px; left: 0; font-size: 12px;
-color: #3399FF; transition: 0.3s;
+.has-content.effect-${box_name} ~ label {
+  top: -18px;
+  left: 0;
+  font-size: 12px;
+  color: ${FANCY_INPUT_THEME_COLOR};
+  transition: 0.3s;
 }
 
 `;
 
 const FANCY_INPUT_BOX = `
 :focus{outline: none;}
+
 /* necessary to give position: relative to parent. */
-.InputEffect {position: relative;}
-.InputEffect > input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;}
+.InputEffect {
+  position: relative;
+  width:100%;
+}
+
+.InputEffect > input[type="text"] {
+  font-family: Merriweather, sans-serif;
+  color: #333;
+  width: 100%;
+  border-radius:5px;
+  box-sizing:border-box;
+  letter-spacing: 1px;
+}
 
 ${create_effects_css(FANCY_INPUT_BOXES.NAME)}
 ${create_effects_css(FANCY_INPUT_BOXES.GITHUB)}
