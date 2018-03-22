@@ -29,7 +29,10 @@ export default class SignInForm extends React.Component {
         sign_user_in(email, password, remember_me_checked)
           .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in))
           .catch(error => this.setState(updateByPropertyName('error', error)))
-          .then(() => this.setState(() => ({ loading_state: LOADING_STATE.NOT_STARTED_YET })))
+          .then(() => {
+            const { error } = this.state;
+            this.setState(() => ({ ...INITIAL_STATE, error }));
+          })
     );
   };
 
@@ -54,8 +57,11 @@ export default class SignInForm extends React.Component {
   render() {
     const { email, password, error } = this.state;
     const is_invalid = password === '' || email === '';
-    const top_message = <p>{error ? error.message : this.props.login_message}</p>;
-
+    const top_message = error ? (
+      <pre className={'AuthingErrorMessage'}>{error.message}</pre>
+    ) : (
+      <p className={'AuthingWelcomeMessage'}>{this.props.login_message}</p>
+    );
     const extra_css_classname =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING
         ? 'ProfileContainer__SpinningCentered'

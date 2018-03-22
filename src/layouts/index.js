@@ -53,14 +53,9 @@ export default class ApplicationRoot extends React.Component {
           .auth()
           .createUserAndRetrieveDataWithEmailAndPassword(given_email, given_password)
           .catch(error => {
-            console.log({ error });
-            throw new Error(`Could not sign you up because: ${error.message}`);
+            throw new Error(`Could not sign you up because:\n${error.message}`);
           })
           .then(reply => {
-            console.log({ reply });
-            if (reply && reply.code && reply.message) {
-              throw new Error(`Cannot make account: ${reply.message}`);
-            }
             return db
               .ref(`signed-up-users/${reply.uid}`)
               .set({ user_receives_blog_newsletter, given_email, given_username });

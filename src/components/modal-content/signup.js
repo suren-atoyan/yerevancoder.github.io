@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
 
-import { FANCY_INPUT_BOXES, LOADING_STATE } from '../../utils/constants';
+import { FANCY_INPUT_BOXES, LOADING_STATE, SPACER_10_H } from '../../utils/constants';
 import { updateByPropertyName } from '../../utils/funcs';
 import WithEffectInput from '../with-effect-input';
+import SubmitInput from '../submit-input';
 
 const INITIAL_STATE = {
   username: '',
@@ -34,7 +35,10 @@ export default class SignUpForm extends React.Component {
         sign_user_up(username, email, password_one, receive_newsletter)
           .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_up))
           .catch(error => this.setState(updateByPropertyName('error', error)))
-          .then(() => this.setState(() => ({ loading_state: LOADING_STATE.NOT_STARTED_YET })))
+          .then(() => {
+            const { error } = this.state;
+            this.setState(() => ({ ...INITIAL_STATE, error }));
+          })
     );
   };
 
@@ -42,11 +46,19 @@ export default class SignUpForm extends React.Component {
     const { username, email, password_one, password_two, error } = this.state;
     const isInvalid =
       password_one !== password_two || password_one === '' || username === '' || email === '';
-    const top_message = <p>{error ? error.message : signup_message}</p>;
+    const top_message = error ? (
+      <pre className={'AuthingErrorMessage'}>{error.message}</pre>
+    ) : (
+      <p className={'AuthingWelcomeMessage'}>{signup_message}</p>
+    );
     const extra_css_classname =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING
         ? 'ProfileContainer__SpinningCentered'
         : '';
+
+    if (error) {
+      console.log(this.state);
+    }
 
     const content =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING ? (
@@ -88,7 +100,10 @@ export default class SignUpForm extends React.Component {
             input_type={'password'}
             label={'Confirm Password'}
           />
-          <input type={'button'} disabled={isInvalid} type={'submit'} value={'Create Account'} />
+          {SPACER_10_H}
+          {SPACER_10_H}
+          {SPACER_10_H}
+          <SubmitInput disabled={isInvalid} value={'Create Account'} />
         </fieldset>
       );
     return (

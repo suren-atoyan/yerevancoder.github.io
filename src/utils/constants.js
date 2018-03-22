@@ -49,12 +49,53 @@ const MATERIAL_BEIGE = `#FAF5F1`;
 
 const MATERIAL_GREY = `#C5C9CF`;
 
+const MATERIAL_BLUE_LIGHT_FADE = color(MATERIAL_BLUE)
+  .fade(0.35)
+  .hsl()
+  .string();
+
 const GLOBAL_CSS = `
 body {
   background-color: ${MATERIAL_BEIGE};
 }
 
 textarea { resize:none; }
+
+.AuthingErrorMessage {
+  font-family:Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color:red;
+  text-align:center;
+  padding-left: ${BUSINESS_CONTENT_PADDING}px;
+  padding-right: ${BUSINESS_CONTENT_PADDING}px;
+}
+
+.AuthingWelcomeMessage {
+  text-align:center;
+  padding-left: ${BUSINESS_CONTENT_PADDING}px;
+  padding-right: ${BUSINESS_CONTENT_PADDING}px;
+  font-weight:400;
+}
+
+.SubmitInput {
+  background-color:${MATERIAL_BLUE};
+  width:100%;
+  padding:7px 14px;
+  box-shadow:none;
+  border:none;
+  color: ${color('white')
+    .darken(0.1)
+    .hsl()
+    .string()};
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.SubmitInput:active {
+  background-color:${MATERIAL_BLUE_LIGHT_FADE};
+  transition: all 0.1s ease-in-out
+}
 
 .BlogIndex__TopCredentialBar {
   display:flex;
@@ -81,8 +122,18 @@ textarea { resize:none; }
 }
 
 .ModalContentWrapper {
-  min-width: 350px;
-  min-height: 400px;
+  border-top-width: 7px;
+  border-top-color: ${MATERIAL_BLUE_LIGHT_FADE};
+  border-top-style: solid;
+
+  border-bottom-width: 2px;
+  border-bottom-color: ${MATERIAL_BLUE_LIGHT_FADE};
+  border-bottom-style: solid;
+
+  min-width: 450px;
+  min-height: 500px;
+  max-width: 450px;
+  max-height: 500px;
   display:flex;
   align-items:center;
   flex-direction:column;
@@ -268,10 +319,7 @@ form > fieldset {border:none;}
 .loginActionRow__SignUpOrLoggedIn--UserSignedIn,
 .loginActionRow__SignUpOrLoggedIn--UserSignedOut {
   color:white;
-  background-color:${color(MATERIAL_BLUE)
-    .fade(0.05)
-    .hsl()
-    .string()};
+  background-color:${MATERIAL_BLUE_LIGHT_FADE};
 }
 
 .loginActionRow__SignUpOrLoggedIn--UserSignedIn:active,
