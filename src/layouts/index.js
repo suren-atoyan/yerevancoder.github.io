@@ -107,7 +107,9 @@ export default class ApplicationRoot extends React.Component {
       submit_new_freelancer_post: data =>
         freelancers_posts_ref.push(data).then(reply => {
           const { uid } = self.state.authenticated_user;
-          return db.ref(`users/${uid}/my-freelance-submission`).set(data);
+          return db
+            .ref(`users/${uid}/my-freelance-submission`)
+            .set({ ...data, post_key: reply.key });
         }),
     };
   }

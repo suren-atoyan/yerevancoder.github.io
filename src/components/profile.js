@@ -32,33 +32,34 @@ const weighted = { fontWeight: 600 };
 
 const date_and_currency = { ...flex_column, height: '100%', justifyContent: 'center' };
 
-const flexed_column = {
-  ...flex_column,
-  flex: 1,
-  height: '100%',
-};
+const flexed_column = { ...flex_column, flex: 1, height: '100%' };
 
 const flexed_with_between = { display: 'flex' };
 
 const obj_to_array = obj => Object.keys(obj).map(key => ({ ...obj[key], users_post_key: key }));
 
 const FreelanceProfileSubmission = ({ self_freelance_posting, delete_posting_handler }) => {
-  return self_freelance_posting !== null ? (
-    <div className={'FreelanceProfileSubmission'}>
-      <span className={'FreelanceProfileSubmission__PostingBanner'}>My Freelancer Submission</span>
-      <pre className={'FreelanceProfileSubmission__MonoText'}>
-        {JSON.stringify(self_freelance_posting, null, 4)}
-      </pre>
-      <input
-        className={'NewFreelancerFormContainer__SubmitButton'}
-        value={'Delete'}
-        onClick={delete_posting_handler}
-        type={'button'}
-      />
-    </div>
-  ) : (
-    <p>You haven't posted yet</p>
-  );
+  if (self_freelance_posting) {
+    const { post_key, ...freelance_posting } = self_freelance_posting;
+    return (
+      <div className={'FreelanceProfileSubmission'}>
+        <span className={'FreelanceProfileSubmission__PostingBanner'}>
+          My Freelancer Submission
+        </span>
+        <pre className={'FreelanceProfileSubmission__MonoText'}>
+          {JSON.stringify(freelance_posting, null, 4)}
+        </pre>
+        <input
+          className={'NewFreelancerFormContainer__SubmitButton'}
+          value={'Delete'}
+          onClick={delete_posting_handler}
+          type={'button'}
+        />
+      </div>
+    );
+  } else {
+    return <p>You haven't posted yet</p>;
+  }
 };
 
 const PostingRecord = ({ record, delete_record }) => {
@@ -154,8 +155,7 @@ export default class ProfileControl extends React.Component {
   }
 
   make_profile_view() {
-    const { self_freelance_posting } = this.props;
-    console.log({ self_freelance_posting });
+    const { self_freelance_posting, delete_my_freelance_posting } = this.props;
     const profile_made_on =
       this.state.current_user !== null
         ? format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/')
@@ -169,7 +169,7 @@ export default class ProfileControl extends React.Component {
       case MODAL_PROFILE_CONTENT.FREELANCER_POSTING:
         content = (
           <FreelanceProfileSubmission
-            delete_posting_handler={null}
+            delete_posting_handler={delete_my_freelance_posting}
             self_freelance_posting={self_freelance_posting}
           />
         );

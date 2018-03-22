@@ -68,6 +68,27 @@ export default class AvailableForWorkPage extends React.Component {
       .then(snapshot => snapshot.val());
   };
 
+  delete_my_freelance_posting = () => {
+    if (this.state.self_freelance_posting) {
+      const { post_key } = this.state.self_freelance_posting;
+      const current_user = firebase.auth().currentUser;
+      db
+        .ref(`users/${current_user.uid}/my-freelance-submission`)
+        .remove()
+        .then(() => freelancers_posts_ref.child(post_key).remove())
+        .then(() =>
+          this.query_data().then(rows =>
+            this.setState(() => ({
+              self_freelance_posting: null,
+              modal_show: false,
+              freelancers: rows ? Object.values(rows) : [],
+            }))
+          )
+        )
+        .catch(error => console.log(error));
+    }
+  };
+
   user_did_sign_in = () => {
     this.query_my_freelance_submission()
       .then(self_freelance_posting =>
@@ -87,11 +108,11 @@ export default class AvailableForWorkPage extends React.Component {
           />
         );
       case MODAL_CONTENT.PROFILE_VIEW:
-        console.log(this.state);
         return (
           <Profile
             profile_content={MODAL_PROFILE_CONTENT.FREELANCER_POSTING}
             self_freelance_posting={this.state.self_freelance_posting}
+            delete_my_freelance_posting={this.delete_my_freelance_posting}
             force_query={this.query_data}
           />
         );
