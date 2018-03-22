@@ -3,8 +3,8 @@ import Spinner from 'react-spinkit';
 
 import { auth } from '../../utils/db';
 import { updateByPropertyName } from '../../utils/funcs';
-import { FANCY_INPUT_BOXES, LOADING_STATE } from '../../utils/constants';
-
+import { FANCY_INPUT_BOXES, LOADING_STATE, SPACER_10_H } from '../../utils/constants';
+import SubmitInput from '../submit-input';
 import WithEffectInput from '../with-effect-input';
 
 const INITIAL_STATE = {
@@ -40,7 +40,7 @@ export default class SignInForm extends React.Component {
     const remember_me_update = event =>
       this.setState(updateByPropertyName('remember_me_checked', event.target.value));
     return (
-      <div>
+      <div className={'PlainFlexRow FlexSpaceBetween PlainFlexCentered RememberMeRow'}>
         <div className={'PlainFlexColumn OnePaddingLeft PlainFlexCentered'}>
           <input
             type={'checkbox'}
@@ -50,7 +50,7 @@ export default class SignInForm extends React.Component {
           />
           <label>Remember me</label>
         </div>
-        <p>Forgot Password</p>
+        <span>Forgot Password</span>
       </div>
     );
   }
@@ -60,12 +60,12 @@ export default class SignInForm extends React.Component {
     const top_message = error ? (
       <pre className={'AuthingErrorMessage'}>{error.message}</pre>
     ) : (
-      <p className={'AuthingWelcomeMessage'}>{this.props.login_message}</p>
+      <span className={'AuthingWelcomeMessage'}>{this.props.login_message}</span>
     );
     const extra_css_classname =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING
         ? 'ProfileContainer__SpinningCentered'
-        : '';
+        : 'ModalContainer__Form';
 
     const content =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING ? (
@@ -74,23 +74,34 @@ export default class SignInForm extends React.Component {
         </div>
       ) : (
         <fieldset>
-          {top_message}
-          <WithEffectInput
-            box_name={FANCY_INPUT_BOXES.SIGNIN_EMAIL}
-            query_field={() => this.state.email}
-            on_change={event => this.setState(updateByPropertyName('email', event.target.value))}
-            label={'Email'}
-            input_type={'email'}
-          />
-          <WithEffectInput
-            box_name={FANCY_INPUT_BOXES.SIGNIN_PASSWORD}
-            query_field={() => this.state.password}
-            on_change={event => this.setState(updateByPropertyName('password', event.target.value))}
-            label={'Password'}
-            input_type={'password'}
-          />
-          {this.make_remember_forget_row()}
-          <input value={'Sign In'} disabled={is_invalid} type={'submit'} />
+          <div className={'PlainFlexColumn FullHeight FlexSpaceAround'}>
+            <section className={'PlainFlexColumn FormTopEntry'}>
+              {top_message}
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.SIGNIN_EMAIL}
+                query_field={() => this.state.email}
+                on_change={event =>
+                  this.setState(updateByPropertyName('email', event.target.value))
+                }
+                label={'Email'}
+                input_type={'email'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.SIGNIN_PASSWORD}
+                query_field={() => this.state.password}
+                on_change={event =>
+                  this.setState(updateByPropertyName('password', event.target.value))
+                }
+                label={'Password'}
+                input_type={'password'}
+              />
+              {SPACER_10_H}
+              {SPACER_10_H}
+              {SPACER_10_H}
+              {this.make_remember_forget_row()}
+            </section>
+            <SubmitInput value={'Sign In'} disabled={is_invalid} />
+          </div>
         </fieldset>
       );
     return (

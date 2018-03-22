@@ -54,6 +54,16 @@ const MATERIAL_BLUE_LIGHT_FADE = color(MATERIAL_BLUE)
   .hsl()
   .string();
 
+const MATERIAL_GREY_HEAVY_FADE = color(MATERIAL_GREY)
+  .fade(0.6)
+  .hsl()
+  .string();
+
+const _MATERIAL_GREY_HEAVY_FADE_ = color(MATERIAL_GREY)
+  .fade(0.8)
+  .hsl()
+  .string();
+
 const GLOBAL_CSS = `
 body {
   background-color: ${MATERIAL_BEIGE};
@@ -64,18 +74,21 @@ textarea { resize:none; }
 .AuthingErrorMessage {
   font-family:Montserrat, sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   color:red;
+  margin:0;
   text-align:center;
-  padding-left: ${BUSINESS_CONTENT_PADDING}px;
-  padding-right: ${BUSINESS_CONTENT_PADDING}px;
+  padding-left: ${BUSINESS_CONTENT_PADDING / 2}px;
+  padding-right: ${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
 .AuthingWelcomeMessage {
   text-align:center;
   padding-left: ${BUSINESS_CONTENT_PADDING}px;
   padding-right: ${BUSINESS_CONTENT_PADDING}px;
-  font-weight:400;
+  font-weight:700;
+  font-size:22px;
+  padding-bottom:15px;
 }
 
 .SubmitInput {
@@ -130,14 +143,24 @@ textarea { resize:none; }
   border-bottom-color: ${MATERIAL_BLUE_LIGHT_FADE};
   border-bottom-style: solid;
 
-  min-width: 450px;
-  min-height: 500px;
-  max-width: 450px;
-  max-height: 500px;
+  min-width: 550px;
+  min-height: 600px;
+  max-width: 550px;
+  max-height: 600px;
   display:flex;
   align-items:center;
   flex-direction:column;
   justify-content:center;
+  padding:35px;
+}
+
+.ModalContainer__Form {
+  width:100%;
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
+  margin:0;
 }
 
 .ReactModal__Content--after-open.Profile__Container.ProfileContainer__SpinningCentered {
@@ -177,6 +200,10 @@ textarea { resize:none; }
   padding-left:1px;
 }
 
+.FullHeight {
+  height:100%;
+}
+
 .PlainFlexCentered {
   align-items: center;
   justify-content: center;
@@ -185,6 +212,24 @@ textarea { resize:none; }
 .PlainFlexRow {
   display:flex;
   flex-direction:row;
+}
+
+.FlexSpaceBetween {
+  justify-content:space-between;
+}
+
+.FlexSpaceAround {
+  justify-content:space-around;
+}
+
+.FormTopEntry {
+  background-color:${_MATERIAL_GREY_HEAVY_FADE_};
+  border-radius: 5px;
+  padding:25px;
+}
+
+.RememberMeRow {
+  padding:7px 14px;
 }
 
 .PlainFlexRow.FlexSpaceBetween {
@@ -239,7 +284,14 @@ textarea { resize:none; }
   justify-content:center;
 }
 
-form > fieldset {border:none;}
+form > fieldset {
+  border:none;
+  display:flex;
+  flex:1;
+  height:100%;
+  flex-direction:column;
+  align-items:space-between;
+}
 
 .FreelancerTable__FreelancerColumnDescription {
   display:flex;
@@ -406,10 +458,7 @@ form > fieldset {border:none;}
 
 .BlogEntryCard:nth-child(2n + 1),
 .FreelancerTable__Freelancer:nth-child(2n + 1) {
-  background-color:${color(MATERIAL_GREY)
-    .fade(0.6)
-    .hsl()
-    .string()};
+  background-color:${MATERIAL_GREY_HEAVY_FADE};
 }
 
 .BlogEntryCard {

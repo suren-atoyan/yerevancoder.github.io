@@ -49,12 +49,12 @@ export default class SignUpForm extends React.Component {
     const top_message = error ? (
       <pre className={'AuthingErrorMessage'}>{error.message}</pre>
     ) : (
-      <p className={'AuthingWelcomeMessage'}>{signup_message}</p>
+      <span className={'AuthingWelcomeMessage'}>{signup_message}</span>
     );
     const extra_css_classname =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING
         ? 'ProfileContainer__SpinningCentered'
-        : '';
+        : 'ModalContainer__Form';
 
     if (error) {
       console.log(this.state);
@@ -67,43 +67,51 @@ export default class SignUpForm extends React.Component {
         </div>
       ) : (
         <fieldset>
-          {top_message}
-          <WithEffectInput
-            box_name={FANCY_INPUT_BOXES.SIGNUP_USERNAME}
-            query_field={() => this.state.username}
-            on_change={event => this.setState(updateByPropertyName('username', event.target.value))}
-            input_type={'text'}
-            label={'Full Name'}
-          />
-          <WithEffectInput
-            box_name={FANCY_INPUT_BOXES.SIGNUP_EMAIL}
-            query_field={() => this.state.email}
-            on_change={event => this.setState(updateByPropertyName('email', event.target.value))}
-            input_type={'email'}
-            label={'Email Address'}
-          />
-          <WithEffectInput
-            box_name={FANCY_INPUT_BOXES.SIGNUP_PASSWORD_ONE}
-            query_field={() => password_one}
-            on_change={event =>
-              this.setState(updateByPropertyName('password_one', event.target.value))
-            }
-            input_type={'password'}
-            label={'Password'}
-          />
-          <WithEffectInput
-            box_name={FANCY_INPUT_BOXES.SIGNUP_PASSWORD_TWO}
-            query_field={() => password_two}
-            on_change={event =>
-              this.setState(updateByPropertyName('password_two', event.target.value))
-            }
-            input_type={'password'}
-            label={'Confirm Password'}
-          />
-          {SPACER_10_H}
-          {SPACER_10_H}
-          {SPACER_10_H}
-          <SubmitInput disabled={isInvalid} value={'Create Account'} />
+          <div className={'PlainFlexColumn FullHeight FlexSpaceAround'}>
+            <section className={'PlainFlexColumn FormTopEntry'}>
+              {top_message}
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.SIGNUP_USERNAME}
+                query_field={() => this.state.username}
+                on_change={event =>
+                  this.setState(updateByPropertyName('username', event.target.value))
+                }
+                input_type={'text'}
+                label={'Full Name'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.SIGNUP_EMAIL}
+                query_field={() => this.state.email}
+                on_change={event =>
+                  this.setState(updateByPropertyName('email', event.target.value))
+                }
+                input_type={'email'}
+                label={'Email Address'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.SIGNUP_PASSWORD_ONE}
+                query_field={() => password_one}
+                on_change={event =>
+                  this.setState(updateByPropertyName('password_one', event.target.value))
+                }
+                input_type={'password'}
+                label={'Password'}
+              />
+              <WithEffectInput
+                box_name={FANCY_INPUT_BOXES.SIGNUP_PASSWORD_TWO}
+                query_field={() => password_two}
+                on_change={event =>
+                  this.setState(updateByPropertyName('password_two', event.target.value))
+                }
+                input_type={'password'}
+                label={'Confirm Password'}
+              />
+              {SPACER_10_H}
+              {SPACER_10_H}
+              {SPACER_10_H}
+            </section>
+            <SubmitInput disabled={isInvalid} value={'Create Account'} />
+          </div>
         </fieldset>
       );
     return (

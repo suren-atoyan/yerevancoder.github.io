@@ -40,7 +40,7 @@ const PAGE_CONTENT = { FREELANCER_TABLE: 'freelancer-table', NEW_FREELANCER: 'ne
 export default class AvailableForWorkPage extends React.Component {
   state = {
     modal_show: true,
-    modal_content: MODAL_CONTENT.SIGNUP_VIEW,
+    modal_content: MODAL_CONTENT.SIGNIN_VIEW,
     page_content: PAGE_CONTENT.FREELANCER_TABLE,
     freelancers: [],
     self_freelance_posting: null,
