@@ -36,7 +36,7 @@ export default class NewFreelancerEntry extends React.Component {
     // } else {
 
     submit_new_freelancer_post(useful_data)
-      .then(reply => this.setState(() => ({ ...INIT_STATE })))
+      .then(() => this.setState(() => ({ ...INIT_STATE })))
       .catch(error => this.setState(updateByPropertyName('error', error.message)))
       .then(freelancer_post_did_finish);
     // }

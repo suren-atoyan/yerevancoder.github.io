@@ -8,12 +8,8 @@ import Profile from '../components/profile';
 import SigninBar from '../components/signin-bar';
 import NewFreelancer from '../components/new-freelancer';
 import FreelancerTable from '../components/freelancer-table';
-import { MODAL_TRANSITION } from '../utils/constants';
-import { freelancers_posts_ref } from '../utils/db';
-
-const f = () => {
-  console.log('Hello world');
-};
+import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT } from '../utils/constants';
+import { freelancers_posts_ref, db, firebase } from '../utils/db';
 
 const ADD_YOURSELF = 'Add yourself';
 
@@ -42,6 +38,7 @@ export default class AvailableForWorkPage extends React.Component {
     modal_content: MODAL_CONTENT.SIGNIN_VIEW,
     page_content: PAGE_CONTENT.FREELANCER_TABLE,
     freelancers: [],
+    self_freelance_posting: null,
   };
 
   static contextTypes = {
@@ -51,9 +48,7 @@ export default class AvailableForWorkPage extends React.Component {
     submit_new_freelancer_post: PropTypes.func,
   };
 
-  query_data = () => {
-    return freelancers_posts_ref.once('value').then(snap_shot => snap_shot.val());
-  };
+  query_data = () => freelancers_posts_ref.once('value').then(snap_shot => snap_shot.val());
 
   componentDidMount() {
     this.query_data().then(rows =>
@@ -65,7 +60,21 @@ export default class AvailableForWorkPage extends React.Component {
 
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
-  user_did_sign_in = () => this.setState(() => ({ modal_show: false }));
+  query_my_freelance_submission = () => {
+    const current_user = firebase.auth().currentUser;
+    return db
+      .ref(`users/${current_user.uid}/my-freelance-submission`)
+      .once('value')
+      .then(snapshot => snapshot.val());
+  };
+
+  user_did_sign_in = () => {
+    this.query_my_freelance_submission()
+      .then(self_freelance_posting =>
+        this.setState(() => ({ modal_show: false, self_freelance_posting }))
+      )
+      .catch(error => console.log(error));
+  };
 
   modal_content = () => {
     switch (this.state.modal_content) {
@@ -78,7 +87,14 @@ export default class AvailableForWorkPage extends React.Component {
           />
         );
       case MODAL_CONTENT.PROFILE_VIEW:
-        return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
+        console.log(this.state);
+        return (
+          <Profile
+            profile_content={MODAL_PROFILE_CONTENT.FREELANCER_POSTING}
+            self_freelance_posting={this.state.self_freelance_posting}
+            force_query={this.query_data}
+          />
+        );
       case MODAL_CONTENT.SIGNUP_VIEW:
         return <Signup user_did_sign_in={this.user_did_sign_in} />;
       default:
@@ -88,10 +104,13 @@ export default class AvailableForWorkPage extends React.Component {
 
   freelancer_post_did_finish = () => {
     this.query_data().then(rows =>
-      this.setState(() => ({
-        page_content: PAGE_CONTENT.FREELANCER_TABLE,
-        freelancers: rows ? Object.values(rows) : [],
-      }))
+      this.query_my_freelance_submission().then(self_freelance_posting =>
+        this.setState(() => ({
+          self_freelance_posting,
+          page_content: PAGE_CONTENT.FREELANCER_TABLE,
+          freelancers: rows ? Object.values(rows) : [],
+        }))
+      )
     );
   };
 
@@ -126,6 +145,10 @@ export default class AvailableForWorkPage extends React.Component {
   show_make_new_freelancer_post = () =>
     this.setState(() => ({ page_content: PAGE_CONTENT.NEW_FREELANCER }));
 
+  show_my_posting = () => {
+    this.setState(() => ({ modal_show: true, modal_content: MODAL_CONTENT.PROFILE_VIEW }));
+  };
+
   render() {
     const { authenticated_user, sign_user_out } = this.context;
     return (
@@ -147,7 +170,7 @@ export default class AvailableForWorkPage extends React.Component {
             signin_handler={this.signin_handler}
             signup_handler={this.signup_handler}
             signout_handler={sign_user_out}
-            signed_in_handler={f}
+            signed_in_handler={this.show_my_posting}
             is_signed_in={authenticated_user !== null}
             when_active_name={authenticated_user ? authenticated_user.email : ''}
             custom_input_handler_signedin={this.show_make_new_freelancer_post}

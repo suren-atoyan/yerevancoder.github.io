@@ -4,7 +4,7 @@ import { Container } from 'react-responsive-grid';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { auth, freelancers_posts_ref } from '../utils/db';
+import { auth, freelancers_posts_ref, db } from '../utils/db';
 import { rhythm, scale } from '../utils/typography';
 import { SESSION_USER, global_styles, ROUTES } from '../utils/constants';
 
@@ -104,7 +104,11 @@ export default class ApplicationRoot extends React.Component {
         auth.signOut().then(() => {
           this.setState(() => ({ ...INIT_STATE }));
         }),
-      submit_new_freelancer_post: data => freelancers_posts_ref.push(data),
+      submit_new_freelancer_post: data =>
+        freelancers_posts_ref.push(data).then(reply => {
+          const { uid } = self.state.authenticated_user;
+          return db.ref(`users/${uid}/my-freelance-submission`).set(data);
+        }),
     };
   }
 

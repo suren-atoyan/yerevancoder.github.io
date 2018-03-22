@@ -8,6 +8,11 @@ export const ROUTES = {
   AVAILABLE_FOR_WORK: '/available-for-work',
 };
 
+export const MODAL_PROFILE_CONTENT = {
+  HIRING_BOARD_LISTINGS: 'hiring-board-listings',
+  FREELANCER_POSTING: 'freelancer-posting',
+};
+
 export const ROW = { display: 'flex', justifyContent: 'space-between' };
 
 export const TEXT_S = { fontFamily: 'Montserrat, sans-serif' };

@@ -3,7 +3,7 @@ import Spinner from 'react-spinner';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 
-import { TRIPLE_COLOR_TOP_BORDER, TEXT_S } from '../utils/constants';
+import { TRIPLE_COLOR_TOP_BORDER, TEXT_S, MODAL_PROFILE_CONTENT } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 import { firebase, posts_ref, db } from '../utils/db';
 
@@ -41,6 +41,18 @@ const flexed_column = {
 const flexed_with_between = { display: 'flex' };
 
 const obj_to_array = obj => Object.keys(obj).map(key => ({ ...obj[key], users_post_key: key }));
+
+const FreelanceProfileSubmission = ({ self_freelance_posting }) => {
+  console.log(self_freelance_posting);
+
+  return self_freelance_posting !== null ? (
+    <div>
+      <p>{JSON.stringify(self_freelance_posting, null, 2)}</p>
+    </div>
+  ) : (
+    <p>You haven't posted yet</p>
+  );
+};
 
 const PostingRecord = ({ record, delete_record }) => {
   const {
@@ -135,22 +147,48 @@ export default class ProfileControl extends React.Component {
   }
 
   make_profile_view() {
+    const { self_freelance_posting } = this.props;
+    console.log({ self_freelance_posting });
     const profile_made_on =
       this.state.current_user !== null
         ? format(this.state.current_user.metadata.creationTime, 'DD/MMM/YYYY/')
         : '';
     const account_name =
       this.context.authenticated_user !== null ? this.context.authenticated_user.email_account : '';
-    const content =
-      this.state.data.length !== 0
-        ? this.state.data.map(job => (
-            <PostingRecord
-              delete_record={this.delete_job_posting.bind(this, job.post_key, job.users_post_key)}
-              key={job.post_key}
-              record={job}
-            />
-          ))
-        : no_postings_yet;
+
+    let content = null;
+
+    switch (this.props.profile_content) {
+      case MODAL_PROFILE_CONTENT.FREELANCER_POSTING:
+        content = <FreelanceProfileSubmission self_freelance_posting={self_freelance_posting} />;
+        break;
+      case MODAL_PROFILE_CONTENT.HIRING_BOARD_LISTINGS:
+        content =
+          this.state.data.length !== 0 ? (
+            <div>
+              <p style={{ textAlign: 'center', fontWeight: 700, ...paddingVertical }}>
+                All My Job Postings
+              </p>
+              {this.state.data.map(job => (
+                <PostingRecord
+                  delete_record={this.delete_job_posting.bind(
+                    this,
+                    job.post_key,
+                    job.users_post_key
+                  )}
+                  key={job.post_key}
+                  record={job}
+                />
+              ))}
+            </div>
+          ) : (
+            no_postings_yet
+          );
+        break;
+      default:
+        console.warn(`this is wrong`);
+    }
+
     return (
       <div>
         <div className={'Profile__User'}>
@@ -163,9 +201,6 @@ export default class ProfileControl extends React.Component {
             <span>{profile_made_on}</span>
           </div>
         </div>
-        <p style={{ textAlign: 'center', fontWeight: 700, ...paddingVertical }}>
-          All My Job Postings
-        </p>
         <div className={'Profile__PostingsTable'}>{content}</div>
       </div>
     );
