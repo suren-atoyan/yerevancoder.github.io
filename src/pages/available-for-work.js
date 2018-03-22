@@ -2,9 +2,9 @@ import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
-import Signin from '../components/signin';
-import Signup from '../components/signup';
-import Profile from '../components/profile';
+import Signin from '../components/modal-content/signin';
+import Signup from '../components/modal-content/signup';
+import ProfileControl from '../components/modal-content/profile-control';
 import SigninBar from '../components/signin-bar';
 import NewFreelancer from '../components/new-freelancer';
 import FreelancerTable from '../components/freelancer-table';
@@ -38,8 +38,8 @@ const PAGE_CONTENT = { FREELANCER_TABLE: 'freelancer-table', NEW_FREELANCER: 'ne
 
 export default class AvailableForWorkPage extends React.Component {
   state = {
-    modal_show: false,
-    modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    modal_show: true,
+    modal_content: MODAL_CONTENT.SIGNUP_VIEW,
     page_content: PAGE_CONTENT.FREELANCER_TABLE,
     freelancers: [],
     self_freelance_posting: null,
@@ -95,29 +95,35 @@ export default class AvailableForWorkPage extends React.Component {
   };
 
   modal_content = () => {
+    let content = null;
     switch (this.state.modal_content) {
       case MODAL_CONTENT.SIGNIN_VIEW:
-        return (
+        content = (
           <Signin
             login_message={'Sign in'}
             sign_user_in={this.context.sign_user_in}
             user_did_sign_in={this.user_did_sign_in}
           />
         );
+        break;
       case MODAL_CONTENT.PROFILE_VIEW:
-        return (
-          <Profile
+        content = (
+          <ProfileControl
             profile_content={MODAL_PROFILE_CONTENT.FREELANCER_POSTING}
             self_freelance_posting={this.state.self_freelance_posting}
             delete_my_freelance_posting={this.delete_my_freelance_posting}
             force_query={this.query_data}
           />
         );
+        break;
       case MODAL_CONTENT.SIGNUP_VIEW:
-        return <Signup user_did_sign_in={this.user_did_sign_in} />;
+        content = <Signup user_did_sign_in={this.user_did_sign_in} />;
+        break;
       default:
-        return null;
+        throw new Error(`Unknown modal content requested: ${this.state.modal_content}`);
     }
+    // content = null;
+    return <div className={'ModalContentWrapper'}>{content}</div>;
   };
 
   freelancer_post_did_finish = () => {

@@ -3,9 +3,9 @@ import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 
 import FreelanceProfileSubmission from './freelance-profile-view';
-import { TRIPLE_COLOR_TOP_BORDER, TEXT_S, MODAL_PROFILE_CONTENT } from '../utils/constants';
-import { updateByPropertyName } from '../utils/funcs';
-import { firebase, posts_ref, db } from '../utils/db';
+import { TRIPLE_COLOR_TOP_BORDER, TEXT_S, MODAL_PROFILE_CONTENT } from '../../utils/constants';
+import { updateByPropertyName } from '../../utils/funcs';
+import { firebase, posts_ref, db } from '../../utils/db';
 
 const paddingHorizontal = { paddingLeft: '5px', paddingRight: '5px' };
 

@@ -7,9 +7,9 @@ import { withRouter } from 'react-router-dom';
 
 import { rhythm } from '../utils/typography';
 import JobsTable from '../components/jobs-table';
-import Signin from '../components/signin';
-import Signup from '../components/signup';
-import Profile from '../components/profile';
+import Signin from '../components/modal-content/signin';
+import Signup from '../components/modal-content/signup';
+import Profile from '../components/modal-content/profile-control';
 import { posts_ref } from '../utils/db';
 import { ROW, ROUTES, SPACER_30_H, MODAL_TRANSITION, ARMENIA_COLORS } from '../utils/constants';
 

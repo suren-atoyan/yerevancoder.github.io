@@ -91,6 +91,11 @@ textarea { resize:none; }
   margin-right:2rem;
 }
 
+.ModalContentWrapper {
+  background-color:brown;
+
+}
+
 .ReactModal__Content--after-open.Profile__Container.ProfileContainer__SpinningCentered {
   height:100%;
   justify-content:center;
@@ -420,7 +425,6 @@ form > fieldset {border:none;}
 }
 
 .Profile__Container.ReactModal__Content--after-open {
-  width:100%;
   padding:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
@@ -489,7 +493,6 @@ const MODAL_CSS = `
 
 .ReactModal__Content--after-open {
   opacity: 1;
-  min-height:50%;
   transition: opacity ${MODAL_TRANSITION}ms;
 }
 
@@ -558,7 +561,7 @@ const MEDIA_QUERIES_CSS = `
   }
 
   .ReactModal__Content--after-open.Profile__Container {
-    width:600px;
+
   }
 
   .loginActionRow__GetHiredText {
@@ -590,7 +593,7 @@ const MEDIA_QUERIES_CSS = `
     font-size:18px;
   }
   .ReactModal__Content--after-open {
-    width:450px;
+
   }
 
   .InformationBar {
@@ -598,7 +601,7 @@ const MEDIA_QUERIES_CSS = `
   }
 
   .Profile__Container.ReactModal__Content--after-open {
-    width:100%;
+
   }
 
 }
@@ -661,7 +664,7 @@ const MEDIA_QUERIES_CSS = `
     font-size:20px;
   }
   .ReactModal__Content--after-open {
-    width:90%;
+
   }
   .loginActionRow__GetHiredText {
     font-size:39px;
