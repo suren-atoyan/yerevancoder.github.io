@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { auth, freelancers_posts_ref, db } from '../utils/db';
+import { auth, freelancers_posts_ref, db, firebase } from '../utils/db';
 import FixedSidebar from '../components/fixed-sidebar';
 import { SESSION_USER, global_styles, ROUTES } from '../utils/constants';
 import { query_my_freelance_submission } from '../utils/funcs';
@@ -24,6 +24,7 @@ export default class ApplicationRoot extends React.Component {
   static childContextTypes = {
     authenticated_user: PropTypes.object,
     sign_user_in: PropTypes.func,
+    sign_user_up: PropTypes.func,
     sign_user_out: PropTypes.func,
     submit_new_freelancer_post: PropTypes.func,
   };
@@ -47,6 +48,29 @@ export default class ApplicationRoot extends React.Component {
     const self = this;
     return {
       authenticated_user: self.state.authenticated_user,
+      sign_user_up: (given_username, given_email, given_password, user_receives_blog_newsletter) =>
+        firebase
+          .auth()
+          .createUserAndRetrieveDataWithEmailAndPassword(given_email, given_password)
+          .catch(error => {
+            console.log({ error });
+            throw new Error(`Could not sign you up because: ${error.message}`);
+          })
+          .then(reply => {
+            console.log({ reply });
+            if (reply && reply.code && reply.message) {
+              throw new Error(`Cannot make account: ${reply.message}`);
+            }
+            return db
+              .ref(`signed-up-users/${reply.uid}`)
+              .set({ user_receives_blog_newsletter, given_email, given_username });
+          })
+          .then(() => {
+            const current_user = firebase.auth().currentUser;
+            return current_user.updateProfile({
+              displayName: given_username,
+            });
+          }),
       sign_user_in: (email, password, remember_me_checked) =>
         auth
           .signInWithEmailAndPassword(email, password)

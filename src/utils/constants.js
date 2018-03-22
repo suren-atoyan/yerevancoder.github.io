@@ -37,8 +37,6 @@ export const SPACER_20_W = <div style={{ width: '20px', height: '100%' }} />;
 
 export const MODAL_TRANSITION = 500;
 
-export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
-
 export const SESSION_USER = 'yerevan-coder-authed-user';
 
 const SIDEBAR_FIXED_WIDTH = 250;

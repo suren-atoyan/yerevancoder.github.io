@@ -95,6 +95,10 @@ export default class AvailableForWorkPage extends React.Component {
       .catch(error => console.log(error));
   };
 
+  user_did_sign_up = () => {
+    this.setState(() => ({ modal_show: false }));
+  };
+
   modal_content = () => {
     let content = null;
     switch (this.state.modal_content) {
@@ -118,7 +122,7 @@ export default class AvailableForWorkPage extends React.Component {
         );
         break;
       case MODAL_CONTENT.SIGNUP_VIEW:
-        content = <Signup user_did_sign_in={this.user_did_sign_in} />;
+        content = <Signup user_did_sign_up={this.user_did_sign_up} />;
         break;
       default:
         throw new Error(`Unknown modal content requested: ${this.state.modal_content}`);
