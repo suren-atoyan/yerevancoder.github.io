@@ -49,11 +49,6 @@ ${ARMENIA_COLORS.orange} 66%) 5`,
   borderRightWidth: 0,
 };
 
-export const FORM_BASE_STYLE = {
-  ...NO_MARGIN_BOTTOM,
-  ...TRIPLE_COLOR_TOP_BORDER,
-};
-
 const SIDEBAR_FIXED_WIDTH = 250;
 
 const BUSINESS_CONTENT_PADDING = 30;
@@ -206,7 +201,8 @@ form > fieldset {border:none;}
   padding-bottom:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
-.loginActionRow__RowContainer > input, .NewFreelancerFormContainer__SubmitButton {
+.loginActionRow__RowContainer > input,
+                                .NewFreelancerFormContainer__SubmitButton {
   position: relative;
   font-family: Montserrat, sans-serif;
   display: flex;
@@ -470,7 +466,6 @@ const MEDIA_QUERIES_CSS = `
 
 @media (min-width: 650px) and (orientation: landscape) {
   .NewsPageContainer {
-    background-color:red;
     height:100vh;
   }
   .NewsPageContainer__FixedSubmitFooter {
@@ -524,10 +519,6 @@ const MEDIA_QUERIES_CSS = `
     font-size:32px;
   }
 
-  .ReactModal__Content--after-open.SigninForm__Container {
-    width:375px;
-  }
-
   .ReactModal__Content--after-open.Profile__Container {
     width:600px;
   }
@@ -547,7 +538,7 @@ const MEDIA_QUERIES_CSS = `
 
 }
 
-@media (max-width: 850px) {
+@media (max-width: 1200px) {
   .FreelancerTable__FlexRow {
     flex-direction:column;
     padding-left:20px;
@@ -557,6 +548,19 @@ const MEDIA_QUERIES_CSS = `
     flex-direction:column;
     text-align:center;
   }
+
+  .ReactModal__Content--after-open {
+    width:450px;
+  }
+
+  .InformationBar {
+    z-index:-1;
+  }
+
+  .Profile__Container.ReactModal__Content--after-open {
+    width:100%;
+  }
+
 }
 
 @media (max-width: 649px) {
@@ -647,11 +651,15 @@ const LARGER_CHECKBOX_CSS = `
 `;
 
 export const FANCY_INPUT_BOXES = {
+  // Submission for freelance position
   NAME: 'name-box',
   GITHUB: 'github-box',
   LINKEDIN: 'linkedin-box',
   RESUME_OR_PERSONAL: 'resume-or-personal-box',
   KNOWN_TECHS: 'known-techs-box',
+  // Submission for signin
+  SIGNIN_EMAIL: 'signin-email',
+  SIGNIN_PASSWORD: 'signin-password',
 };
 
 const FANCY_INPUT_THEME_COLOR = color(MATERIAL_BLUE)
@@ -736,7 +744,7 @@ const FANCY_INPUT_BOX = `
   width:100%;
 }
 
-.InputEffect > input[type="text"] {
+.InputEffect > input[type="text"],input[type="email"], input[type="password"]  {
   font-family: Merriweather, sans-serif;
   color: #333;
   width: 100%;
@@ -750,6 +758,8 @@ ${create_effects_css(FANCY_INPUT_BOXES.GITHUB)}
 ${create_effects_css(FANCY_INPUT_BOXES.LINKEDIN)}
 ${create_effects_css(FANCY_INPUT_BOXES.RESUME_OR_PERSONAL)}
 ${create_effects_css(FANCY_INPUT_BOXES.KNOWN_TECHS)}
+${create_effects_css(FANCY_INPUT_BOXES.SIGNIN_EMAIL)}
+${create_effects_css(FANCY_INPUT_BOXES.SIGNIN_PASSWORD)}
 `;
 
 export const global_styles = (

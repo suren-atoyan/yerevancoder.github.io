@@ -3,31 +3,17 @@ import { withRouter } from 'react-router-dom';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { DISPLAY_FLEX_S, TEXT_S, NO_MARGIN_BOTTOM, FORM_BASE_STYLE } from '../utils/constants';
-import {
-  LOGIN_ENTRY_BOX_PROMPT_S,
-  WIDTH_WITH_MARGIN,
-  BAR,
-  SPACE,
-  LOGIN_ENTRY_BOX_FIELDSET_S,
-} from './common-styles';
+import { TRIPLE_COLOR_TOP_BORDER, FANCY_INPUT_BOXES } from '../utils/constants';
+import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR, SPACE } from './common-styles';
+
+import WithEffectInput from './with-effect-input';
 
 // const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
 const INITIAL_STATE = {
-  email: 'edgar.factorial@gmail.com',
+  email: '',
   password: '',
   error: null,
   remember_me_checked: false,
-};
-
-const login_entry_box_forgot_password = {
-  ...NO_MARGIN_BOTTOM,
-  color: '#3c9ac9',
-  fontWeight: 700,
-};
-
-const form_s = {
-  ...FORM_BASE_STYLE,
 };
 
 const login_entry_box_signin_s = { ...WIDTH_WITH_MARGIN };
@@ -69,49 +55,44 @@ export default withRouter(
               Remember me
             </label>
           </div>
-          <p style={login_entry_box_forgot_password}>Forgot Password</p>
+          <p>Forgot Password</p>
         </div>
       );
     }
     render() {
       const { email, password, error } = this.state;
-      const isInvalid = password === '' || email === '';
+      const is_invalid = password === '' || email === '';
       const top_message = (
         <p style={LOGIN_ENTRY_BOX_PROMPT_S}>{error ? error.message : this.props.login_message}</p>
       );
-      const email_update = event =>
-        this.setState(updateByPropertyName('email', event.target.value));
-      const password_update = event =>
-        this.setState(updateByPropertyName('password', event.target.value));
 
       return (
         <form
           onSubmit={this.onSubmit}
-          style={form_s}
-          className={'ReactModal__Content--after-open SigninForm__Container'}>
-          <fieldset style={LOGIN_ENTRY_BOX_FIELDSET_S}>
+          style={TRIPLE_COLOR_TOP_BORDER}
+          className={'ReactModal__Content--after-open Profile__Container'}>
+          <fieldset>
             {top_message}
             {BAR}
             {SPACE}
-            <input
-              value={email}
-              onChange={email_update}
-              type={'text'}
-              placeholder={'Email Address'}
+            <WithEffectInput
+              box_name={FANCY_INPUT_BOXES.SIGNIN_EMAIL}
+              query_field={() => this.state.email}
+              on_change={event => this.setState(updateByPropertyName('email', event.target.value))}
+              label={'Email'}
+              input_type={'email'}
             />
-            <input
-              value={password}
-              onChange={password_update}
-              type="password"
-              placeholder="Password"
+            <WithEffectInput
+              box_name={FANCY_INPUT_BOXES.SIGNIN_PASSWORD}
+              query_field={() => this.state.password}
+              on_change={event =>
+                this.setState(updateByPropertyName('password', event.target.value))
+              }
+              label={'Password'}
+              input_type={'password'}
             />
             {this.make_remember_forget_row()}
-            <input
-              style={login_entry_box_signin_s}
-              value={'Sign In'}
-              disabled={isInvalid}
-              type="submit"
-            />
+            <input value={'Sign In'} disabled={is_invalid} type={'submit'} />
           </fieldset>
         </form>
       );

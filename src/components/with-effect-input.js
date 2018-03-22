@@ -19,7 +19,7 @@ export default class WithEffectInput extends React.Component {
           onBlur={this.on_blur}
           onChange={on_change}
           className={`effect-${box_name} ${this.state.content_classname}`}
-          type={'text'}
+          type={input_type}
         />
         <label className={'InputEffect__Label'}>{label}</label>
         <span className="focus-border">
