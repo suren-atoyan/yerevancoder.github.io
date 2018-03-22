@@ -386,7 +386,8 @@ form > fieldset {border:none;}
   font-family: Montserrat, sans-serif;
 }
 
-.Profile__Container {
+.Profile__Container.ReactModal__Content--after-open {
+  width:100%;
   padding:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
@@ -559,6 +560,10 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (max-width: 649px) {
+
+  .FreelanceProfileSubmission__MonoText {
+    font-size:16px;
+  }
 
   .loginActionRow__RowContainer {
     display:flex;
