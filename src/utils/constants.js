@@ -71,6 +71,36 @@ body {
 
 textarea { resize:none; }
 
+.FreelanceProfileSubmission {
+  justify-content:space-around;
+  height:100%;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+}
+
+.FreelanceProfileSubmission__PostingBanner {
+  font-size:25px;
+  text-shadow: 2px 2px 3px gold;
+  color:${MATERIAL_BLUE};
+  font-weight:600;
+
+}
+
+.FreelanceProfileSubmission__MonoText {
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #666666;
+  font-size:25px;
+  margin:0;
+  width:100%;
+  padding:15px;
+  font-family: Mono;
+  display:flex;
+  justify-content:center;
+}
+
 .PlainFlexColumn {
   display:flex;
   flex-direction:column;
@@ -151,8 +181,6 @@ form > fieldset {border:none;}
   margin-top:0;
 }
 
-textarea {resize:none;}
-
 .loginActionRow__CustomInputField--UserSignedIn,
 .loginActionRow__CustomInputField--UserSignedOut {
   background-color:transparent;
@@ -174,8 +202,8 @@ textarea {resize:none;}
 }
 
 .AvailableForWorkContainer__NavTopRow {
-  padding-top:15px;
-  padding-bottom:15px;
+  padding-top:${BUSINESS_CONTENT_PADDING / 2}px;
+  padding-bottom:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
 .loginActionRow__RowContainer > input, .NewFreelancerFormContainer__SubmitButton {
@@ -323,12 +351,14 @@ textarea {resize:none;}
   display:flex;
   flex-direction:column;
 }
+
 .InformationBar > * {
   font-family: Montserrat, sans-serif;
   margin:0;
   color:${MATERIAL_BLUE};
   font-weight:600;
 }
+
 .Headroom__Container {
   padding-left: 1%;
   padding-right: 1%;
@@ -357,7 +387,7 @@ textarea {resize:none;}
 }
 
 .Profile__Container {
-  padding:15px;
+  padding:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
 .Profile__User {
@@ -369,6 +399,8 @@ textarea {resize:none;}
 .Profile__PostingsTable {
   height:400px;
   padding-top:10px;
+  padding-left:${BUSINESS_CONTENT_PADDING / 2}px;
+  padding-right:${BUSINESS_CONTENT_PADDING / 2}px;
   display:flex;
   flex-direction:column;
   background-color: hsl(220, 12%, 95%);
@@ -545,10 +577,12 @@ const MEDIA_QUERIES_CSS = `
     justify-content:space-between;
     margin:0;
   }
+
   .InformationBar > *:not(h3) {
     font-size:11px;
     padding-bottom:10px;
   }
+
   .InformationBar__SiteBannerName {
     font-weight:700;
     padding-bottom:10px;

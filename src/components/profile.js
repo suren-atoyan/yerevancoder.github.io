@@ -42,12 +42,19 @@ const flexed_with_between = { display: 'flex' };
 
 const obj_to_array = obj => Object.keys(obj).map(key => ({ ...obj[key], users_post_key: key }));
 
-const FreelanceProfileSubmission = ({ self_freelance_posting }) => {
-  console.log(self_freelance_posting);
-
+const FreelanceProfileSubmission = ({ self_freelance_posting, delete_posting_handler }) => {
   return self_freelance_posting !== null ? (
-    <div>
-      <p>{JSON.stringify(self_freelance_posting, null, 2)}</p>
+    <div className={'FreelanceProfileSubmission'}>
+      <span className={'FreelanceProfileSubmission__PostingBanner'}>My Freelancer Submission</span>
+      <pre className={'FreelanceProfileSubmission__MonoText'}>
+        {JSON.stringify(self_freelance_posting, null, 4)}
+      </pre>
+      <input
+        className={'NewFreelancerFormContainer__SubmitButton'}
+        value={'Delete'}
+        onClick={delete_posting_handler}
+        type={'button'}
+      />
     </div>
   ) : (
     <p>You haven't posted yet</p>
@@ -160,7 +167,12 @@ export default class ProfileControl extends React.Component {
 
     switch (this.props.profile_content) {
       case MODAL_PROFILE_CONTENT.FREELANCER_POSTING:
-        content = <FreelanceProfileSubmission self_freelance_posting={self_freelance_posting} />;
+        content = (
+          <FreelanceProfileSubmission
+            delete_posting_handler={null}
+            self_freelance_posting={self_freelance_posting}
+          />
+        );
         break;
       case MODAL_PROFILE_CONTENT.HIRING_BOARD_LISTINGS:
         content =
