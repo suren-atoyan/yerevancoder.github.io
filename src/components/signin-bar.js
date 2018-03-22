@@ -12,19 +12,23 @@ export default ({
   custom_input_signed_in_name,
   custom_input_signed_out_name,
 }) => {
-  const custom_input = (
-    <input
-      type={'button'}
-      value={is_signed_in ? custom_input_signed_in_name : custom_input_signed_out_name}
-      onClick={is_signed_in ? custom_input_handler_signedin : custom_input_handler_signedout}
-      className={
-        is_signed_in
-          ? 'loginActionRow__CustomInputField--UserSignedIn'
-          : 'loginActionRow__CustomInputField--UserSignedOut'
-      }
-      disabled={!is_signed_in}
-    />
-  );
+  const custom_input =
+    !custom_input_handler_signedin ||
+    !custom_input_handler_signedout ||
+    !custom_input_signed_in_name ||
+    !custom_input_signed_out_name ? null : (
+      <input
+        type={'button'}
+        value={is_signed_in ? custom_input_signed_in_name : custom_input_signed_out_name}
+        onClick={is_signed_in ? custom_input_handler_signedin : custom_input_handler_signedout}
+        className={
+          is_signed_in
+            ? 'loginActionRow__CustomInputField--UserSignedIn'
+            : 'loginActionRow__CustomInputField--UserSignedOut'
+        }
+        disabled={!is_signed_in}
+      />
+    );
   const signin_or_signout = (
     <input
       className={

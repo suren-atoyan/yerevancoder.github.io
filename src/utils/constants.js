@@ -58,6 +58,11 @@ body {
 
 textarea { resize:none; }
 
+.BlogIndex__TopCredentialBar {
+  display:flex;
+  justify-content:flex-end;
+}
+
 .FreelanceProfileSubmission {
   justify-content:space-around;
   height:100%;
@@ -78,7 +83,12 @@ textarea { resize:none; }
 }
 
 .ModalContentWrapper {
-
+  min-width: 350px;
+  min-height: 400px;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  justify-content:center;
 }
 
 .ReactModal__Content--after-open.Profile__Container.ProfileContainer__SpinningCentered {

@@ -46,9 +46,7 @@ export default withRouter(
               onChange={remember_me_update}
               value={this.state.remember_me_checked}
             />
-            <label style={{ color: '#7d8487', paddingLeft: '10px', fontWeight: 700 }}>
-              Remember me
-            </label>
+            <label>Remember me</label>
           </div>
           <p>Forgot Password</p>
         </div>
@@ -67,7 +65,7 @@ export default withRouter(
       const content =
         this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING ? (
           <div className={'Profile__Container__LoadingSpinner'}>
-            <Spinner fadeIn={'quarter'} name={'ball-pulse-rise'} />
+            <Spinner fadeIn={'quarter'} name={'ball-scale-ripple-multiple'} />
           </div>
         ) : (
           <fieldset>
