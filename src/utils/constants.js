@@ -155,6 +155,7 @@ textarea { resize:none; }
     .fade(0.4)
     .hsl()
     .string()};
+  justify-content:center;
 }
 
 form > fieldset {border:none;}
@@ -201,8 +202,7 @@ form > fieldset {border:none;}
   padding-bottom:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
-.loginActionRow__RowContainer > input,
-                                .NewFreelancerFormContainer__SubmitButton {
+.loginActionRow__RowContainer > input,.NewFreelancerFormContainer__SubmitButton {
   position: relative;
   font-family: Montserrat, sans-serif;
   display: flex;
@@ -548,7 +548,9 @@ const MEDIA_QUERIES_CSS = `
     flex-direction:column;
     text-align:center;
   }
-
+  .FreelanceProfileSubmission__MonoText {
+    font-size:18px;
+  }
   .ReactModal__Content--after-open {
     width:450px;
   }
