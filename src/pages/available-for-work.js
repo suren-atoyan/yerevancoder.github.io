@@ -25,6 +25,7 @@ const modal_s = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'none',
   },
 };
 

@@ -92,7 +92,6 @@ textarea { resize:none; }
 }
 
 .ModalContentWrapper {
-  background-color:brown;
 
 }
 
@@ -102,7 +101,6 @@ textarea { resize:none; }
   display:flex;
   align-items:center;
 }
-
 
 .FreelanceProfileSubmission__PostingBanner {
   font-size:25px;
@@ -703,6 +701,11 @@ export const FANCY_INPUT_BOXES = {
   // Submission for signin
   SIGNIN_EMAIL: 'signin-email',
   SIGNIN_PASSWORD: 'signin-password',
+  // Submission for signup
+  SIGNUP_USERNAME: 'signup-username',
+  SIGNUP_EMAIL: 'signup-email',
+  SIGNUP_PASSWORD_ONE: 'signup-password-one',
+  SIGNUP_PASSWORD_TWO: 'signup-password-two',
 };
 
 const FANCY_INPUT_THEME_COLOR = color(MATERIAL_BLUE)
@@ -803,6 +806,12 @@ ${create_effects_css(FANCY_INPUT_BOXES.RESUME_OR_PERSONAL)}
 ${create_effects_css(FANCY_INPUT_BOXES.KNOWN_TECHS)}
 ${create_effects_css(FANCY_INPUT_BOXES.SIGNIN_EMAIL)}
 ${create_effects_css(FANCY_INPUT_BOXES.SIGNIN_PASSWORD)}
+
+${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_USERNAME)}
+${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_EMAIL)}
+${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_PASSWORD_ONE)}
+${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_PASSWORD_TWO)}
+
 `;
 
 export const global_styles = (
