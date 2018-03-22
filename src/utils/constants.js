@@ -13,6 +13,12 @@ export const MODAL_PROFILE_CONTENT = {
   FREELANCER_POSTING: 'freelancer-posting',
 };
 
+export const LOADING_STATE = {
+  NOT_STARTED_YET: 'not-started-yet',
+  DID_LOAD: 'did-load',
+  CURRENTLY_LOADING: 'currently-loading',
+};
+
 export const ROW = { display: 'flex', justifyContent: 'space-between' };
 
 export const TEXT_S = { fontFamily: 'Montserrat, sans-serif' };
@@ -74,12 +80,30 @@ textarea { resize:none; }
   flex-direction:column;
 }
 
+.Profile__Container__LoadingSpinner {
+  padding-left:20px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-right:20px;
+  margin-left:2rem;
+  margin-right:2rem;
+}
+
+.ReactModal__Content--after-open.Profile__Container.ProfileContainer__SpinningCentered {
+  height:100%;
+  justify-content:center;
+  display:flex;
+  align-items:center;
+}
+
+
 .FreelanceProfileSubmission__PostingBanner {
   font-size:25px;
   text-shadow: 2px 2px 3px gold;
   color:${MATERIAL_BLUE};
   font-weight:600;
-
 }
 
 .FreelanceProfileSubmission__MonoText {
@@ -124,6 +148,12 @@ textarea { resize:none; }
 
 }
 
+.FreelancerTable__FreelancerName {
+  font-weight:700;
+  font-family: Montserrat, sans-serif;
+  font-size:42px;
+}
+
 .FreelancerTable__FlexRow {
   display:flex;
   flex:1;
@@ -134,11 +164,14 @@ textarea { resize:none; }
 
 .FreelancerTable__FlexColumn {
   display:flex;
+  width:100%;
+  font-family: Montserrat, sans-serif;
   flex-direction:column;
 }
 
 .FreelancerTable__FreelancerColumnDescription > textarea {
   width:100%;
+  font-family: Merriweather;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -181,6 +214,10 @@ form > fieldset {border:none;}
 .loginActionRow__CustomInputField--UserSignedOut {
   background-color:transparent;
   box-shadow:none !important;
+}
+
+.loginActionRow__RowContainer > input {
+  padding:7px 14px;
 }
 
 .loginActionRow__RowContainer {
@@ -452,6 +489,7 @@ const MODAL_CSS = `
 
 .ReactModal__Content--after-open {
   opacity: 1;
+  min-height:50%;
   transition: opacity ${MODAL_TRANSITION}ms;
 }
 

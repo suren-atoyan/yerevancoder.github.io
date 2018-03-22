@@ -1,5 +1,4 @@
 import React from 'react';
-import Spinner from 'react-spinner';
 import format from 'date-fns/format';
 import PropTypes from 'prop-types';
 

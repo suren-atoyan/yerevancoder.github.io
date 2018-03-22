@@ -26,6 +26,10 @@ export default class NewFreelancerEntry extends React.Component {
     e.preventDefault();
     const { submit_new_freelancer_post, freelancer_post_did_finish } = this.props;
     const { error, ...useful_data } = this.state;
+
+    for (const k of Object.keys(useful_data)) {
+      useful_data[k] = useful_data[k].trim();
+    }
     // let missing_field = null;
     // Object.keys(useful_data).forEach(k => {
     //   if (k === '') missing_field = k;

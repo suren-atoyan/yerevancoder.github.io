@@ -1,18 +1,19 @@
 import React from 'react';
+import Spinner from 'react-spinkit';
 import { withRouter } from 'react-router-dom';
 
 import { auth } from '../utils/db';
 import { updateByPropertyName } from '../utils/funcs';
-import { TRIPLE_COLOR_TOP_BORDER, FANCY_INPUT_BOXES } from '../utils/constants';
+import { TRIPLE_COLOR_TOP_BORDER, FANCY_INPUT_BOXES, LOADING_STATE } from '../utils/constants';
 import { LOGIN_ENTRY_BOX_PROMPT_S, WIDTH_WITH_MARGIN, BAR, SPACE } from './common-styles';
 
 import WithEffectInput from './with-effect-input';
 
-// const INITIAL_STATE = { email: '', password: '', error: null, remember_me_checked: false };
 const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
+  loading_state: LOADING_STATE.NOT_STARTED_YET,
   remember_me_checked: false,
 };
 
@@ -34,9 +35,14 @@ export default withRouter(
       const { email, password, remember_me_checked } = this.state;
       const { user_did_sign_in, sign_user_in } = this.props;
       event.preventDefault();
-      sign_user_in(email, password, remember_me_checked)
-        .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in))
-        .catch(error => this.setState(updateByPropertyName('error', error)));
+
+      this.setState(
+        () => ({ loading_state: LOADING_STATE.CURRENTLY_LOADING }),
+        () =>
+          sign_user_in(email, password, remember_me_checked)
+            .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in))
+            .catch(error => this.setState(updateByPropertyName('error', error)))
+      );
     };
 
     make_remember_forget_row() {
@@ -66,11 +72,17 @@ export default withRouter(
         <p style={LOGIN_ENTRY_BOX_PROMPT_S}>{error ? error.message : this.props.login_message}</p>
       );
 
-      return (
-        <form
-          onSubmit={this.onSubmit}
-          style={TRIPLE_COLOR_TOP_BORDER}
-          className={'ReactModal__Content--after-open Profile__Container'}>
+      const extra_css_classname =
+        this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING
+          ? 'ProfileContainer__SpinningCentered'
+          : '';
+
+      const content =
+        this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING ? (
+          <div className={'Profile__Container__LoadingSpinner'}>
+            <Spinner fadeIn={'quarter'} name={'ball-pulse-rise'} />
+          </div>
+        ) : (
           <fieldset>
             {top_message}
             {BAR}
@@ -94,6 +106,13 @@ export default withRouter(
             {this.make_remember_forget_row()}
             <input value={'Sign In'} disabled={is_invalid} type={'submit'} />
           </fieldset>
+        );
+      return (
+        <form
+          onSubmit={this.onSubmit}
+          style={TRIPLE_COLOR_TOP_BORDER}
+          className={`ReactModal__Content--after-open Profile__Container ${extra_css_classname}`}>
+          {content}
         </form>
       );
     }

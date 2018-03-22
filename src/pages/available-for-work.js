@@ -22,6 +22,9 @@ const modal_s = {
     bottom: 'auto',
     padding: 0,
     transform: 'translate(-50%, -50%)',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 };
 
@@ -74,6 +77,7 @@ export default class AvailableForWorkPage extends React.Component {
             this.setState(() => ({
               self_freelance_posting: null,
               modal_show: false,
+              page_content: PAGE_CONTENT.FREELANCER_TABLE,
               freelancers: rows ? Object.values(rows) : [],
             }))
           )
