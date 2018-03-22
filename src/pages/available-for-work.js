@@ -10,6 +10,7 @@ import NewFreelancer from '../components/new-freelancer';
 import FreelancerTable from '../components/freelancer-table';
 import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT } from '../utils/constants';
 import { freelancers_posts_ref, db, firebase } from '../utils/db';
+import { query_my_freelance_submission } from '../utils/funcs';
 
 const ADD_YOURSELF = 'Add yourself';
 
@@ -60,14 +61,6 @@ export default class AvailableForWorkPage extends React.Component {
 
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
-  query_my_freelance_submission = () => {
-    const current_user = firebase.auth().currentUser;
-    return db
-      .ref(`users/${current_user.uid}/my-freelance-submission`)
-      .once('value')
-      .then(snapshot => snapshot.val());
-  };
-
   delete_my_freelance_posting = () => {
     if (this.state.self_freelance_posting) {
       const { post_key } = this.state.self_freelance_posting;
@@ -90,7 +83,7 @@ export default class AvailableForWorkPage extends React.Component {
   };
 
   user_did_sign_in = () => {
-    this.query_my_freelance_submission()
+    query_my_freelance_submission()
       .then(self_freelance_posting =>
         this.setState(() => ({ modal_show: false, self_freelance_posting }))
       )
@@ -125,7 +118,7 @@ export default class AvailableForWorkPage extends React.Component {
 
   freelancer_post_did_finish = () => {
     this.query_data().then(rows =>
-      this.query_my_freelance_submission().then(self_freelance_posting =>
+      query_my_freelance_submission().then(self_freelance_posting =>
         this.setState(() => ({
           self_freelance_posting,
           page_content: PAGE_CONTENT.FREELANCER_TABLE,

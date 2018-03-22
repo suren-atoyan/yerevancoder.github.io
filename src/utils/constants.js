@@ -424,6 +424,13 @@ legend {
   font-weight:700;
 }
 
+.NewFreelancerFormContainer__GuidingLegend--Error {
+  color:red;
+}
+.NewFreelancerFormContainer__GuidingLegend--Success {
+
+}
+
 .loginActionRow__GetHiredText {
   margin-bottom:0;
   font-family: Montserrat, sans-serif;
@@ -600,6 +607,7 @@ const MEDIA_QUERIES_CSS = `
     flex-direction:column;
     align-items:center;
   }
+
   legend {
     font-size:20px;
   }

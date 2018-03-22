@@ -7,9 +7,9 @@ import Helmet from 'react-helmet';
 import { auth, freelancers_posts_ref, db } from '../utils/db';
 import { rhythm, scale } from '../utils/typography';
 import { SESSION_USER, global_styles, ROUTES } from '../utils/constants';
+import { query_my_freelance_submission } from '../utils/funcs';
 
 const link_style = { boxShadow: 'none', textDecoration: 'none', color: 'inherit' };
-const header_style_root = { ...scale(1.5), marginBottom: rhythm(1.5), marginTop: 0 };
 
 const yc = (
   <Link style={link_style} to={'/'}>
@@ -105,11 +105,17 @@ export default class ApplicationRoot extends React.Component {
           this.setState(() => ({ ...INIT_STATE }));
         }),
       submit_new_freelancer_post: data =>
-        freelancers_posts_ref.push(data).then(reply => {
-          const { uid } = self.state.authenticated_user;
-          return db
-            .ref(`users/${uid}/my-freelance-submission`)
-            .set({ ...data, post_key: reply.key });
+        query_my_freelance_submission().then(profile => {
+          if (profile === null) {
+            return freelancers_posts_ref.push(data).then(reply => {
+              const { uid } = self.state.authenticated_user;
+              return db
+                .ref(`users/${uid}/my-freelance-submission`)
+                .set({ ...data, post_key: reply.key });
+            });
+          } else {
+            throw new Error('Profile already exists, delete existing one first');
+          }
         }),
     };
   }

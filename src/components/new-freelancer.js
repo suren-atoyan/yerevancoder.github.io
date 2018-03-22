@@ -37,17 +37,25 @@ export default class NewFreelancerEntry extends React.Component {
 
     submit_new_freelancer_post(useful_data)
       .then(() => this.setState(() => ({ ...INIT_STATE })))
-      .catch(error => this.setState(updateByPropertyName('error', error.message)))
-      .then(freelancer_post_did_finish);
+      .then(freelancer_post_did_finish)
+      .catch(error => this.setState(updateByPropertyName('error', error)));
     // }
   };
 
   render() {
+    const { error } = this.state;
     return (
       <div className={'NewFreelancerFormContainer'}>
         <form onSubmit={this.submit_new_freelancer}>
           <fieldset disabled={this.context.authenticated_user === null}>
-            <legend>Let employers find you</legend>
+            <legend
+              className={
+                error
+                  ? 'NewFreelancerFormContainer__GuidingLegend--Error'
+                  : 'NewFreelancerFormContainer__GuidingLegend--Success'
+              }>
+              {error ? error.message : 'Let employers find you'}
+            </legend>
             <div className={'FreelancerTable__FreelancerColumnDescription'}>
               <WithEffectInput
                 box_name={FANCY_INPUT_BOXES.NAME}
