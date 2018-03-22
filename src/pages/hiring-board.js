@@ -11,26 +11,11 @@ import Signin from '../components/modal-content/signin';
 import Signup from '../components/modal-content/signup';
 import Profile from '../components/modal-content/profile-control';
 import { posts_ref } from '../utils/db';
-import { ROW, ROUTES, SPACER_30_H, MODAL_TRANSITION, ARMENIA_COLORS } from '../utils/constants';
+import { ROW, ROUTES, SPACER_30_H, MODAL_TRANSITION } from '../utils/constants';
 
 const s = { marginTop: rhythm(1.5) };
 
-const login_action_row_post_new_s = {
-  borderTop: '5px solid',
-  borderTopColor: ARMENIA_COLORS.red,
-};
-
 const get_hired_text = <p className={'loginActionRow__GetHiredText'}>Get hired now</p>;
-
-const login_action_row_authing_action_s = {
-  borderTop: '5px solid',
-  borderTopColor: ARMENIA_COLORS.blue,
-};
-
-const login_action_row_signup_or_logged_in_s = {
-  borderTop: '5px solid',
-  borderTopColor: ARMENIA_COLORS.orange,
-};
 
 const horizontal_spacer = <div style={{ width: '10px' }} />;
 

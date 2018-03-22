@@ -41,20 +41,6 @@ export const NO_MARGIN_BOTTOM = { marginBottom: 0 };
 
 export const SESSION_USER = 'yerevan-coder-authed-user';
 
-export const ARMENIA_COLORS = { red: '#ec493c', blue: '#0c5fa1', orange: '#f58f31' };
-
-export const TRIPLE_COLOR_TOP_BORDER = {
-  borderTop: '10px solid',
-  borderImage: `linear-gradient(to right,
-${ARMENIA_COLORS.red} 33%,
-${ARMENIA_COLORS.blue} 33%,
-${ARMENIA_COLORS.blue} 66%,
-${ARMENIA_COLORS.orange} 66%) 5`,
-  borderBottomWidth: 0,
-  borderLeftWidth: 0,
-  borderRightWidth: 0,
-};
-
 const SIDEBAR_FIXED_WIDTH = 250;
 
 const BUSINESS_CONTENT_PADDING = 30;

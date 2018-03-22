@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { auth } from '../../utils/db';
 import { updateByPropertyName } from '../../utils/funcs';
-import { TRIPLE_COLOR_TOP_BORDER, FANCY_INPUT_BOXES, LOADING_STATE } from '../../utils/constants';
+import { FANCY_INPUT_BOXES, LOADING_STATE } from '../../utils/constants';
 
 import WithEffectInput from '../with-effect-input';
 
