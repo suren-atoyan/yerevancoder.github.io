@@ -116,8 +116,8 @@ textarea { resize:none; }
 }
 
 .FreelanceProfileSubmission {
+  flex:1;
   justify-content:space-around;
-  height:100%;
   display:flex;
   align-items:center;
   flex-direction:column;
@@ -182,7 +182,7 @@ textarea { resize:none; }
   border-width: 1px;
   border-style: solid;
   border-color: #666666;
-  font-size:25px;
+  font-size:14px;
   margin:0;
   width:100%;
   padding:15px;
@@ -514,6 +514,8 @@ form > fieldset {
 }
 
 .Profile__Container.ReactModal__Content--after-open {
+  height:100%;
+  width:100%;
   padding:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 

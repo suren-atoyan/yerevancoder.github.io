@@ -39,7 +39,7 @@ const PAGE_CONTENT = { FREELANCER_TABLE: 'freelancer-table', NEW_FREELANCER: 'ne
 
 export default class AvailableForWorkPage extends React.Component {
   state = {
-    modal_show: true,
+    modal_show: false,
     modal_content: MODAL_CONTENT.SIGNIN_VIEW,
     page_content: PAGE_CONTENT.FREELANCER_TABLE,
     freelancers: [],
@@ -171,8 +171,13 @@ export default class AvailableForWorkPage extends React.Component {
       modal_content: MODAL_CONTENT.SIGNUP_VIEW,
     }));
 
-  show_make_new_freelancer_post = () =>
-    this.setState(() => ({ page_content: PAGE_CONTENT.NEW_FREELANCER }));
+  toggle_freelancer_content = () =>
+    this.setState(prev_state => ({
+      page_content:
+        prev_state.page_content === PAGE_CONTENT.NEW_FREELANCER
+          ? PAGE_CONTENT.FREELANCER_TABLE
+          : PAGE_CONTENT.NEW_FREELANCER,
+    }));
 
   show_my_posting = () => {
     this.setState(() => ({ modal_show: true, modal_content: MODAL_CONTENT.PROFILE_VIEW }));
@@ -202,9 +207,11 @@ export default class AvailableForWorkPage extends React.Component {
             signed_in_handler={this.show_my_posting}
             is_signed_in={authenticated_user !== null}
             when_active_name={authenticated_user ? authenticated_user.email : ''}
-            custom_input_handler_signedin={this.show_make_new_freelancer_post}
-            custom_input_handler_signedout={null}
-            custom_input_signed_in_name={ADD_YOURSELF}
+            custom_input_handler_signedin={this.toggle_freelancer_content}
+            custom_input_handler_signedout={() => undefined}
+            custom_input_signed_in_name={
+              this.state.page_content === PAGE_CONTENT.NEW_FREELANCER ? 'Freelancers' : ADD_YOURSELF
+            }
             custom_input_signed_out_name={ADD_YOURSELF}
           />
         </nav>
