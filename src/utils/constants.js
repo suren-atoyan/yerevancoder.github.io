@@ -276,8 +276,8 @@ textarea { resize:none; }
 
 .FormTopEntry {
   background-color:${_MATERIAL_GREY_HEAVY_FADE_};
+  padding:14px 28px;
   border-radius: 5px;
-  padding:25px;
 }
 
 .RememberMeRow {
@@ -567,7 +567,6 @@ form > fieldset {
 
 .Profile__Container.ReactModal__Content--after-open {
 
-  padding:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
 .Profile__User {
@@ -662,8 +661,7 @@ const MEDIA_QUERIES_CSS = `
 @media (min-width: 650px) and (orientation: landscape) {
 
   .ModalContentWrapper {
-    height:500px;
-    width:450px;
+
   }
 
   .NewsPageContainer {
