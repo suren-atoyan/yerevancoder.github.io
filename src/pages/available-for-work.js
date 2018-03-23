@@ -74,7 +74,11 @@ export default class AvailableForWorkPage extends React.Component {
   user_did_sign_in = () => {
     query_my_freelance_submission()
       .then(self_freelance_posting =>
-        this.setState(() => ({ modal_show: false, self_freelance_posting }))
+        this.setState(() => ({
+          modal_show: false,
+          self_freelance_posting,
+          page_content: PAGE_CONTENT.FREELANCER_TABLE,
+        }))
       )
       .catch(error => console.log(error));
   };

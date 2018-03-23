@@ -74,6 +74,7 @@ export default class HiringBoardPage extends React.Component {
         return this.setState(() => ({
           modal_show: false,
           my_hiring_submissions: rows ? obj_to_array(rows) : [],
+          page_content: PAGE_CONTENT.HIRING_TABLE,
         }));
       })
       .catch(error => console.log(error));
