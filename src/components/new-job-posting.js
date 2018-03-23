@@ -2,6 +2,7 @@ import React from 'react';
 
 import { updateByPropertyName, is_number } from '../utils/funcs';
 import WithEffectInput from './with-effect-input';
+import SubmitInput from './submit-input';
 import {
   JOB_POSTING_DESCRIPTION_LIMIT,
   SUMMARY_LIMIT,
@@ -74,7 +75,9 @@ export default class NewJobPosting extends React.Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, short_job_description, job_description } = this.state;
+    const s_j_d_len = short_job_description.length;
+    const f_j_d_len = job_description.length;
     return (
       <div className={'NewFreelancerFormContainer'}>
         <form onSubmit={this.submit_new_job_posting}>
@@ -142,12 +145,16 @@ export default class NewJobPosting extends React.Component {
                 label={'Contact Information'}
                 input_type={'email'}
               />
-              <div>
-                <label>Short Job Description ({SUMMARY_LIMIT} chars)</label>
+              <div className={'PlainFlexColumn PlainFlexCentered FullWidth'}>
+                <label>
+                  Short Job Description ({SUMMARY_LIMIT} chars, {SUMMARY_LIMIT - s_j_d_len} chars
+                  left)
+                </label>
                 <textarea
-                  maxLength={120}
+                  className={'TextSubmissionArea FullWidth'}
+                  maxLength={SUMMARY_LIMIT}
                   rows={4}
-                  cols={30}
+                  autoComplete={'off'}
                   onChange={event =>
                     this.setState(updateByPropertyName('short_job_description', event.target.value))
                   }
@@ -156,24 +163,28 @@ export default class NewJobPosting extends React.Component {
                 />
               </div>
               {/* Full job Description */}
-              <div>
-                <label>Full Job Description ({JOB_POSTING_DESCRIPTION_LIMIT} chars)</label>
+              <div className={'PlainFlexColumn PlainFlexCentered FullWidth'}>
+                <label>
+                  Full Job Description ({JOB_POSTING_DESCRIPTION_LIMIT} chars,{' '}
+                  {JOB_POSTING_DESCRIPTION_LIMIT - f_j_d_len} chars left)
+                </label>
                 <textarea
-                  maxLength={1000}
+                  className={'TextSubmissionArea FullWidth'}
+                  maxLength={JOB_POSTING_DESCRIPTION_LIMIT}
+                  role={'textbox'}
+                  autoComplete={'off'}
                   rows={6}
-                  cols={40}
                   onChange={event =>
                     this.setState(updateByPropertyName('job_description', event.target.value))
                   }
                   value={this.state.job_description}
-                  placeholder={'Shown in the drop down in the job posting'}
+                  placeholder={'The full job description, please phrase this carefully'}
                 />
               </div>
-              <input
+              <SubmitInput
                 className={'NewJobPosting__SubmitButton'}
                 disabled={!this.is_invalid()}
-                type={'submit'}
-                value={'Submit'}
+                value={'Submit New Job'}
               />
             </div>
           </fieldset>
