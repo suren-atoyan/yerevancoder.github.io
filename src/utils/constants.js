@@ -595,8 +595,10 @@ legend {
 .NewFreelancerFormContainer__GuidingLegend--Error {
   color:red;
 }
-.NewFreelancerFormContainer__GuidingLegend--Success {
 
+.NewFreelancerFormContainer__GuidingLegend--Success {
+  color:${MATERIAL_BLUE};
+  text-shadow: 2px 2px 3px gold;
 }
 
 .loginActionRow__GetHiredText {
@@ -604,10 +606,9 @@ legend {
   font-family: Montserrat, sans-serif;
 }
 
-.NewJobPosting__SubmitButton {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+.NewJobPosting__JobDescription {
+  color:${MATERIAL_BLUE};
+  font-weight:600;
   font-family: Montserrat, sans-serif;
 }
 

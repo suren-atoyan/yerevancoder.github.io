@@ -7,6 +7,8 @@ import {
   JOB_POSTING_DESCRIPTION_LIMIT,
   SUMMARY_LIMIT,
   FANCY_INPUT_BOXES,
+  SPACER_30_H,
+  SPACER_10_H,
 } from '../utils/constants';
 
 const INIT_STATE = {
@@ -145,11 +147,13 @@ export default class NewJobPosting extends React.Component {
                 label={'Contact Information'}
                 input_type={'email'}
               />
+              {SPACER_30_H}
               <div className={'PlainFlexColumn PlainFlexCentered FullWidth'}>
-                <label>
+                <label className={'NewJobPosting__JobDescription'}>
                   Short Job Description ({SUMMARY_LIMIT} chars, {SUMMARY_LIMIT - s_j_d_len} chars
                   left)
                 </label>
+                {SPACER_10_H}
                 <textarea
                   className={'TextSubmissionArea FullWidth'}
                   maxLength={SUMMARY_LIMIT}
@@ -162,12 +166,13 @@ export default class NewJobPosting extends React.Component {
                   placeholder={'This will be the single line description on the jobs board'}
                 />
               </div>
-              {/* Full job Description */}
+              {SPACER_30_H}
               <div className={'PlainFlexColumn PlainFlexCentered FullWidth'}>
-                <label>
+                <label className={'NewJobPosting__JobDescription'}>
                   Full Job Description ({JOB_POSTING_DESCRIPTION_LIMIT} chars,{' '}
                   {JOB_POSTING_DESCRIPTION_LIMIT - f_j_d_len} chars left)
                 </label>
+                {SPACER_10_H}
                 <textarea
                   className={'TextSubmissionArea FullWidth'}
                   maxLength={JOB_POSTING_DESCRIPTION_LIMIT}
@@ -181,6 +186,7 @@ export default class NewJobPosting extends React.Component {
                   placeholder={'The full job description, please phrase this carefully'}
                 />
               </div>
+              {SPACER_30_H}
               <SubmitInput
                 className={'NewJobPosting__SubmitButton'}
                 disabled={!this.is_invalid()}

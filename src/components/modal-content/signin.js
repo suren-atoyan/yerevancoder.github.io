@@ -3,7 +3,7 @@ import Spinner from 'react-spinkit';
 
 import { auth } from '../../utils/db';
 import { updateByPropertyName } from '../../utils/funcs';
-import { FANCY_INPUT_BOXES, LOADING_STATE, SPACER_10_H } from '../../utils/constants';
+import { FANCY_INPUT_BOXES, LOADING_STATE, SPACER_30_H } from '../../utils/constants';
 import SubmitInput from '../submit-input';
 import WithEffectInput from '../with-effect-input';
 
@@ -95,9 +95,7 @@ export default class SignInForm extends React.Component {
                 label={'Password'}
                 input_type={'password'}
               />
-              {SPACER_10_H}
-              {SPACER_10_H}
-              {SPACER_10_H}
+              {SPACER_30_H}
               {this.make_remember_forget_row()}
             </section>
             <SubmitInput value={'Sign In'} disabled={is_invalid} />

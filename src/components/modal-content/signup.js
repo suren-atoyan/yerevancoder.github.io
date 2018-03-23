@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
 
-import { FANCY_INPUT_BOXES, LOADING_STATE, SPACER_10_H } from '../../utils/constants';
+import { FANCY_INPUT_BOXES, LOADING_STATE, SPACER_30_H } from '../../utils/constants';
 import { updateByPropertyName } from '../../utils/funcs';
 import WithEffectInput from '../with-effect-input';
 import SubmitInput from '../submit-input';
@@ -106,9 +106,7 @@ export default class SignUpForm extends React.Component {
                 input_type={'password'}
                 label={'Confirm Password'}
               />
-              {SPACER_10_H}
-              {SPACER_10_H}
-              {SPACER_10_H}
+              {SPACER_30_H}
             </section>
             <SubmitInput disabled={isInvalid} value={'Create Account'} />
           </div>
