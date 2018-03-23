@@ -752,7 +752,7 @@ const MEDIA_QUERIES_CSS = `
   }
 
   .InformationBar {
-    z-index:-1;
+
   }
 
   .Profile__Container.ReactModal__Content--after-open {
