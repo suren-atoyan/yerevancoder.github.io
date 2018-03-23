@@ -20,6 +20,6 @@ export default ({ self_freelance_posting, delete_posting_handler }) => {
       </div>
     );
   } else {
-    return <p>You haven't posted yet</p>;
+    return <span style={{ textAlign: 'center' }}>You haven't posted yet</span>;
   }
 };

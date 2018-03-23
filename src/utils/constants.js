@@ -169,15 +169,11 @@ textarea { resize:none; }
   border-bottom-color: ${MATERIAL_BLUE_LIGHT_FADE};
   border-bottom-style: solid;
 
-  min-width: 550px;
-  min-height: 600px;
-  max-width: 550px;
-  max-height: 600px;
   display:flex;
   align-items:center;
   flex-direction:column;
   justify-content:center;
-  padding:35px;
+  padding:25px;
 }
 
 .ModalContainer__Form {
@@ -582,7 +578,6 @@ form > fieldset {
 }
 
 .Profile__PostingsTable {
-  height:400px;
   padding-top:10px;
   padding-left:${BUSINESS_CONTENT_PADDING / 2}px;
   padding-right:${BUSINESS_CONTENT_PADDING / 2}px;
@@ -768,12 +763,32 @@ const MEDIA_QUERIES_CSS = `
 
 @media (max-width: 649px) {
 
+  .Profile__User {
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    align-content:center;
+    text-align:center;
+  }
+
+  .Profile__CreationTime {
+    text-align:center !important;
+  }
+  .ModalContentWrapper {
+
+  }
+
+  .AvailableForWorkContainer__NavTopRow {
+
+  }
+
   .FreelanceProfileSubmission__MonoText {
     font-size:16px;
   }
 
   .loginActionRow__RowContainer {
     display:flex;
+    flex-direction:column;
     justify-content:center;
   }
 
