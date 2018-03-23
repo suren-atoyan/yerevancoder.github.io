@@ -44,6 +44,8 @@ export const SUMMARY_LIMIT = 120;
 
 export const JOB_POSTING_DESCRIPTION_LIMIT = 1000;
 
+export const NEW_FREELANCER_SELF_DESCRIPTION_LIMIT = 1500;
+
 export const SPACER_30_H = <div style={{ height: '30px', width: '100%' }} />;
 
 export const SPACER_10_H = <div style={{ height: '10px', width: '100%' }} />;

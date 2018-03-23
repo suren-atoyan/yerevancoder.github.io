@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { FANCY_INPUT_BOXES } from '../utils/constants';
+import { FANCY_INPUT_BOXES, NEW_FREELANCER_SELF_DESCRIPTION_LIMIT } from '../utils/constants';
 import { updateByPropertyName } from '../utils/funcs';
 import WithEffectInput from './with-effect-input';
+import SubmitInput from './submit-input';
 
 const INIT_STATE = {
   name: '',
@@ -35,8 +36,7 @@ export default class NewFreelancerEntry extends React.Component {
     return (
       <div className={'NewFreelancerFormContainer'}>
         <form onSubmit={this.submit_new_freelancer}>
-          <fieldset
-            disabled={error || name === '' || self_description === '' || known_technologies === ''}>
+          <fieldset>
             <legend
               className={
                 error
@@ -91,16 +91,13 @@ export default class NewFreelancerEntry extends React.Component {
                 onChange={event =>
                   this.setState(updateByPropertyName('self_description', event.target.value))
                 }
-                maxLength={1500}
+                className={'TextSubmissionArea FullWidth'}
+                maxLength={NEW_FREELANCER_SELF_DESCRIPTION_LIMIT}
                 rows={7}
-                placeholder={'Describe yourself for employers...(1500 char max)'}
+                placeholder={`Describe yourself for employers...(${NEW_FREELANCER_SELF_DESCRIPTION_LIMIT} char max)`}
                 value={this.state.self_description}
               />
-              <input
-                className={'NewFreelancerFormContainer__SubmitButton'}
-                type={'submit'}
-                value={'Submit'}
-              />
+              <SubmitInput className={'NewJobPosting__SubmitButton'} value={'Get hired'} />
             </div>
           </fieldset>
         </form>
