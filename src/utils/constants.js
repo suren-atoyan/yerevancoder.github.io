@@ -164,11 +164,9 @@ textarea { resize:none; }
   border-top-width: 7px;
   border-top-color: ${MATERIAL_BLUE_LIGHT_FADE};
   border-top-style: solid;
-
   border-bottom-width: 2px;
   border-bottom-color: ${MATERIAL_BLUE_LIGHT_FADE};
   border-bottom-style: solid;
-
   display:flex;
   align-items:center;
   flex-direction:column;
@@ -238,7 +236,6 @@ textarea { resize:none; }
   outline-width: 0;
 }
 
-
 .PlainFlexColumn {
   display:flex;
   flex-direction:column;
@@ -287,10 +284,6 @@ textarea { resize:none; }
 .PlainFlexRow.FlexSpaceBetween {
   justify-content:space-between;
   width:100%;
-}
-
-.NewFreelancerFormContainer {
-
 }
 
 .FreelancerTable__FreelancerName {
@@ -462,10 +455,6 @@ form > fieldset {
     .string()};
 }
 
-.AvailableForWorkContainer {
-
-}
-
 .AvailableForWorkContainer > * {
   margin:0;
 }
@@ -565,10 +554,6 @@ form > fieldset {
   font-family: Montserrat, sans-serif;
 }
 
-.Profile__Container.ReactModal__Content--after-open {
-
-}
-
 .Profile__User {
   background-color:hsl(220, 12%, 95%);
   padding:10px;
@@ -659,11 +644,9 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (min-width: 650px) and (orientation: landscape) {
-
-  .ModalContentWrapper {
-
+  .sk-spinner {
+    margin:200px;
   }
-
   .NewsPageContainer {
     height:100vh;
   }
@@ -707,21 +690,12 @@ const MEDIA_QUERIES_CSS = `
     padding-left:${BUSINESS_CONTENT_PADDING}px;
     padding-right:${BUSINESS_CONTENT_PADDING}px;
   }
-
-  .Profile__User > * {
-
-  }
   .Profile__User {
     justify-content:space-between;
   }
   legend {
     font-size:32px;
   }
-
-  .ReactModal__Content--after-open.Profile__Container {
-
-  }
-
   .loginActionRow__GetHiredText {
     font-size:24px;
   }
@@ -730,14 +704,15 @@ const MEDIA_QUERIES_CSS = `
     justify-content:space-between;
     align-items:center;
   }
-
   .loginActionRow__RowContainer {
     justify-content:center;
   }
-
 }
 
 @media (max-width: 1200px) {
+  .sk-spinner {
+    margin:150px
+  }
   .FreelancerTable__FlexRow {
     flex-direction:column;
     padding-left:20px;
@@ -750,22 +725,18 @@ const MEDIA_QUERIES_CSS = `
   .FreelanceProfileSubmission__MonoText {
     font-size:18px;
   }
-  .ReactModal__Content--after-open {
-
-  }
-
-  .InformationBar {
-
-  }
-
-  .Profile__Container.ReactModal__Content--after-open {
-
-  }
-
 }
 
 @media (max-width: 649px) {
-
+  .loginActionRow__RowContainer > input:nth-child(2) {
+    margin:0;
+  }
+  .loginActionRow__RowContainer > input:nth-child(3) {
+    margin:0;
+  }
+  .sk-spinner {
+    margin:75px;
+  }
   .Profile__User {
     flex-direction:column;
     align-items:center;
@@ -773,23 +744,15 @@ const MEDIA_QUERIES_CSS = `
     align-content:center;
     text-align:center;
   }
-
   .Profile__CreationTime {
     text-align:center !important;
   }
-  .ModalContentWrapper {
-
-  }
-
-  .AvailableForWorkContainer__NavTopRow {
-
-  }
-
   .FreelanceProfileSubmission__MonoText {
     font-size:16px;
   }
 
   .loginActionRow__RowContainer {
+    padding:15px;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -858,11 +821,6 @@ const MEDIA_QUERIES_CSS = `
 `;
 
 const LARGER_CHECKBOX_CSS = `
-
-.sk-spinner {
-  transform:scale(2);
-}
-
 
 @supports (zoom:2) {
 	input[type="radio"],  input[type=checkbox]{

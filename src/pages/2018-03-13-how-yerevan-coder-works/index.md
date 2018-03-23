@@ -3,7 +3,7 @@ title: How yerevancoder.com works and how you can contribute (Part One)
 tags: yerevancoder, tutorial
 author: Edgar Aroutiounian
 date: "2018-03-13"
-description: What is a data type What are primitives in JS? How to initialize a variable
+description: How yerevancoder.com works and how you can contribute (Part One)
 discussionId: "2018-03-13-how-yerevancoder-works"
 ---
 
