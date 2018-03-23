@@ -46,17 +46,13 @@ export default class HiringBoardPage extends React.Component {
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
   delete_a_job_posting = post_key => {
-    console.log({ spot: 'here', post_key });
     const current_user = firebase.auth().currentUser;
-    hiring_table_posts_ref
-      .child(post_key)
-      .remove()
-      .then(() =>
-        db
-          .ref(`users/${current_user.uid}/my-hiring-board-submissions`)
-          .child(post_key)
-          .remove()
-      )
+    const updates = {};
+    updates[`/hiring-table-posts/${post_key}`] = null;
+    updates[`/users/${current_user.uid}/my-hiring-board-submissions/${post_key}`] = null;
+    return db
+      .ref()
+      .update(updates)
       .then(reply =>
         this.query_data().then(rows =>
           query_my_hiring_post_submissions().then(my_hiring_submissions =>

@@ -113,11 +113,14 @@ export default class ApplicationRoot extends React.Component {
           }
         }),
       submit_new_hiring_post: hiring_post =>
-        hiring_table_posts_ref.push(hiring_post).then(reply => {
+        hiring_table_posts_ref.push().then(reply => {
           const { uid } = self.state.authenticated_user;
-          return db
-            .ref(`users/${uid}/my-hiring-board-submissions`)
-            .push({ ...hiring_post, post_key: reply.key });
+          const new_post_key = reply.key;
+          const updates = {};
+          const with_info = { ...hiring_post, post_key: new_post_key };
+          updates[`/hiring-table-posts/${new_post_key}`] = with_info;
+          updates[`/users/${uid}/my-hiring-board-submissions/${new_post_key}`] = with_info;
+          return db.ref().update(updates);
         }),
     };
   }
