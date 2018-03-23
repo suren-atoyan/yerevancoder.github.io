@@ -28,9 +28,9 @@ export default class NewJobPosting extends React.Component {
 
   submit_new_job_posting = e => {
     e.preventDefault();
-    const { submit_new_hiring_post } = this.props;
+    const { submit_new_hiring_post, new_tech_job_post_did_finish } = this.props;
     let missing_field = null;
-    if (this.is_invalid(k => (missing_field = k))) {
+    if (true) {
       const { error, ...useful_data } = this.state;
       useful_data.short_job_description = useful_data.short_job_description.slice(0, SUMMARY_LIMIT);
       useful_data.job_description = useful_data.job_description.slice(
@@ -38,25 +38,13 @@ export default class NewJobPosting extends React.Component {
         JOB_POSTING_DESCRIPTION_LIMIT
       );
       const now = new Date();
-      submit_new_hiring_post({ ...useful_data, creation_time: now.getTime() });
-
-      // .then(reply =>
-      //   db
-      //     .ref(`users/${creator_uid}/posts`)
-      //     .push({
-      //       post_key: reply.key,
-      //       creation_time: now.getTime(),
-      //       post_author,
-      //       salary_from,
-      //       job_location,
-      //       payment_currency,
-      //       salary_to,
-      //       short_job_description: short_job_description.slice(0, SUMMARY_LIMIT),
-      //     })
-      //     .then(() => this.setState(() => ({ ...INIT_STATE }), undefined))
-      // );
+      for (const k of Object.keys(useful_data)) useful_data[k] = useful_data[k].trim();
+      submit_new_hiring_post({ ...useful_data, creation_time: now.getTime() })
+        .then(() => this.setState(() => ({ ...INIT_STATE })))
+        .then(new_tech_job_post_did_finish)
+        .catch(error => this.setState(updateByPropertyName('error', error)));
     } else {
-      // Handle error somehow?
+      this.setState(() => ({ error: new Error(`Something incorrect with ${missing_field}`) }));
     }
   };
 
@@ -83,7 +71,7 @@ export default class NewJobPosting extends React.Component {
     return (
       <div className={'NewFreelancerFormContainer'}>
         <form onSubmit={this.submit_new_job_posting}>
-          <fieldset disabled={this.is_invalid()}>
+          <fieldset>
             <legend
               className={
                 error
@@ -145,7 +133,7 @@ export default class NewJobPosting extends React.Component {
                 }
                 query_field={() => this.state.contact_info}
                 label={'Contact Information'}
-                input_type={'email'}
+                input_type={'text'}
               />
               {SPACER_30_H}
               <div className={'PlainFlexColumn PlainFlexCentered FullWidth'}>
@@ -187,11 +175,7 @@ export default class NewJobPosting extends React.Component {
                 />
               </div>
               {SPACER_30_H}
-              <SubmitInput
-                className={'NewJobPosting__SubmitButton'}
-                disabled={!this.is_invalid()}
-                value={'Submit New Job'}
-              />
+              <SubmitInput className={'NewJobPosting__SubmitButton'} value={'Submit New Job'} />
             </div>
           </fieldset>
         </form>

@@ -112,7 +112,13 @@ export default class ApplicationRoot extends React.Component {
             throw new Error('Profile already exists, delete existing one first');
           }
         }),
-      submit_new_hiring_post: hiring_post => hiring_table_posts_ref.push(hiring_post),
+      submit_new_hiring_post: hiring_post =>
+        hiring_table_posts_ref.push(hiring_post).then(reply => {
+          const { uid } = self.state.authenticated_user;
+          return db
+            .ref(`users/${uid}/hiring-table-submissions`)
+            .push({ ...hiring_post, post_key: reply.key });
+        }),
     };
   }
 

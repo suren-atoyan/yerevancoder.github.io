@@ -8,17 +8,16 @@ import ProfileControl from '../components/modal-content/profile-control';
 import SigninBar from '../components/signin-bar';
 import NewFreelancer from '../components/new-freelancer';
 import FreelancerTable from '../components/freelancer-table';
-import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT, modal_s } from '../utils/constants';
+import {
+  MODAL_TRANSITION,
+  MODAL_PROFILE_CONTENT,
+  modal_s,
+  MODAL_CONTENT,
+} from '../utils/constants';
 import { freelancers_posts_ref, db, firebase } from '../utils/db';
-import { query_my_freelance_submission } from '../utils/funcs';
+import { query_my_freelance_submission, obj_to_array } from '../utils/funcs';
 
 const ADD_YOURSELF = 'Add yourself';
-
-const MODAL_CONTENT = {
-  PROFILE_VIEW: 'profile-view',
-  SIGNIN_VIEW: 'signin-view',
-  SIGNUP_VIEW: 'signup-view',
-};
 
 const PAGE_CONTENT = { FREELANCER_TABLE: 'freelancer-table', NEW_FREELANCER: 'new-freelancer' };
 
@@ -121,7 +120,7 @@ export default class AvailableForWorkPage extends React.Component {
         this.setState(() => ({
           self_freelance_posting,
           page_content: PAGE_CONTENT.FREELANCER_TABLE,
-          freelancers: rows ? Object.values(rows) : [],
+          freelancers: rows ? obj_to_array(rows) : [],
         }))
       )
     );
@@ -139,6 +138,9 @@ export default class AvailableForWorkPage extends React.Component {
           />
         );
       default:
+        console.warn(
+          `Unknown page content requested for freelance table ${this.state.page_content}`
+        );
         return null;
     }
   };

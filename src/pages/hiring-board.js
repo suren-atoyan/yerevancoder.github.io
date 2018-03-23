@@ -8,18 +8,16 @@ import ProfileControl from '../components/modal-content/profile-control';
 import SigninBar from '../components/signin-bar';
 import JobsTable from '../components/jobs-table';
 import NewJobPosting from '../components/new-job-posting';
-
-import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT, modal_s } from '../utils/constants';
+import {
+  MODAL_TRANSITION,
+  MODAL_PROFILE_CONTENT,
+  MODAL_CONTENT,
+  modal_s,
+} from '../utils/constants';
 import { hiring_table_posts_ref, db, firebase } from '../utils/db';
 import { query_my_hiring_post_submissions, obj_to_array } from '../utils/funcs';
 
 const SUBMIT_NEW_JOB = 'Submit new Job';
-
-const MODAL_CONTENT = {
-  PROFILE_VIEW: 'profile-view',
-  SIGNIN_VIEW: 'signin-view',
-  SIGNUP_VIEW: 'signup-view',
-};
 
 const PAGE_CONTENT = { HIRING_TABLE: 'hiring-table', NEW_HIRING_POST: 'new-hiring-post' };
 
@@ -27,8 +25,7 @@ export default class HiringBoardPage extends React.Component {
   state = {
     modal_show: false,
     modal_content: MODAL_CONTENT.SIGNIN_VIEW,
-    // page_content: PAGE_CONTENT.HIRING_TABLE,
-    page_content: PAGE_CONTENT.NEW_HIRING_POST,
+    page_content: PAGE_CONTENT.HIRING_TABLE,
     jobs: [],
     my_hiring_submissions: [],
   };
@@ -48,27 +45,24 @@ export default class HiringBoardPage extends React.Component {
 
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
-  // delete_my_freelance_posting = () => {
-  //   if (this.state.self_freelance_posting) {
-  //     const { post_key } = this.state.self_freelance_posting;
-  //     const current_user = firebase.auth().currentUser;
-  //     db
-  //       .ref(`users/${current_user.uid}/my-freelance-submission`)
-  //       .remove()
-  //       .then(() => freelancers_posts_ref.child(post_key).remove())
-  //       .then(() =>
-  //         this.query_data().then(rows =>
-  //           this.setState(() => ({
-  //             self_freelance_posting: null,
-  //             modal_show: false,
-  //             page_content: PAGE_CONTENT.FREELANCER_TABLE,
-  //             freelancers: rows ? Object.values(rows) : [],
-  //           }))
-  //         )
-  //       )
-  //       .catch(error => console.log(error));
-  //   }
-  // };
+  delete_a_job_posting = post_key => {
+    const current_user = firebase.auth().currentUser;
+    hiring_table_posts_ref
+      .child(post_key)
+      .remove()
+      .then(() =>
+        db
+          .ref(`users/${current_user.uid}/hiring-table-submissions`)
+          .child(post_key)
+          .remove()
+      )
+      .then(() =>
+        this.query_data().then(rows =>
+          this.setState(() => ({ jobs: rows ? obj_to_array(rows) : [] }))
+        )
+      )
+      .catch(error => console.warn(error));
+  };
 
   user_did_sign_in = () => {
     query_my_hiring_post_submissions()
@@ -115,12 +109,15 @@ export default class HiringBoardPage extends React.Component {
     return <div className={'ModalContentWrapper'}>{content}</div>;
   };
 
-  new_job_post_did_finish = () => {
-    query_my_hiring_post_submissions().then(rows =>
-      this.setState(() => ({
-        page_content: PAGE_CONTENT.HIRING_TABLE,
-        jobs: rows ? obj_to_array(rows) : [],
-      }))
+  new_tech_job_post_did_finish = () => {
+    this.query_data().then(rows =>
+      query_my_hiring_post_submissions().then(my_submissions =>
+        this.setState(() => ({
+          page_content: PAGE_CONTENT.HIRING_TABLE,
+          jobs: rows ? obj_to_array(rows) : [],
+          my_hiring_submissions: my_submissions ? obj_to_array(rows) : [],
+        }))
+      )
     );
   };
 
@@ -129,7 +126,12 @@ export default class HiringBoardPage extends React.Component {
       case PAGE_CONTENT.HIRING_TABLE:
         return <JobsTable all_jobs={this.state.jobs} />;
       case PAGE_CONTENT.NEW_HIRING_POST:
-        return <NewJobPosting submit_new_hiring_post={this.context.submit_new_hiring_post} />;
+        return (
+          <NewJobPosting
+            new_tech_job_post_did_finish={this.new_tech_job_post_did_finish}
+            submit_new_hiring_post={this.context.submit_new_hiring_post}
+          />
+        );
       default:
         console.error(`Unknown page requested on hiring board page ${this.state.page_content}`);
         return null;

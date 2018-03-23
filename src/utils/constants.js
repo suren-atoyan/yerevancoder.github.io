@@ -23,6 +23,12 @@ export const ROUTES = {
   AVAILABLE_FOR_WORK: '/available-for-work',
 };
 
+export const MODAL_CONTENT = {
+  PROFILE_VIEW: 'profile-view',
+  SIGNIN_VIEW: 'signin-view',
+  SIGNUP_VIEW: 'signup-view',
+};
+
 export const MODAL_PROFILE_CONTENT = {
   HIRING_BOARD_LISTINGS: 'hiring-board-listings',
   FREELANCER_POSTING: 'freelancer-posting',
