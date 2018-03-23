@@ -46,19 +46,27 @@ export default class HiringBoardPage extends React.Component {
   toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
 
   delete_a_job_posting = post_key => {
+    console.log({ spot: 'here', post_key });
     const current_user = firebase.auth().currentUser;
     hiring_table_posts_ref
       .child(post_key)
       .remove()
       .then(() =>
         db
-          .ref(`users/${current_user.uid}/hiring-table-submissions`)
+          .ref(`users/${current_user.uid}/my-hiring-board-submissions`)
           .child(post_key)
           .remove()
       )
-      .then(() =>
+      .then(reply =>
         this.query_data().then(rows =>
-          this.setState(() => ({ jobs: rows ? obj_to_array(rows) : [] }))
+          query_my_hiring_post_submissions().then(my_hiring_submissions =>
+            this.setState(() => ({
+              jobs: rows ? obj_to_array(rows) : [],
+              my_hiring_submissions: my_hiring_submissions
+                ? obj_to_array(my_hiring_submissions)
+                : [],
+            }))
+          )
         )
       )
       .catch(error => console.warn(error));
@@ -66,12 +74,12 @@ export default class HiringBoardPage extends React.Component {
 
   user_did_sign_in = () => {
     query_my_hiring_post_submissions()
-      .then(rows =>
-        this.setState(() => ({
+      .then(rows => {
+        return this.setState(() => ({
           modal_show: false,
           my_hiring_submissions: rows ? obj_to_array(rows) : [],
-        }))
-      )
+        }));
+      })
       .catch(error => console.log(error));
   };
 
@@ -94,9 +102,10 @@ export default class HiringBoardPage extends React.Component {
       case MODAL_CONTENT.PROFILE_VIEW:
         content = (
           <ProfileControl
+            delete_hiring_record={this.delete_a_job_posting}
+            authenticated_user={this.context.authenticated_user}
             profile_content={MODAL_PROFILE_CONTENT.HIRING_BOARD_LISTINGS}
             my_hiring_submissions={this.state.my_hiring_submissions}
-            force_query={this.query_data}
           />
         );
         break;

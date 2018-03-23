@@ -108,6 +108,15 @@ textarea { resize:none; }
   padding-bottom:15px;
 }
 
+.HiringSubmissions {
+  overflow-y: scroll;
+  height:100%;
+}
+
+.HiringSubmissions > * {
+  margin:0;
+}
+
 .SubmitInput {
   background-color:${MATERIAL_BLUE};
   width:100%;
@@ -583,12 +592,24 @@ form > fieldset {
   overflow-y: scroll;
 }
 
+.HiringSubmissions > h4 {
+  text-align:center;
+  padding: 7px;
+}
+
+.Profile__DeletePosting {
+  cursor:pointer;
+}
+
 .Profile__PostingRecord {
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  border-bottom-width:10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:2rem 15px;
+}
+
+.Profile__PostingRecord:nth-child(2n) {
+  background-color:${MATERIAL_BLUE_LIGHT_FADE};
 }
 
 legend {

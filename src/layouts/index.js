@@ -116,7 +116,7 @@ export default class ApplicationRoot extends React.Component {
         hiring_table_posts_ref.push(hiring_post).then(reply => {
           const { uid } = self.state.authenticated_user;
           return db
-            .ref(`users/${uid}/hiring-table-submissions`)
+            .ref(`users/${uid}/my-hiring-board-submissions`)
             .push({ ...hiring_post, post_key: reply.key });
         }),
     };
@@ -130,7 +130,13 @@ export default class ApplicationRoot extends React.Component {
     const authors_count = all_authors.size;
     return (
       <div className={'ApplicationContainer__Container'}>
-        <Helmet title={site_title}>{global_styles}</Helmet>
+        <Helmet title={site_title}>
+          {global_styles}
+          <link
+            rel={'stylesheet'}
+            href={'https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css'}
+          />
+        </Helmet>
         <FixedSidebar authors_count={authors_count} header_content={yc} />
         <div className={'ApplicationContainer__MainContent'}>
           <div className={'ApplicationContainer__BusinessContent'}>{children()}</div>

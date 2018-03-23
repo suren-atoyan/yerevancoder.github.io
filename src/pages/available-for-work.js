@@ -98,6 +98,7 @@ export default class AvailableForWorkPage extends React.Component {
       case MODAL_CONTENT.PROFILE_VIEW:
         content = (
           <ProfileControl
+            authenticated_user={this.context.authenticated_user}
             profile_content={MODAL_PROFILE_CONTENT.FREELANCER_POSTING}
             self_freelance_posting={this.state.self_freelance_posting}
             delete_my_freelance_posting={this.delete_my_freelance_posting}
