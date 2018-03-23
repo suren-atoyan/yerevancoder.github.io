@@ -289,7 +289,7 @@ textarea { resize:none; }
 .FreelancerTable__FreelancerName {
   font-weight:700;
   font-family: Montserrat, sans-serif;
-  font-size:42px;
+  font-size:36px;
 }
 
 .FreelancerTable__FlexRow {
@@ -728,6 +728,12 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (max-width: 649px) {
+  .FreelancerTable__FreelancerColumnDescription {
+    font-size:12px;
+  }
+  .FreelancerTable__FreelancerName {
+    font-size:24px;
+  }
   .loginActionRow__RowContainer > input:nth-child(2) {
     margin:0;
   }
