@@ -8,26 +8,11 @@ import ProfileControl from '../components/modal-content/profile-control';
 import SigninBar from '../components/signin-bar';
 import NewFreelancer from '../components/new-freelancer';
 import FreelancerTable from '../components/freelancer-table';
-import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT } from '../utils/constants';
+import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT, modal_s } from '../utils/constants';
 import { freelancers_posts_ref, db, firebase } from '../utils/db';
 import { query_my_freelance_submission } from '../utils/funcs';
 
 const ADD_YOURSELF = 'Add yourself';
-
-const modal_s = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    padding: 0,
-    transform: 'translate(-50%, -50%)',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'none',
-  },
-};
 
 const MODAL_CONTENT = {
   PROFILE_VIEW: 'profile-view',
@@ -127,7 +112,6 @@ export default class AvailableForWorkPage extends React.Component {
       default:
         throw new Error(`Unknown modal content requested: ${this.state.modal_content}`);
     }
-    // content = null;
     return <div className={'ModalContentWrapper'}>{content}</div>;
   };
 
@@ -193,7 +177,7 @@ export default class AvailableForWorkPage extends React.Component {
           onRequestClose={this.toggle_modal}
           ariaHideApp={false}
           style={modal_s}
-          contentLabel="Signin to Yerevancoder">
+          contentLabel="yerevancoder">
           {this.modal_content()}
         </Modal>
         <nav className={'AvailableForWorkContainer__NavTopRow'}>

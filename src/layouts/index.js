@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { auth, freelancers_posts_ref, db, firebase } from '../utils/db';
+import { auth, freelancers_posts_ref, db, firebase, hiring_table_posts_ref } from '../utils/db';
 import FixedSidebar from '../components/fixed-sidebar';
 import { SESSION_USER, global_styles, ROUTES } from '../utils/constants';
 import { query_my_freelance_submission } from '../utils/funcs';
@@ -27,6 +27,7 @@ export default class ApplicationRoot extends React.Component {
     sign_user_up: PropTypes.func,
     sign_user_out: PropTypes.func,
     submit_new_freelancer_post: PropTypes.func,
+    submit_new_hiring_post: PropTypes.func,
   };
 
   componentDidMount() {
@@ -111,6 +112,7 @@ export default class ApplicationRoot extends React.Component {
             throw new Error('Profile already exists, delete existing one first');
           }
         }),
+      submit_new_hiring_post: hiring_post => hiring_table_posts_ref.push(hiring_post),
     };
   }
 

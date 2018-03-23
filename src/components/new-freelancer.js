@@ -14,11 +14,6 @@ const INIT_STATE = {
   error: null,
 };
 
-// const field_mapping = {
-//   name: 'Your Name',
-//   github_link: 'Github Link '
-// }
-
 export default class NewFreelancerEntry extends React.Component {
   state = { ...INIT_STATE };
 
@@ -26,32 +21,22 @@ export default class NewFreelancerEntry extends React.Component {
     e.preventDefault();
     const { submit_new_freelancer_post, freelancer_post_did_finish } = this.props;
     const { error, ...useful_data } = this.state;
-
     for (const k of Object.keys(useful_data)) {
       useful_data[k] = useful_data[k].trim();
     }
-    // let missing_field = null;
-    // Object.keys(useful_data).forEach(k => {
-    //   if (k === '') missing_field = k;
-    // });
-
-    // if (missing_field) {
-    //   this.setState(() => ({error:`Missing entry for ${field_mapping[missing_field]}`}))
-    // } else {
-
     submit_new_freelancer_post(useful_data)
       .then(() => this.setState(() => ({ ...INIT_STATE })))
       .then(freelancer_post_did_finish)
       .catch(error => this.setState(updateByPropertyName('error', error)));
-    // }
   };
 
   render() {
-    const { error } = this.state;
+    const { error, name, self_description, known_technologies } = this.state;
     return (
       <div className={'NewFreelancerFormContainer'}>
         <form onSubmit={this.submit_new_freelancer}>
-          <fieldset disabled={this.context.authenticated_user === null}>
+          <fieldset
+            disabled={error || name === '' || self_description === '' || known_technologies === ''}>
             <legend
               className={
                 error

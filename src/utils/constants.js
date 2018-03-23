@@ -1,6 +1,21 @@
 import React from 'react';
 import color from 'color';
 
+export const modal_s = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    padding: 0,
+    transform: 'translate(-50%, -50%)',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'none',
+  },
+};
+
 export const ROUTES = {
   JOBS_TABLE: '/hiring-board',
   NEW_JOB_POSTING: '/new-job-posting',
@@ -18,12 +33,6 @@ export const LOADING_STATE = {
   DID_LOAD: 'did-load',
   CURRENTLY_LOADING: 'currently-loading',
 };
-
-export const ROW = { display: 'flex', justifyContent: 'space-between' };
-
-export const TEXT_S = { fontFamily: 'Montserrat, sans-serif' };
-
-export const DISPLAY_FLEX_S = { display: 'flex' };
 
 export const SUMMARY_LIMIT = 120;
 
@@ -799,6 +808,13 @@ export const FANCY_INPUT_BOXES = {
   SIGNUP_EMAIL: 'signup-email',
   SIGNUP_PASSWORD_ONE: 'signup-password-one',
   SIGNUP_PASSWORD_TWO: 'signup-password-two',
+  // Submission for new tech job
+  NEW_TECH_JOB_LOCATION: 'new-tech-job-location',
+  NEW_TECH_JOB_CURRENCY_TYPE: 'new-tech-job-currency-type',
+  NEW_TECH_JOB_POSTER_NAME: 'new-tech-job-poster-name',
+  NEW_TECH_JOB_CONTACT_INFO: 'new-tech-job-contact-info',
+  NEW_TECH_JOB_SALARY_FROM: 'new-tech-job-salary-from',
+  NEW_TECH_JOB_SALARY_TO: 'new-tech-job-salary-to',
 };
 
 const FANCY_INPUT_THEME_COLOR = color(MATERIAL_BLUE)
@@ -904,6 +920,13 @@ ${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_USERNAME)}
 ${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_EMAIL)}
 ${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_PASSWORD_ONE)}
 ${create_effects_css(FANCY_INPUT_BOXES.SIGNUP_PASSWORD_TWO)}
+
+${create_effects_css(FANCY_INPUT_BOXES.NEW_TECH_JOB_LOCATION)}
+${create_effects_css(FANCY_INPUT_BOXES.NEW_TECH_JOB_CURRENCY_TYPE)}
+${create_effects_css(FANCY_INPUT_BOXES.NEW_TECH_JOB_POSTER_NAME)}
+${create_effects_css(FANCY_INPUT_BOXES.NEW_TECH_JOB_CONTACT_INFO)}
+${create_effects_css(FANCY_INPUT_BOXES.NEW_TECH_JOB_SALARY_FROM)}
+${create_effects_css(FANCY_INPUT_BOXES.NEW_TECH_JOB_SALARY_TO)}
 
 `;
 

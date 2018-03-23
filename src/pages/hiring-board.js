@@ -1,34 +1,19 @@
 import React from 'react';
-import Link from 'gatsby-link';
-import addDays from 'date-fns/add_days';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
-import { rhythm } from '../utils/typography';
-import JobsTable from '../components/jobs-table';
 import Signin from '../components/modal-content/signin';
 import Signup from '../components/modal-content/signup';
-import Profile from '../components/modal-content/profile-control';
-import { posts_ref } from '../utils/db';
-import { ROW, ROUTES, SPACER_30_H, MODAL_TRANSITION } from '../utils/constants';
+import ProfileControl from '../components/modal-content/profile-control';
+import SigninBar from '../components/signin-bar';
+import JobsTable from '../components/jobs-table';
+import NewJobPosting from '../components/new-job-posting';
 
-const s = { marginTop: rhythm(1.5) };
+import { MODAL_TRANSITION, MODAL_PROFILE_CONTENT, modal_s } from '../utils/constants';
+import { hiring_table_posts_ref, db, firebase } from '../utils/db';
+import { query_my_hiring_post_submissions, obj_to_array } from '../utils/funcs';
 
-const get_hired_text = <p className={'loginActionRow__GetHiredText'}>Get hired now</p>;
-
-const horizontal_spacer = <div style={{ width: '10px' }} />;
-
-const modal_s = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    padding: 0,
-    transform: 'translate(-50%, -50%)',
-  },
-};
+const SUBMIT_NEW_JOB = 'Submit new Job';
 
 const MODAL_CONTENT = {
   PROFILE_VIEW: 'profile-view',
@@ -36,148 +21,177 @@ const MODAL_CONTENT = {
   SIGNUP_VIEW: 'signup-view',
 };
 
-export default withRouter(
-  class HiringBoard extends React.Component {
-    state = {
-      jobs: [],
-      modal_show: false,
-      modal_content: null,
-      user_email_account: this.context.authenticated_user
-        ? this.context.authenticated_user.email_account
-        : null,
-    };
+const PAGE_CONTENT = { HIRING_TABLE: 'hiring-table', NEW_HIRING_POST: 'new-hiring-post' };
 
-    // state = {
-    //   jobs: [],
-    //   modal_show: true,
-    //   modal_content: MODAL_CONTENT.PROFILE_VIEW,
-    //   user_email_account: this.context.authenticated_user
-    //     ? this.context.authenticated_user.email_account
-    //     : null,
-    // };
+export default class HiringBoardPage extends React.Component {
+  state = {
+    modal_show: false,
+    modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    // page_content: PAGE_CONTENT.HIRING_TABLE,
+    page_content: PAGE_CONTENT.NEW_HIRING_POST,
+    jobs: [],
+    my_hiring_submissions: [],
+  };
 
-    static contextTypes = { authenticated_user: PropTypes.object, do_signout: PropTypes.func };
+  static contextTypes = {
+    authenticated_user: PropTypes.object,
+    sign_user_out: PropTypes.func,
+    sign_user_in: PropTypes.func,
+    submit_new_hiring_post: PropTypes.func,
+  };
 
-    toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
+  query_data = () => hiring_table_posts_ref.once('value').then(snap_shot => snap_shot.val());
 
-    go_to_new_posting = () => {
-      const { history } = this.props;
-      history.push(ROUTES.NEW_JOB_POSTING);
-    };
-
-    query_data = () =>
-      posts_ref.once('value').then(snap_shot => {
-        const rows = snap_shot.val();
-        if (rows) {
-          this.setState(() => ({ jobs: Object.values(rows) }));
-        }
-      });
-
-    componentDidMount() {
-      this.query_data();
-    }
-
-    user_did_sign_in = user_email_account => {
-      this.setState(() => ({ user_email_account, modal_show: false }));
-    };
-
-    modal_content = () => {
-      switch (this.state.modal_content) {
-        case MODAL_CONTENT.PROFILE_VIEW:
-          return <Profile jobs={this.state.jobs} force_query={this.query_data} />;
-        case MODAL_CONTENT.SIGNIN_VIEW:
-          return (
-            <Signin
-              login_message={'Sign in to post jobs'}
-              user_did_sign_in={this.user_did_sign_in}
-            />
-          );
-        case MODAL_CONTENT.SIGNUP_VIEW:
-          return <Signup user_did_sign_in={this.user_did_sign_in} />;
-        default:
-          return null;
-      }
-    };
-
-    show_profile_modal = () => {
-      this.setState(({ modal_show }) => ({
-        modal_show: !modal_show,
-        modal_content: MODAL_CONTENT.PROFILE_VIEW,
-      }));
-    };
-
-    show_signin_modal = () => {
-      this.setState(({ modal_show }) => ({
-        modal_show: !modal_show,
-        modal_content: MODAL_CONTENT.SIGNIN_VIEW,
-      }));
-    };
-
-    show_signup_modal = () => {
-      this.setState(({ modal_show }) => ({
-        modal_show: !modal_show,
-        modal_content: MODAL_CONTENT.SIGNUP_VIEW,
-      }));
-    };
-
-    do_signout = () => {
-      this.setState(() => ({ user_email_account: null }));
-      this.context.do_signout();
-    };
-
-    make_action_row() {
-      const has_account = this.state.user_email_account !== null;
-      const signup_or_logged_in = (
-        <input
-          onClick={has_account ? this.show_profile_modal : this.show_signup_modal}
-          type={'button'}
-          value={has_account ? this.state.user_email_account : 'Signup'}
-        />
-      );
-      const signin_or_signout = (
-        <input
-          onClick={has_account ? this.do_signout : this.show_signin_modal}
-          type={'button'}
-          value={has_account ? 'Signout' : 'Signin'}
-        />
-      );
-
-      return (
-        <div className={'loginActionRow__Container'}>
-          {get_hired_text}
-          <div className={'loginActionRow__AuthingButtons'}>
-            <input
-              onClick={this.go_to_new_posting}
-              type={'button'}
-              value={'Post new job'}
-              disabled={!has_account}
-            />
-            {horizontal_spacer}
-            {signin_or_signout}
-            {horizontal_spacer}
-            {signup_or_logged_in}
-          </div>
-        </div>
-      );
-    }
-
-    render() {
-      return (
-        <section style={s}>
-          <Modal
-            closeTimeoutMS={MODAL_TRANSITION}
-            isOpen={this.state.modal_show}
-            onRequestClose={this.toggle_modal}
-            ariaHideApp={false}
-            style={modal_s}
-            contentLabel="Signin to Yerevancoder">
-            {this.modal_content()}
-          </Modal>
-          {this.make_action_row()}
-          {SPACER_30_H}
-          <JobsTable all_jobs={this.state.jobs} />
-        </section>
-      );
-    }
+  componentDidMount() {
+    this.query_data().then(rows => this.setState(() => ({ jobs: rows ? obj_to_array(rows) : [] })));
   }
-);
+
+  toggle_modal = () => this.setState(({ modal_show }) => ({ modal_show: !modal_show }));
+
+  // delete_my_freelance_posting = () => {
+  //   if (this.state.self_freelance_posting) {
+  //     const { post_key } = this.state.self_freelance_posting;
+  //     const current_user = firebase.auth().currentUser;
+  //     db
+  //       .ref(`users/${current_user.uid}/my-freelance-submission`)
+  //       .remove()
+  //       .then(() => freelancers_posts_ref.child(post_key).remove())
+  //       .then(() =>
+  //         this.query_data().then(rows =>
+  //           this.setState(() => ({
+  //             self_freelance_posting: null,
+  //             modal_show: false,
+  //             page_content: PAGE_CONTENT.FREELANCER_TABLE,
+  //             freelancers: rows ? Object.values(rows) : [],
+  //           }))
+  //         )
+  //       )
+  //       .catch(error => console.log(error));
+  //   }
+  // };
+
+  user_did_sign_in = () => {
+    query_my_hiring_post_submissions()
+      .then(rows =>
+        this.setState(() => ({
+          modal_show: false,
+          my_hiring_submissions: rows ? obj_to_array(rows) : [],
+        }))
+      )
+      .catch(error => console.log(error));
+  };
+
+  user_did_sign_up = () => {
+    this.setState(() => ({ modal_show: false }));
+  };
+
+  modal_content = () => {
+    let content = null;
+    switch (this.state.modal_content) {
+      case MODAL_CONTENT.SIGNIN_VIEW:
+        content = (
+          <Signin
+            login_message={'Sign in'}
+            sign_user_in={this.context.sign_user_in}
+            user_did_sign_in={this.user_did_sign_in}
+          />
+        );
+        break;
+      case MODAL_CONTENT.PROFILE_VIEW:
+        content = (
+          <ProfileControl
+            profile_content={MODAL_PROFILE_CONTENT.HIRING_BOARD_LISTINGS}
+            my_hiring_submissions={this.state.my_hiring_submissions}
+            force_query={this.query_data}
+          />
+        );
+        break;
+      case MODAL_CONTENT.SIGNUP_VIEW:
+        content = <Signup user_did_sign_up={this.user_did_sign_up} />;
+        break;
+      default:
+        throw new Error(`Unknown modal content requested: ${this.state.modal_content}`);
+    }
+    return <div className={'ModalContentWrapper'}>{content}</div>;
+  };
+
+  new_job_post_did_finish = () => {
+    query_my_hiring_post_submissions().then(rows =>
+      this.setState(() => ({
+        page_content: PAGE_CONTENT.HIRING_TABLE,
+        jobs: rows ? obj_to_array(rows) : [],
+      }))
+    );
+  };
+
+  page_content = () => {
+    switch (this.state.page_content) {
+      case PAGE_CONTENT.HIRING_TABLE:
+        return <JobsTable all_jobs={this.state.jobs} />;
+      case PAGE_CONTENT.NEW_HIRING_POST:
+        return <NewJobPosting submit_new_hiring_post={this.context.submit_new_hiring_post} />;
+      default:
+        console.error(`Unknown page requested on hiring board page ${this.state.page_content}`);
+        return null;
+    }
+  };
+
+  signin_handler = () =>
+    this.setState(() => ({
+      modal_show: true,
+      modal_content: MODAL_CONTENT.SIGNIN_VIEW,
+    }));
+
+  signup_handler = () =>
+    this.setState(() => ({
+      modal_show: true,
+      modal_content: MODAL_CONTENT.SIGNUP_VIEW,
+    }));
+
+  toggle_hiring_content = () =>
+    this.setState(prev_state => ({
+      page_content:
+        prev_state.page_content === PAGE_CONTENT.NEW_HIRING_POST
+          ? PAGE_CONTENT.HIRING_TABLE
+          : PAGE_CONTENT.NEW_HIRING_POST,
+    }));
+
+  show_my_posting = () => {
+    this.setState(() => ({ modal_show: true, modal_content: MODAL_CONTENT.PROFILE_VIEW }));
+  };
+
+  render() {
+    const { authenticated_user, sign_user_out } = this.context;
+    return (
+      <div className={'AvailableForWorkContainer'}>
+        <Modal
+          closeTimeoutMS={MODAL_TRANSITION}
+          isOpen={this.state.modal_show}
+          onRequestClose={this.toggle_modal}
+          ariaHideApp={false}
+          style={modal_s}
+          contentLabel="yerevancoder">
+          {this.modal_content()}
+        </Modal>
+        <nav className={'AvailableForWorkContainer__NavTopRow'}>
+          <h4 className={'AvailableForWorkContainer__PageBanner'}>Get hired now</h4>
+          <SigninBar
+            signin_handler={this.signin_handler}
+            signup_handler={this.signup_handler}
+            signout_handler={sign_user_out}
+            signed_in_handler={this.show_my_posting}
+            is_signed_in={authenticated_user !== null}
+            when_active_name={authenticated_user ? authenticated_user.email : ''}
+            custom_input_handler_signedin={this.toggle_hiring_content}
+            custom_input_handler_signedout={() => undefined}
+            custom_input_signed_in_name={
+              this.state.page_content === PAGE_CONTENT.NEW_HIRING_POST ? 'Jobs' : SUBMIT_NEW_JOB
+            }
+            custom_input_signed_out_name={SUBMIT_NEW_JOB}
+          />
+        </nav>
+        {this.page_content()}
+      </div>
+    );
+  }
+}

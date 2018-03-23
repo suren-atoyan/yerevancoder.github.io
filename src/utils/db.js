@@ -17,8 +17,8 @@ const db = firebase.database();
 
 const auth = firebase.auth();
 
-const posts_ref = db.ref(`posts`);
+const hiring_table_posts_ref = db.ref(`hiring-table-posts`);
 
 const freelancers_posts_ref = db.ref(`freelancer-table-posts`);
 
-export { firebase, auth, db, posts_ref, freelancers_posts_ref };
+export { firebase, auth, db, hiring_table_posts_ref, freelancers_posts_ref };
