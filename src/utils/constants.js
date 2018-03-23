@@ -86,10 +86,13 @@ body {
   background-color: ${MATERIAL_BEIGE};
 }
 
+form { margin: 0; }
+
 textarea { resize:none; }
 
 .AuthingErrorMessage {
   font-family:Montserrat, sans-serif;
+  max-width: 75%;
   font-weight: 700;
   font-size: 14px;
   color:red;
@@ -151,13 +154,10 @@ textarea { resize:none; }
 
 .Profile__Container__LoadingSpinner {
   padding-left:20px;
-  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
   padding-right:20px;
-  margin-left:2rem;
-  margin-right:2rem;
 }
 
 .ModalContentWrapper {
@@ -566,8 +566,7 @@ form > fieldset {
 }
 
 .Profile__Container.ReactModal__Content--after-open {
-  height:100%;
-  width:100%;
+
   padding:${BUSINESS_CONTENT_PADDING / 2}px;
 }
 
@@ -661,6 +660,12 @@ const MEDIA_QUERIES_CSS = `
 }
 
 @media (min-width: 650px) and (orientation: landscape) {
+
+  .ModalContentWrapper {
+    height:500px;
+    width:450px;
+  }
+
   .NewsPageContainer {
     height:100vh;
   }
@@ -855,6 +860,12 @@ const MEDIA_QUERIES_CSS = `
 `;
 
 const LARGER_CHECKBOX_CSS = `
+
+.sk-spinner {
+  transform:scale(2);
+}
+
+
 @supports (zoom:2) {
 	input[type="radio"],  input[type=checkbox]{
 	  zoom: 1.3;

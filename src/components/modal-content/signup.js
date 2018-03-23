@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   password_two: '',
   error: null,
   loading_state: LOADING_STATE.NOT_STARTED_YET,
+  receive_newsletter: false,
 };
 
 const signup_message = 'Sign up for an account';
@@ -32,8 +33,8 @@ export default class SignUpForm extends React.Component {
     this.setState(
       () => ({ loading_state: LOADING_STATE.CURRENTLY_LOADING }),
       () =>
-        sign_user_up(username, email, password_one, receive_newsletter)
-          .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_up))
+        sign_user_up(username, email, password_one, receive_newsletter, user_did_sign_up)
+          .then(() => this.setState(() => ({ ...INITIAL_STATE })))
           .catch(error => this.setState(updateByPropertyName('error', error)))
           .then(() => {
             const { error } = this.state;
@@ -55,10 +56,6 @@ export default class SignUpForm extends React.Component {
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING
         ? 'ProfileContainer__SpinningCentered'
         : 'ModalContainer__Form';
-
-    if (error) {
-      console.log(this.state);
-    }
 
     const content =
       this.state.loading_state === LOADING_STATE.CURRENTLY_LOADING ? (

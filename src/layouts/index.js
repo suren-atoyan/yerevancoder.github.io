@@ -45,10 +45,36 @@ export default class ApplicationRoot extends React.Component {
     }
   }
 
+  pass_through = ({
+    displayName,
+    email,
+    emailVerified,
+    metadata,
+    phoneNumber,
+    photoURL,
+    refreshToken,
+    uid,
+  }) => ({
+    displayName,
+    email,
+    emailVerified,
+    metadata,
+    phoneNumber,
+    photoURL,
+    refreshToken,
+    uid,
+  });
+
   getChildContext() {
     return {
       authenticated_user: () => this.state.authenticated_user,
-      sign_user_up: (given_username, given_email, given_password, user_receives_blog_newsletter) =>
+      sign_user_up: (
+        given_username,
+        given_email,
+        given_password,
+        user_receives_blog_newsletter,
+        did_signup_and_update
+      ) =>
         firebase
           .auth()
           .createUserAndRetrieveDataWithEmailAndPassword(given_email, given_password)
@@ -56,46 +82,26 @@ export default class ApplicationRoot extends React.Component {
             throw new Error(`Could not sign you up because:\n${error.message}`);
           })
           .then(reply => {
+            const authenticated_user = this.pass_through(reply.user);
             return db
               .ref(`signed-up-users/${reply.uid}`)
-              .set({ user_receives_blog_newsletter, given_email, given_username });
-          })
-          .then(() => {
-            const current_user = firebase.auth().currentUser;
-            return current_user.updateProfile({
-              displayName: given_username,
-            });
+              .set({ user_receives_blog_newsletter, given_email, given_username })
+              .then(() => {
+                const current_user = firebase.auth().currentUser;
+                return current_user.updateProfile({ displayName: given_username });
+              })
+              .then(() => {
+                this.setState(() => ({ authenticated_user }), did_signup_and_update);
+              });
           }),
       sign_user_in: (email, password, remember_me_checked, did_signin_and_update) =>
         auth
           .signInWithEmailAndPassword(email, password)
-          .then(
-            ({
-              displayName,
-              email,
-              emailVerified,
-              metadata,
-              phoneNumber,
-              photoURL,
-              refreshToken,
-              uid,
-            }) =>
-              this.setState(
-                () => ({
-                  remember_me_checked,
-                  authenticated_user: {
-                    displayName,
-                    email,
-                    emailVerified,
-                    metadata,
-                    phoneNumber,
-                    photoURL,
-                    refreshToken,
-                    uid,
-                  },
-                }),
-                did_signin_and_update
-              )
+          .then(reply =>
+            this.setState(
+              () => ({ remember_me_checked, authenticated_user: this.pass_through(reply) }),
+              did_signin_and_update
+            )
           ),
       sign_user_out: () =>
         auth.signOut().then(() => {
