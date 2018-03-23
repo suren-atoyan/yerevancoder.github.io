@@ -1,19 +1,7 @@
 import React from 'react';
 import format from 'date-fns/format';
 
-import { ROW, TEXT_S } from '../utils/constants';
-
-const summary_s = { ...TEXT_S };
-
-const label_s = { color: 'rgb(127, 127, 127)' };
-
-const job_description_s = {
-  borderWidth: 1,
-  borderColor: 'black',
-  borderStyle: 'inset',
-  padding: '15px',
-  backgroundColor: '#f5f5ea',
-};
+import { SPACER_20_W } from '../utils/constants';
 
 const Posting = ({
   creation_time,
@@ -26,21 +14,37 @@ const Posting = ({
   short_job_description,
   contact_info,
 }) => (
-  <section className={'JobPostingCard'}>
-    <h4 style={summary_s}>{short_job_description}</h4>
-    <div style={ROW}>
-      <span style={label_s}>Posted by: {post_author}</span>
-      <span style={label_s}>Post date: {format(new Date(creation_time), 'DD/MMM/YYYY')}</span>
+  <div className={'FreelancerTable__Freelancer'}>
+    <div className={'FreelancerTable__FreelancerColumnDescription'}>
+      <span className={'FreelancerTable__FreelancerName'}>{short_job_description}</span>
+      <span>Post date: {format(new Date(creation_time), 'DD/MMM/YYYY')}</span>
+      <div className={'FreelancerTable__FlexColumn'}>
+        <div className={'PlainFlexRow FlexSpaceBetween'}>
+          <label>Posted by:</label>
+          {SPACER_20_W}
+          <span>{post_author}</span>
+        </div>
+        <div className={'PlainFlexRow FlexSpaceBetween'}>
+          <label>Location</label>
+          {SPACER_20_W}
+          <span>{job_location}</span>
+        </div>
+      </div>
+      <div className={'FreelancerTable__FlexColumn'}>
+        <div className={'PlainFlexRow FlexSpaceBetween'}>
+          <label>Salary Range</label>
+          {SPACER_20_W}
+          <span>{`from: ${from} to: ${to} ${payment_currency}`}</span>
+        </div>
+        <div className={'PlainFlexRow FlexSpaceBetween'}>
+          <label>Contact Information</label>
+          {SPACER_20_W}
+          <span>{contact_info}</span>
+        </div>
+      </div>
+      <textarea rows={7} readOnly={true} value={job_description} />
     </div>
-    <div style={ROW}>
-      <span style={label_s}>Location: {job_location}</span>
-      <span style={label_s}>
-        Salary Range => from: {from} to: {to} {payment_currency}
-      </span>
-    </div>
-    <p style={job_description_s}>{job_description}</p>
-    <span style={TEXT_S}>Contact: {contact_info}</span>
-  </section>
+  </div>
 );
 
 export default ({ all_jobs }) => {
