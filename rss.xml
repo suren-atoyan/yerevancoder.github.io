@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 20 Mar 2018 19:18:50 GMT</lastBuildDate><item><title><![CDATA[JavaScript classes, prototypes, execution context]]></title><description><![CDATA[Execution context To view it fullscreen click  here Classes, Prototypes To view it fullscreen click  here]]></description><link>https://yerevancoder.com/2018-03-15-js-classes-context-prototypes/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-15-js-classes-context-prototypes/</guid><pubDate>Thu, 15 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Execution context&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[yerevancoder]]></title><description><![CDATA[A place for Armenian coders to talk]]></description><link>https://yerevancoder.com</link><generator>RSS for Node</generator><lastBuildDate>Fri, 23 Mar 2018 06:55:53 GMT</lastBuildDate><item><title><![CDATA[JavaScript classes, prototypes, execution context]]></title><description><![CDATA[Execution context To view it fullscreen click  here Classes, Prototypes To view it fullscreen click  here]]></description><link>https://yerevancoder.com/2018-03-15-js-classes-context-prototypes/</link><guid isPermaLink="false">https://yerevancoder.com/2018-03-15-js-classes-context-prototypes/</guid><pubDate>Thu, 15 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Execution context&lt;/h2&gt;
 &lt;div&gt;
           &lt;div
             class=&quot;gatsby-resp-iframe-wrapper&quot;
@@ -1629,7 +1629,7 @@ sleeve T-shirt today. As you don’t want to catch cold or something you will pr
 &lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt; the temperature outside is greater than 10 degrees celsius. Otherwise you will wear your hoodie
 instead. In this case the condition is the following.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Temperature &gt;= 10&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Temperature &amp;gt;= 10&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;This will be either true or false, depending on the temperature. In programming terminology these
 decisions, depending on some values are called &lt;code class=&quot;language-text&quot;&gt;logical expressions&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;boolean expressions&lt;/code&gt;. As we
@@ -1641,7 +1641,7 @@ only if there’s sunny weather.&lt;/p&gt;
 &lt;p&gt;Now the question. In which case you may want to wear &lt;strong&gt;both&lt;/strong&gt; your favorite T-Shirt and
 sunglasses. The answer is&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Temperature &gt;= 10 AND Weather === &quot;Sunny&quot;&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Temperature &amp;gt;= 10 AND Weather === &amp;quot;Sunny&amp;quot;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;As you might have guessed already, those &lt;strong&gt;&lt;em&gt;connecting&lt;/em&gt;&lt;/strong&gt; operators, such as AND, OR and so on, also
 have a special name. Those are called &lt;code class=&quot;language-text&quot;&gt;logical operators&lt;/code&gt; or sometimes referred as &lt;code class=&quot;language-text&quot;&gt;boolean operators&lt;/code&gt;. We will learn about three of them - AND &lt;strong&gt;(&amp;#x26;&amp;#x26; in JS)&lt;/strong&gt;, OR &lt;strong&gt;(|| in JS)&lt;/strong&gt; and NOT &lt;strong&gt;(!
@@ -1803,7 +1803,7 @@ as they can be used with operands that are not booleans, however they can still 
 &lt;h3&gt;Short-circuit evaluation&lt;/h3&gt;
 &lt;p&gt;Let’s suppose we have a long chain of boolean operators combined.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Condition1 &amp;&amp; Condition2 &amp;&amp; Condition3 &amp;&amp; ... &amp;&amp; Condition N&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Condition1 &amp;amp;&amp;amp; Condition2 &amp;amp;&amp;amp; Condition3 &amp;amp;&amp;amp; ... &amp;amp;&amp;amp; Condition N&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;As you know already, &lt;code class=&quot;language-text&quot;&gt;AND&lt;/code&gt; evaluates to true if and only if both values are true. It’s easy to
 understand that in the general case, like the one shown above, that means that the expression will
@@ -1821,25 +1821,25 @@ stop searching as soon as it sees some &lt;code class=&quot;language-text&quot;&
 there is no any &lt;code class=&quot;language-text&quot;&gt;falsy&lt;/code&gt; value it will evaluate to the last value presented in chain. Let’s take a
 look at some code to get this clearer.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;true &amp;&amp; true &amp;&amp; true &amp;&amp; false &amp;&amp; true &amp;&amp; true // returns false, stops evaluation as soon as sees the false value
-&apos;Truthy value&apos; &amp;&amp; 0 &amp;&amp; true // returns 0 because it&apos;s falsey
-undefined &amp;&amp; null &amp;&amp; 1 &amp;&amp; 0 &amp;&amp; &apos;xoxo&apos; // stops as soon as sees the very first undefined, look how the all unnecessary long calculation is left behind.&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;true &amp;amp;&amp;amp; true &amp;amp;&amp;amp; true &amp;amp;&amp;amp; false &amp;amp;&amp;amp; true &amp;amp;&amp;amp; true // returns false, stops evaluation as soon as sees the false value
+&amp;#39;Truthy value&amp;#39; &amp;amp;&amp;amp; 0 &amp;amp;&amp;amp; true // returns 0 because it&amp;#39;s falsey
+undefined &amp;amp;&amp;amp; null &amp;amp;&amp;amp; 1 &amp;amp;&amp;amp; 0 &amp;amp;&amp;amp; &amp;#39;xoxo&amp;#39; // stops as soon as sees the very first undefined, look how the all unnecessary long calculation is left behind.&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;Now your turn!&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;true &amp;&amp; true &amp;&amp; &apos;&apos; &amp;&amp; true &amp;&amp; true
-&apos;I am the first&apos; &amp;&amp; &apos;I am the second&apos; &amp;&amp; &apos;Latter the greater&apos;
-&apos;Some string&apos; &amp;&amp; 5 &amp;&amp; null &amp;&amp; undefined
-10 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1 &amp;&amp; 0
-10 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1
-0 &amp;&amp; 9 &amp;&amp; 8 &amp;&amp; 7 &amp;&amp; 6 &amp;&amp; 5 &amp;&amp; 4 &amp;&amp; 3 &amp;&amp; 2 &amp;&amp; 1 &amp;&amp; 0&lt;/code&gt;&lt;/pre&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;true &amp;amp;&amp;amp; true &amp;amp;&amp;amp; &amp;#39;&amp;#39; &amp;amp;&amp;amp; true &amp;amp;&amp;amp; true
+&amp;#39;I am the first&amp;#39; &amp;amp;&amp;amp; &amp;#39;I am the second&amp;#39; &amp;amp;&amp;amp; &amp;#39;Latter the greater&amp;#39;
+&amp;#39;Some string&amp;#39; &amp;amp;&amp;amp; 5 &amp;amp;&amp;amp; null &amp;amp;&amp;amp; undefined
+10 &amp;amp;&amp;amp; 9 &amp;amp;&amp;amp; 8 &amp;amp;&amp;amp; 7 &amp;amp;&amp;amp; 6 &amp;amp;&amp;amp; 5 &amp;amp;&amp;amp; 4 &amp;amp;&amp;amp; 3 &amp;amp;&amp;amp; 2 &amp;amp;&amp;amp; 1 &amp;amp;&amp;amp; 0
+10 &amp;amp;&amp;amp; 9 &amp;amp;&amp;amp; 8 &amp;amp;&amp;amp; 7 &amp;amp;&amp;amp; 6 &amp;amp;&amp;amp; 5 &amp;amp;&amp;amp; 4 &amp;amp;&amp;amp; 3 &amp;amp;&amp;amp; 2 &amp;amp;&amp;amp; 1
+0 &amp;amp;&amp;amp; 9 &amp;amp;&amp;amp; 8 &amp;amp;&amp;amp; 7 &amp;amp;&amp;amp; 6 &amp;amp;&amp;amp; 5 &amp;amp;&amp;amp; 4 &amp;amp;&amp;amp; 3 &amp;amp;&amp;amp; 2 &amp;amp;&amp;amp; 1 &amp;amp;&amp;amp; 0&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;The same logic applies to OR operator, as it evaluates to true if &lt;strong&gt;at least one&lt;/strong&gt; of the &lt;code class=&quot;language-text&quot;&gt;operands&lt;/code&gt;
 is true. Can you explain how will OR work? Can you also answer those correctly?&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;false || undefined || &apos;Haha&apos; || 0
-&apos;false&apos; || &apos;Don&apos;t be tricked&apos; || 0 || undefined || &apos;many others&apos;
-&apos;I am the first&apos; || &apos;I am the second&apos; || &apos;Latter the greater?&apos;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;false || undefined || &amp;#39;Haha&amp;#39; || 0
+&amp;#39;false&amp;#39; || &amp;#39;Don&amp;#39;t be tricked&amp;#39; || 0 || undefined || &amp;#39;many others&amp;#39;
+&amp;#39;I am the first&amp;#39; || &amp;#39;I am the second&amp;#39; || &amp;#39;Latter the greater?&amp;#39;
 0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10
 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 0&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
@@ -2690,7 +2690,7 @@ $ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; &lt;span class
 
 -m, change only the modification time
 
--r, --reference=FILE, use this file&apos;s times instead of current time
+-r, --reference=FILE, use this file&amp;#39;s times instead of current time
 
 -t STAMP, use [[CC]YY]MMDDhhmm[.ss] instead of current time
 
@@ -2747,7 +2747,7 @@ mode,ownership,timestamps), if possible  additional  attributes:
 context, links, xattr, all
 
 --no-preserve=ATTR_LIST
-don&apos;t preserve the specified attributes
+don&amp;#39;t preserve the specified attributes
 -R, -r, --recursive
 copy directories recursively
 -u, --update
@@ -2878,10 +2878,10 @@ $ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -R -v foo bar
 
 -i, prompt before every removal
 
---no-preserve-root, do not treat &apos;/&apos; specially.
-You don&apos;t need this unless you want to delete your OS (believe me, you don&apos;t)
+--no-preserve-root, do not treat &amp;#39;/&amp;#39; specially.
+You don&amp;#39;t need this unless you want to delete your OS (believe me, you don&amp;#39;t)
 
---preserve-root, do not remove &apos;/&apos; (default)
+--preserve-root, do not remove &amp;#39;/&amp;#39; (default)
 
 -r, -R, --recursive, remove directories and their contents recursively
 
@@ -3557,7 +3557,7 @@ find me on &lt;a href=&apos;https://twitter.com/@paerallax&apos;&gt;twitter&lt;/
 &lt;p&gt;I needed to do this yesterday but forgot the command. First Stack Overflow answers were overly complicated for my use case. So here goes a simplified version.&lt;/p&gt;
 &lt;p&gt;Let’s say you’ve been working on a feature and just finished. With git, it’s possible to squash previous commits into one. This helps you logically group commits together before sharing with others. Say you’ve been implementing &lt;a href=&quot;https://en.wikipedia.org/wiki/Depth-first_search&quot;&gt;DFS&lt;/a&gt; and this is your current &lt;code class=&quot;language-text&quot;&gt;git log&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code class=&quot;language-zsh&quot;&gt;* 16e9bbd (HEAD -&gt; master) depth-first search working
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code class=&quot;language-zsh&quot;&gt;* 16e9bbd (HEAD -&amp;gt; master) depth-first search working
 * 36ab519 fix vertex lookup
 * aa264b1 label vertices
 * bcd1838 recursive discovery
@@ -3597,7 +3597,7 @@ s 16e9bbd depth-first search working&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Git will now give you the opportunity to change your commit message into something more descriptive. For doing that, replace this:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code class=&quot;language-zsh&quot;&gt;# This is a combination of 5 commits.
-# The first commit&apos;s message is:
+# The first commit&amp;#39;s message is:
 isolate subgraph
 
 # This is the 2nd commit message:
@@ -3623,7 +3623,7 @@ depth-first seach working&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Note that your new commit message line shouldn’t start with &lt;code class=&quot;language-text&quot;&gt;#&lt;/code&gt; as it’ll be treated as a comment.&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;git log&lt;/code&gt; should then return:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
-      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code class=&quot;language-zsh&quot;&gt;* bb26b9d (HEAD -&gt; master) implement depth-first search
+      &lt;pre class=&quot;language-zsh&quot;&gt;&lt;code class=&quot;language-zsh&quot;&gt;* bb26b9d (HEAD -&amp;gt; master) implement depth-first search
 * ea1a7e8 add topological sort&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;That’s it! Now you have your commits squashed into one with an easier to navigate history.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Tech places and events in Armenia]]></title><description><![CDATA[By Edgar Aroutiounian ,
