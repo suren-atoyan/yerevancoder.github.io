@@ -31,7 +31,7 @@ export default class HiringBoardPage extends React.Component {
   };
 
   static contextTypes = {
-    authenticated_user: PropTypes.object,
+    authenticated_user: PropTypes.func,
     sign_user_out: PropTypes.func,
     sign_user_in: PropTypes.func,
     submit_new_hiring_post: PropTypes.func,
@@ -100,7 +100,7 @@ export default class HiringBoardPage extends React.Component {
         content = (
           <ProfileControl
             delete_hiring_record={this.delete_a_job_posting}
-            authenticated_user={this.context.authenticated_user}
+            authenticated_user={this.context.authenticated_user()}
             profile_content={MODAL_PROFILE_CONTENT.HIRING_BOARD_LISTINGS}
             my_hiring_submissions={this.state.my_hiring_submissions}
           />
@@ -170,6 +170,7 @@ export default class HiringBoardPage extends React.Component {
 
   render() {
     const { authenticated_user, sign_user_out } = this.context;
+    const user = authenticated_user();
     return (
       <div className={'AvailableForWorkContainer'}>
         <Modal
@@ -188,8 +189,8 @@ export default class HiringBoardPage extends React.Component {
             signup_handler={this.signup_handler}
             signout_handler={sign_user_out}
             signed_in_handler={this.show_my_posting}
-            is_signed_in={authenticated_user !== null}
-            when_active_name={authenticated_user ? authenticated_user.email : ''}
+            is_signed_in={user !== null}
+            when_active_name={user ? user.email : ''}
             custom_input_handler_signedin={this.toggle_hiring_content}
             custom_input_handler_signedout={() => undefined}
             custom_input_signed_in_name={

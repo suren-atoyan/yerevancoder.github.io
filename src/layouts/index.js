@@ -22,7 +22,7 @@ export default class ApplicationRoot extends React.Component {
   state = { ...INIT_STATE };
 
   static childContextTypes = {
-    authenticated_user: PropTypes.object,
+    authenticated_user: PropTypes.func,
     sign_user_in: PropTypes.func,
     sign_user_up: PropTypes.func,
     sign_user_out: PropTypes.func,
@@ -46,9 +46,8 @@ export default class ApplicationRoot extends React.Component {
   }
 
   getChildContext() {
-    const self = this;
     return {
-      authenticated_user: self.state.authenticated_user,
+      authenticated_user: () => this.state.authenticated_user,
       sign_user_up: (given_username, given_email, given_password, user_receives_blog_newsletter) =>
         firebase
           .auth()
@@ -67,7 +66,7 @@ export default class ApplicationRoot extends React.Component {
               displayName: given_username,
             });
           }),
-      sign_user_in: (email, password, remember_me_checked) =>
+      sign_user_in: (email, password, remember_me_checked, did_signin_and_update) =>
         auth
           .signInWithEmailAndPassword(email, password)
           .then(
@@ -81,19 +80,22 @@ export default class ApplicationRoot extends React.Component {
               refreshToken,
               uid,
             }) =>
-              self.setState(() => ({
-                remember_me_checked,
-                authenticated_user: {
-                  displayName,
-                  email,
-                  emailVerified,
-                  metadata,
-                  phoneNumber,
-                  photoURL,
-                  refreshToken,
-                  uid,
-                },
-              }))
+              this.setState(
+                () => ({
+                  remember_me_checked,
+                  authenticated_user: {
+                    displayName,
+                    email,
+                    emailVerified,
+                    metadata,
+                    phoneNumber,
+                    photoURL,
+                    refreshToken,
+                    uid,
+                  },
+                }),
+                did_signin_and_update
+              )
           ),
       sign_user_out: () =>
         auth.signOut().then(() => {
@@ -103,7 +105,7 @@ export default class ApplicationRoot extends React.Component {
         query_my_freelance_submission().then(profile => {
           if (profile === null) {
             return freelancers_posts_ref.push(data).then(reply => {
-              const { uid } = self.state.authenticated_user;
+              const { uid } = this.state.authenticated_user;
               return db
                 .ref(`users/${uid}/my-freelance-submission`)
                 .set({ ...data, post_key: reply.key });
@@ -114,7 +116,7 @@ export default class ApplicationRoot extends React.Component {
         }),
       submit_new_hiring_post: hiring_post =>
         hiring_table_posts_ref.push().then(reply => {
-          const { uid } = self.state.authenticated_user;
+          const { uid } = this.state.authenticated_user;
           const new_post_key = reply.key;
           const updates = {};
           const with_info = { ...hiring_post, post_key: new_post_key };

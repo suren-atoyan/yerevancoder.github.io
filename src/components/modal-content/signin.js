@@ -26,9 +26,9 @@ export default class SignInForm extends React.Component {
     this.setState(
       () => ({ loading_state: LOADING_STATE.CURRENTLY_LOADING }),
       () =>
-        sign_user_in(email, password, remember_me_checked)
-          .then(() => this.setState(() => ({ ...INITIAL_STATE }), user_did_sign_in))
+        sign_user_in(email, password, remember_me_checked, user_did_sign_in)
           .catch(error => this.setState(updateByPropertyName('error', error)))
+          .then(() => this.setState(() => ({ ...INITIAL_STATE })))
           .then(() => {
             const { error } = this.state;
             this.setState(() => ({ ...INITIAL_STATE, error }));
