@@ -12,7 +12,7 @@ discussionId: "2018-03-13-how-yerevancoder-works"
 `yerevancoder`, (yc), is a [gatsby](https://www.gatsbyjs.org/) web application and its built using a
 very important JavaScript library called [react](https://reactjs.org/). The site is a hybrid app
 because some of the site is generated on the server side (the blog posts) and some parts (the hiring
-board) are dynamic and made on the client with `JavaScript`. Gatsby is also a 'serverless' application
+board) are dynamic and made on the client with `JavaScript`. In addition, yc is a 'serverless' application
 because we use [firebase](https://firebase.google.com/) to provide for things like user
 authentication and a database, (because our traffic is low we don't pay firebase for the
 service). This means that we can build everything for our application with just JavaScript and we
