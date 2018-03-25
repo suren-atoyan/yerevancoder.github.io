@@ -9,7 +9,7 @@ export default ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
 
   return (
-    <div>
+    <div className={'BlogTable'}>
       {posts.map(({ node }) => {
         const { title, tags, author, date } = node.frontmatter;
         return (
