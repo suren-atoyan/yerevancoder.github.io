@@ -71,6 +71,11 @@ const MATERIAL_BLUE_LIGHT_FADE = color(MATERIAL_BLUE)
   .hsl()
   .string();
 
+const MATERIAL_BLUE_HEAVY_FADE = color(MATERIAL_BLUE)
+  .fade(0.6)
+  .hsl()
+  .string();
+
 const MATERIAL_GREY_HEAVY_FADE = color(MATERIAL_GREY)
   .fade(0.6)
   .hsl()
@@ -497,15 +502,60 @@ form > fieldset {
   margin-bottom:1rem;
 }
 
+.BlogTable {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+}
+
 .BlogEntryCard:nth-child(2n + 1),
 .FreelancerTable__Freelancer:nth-child(2n + 1) {
   background-color:${MATERIAL_GREY_HEAVY_FADE};
 }
 
+.BlogEntryCard:nth-child(2n),
+.FreelancerTable__Freelancer:nth-child(2n) {
+  background-color:${MATERIAL_BLUE_HEAVY_FADE};
+}
+
 .BlogEntryCard {
-  padding:12px;
-  border-radius:5px;
-  margin-bottom:1rem;
+  margin:15px 0px;
+  padding:15px;
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  height: 90%;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.BlogEntryCard::after {
+ content: "";
+  border-radius: 5px;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.BlogEntryCard:hover {
+  -webkit-transform: scale(1.15, 1.15);
+  transform: scale(1.15, 1.15);
+}
+
+.BlogEntryCard:hover::after {
+  opacity: 1;
 }
 
 .JobPostingCard {
