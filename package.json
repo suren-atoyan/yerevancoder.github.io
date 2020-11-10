@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "@firebase/auth": "^0.3.4",
-    "@firebase/database": "^0.2.0",
+    "@firebase/database": "^0.7.1",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "color": "^3.0.0",
     "date-fns": "^1.29.0",
-    "firebase": "^4.11.0",
+    "firebase": "^8.0.1",
     "gatsby": "^1.9.238",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-ed-comments": "^0.4.4",
